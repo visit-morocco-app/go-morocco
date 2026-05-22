@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#7B1FA2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Découvrez le Maroc authentique — villes, lieux, gastronomie, événements et conseils pratiques.">
+<title>Visit Morocco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+:root {
+  --violet: #7B1FA2;
+  --violet-dark: #6A1B9A;
+  --violet-light: #9C27B0;
+  --violet-bg: #F3E5F5;
+  --white: #FFFFFF;
+  --bg: #F8F8F8;
+  --text: #1A1A1A;
+  --text2: #555555;
+  --text3: #999999;
+  --border: #E8E8E8;
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+::-webkit-scrollbar { width: 0; height: 0; }
+
+/* ===== SPLASH ===== */
+#splash {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--violet);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+  transition: opacity 0.6s ease;
+}
+#splash.hide { opacity: 0; pointer-events: none; }
+.splash-logo { width: 90px; height: 90px; animation: splashPulse 1.5s ease-in-out infinite; }
+@keyframes splashPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+.splash-name { font-family: 'Playfair Display', serif; font-size: 30px; color: white; letter-spacing: 2px; }
+.splash-tag { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 5px; text-transform: uppercase; }
+
+/* ===== AUTH ===== */
+#auth-screen {
+  position: fixed; inset: 0; z-index: 998;
+  background: white;
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+}
+#auth-screen.hide { display: none; }
+
+.auth-header {
+  background: var(--violet);
+  padding: 60px 28px 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.auth-logo { width: 80px; height: 80px; }
+.auth-title { font-family: 'Playfair Display', serif; font-size: 26px; color: white; text-align: center; }
+.auth-sub { font-size: 13px; color: rgba(255,255,255,0.75); text-align: center; letter-spacing: 1px; }
+
+.auth-body { padding: 32px 28px 40px; display: flex; flex-direction: column; gap: 14px; }
+.auth-label { font-size: 13px; font-weight: 500; color: var(--text2); margin-bottom: -6px; }
+.auth-input {
+  width: 100%; padding: 15px 18px;
+  border: 1.5px solid var(--border); border-radius: 12px;
+  font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text);
+  outline: none; transition: border-color 0.2s; background: white;
+}
+.auth-input:focus { border-color: var(--violet); }
+.auth-input::placeholder { color: var(--text3); }
+
+.auth-btn {
+  width: 100%; padding: 16px;
+  background: var(--violet); border: none; border-radius: 12px;
+  font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: white;
+  cursor: pointer; margin-top: 6px;
+  transition: background 0.2s, transform 0.1s;
+}
+.auth-btn:active { transform: scale(0.98); background: var(--violet-dark); }
+.auth-guest { text-align: center; font-size: 13px; color: var(--text3); cursor: pointer; margin-top: 4px; }
+.auth-guest:hover { color: var(--violet); }
+
+/* ===== MAIN APP ===== */
+#app { display: none; flex-direction: column; min-height: 100vh; }
+#app.show { display: flex; }
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--violet);
+  padding: 52px 20px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-menu { font-size: 22px; color: white; cursor: pointer; }
+.header-title { font-family: 'Playfair Display', serif; font-size: 22px; color: white; }
+.header-right { display: flex; gap: 10px; }
+.header-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; color: white;
+}
+
+/* ===== SEARCH ===== */
+.search-wrap { background: var(--violet); padding: 0 16px 16px; }
+.search-bar {
+  background: rgba(255,255,255,0.2);
+  border-radius: 12px; padding: 11px 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.search-bar input {
+  background: none; border: none; outline: none;
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  color: white; width: 100%;
+}
+.search-bar input::placeholder { color: rgba(255,255,255,0.7); }
+.search-icon { color: rgba(255,255,255,0.8); font-size: 16px; }
+
+/* ===== LANG BAR ===== */
+.lang-bar { background: var(--violet); padding: 0 16px 14px; display: flex; gap: 8px; }
+.lang-btn {
+  padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+  border: 1.5px solid rgba(255,255,255,0.4); background: transparent;
+  color: rgba(255,255,255,0.8); cursor: pointer; transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.lang-btn.active { background: white; color: var(--violet); border-color: white; }
+
+/* ===== CONTENT ===== */
+.content { background: white; flex: 1; padding-bottom: 80px; }
+
+/* ===== TAB CONTENT ===== */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ===== SECTION ===== */
+.section { padding: 20px 16px 0; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.section-title { font-size: 18px; font-weight: 700; color: var(--text); }
+.section-more { font-size: 13px; color: var(--violet); font-weight: 500; cursor: pointer; }
+
+/* ===== VILLES GRID ===== */
+.villes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ville-card {
+  border-radius: var(--radius); overflow: hidden;
+  cursor: pointer; background: var(--border);
+  transition: transform 0.15s;
+}
+.ville-card:active { transform: scale(0.97); }
+.ville-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+.ville-card-info { padding: 10px 10px 12px; background: white; }
+.ville-card-name { font-size: 15px; font-weight: 600; color: var(--text); }
+.ville-card-region { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+/* ===== LIEUX SCROLL ===== */
+.lieux-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 0 16px 4px; scroll-snap-type: x mandatory; }
+.lieu-card {
+  min-width: 180px; border-radius: var(--radius); overflow: hidden;
+  cursor: pointer; background: white; scroll-snap-align: start;
+  flex-shrink: 0; border: 1px solid var(--border);
+  transition: transform 0.15s;
+}
+.lieu-card:active { transform: scale(0.97); }
+.lieu-card img { width: 100%; height: 130px; object-fit: cover; display: block; }
+.lieu-card-info { padding: 10px; }
+.lieu-card-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.lieu-card-ville { font-size: 11px; color: var(--violet); }
+.lieu-card-cat {
+  display: inline-block; background: var(--violet-bg);
+  color: var(--violet); font-size: 10px; font-weight: 500;
+  padding: 2px 8px; border-radius: 20px; margin-bottom: 6px;
+}
+
+/* ===== GASTRO ===== */
+.gastro-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 0 16px 4px; scroll-snap-type: x mandatory; }
+.gastro-card {
+  min-width: 150px; border-radius: var(--radius); overflow: hidden;
+  cursor: pointer; background: white; scroll-snap-align: start;
+  flex-shrink: 0; border: 1px solid var(--border);
+  transition: transform 0.15s;
+}
+.gastro-card:active { transform: scale(0.97); }
+.gastro-card img { width: 100%; height: 110px; object-fit: cover; display: block; }
+.gastro-card-info { padding: 10px; }
+.gastro-card-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.gastro-card-type { font-size: 11px; color: var(--text3); }
+.gastro-card-prix { font-size: 11px; color: var(--violet); font-weight: 500; margin-top: 4px; }
+
+/* ===== EVENTS ===== */
+.events-list { display: flex; flex-direction: column; gap: 10px; padding: 0 16px; }
+.event-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px;
+  display: flex; gap: 14px; cursor: pointer;
+  transition: transform 0.15s;
+}
+.event-card:active { transform: scale(0.98); }
+.event-date {
+  min-width: 48px; background: var(--violet-bg);
+  border-radius: var(--radius-sm); padding: 8px 4px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.event-month { font-size: 10px; color: var(--violet); font-weight: 600; text-transform: uppercase; }
+.event-day { font-size: 22px; font-weight: 700; color: var(--violet); line-height: 1.1; }
+.event-info { flex: 1; }
+.event-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.event-ville { font-size: 12px; color: var(--violet); margin-bottom: 5px; }
+.event-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* ===== CONSEILS ===== */
+.conseils-list { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.conseil-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px;
+  cursor: pointer; transition: transform 0.15s;
+}
+.conseil-card:active { transform: scale(0.98); }
+.conseil-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.conseil-icon { font-size: 26px; }
+.conseil-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.conseil-cat { font-size: 11px; color: var(--text3); }
+.conseil-text { font-size: 13px; color: var(--text2); line-height: 1.7; }
+.conseil-badge {
+  display: inline-block; margin-top: 10px;
+  padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+}
+.badge-essentiel { background: #FFEBEE; color: #C62828; }
+.badge-important { background: #FFF8E1; color: #F57F17; }
+.badge-utile { background: #E8F5E9; color: #2E7D32; }
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 430px;
+  background: white; border-top: 1px solid var(--border);
+  display: flex; padding: 8px 0 20px; z-index: 100;
+}
+.nav-item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 3px; cursor: pointer; padding: 4px 0;
+}
+.nav-icon { font-size: 20px; }
+.nav-label { font-size: 10px; color: var(--text3); font-weight: 500; transition: color 0.2s; }
+.nav-item.active .nav-label { color: var(--violet); }
+.nav-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--violet); display: none; margin-top: 1px;
+}
+.nav-item.active .nav-dot { display: block; }
+
+/* ===== DETAIL PAGE ===== */
+.page-detail {
+  position: fixed; inset: 0; z-index: 200;
+  background: white; overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+.page-detail.open { transform: translateX(0); }
+
+.detail-hero { position: relative; }
+.detail-hero img { width: 100%; height: 280px; object-fit: cover; display: block; }
+.detail-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+}
+.detail-back {
+  position: absolute; top: 52px; left: 16px;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.9); display: flex;
+  align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px; color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.detail-fav {
+  position: absolute; top: 52px; right: 16px;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.9); display: flex;
+  align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.detail-content { padding: 20px 20px 100px; }
+.detail-badge {
+  display: inline-block; background: var(--violet-bg);
+  color: var(--violet); font-size: 12px; font-weight: 500;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+}
+.detail-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.detail-sub { font-size: 13px; color: var(--violet); margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+.detail-desc { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 24px; }
+.detail-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.detail-info-item { background: var(--bg); border-radius: var(--radius-sm); padding: 12px; }
+.detail-info-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.detail-info-value { font-size: 14px; font-weight: 600; color: var(--text); }
+.detail-section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.detail-lieu-item {
+  display: flex; gap: 12px; align-items: center;
+  padding: 12px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); margin-bottom: 10px;
+  cursor: pointer; transition: background 0.15s;
+}
+.detail-lieu-item:active { background: var(--bg); }
+.detail-lieu-img { width: 58px; height: 58px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.detail-lieu-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.detail-lieu-cat { font-size: 12px; color: var(--violet); }
+
+/* ===== ABOUT ===== */
+.about-page {
+  position: fixed; inset: 0; z-index: 300;
+  background: white; overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+.about-page.open { transform: translateX(0); }
+.about-header {
+  background: var(--violet); padding: 60px 24px 32px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.about-logo { width: 70px; height: 70px; }
+.about-title { font-family: 'Playfair Display', serif; font-size: 24px; color: white; }
+.about-tag { font-size: 12px; color: rgba(255,255,255,0.75); letter-spacing: 2px; font-style: italic; }
+.about-body { padding: 24px; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+.about-stat { background: var(--violet-bg); border-radius: var(--radius-sm); padding: 14px; text-align: center; }
+.about-stat-num { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--violet); font-weight: 700; }
+.about-stat-label { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.about-section { margin-bottom: 20px; }
+.about-section-title { font-size: 12px; font-weight: 600; color: var(--violet); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.about-section-text { font-size: 14px; color: var(--text2); line-height: 1.7; }
+.about-back {
+  position: absolute; top: 52px; left: 16px;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); display: flex;
+  align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px; color: white;
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <svg class="splash-logo" viewBox="0 0 200 200">
+    <g transform="translate(100,100)" fill="none" stroke-linecap="round">
+      <ellipse cx="0" cy="0" rx="6" ry="8" stroke="#FFFFFF" stroke-width="3"/>
+      <ellipse cx="0" cy="0" rx="13" ry="17" stroke="#FFFFFF" stroke-width="2.8"/>
+      <ellipse cx="0" cy="0" rx="20" ry="26" stroke="#FFF5CC" stroke-width="2.4"/>
+      <path d="M-30,-10 Q-28,-32 0,-40 Q28,-32 30,-10 Q28,14 0,33 Q-28,14 -30,-10Z" stroke="#FFE88A" stroke-width="2.2"/>
+      <path d="M-42,-8 Q-38,-38 0,-52 Q38,-38 42,-8 Q40,20 0,48 Q-40,20 -42,-8Z" stroke="#FFD85A" stroke-width="2"/>
+      <path d="M-55,-5 Q-50,-44 0,-64 Q50,-44 55,-5 Q52,26 0,61 Q-52,26 -55,-5Z" stroke="#F5CC48" stroke-width="1.8"/>
+      <path d="M-68,-2 Q-62,-50 0,-76 Q62,-50 68,-2 Q65,32 0,74 Q-65,32 -68,-2Z" stroke="#EAB830" stroke-width="1.6"/>
+      <path d="M-80,0 Q-74,-56 0,-88 Q74,-56 80,0 Q77,38 0,86 Q-77,38 -80,0Z" stroke="#D4A020" stroke-width="1.4"/>
+    </g>
+  </svg>
+  <div class="splash-name">Visit Morocco</div>
+  <div class="splash-tag">Discover the authentic Morocco</div>
+</div>
+
+<!-- AUTH -->
+<div id="auth-screen">
+  <div class="auth-header">
+    <svg class="auth-logo" viewBox="0 0 200 200">
+      <g transform="translate(100,100)" fill="none" stroke-linecap="round">
+        <ellipse cx="0" cy="0" rx="6" ry="8" stroke="#FFFFFF" stroke-width="3"/>
+        <ellipse cx="0" cy="0" rx="14" ry="18" stroke="#FFF" stroke-width="2.5"/>
+        <ellipse cx="0" cy="0" rx="22" ry="28" stroke="#FFE88A" stroke-width="2.2"/>
+        <path d="M-32,-8 Q-28,-34 0,-42 Q28,-34 32,-8 Q28,16 0,36 Q-28,16 -32,-8Z" stroke="#FFD85A" stroke-width="2"/>
+        <path d="M-44,-6 Q-40,-40 0,-54 Q40,-40 44,-6 Q40,22 0,50 Q-40,22 -44,-6Z" stroke="#F5CC48" stroke-width="1.8"/>
+        <path d="M-58,-3 Q-52,-48 0,-66 Q52,-48 58,-3 Q52,30 0,64 Q-52,30 -58,-3Z" stroke="#EAB830" stroke-width="1.5"/>
+      </g>
+    </svg>
+    <div class="auth-title">Visit Morocco</div>
+    <div class="auth-sub">Where every journey leaves a mark</div>
+  </div>
+  <div class="auth-body">
+    <div class="auth-label">Votre prénom</div>
+    <input class="auth-input" type="text" placeholder="Ex: Ahmed" id="auth-name">
+    <div class="auth-label">Votre email</div>
+    <input class="auth-input" type="email" placeholder="exemple@email.com" id="auth-email">
+    <button class="auth-btn" onclick="login()">Commencer l'aventure →</button>
+    <div class="auth-guest" onclick="loginGuest()">Continuer sans compte</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-menu">☰</div>
+      <div class="header-title" id="header-title">Villes</div>
+    </div>
+    <div class="header-right">
+      <div class="header-btn" onclick="cycleLang()">🌐</div>
+      <div class="header-btn" onclick="showAbout()">ℹ️</div>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Recherche..." id="search-input" oninput="handleSearch()">
+    </div>
+  </div>
+
+  <!-- LANG -->
+  <div class="lang-bar" style="background:var(--violet);">
+    <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">🇫🇷 FR</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">🇬🇧 EN</button>
+    <button class="lang-btn" id="btn-ar" onclick="setLang('ar')">🇲🇦 AR</button>
+  </div>
+
+  <div class="content">
+
+    <!-- TAB VILLES -->
+    <div class="tab-content active" id="tab-villes">
+      <div class="section">
+        <div class="villes-grid" id="villes-grid"></div>
+      </div>
+    </div>
+
+    <!-- TAB LIEUX -->
+    <div class="tab-content" id="tab-lieux">
+      <div style="padding:20px 0 0;">
+        <div class="lieux-scroll" id="lieux-scroll-full" style="flex-wrap:wrap;overflow:visible;padding:0 16px;gap:10px;"></div>
+      </div>
+    </div>
+
+    <!-- TAB GASTRO -->
+    <div class="tab-content" id="tab-gastro">
+      <div style="padding:20px 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="gastro-grid"></div>
+    </div>
+
+    <!-- TAB EVENTS -->
+    <div class="tab-content" id="tab-events">
+      <div class="section" style="padding-top:20px;">
+        <div class="events-list" id="events-list"></div>
+      </div>
+    </div>
+
+    <!-- TAB CONSEILS -->
+    <div class="tab-content" id="tab-conseils">
+      <div style="padding:20px 0 0;">
+        <div class="conseils-list" id="conseils-list"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="switchTab('villes','Villes')" id="nav-villes">
+      <div class="nav-icon">🏙️</div>
+      <div class="nav-label">Villes</div>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="switchTab('lieux','Lieux')" id="nav-lieux">
+      <div class="nav-icon">📍</div>
+      <div class="nav-label">Lieux</div>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="switchTab('gastro','Gastronomie')" id="nav-gastro">
+      <div class="nav-icon">🍽️</div>
+      <div class="nav-label">Gastronomie</div>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="switchTab('events','Événements')" id="nav-events">
+      <div class="nav-icon">🎉</div>
+      <div class="nav-label">Événements</div>
+      <div class="nav-dot"></div>
+    </div>
+    <div class="nav-item" onclick="switchTab('conseils','Conseils')" id="nav-conseils">
+      <div class="nav-icon">💡</div>
+      <div class="nav-label">Conseils</div>
+      <div class="nav-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL VILLE -->
+<div class="page-detail" id="detail-ville">
+  <div class="detail-hero">
+    <img id="dv-img" src="" alt="">
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-back" onclick="closeDetail('detail-ville')">←</div>
+    <div class="detail-fav" onclick="toggleFav(this)">🤍</div>
+  </div>
+  <div class="detail-content">
+    <div class="detail-badge" id="dv-region"></div>
+    <div class="detail-title" id="dv-name"></div>
+    <div class="detail-sub" id="dv-note"></div>
+    <div class="detail-desc" id="dv-desc"></div>
+    <div class="detail-info-grid">
+      <div class="detail-info-item">
+        <div class="detail-info-label">Région</div>
+        <div class="detail-info-value" id="dv-region2"></div>
+      </div>
+      <div class="detail-info-item">
+        <div class="detail-info-label">Note</div>
+        <div class="detail-info-value" id="dv-note2"></div>
+      </div>
+    </div>
+    <div class="detail-section-title">📍 Lieux incontournables</div>
+    <div id="dv-lieux"></div>
+  </div>
+</div>
+
+<!-- DETAIL LIEU -->
+<div class="page-detail" id="detail-lieu">
+  <div class="detail-hero">
+    <img id="dl-img" src="" alt="">
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-back" onclick="closeDetail('detail-lieu')">←</div>
+    <div class="detail-fav" onclick="toggleFav(this)">🤍</div>
+  </div>
+  <div class="detail-content">
+    <div class="detail-badge" id="dl-cat"></div>
+    <div class="detail-title" id="dl-name"></div>
+    <div class="detail-sub" id="dl-ville"></div>
+    <div class="detail-desc" id="dl-desc"></div>
+    <div class="detail-info-grid">
+      <div class="detail-info-item">
+        <div class="detail-info-label">Ville</div>
+        <div class="detail-info-value" id="dl-ville2"></div>
+      </div>
+      <div class="detail-info-item">
+        <div class="detail-info-label">Catégorie</div>
+        <div class="detail-info-value" id="dl-cat2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-page" id="about-page">
+  <div class="about-header" style="position:relative;">
+    <div class="about-back" onclick="hideAbout()">←</div>
+    <svg class="about-logo" viewBox="0 0 200 200">
+      <g transform="translate(100,100)" fill="none" stroke-linecap="round">
+        <ellipse cx="0" cy="0" rx="6" ry="8" stroke="#FFF" stroke-width="3"/>
+        <ellipse cx="0" cy="0" rx="14" ry="18" stroke="#FFF" stroke-width="2.5"/>
+        <ellipse cx="0" cy="0" rx="22" ry="28" stroke="#FFE88A" stroke-width="2.2"/>
+        <path d="M-32,-8 Q-28,-34 0,-42 Q28,-34 32,-8 Q28,16 0,36 Q-28,16 -32,-8Z" stroke="#FFD85A" stroke-width="2"/>
+        <path d="M-44,-6 Q-40,-40 0,-54 Q40,-40 44,-6 Q40,22 0,50 Q-40,22 -44,-6Z" stroke="#F5CC48" stroke-width="1.8"/>
+      </g>
+    </svg>
+    <div class="about-title">Visit Morocco</div>
+    <div class="about-tag">Where every journey leaves a mark</div>
+  </div>
+  <div class="about-body">
+    <div class="about-stats">
+      <div class="about-stat"><div class="about-stat-num">6</div><div class="about-stat-label">Villes</div></div>
+      <div class="about-stat"><div class="about-stat-num">15</div><div class="about-stat-label">Lieux</div></div>
+      <div class="about-stat"><div class="about-stat-num">10</div><div class="about-stat-label">Plats</div></div>
+    </div>
+    <div class="about-section">
+      <div class="about-section-title">Notre mission</div>
+      <div class="about-section-text">Visit Morocco est votre guide de voyage authentique pour découvrir le Royaume du Maroc. Des médinas labyrinthiques aux plages atlantiques, des sommets de l'Atlas aux dunes du Sahara.</div>
+    </div>
+    <div class="about-section">
+      <div class="about-section-title">Contact</div>
+      <div class="about-section-text">📧 contact@visitmorocco.app<br>🌐 www.visitmorocco.app<br>📱 @visitmorocco</div>
+    </div>
+    <div class="about-section">
+      <div class="about-section-title">Version</div>
+      <div class="about-section-text">Visit Morocco v1.0 — 2025<br>Fait avec ❤️ pour le Maroc 🇲🇦</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  villes: [
+    { id:1, nom:"Marrakech", nom_en:"Marrakech", region:"Sud", region_en:"South", note:5, img:"https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600&q=80", desc_fr:"La ville ocre, capitale culturelle du Maroc. Ses souks labyrinthiques, la place Jemaa el-Fna et ses riads cachés en font une destination envoûtante entre tradition et modernité.", desc_en:"The Red City, Morocco's cultural capital. Its labyrinthine souks, the Jemaa el-Fna square and hidden riads make it a mesmerizing destination between tradition and modernity." },
+    { id:2, nom:"Casablanca", nom_en:"Casablanca", region:"Centre-Ouest", region_en:"West-Center", note:4, img:"https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=600&q=80", desc_fr:"La métropole économique du Maroc. Moderne et cosmopolite, elle abrite la majestueuse mosquée Hassan II, de beaux quartiers Art déco et une scène gastronomique vibrante.", desc_en:"Morocco's economic metropolis. Modern and cosmopolitan, home to the majestic Hassan II Mosque, beautiful Art Deco neighborhoods and a vibrant gastronomic scene." },
+    { id:3, nom:"Rabat", nom_en:"Rabat", region:"Nord-Ouest", region_en:"North-West", note:4, img:"https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=600&q=80", desc_fr:"La capitale royale, ville d'histoire et de culture. Entre la Tour Hassan, la Kasbah des Oudayas et ses musées, Rabat offre une expérience authentique loin des foules.", desc_en:"The royal capital, a city of history and culture. Between the Hassan Tower, the Kasbah of the Udayas and its museums, Rabat offers an authentic experience away from crowds." },
+    { id:4, nom:"Essaouira", nom_en:"Essaouira", region:"Côte Atlantique", region_en:"Atlantic Coast", note:5, img:"https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=80", desc_fr:"La cité des vents, ville côtière enchanteresse aux remparts bleus et blancs. Connue pour son ambiance bohème, ses galeries d'art et ses plages de surf.", desc_en:"The City of Winds, an enchanting coastal town with blue and white ramparts. Known for its bohemian vibe, art galleries and surf beaches." },
+    { id:5, nom:"Agadir", nom_en:"Agadir", region:"Sud", region_en:"South", note:4, img:"https://images.unsplash.com/photo-1553603227-2358aabe8f50?w=600&q=80", desc_fr:"La station balnéaire par excellence du Maroc. Avec ses 300 jours de soleil par an, sa longue plage de sable fin et sa marina moderne, c'est le paradis des vacanciers.", desc_en:"Morocco's premier beach resort. With 300 days of sunshine a year, its long sandy beach and modern marina, it is a paradise for holidaymakers." },
+    { id:6, nom:"Tanger", nom_en:"Tangier", region:"Nord", region_en:"North", note:5, img:"https://images.unsplash.com/photo-1553697388-94e804e2f0f6?w=600&q=80", desc_fr:"La porte de l'Afrique, ville mythique au carrefour de l'Europe et du Maroc. Sa médina, sa kasbah et la légendaire Grotte d'Hercule en font une destination unique.", desc_en:"The Gateway to Africa, a mythical city at the crossroads of Europe and Morocco. Its medina, kasbah and the legendary Cave of Hercules make it a unique destination." }
+  ],
+  lieux: [
+    { id:1, nom:"Jemaa el-Fna", nom_en:"Jemaa el-Fna", ville:"Marrakech", cat:"Place", img:"https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400&q=80", desc_fr:"La place mythique de Marrakech, classée au patrimoine UNESCO. Le jour des vendeurs de jus d'orange, la nuit des conteurs, musiciens et restaurants en plein air.", desc_en:"Marrakech's mythical square, UNESCO-listed. Day brings orange juice sellers, night brings storytellers, musicians and open-air restaurants.", note:5 },
+    { id:2, nom:"Mosquée Hassan II", nom_en:"Hassan II Mosque", ville:"Casablanca", cat:"Monument", img:"https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=400&q=80", desc_fr:"La 3e plus grande mosquée du monde, chef-d'œuvre de l'architecture marocaine moderne. Construite sur l'océan Atlantique, sa visite guidée est un moment inoubliable.", desc_en:"The 3rd largest mosque in the world, a masterpiece of modern Moroccan architecture. Built over the Atlantic Ocean, the guided tour is unforgettable.", note:5 },
+    { id:3, nom:"Kasbah des Oudayas", nom_en:"Kasbah of the Udayas", ville:"Rabat", cat:"Patrimoine", img:"https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=400&q=80", desc_fr:"Forteresse du 12e siècle aux ruelles bleues et blanches dominant l'embouchure du Bou Regreg. Un des endroits les plus photogéniques du Maroc.", desc_en:"12th-century fortress with blue and white alleys overlooking the Bou Regreg estuary. One of Morocco's most photogenic spots.", note:5 },
+    { id:4, nom:"Remparts d'Essaouira", nom_en:"Essaouira Ramparts", ville:"Essaouira", cat:"Patrimoine", img:"https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=80", desc_fr:"Les célèbres remparts portugais du 18e siècle qui surplombent l'Atlantique. Idéal pour une promenade au coucher du soleil avec vue sur les bateaux de pêche.", desc_en:"The famous 18th-century Portuguese ramparts overlooking the Atlantic. Perfect for a sunset walk with views over fishing boats.", note:5 },
+    { id:5, nom:"Marina d'Agadir", nom_en:"Agadir Marina", ville:"Agadir", cat:"Loisirs", img:"https://images.unsplash.com/photo-1553603227-2358aabe8f50?w=400&q=80", desc_fr:"Le cœur moderne d'Agadir, avec ses restaurants, boutiques et bateaux de plaisance. Animée le soir, c'est l'endroit idéal pour dîner face à l'océan.", desc_en:"The modern heart of Agadir, with restaurants, shops and pleasure boats. Lively in the evening, ideal for dinner facing the ocean.", note:4 },
+    { id:6, nom:"Grotte d'Hercule", nom_en:"Cave of Hercules", ville:"Tanger", cat:"Nature", img:"https://images.unsplash.com/photo-1553697388-94e804e2f0f6?w=400&q=80", desc_fr:"Grotte naturelle spectaculaire à 14 km de Tanger dont l'ouverture en forme de carte de l'Afrique donne sur l'Atlantique. Lieu mythique lié à la légende d'Hercule.", desc_en:"Spectacular natural cave 14 km from Tangier whose Africa-shaped opening overlooks the Atlantic. A mythical site linked to the legend of Hercules.", note:5 },
+    { id:7, nom:"Jardin Majorelle", nom_en:"Majorelle Garden", ville:"Marrakech", cat:"Jardin", img:"https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400&q=80", desc_fr:"Oasis de verdure créée par Jacques Majorelle et sauvée par Yves Saint Laurent. Ses bâtiments bleu cobalt et sa collection de cactus sont mondialement célèbres.", desc_en:"Green oasis created by Jacques Majorelle and saved by Yves Saint Laurent. Its cobalt blue buildings and cactus collection are world-famous.", note:5 },
+    { id:8, nom:"Tour Hassan", nom_en:"Hassan Tower", ville:"Rabat", cat:"Monument", img:"https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=400&q=80", desc_fr:"Minaret inachevé du 12e siècle, symbole de Rabat. Face à lui, le Mausolée Mohammed V, chef-d'œuvre du marbre blanc et de l'artisanat marocain.", desc_en:"Unfinished 12th-century minaret, symbol of Rabat. Opposite it stands the Mohammed V Mausoleum, a masterpiece of white marble and Moroccan craftsmanship.", note:5 },
+    { id:9, nom:"Souk de Marrakech", nom_en:"Marrakech Souk", ville:"Marrakech", cat:"Marché", img:"https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400&q=80", desc_fr:"Le plus grand souk du Maroc, un labyrinthe de ruelles thématiques : épices, cuir, tapis, bijoux, poterie. Se perdre dans les souks est une expérience en soi.", desc_en:"Morocco's largest souk, a maze of themed alleys: spices, leather, carpets, jewellery, pottery. Getting lost in the souks is an experience in itself.", note:5 },
+    { id:10, nom:"Plage d'Agadir", nom_en:"Agadir Beach", ville:"Agadir", cat:"Plage", img:"https://images.unsplash.com/photo-1553603227-2358aabe8f50?w=400&q=80", desc_fr:"10 km de sable fin protégé du vent par une baie naturelle. Eau chaude, vagues douces, infrastructures modernes. La plus belle plage urbaine du Maroc.", desc_en:"10 km of fine sand sheltered from the wind by a natural bay. Warm water, gentle waves, modern facilities. Morocco's finest urban beach.", note:5 },
+    { id:11, nom:"Médina de Tanger", nom_en:"Tangier Medina", ville:"Tanger", cat:"Médina", img:"https://images.unsplash.com/photo-1553697388-94e804e2f0f6?w=400&q=80", desc_fr:"Un dédale de ruelles authentiques perché sur une colline avec vue sur le détroit de Gibraltar. Moins touristique que Marrakech, elle garde une atmosphère d'époque unique.", desc_en:"A maze of authentic alleys perched on a hill with views over the Strait of Gibraltar. Less touristy than Marrakech, it retains a uniquely timeless atmosphere.", note:4 },
+    { id:12, nom:"Port d'Essaouira", nom_en:"Essaouira Port", ville:"Essaouira", cat:"Port", img:"https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&q=80", desc_fr:"Port de pêche authentique où les barques bleues rentrent chaque matin. Les mouettes, l'odeur du poisson frais et les pêcheurs qui réparent leurs filets — un tableau vivant.", desc_en:"Authentic fishing port where blue boats return each morning. Seagulls, fresh fish smell and fishermen repairing their nets — a living painting.", note:4 },
+    { id:13, nom:"Corniche de Casablanca", nom_en:"Casablanca Corniche", ville:"Casablanca", cat:"Promenade", img:"https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=400&q=80", desc_fr:"Boulevard longeant l'Atlantique, bordé de cafés, restaurants et clubs. Animée en toute saison, c'est le poumon de loisirs des Casablancais.", desc_en:"Boulevard along the Atlantic, lined with cafes, restaurants and clubs. Lively all year round, it is the leisure heart of Casablanca.", note:4 },
+    { id:14, nom:"Chellah", nom_en:"Chellah", ville:"Rabat", cat:"Patrimoine", img:"https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=400&q=80", desc_fr:"Nécropole romaine et mérinide à Rabat, envahie par la végétation et peuplée de cigognes. Un lieu magique et hors du temps à 10 minutes du centre.", desc_en:"Roman and Merinid necropolis in Rabat, overgrown with vegetation and populated by storks. A magical, timeless place 10 minutes from the centre.", note:4 },
+    { id:15, nom:"Cap Spartel", nom_en:"Cap Spartel", ville:"Tanger", cat:"Nature", img:"https://images.unsplash.com/photo-1553697388-94e804e2f0f6?w=400&q=80", desc_fr:"Le point de rencontre de l'Atlantique et de la Méditerranée, à 14 km de Tanger. Son phare et son panorama sur deux mers sont un spectacle naturel unique au monde.", desc_en:"The meeting point of the Atlantic and Mediterranean, 14 km from Tangier. Its lighthouse and panoramic view over two seas is a unique natural spectacle.", note:5 }
+  ],
+  gastronomie: [
+    { id:1, nom:"Tajine", nom_en:"Tajine", type:"Plat principal", prix:"5–12€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Le plat emblématique du Maroc, cuit lentement dans un plat en terre cuite conique. Agneau aux pruneaux, poulet au citron confit ou légumes — chaque région a sa recette.", desc_en:"Morocco's emblematic dish, slow-cooked in a conical earthenware pot. Lamb with prunes, chicken with preserved lemon or vegetables — every region has its recipe.", note:5 },
+    { id:2, nom:"Couscous", nom_en:"Couscous", type:"Plat principal", prix:"6–15€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Le plat du vendredi par excellence, servi en famille. Semoule fine surmontée de légumes et viande mijotés, accompagné de bouillon parfumé aux épices.", desc_en:"The quintessential Friday dish, served with family. Fine semolina topped with simmered vegetables and meat, served with spice-scented broth.", note:5 },
+    { id:3, nom:"Pastilla", nom_en:"Pastilla", type:"Entrée", prix:"4–10€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Feuilleté sucré-salé emblématique, farci de poulet, amandes et cannelle. Une explosion de saveurs que tout voyageur doit goûter.", desc_en:"Iconic sweet-savoury pastry stuffed with chicken, almonds and cinnamon. A flavour explosion every traveller must try.", note:5 },
+    { id:4, nom:"Harira", nom_en:"Harira", type:"Soupe", prix:"1–3€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Soupe épaisse à base de tomates, lentilles, pois chiches et herbes fraîches. Incontournable pendant le Ramadan, délicieuse toute l'année.", desc_en:"Thick soup made with tomatoes, lentils, chickpeas and fresh herbs. A must during Ramadan, delicious year-round.", note:5 },
+    { id:5, nom:"Msemen", nom_en:"Msemen", type:"Petit-déjeuner", prix:"0.5–2€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Crêpe feuilletée marocaine, grillée à la poêle, servie avec du miel et du beurre. Le meilleur en-cas du matin dans les cafés populaires.", desc_en:"Moroccan layered flatbread, pan-grilled, served with honey and butter. The best morning snack in popular cafes.", note:4 },
+    { id:6, nom:"Thé à la menthe", nom_en:"Mint Tea", type:"Boisson", prix:"0.5–2€", img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Bien plus qu'une boisson, le thé marocain est un rituel d'hospitalité. Versé de haut pour créer de la mousse, sucré généreusement.", desc_en:"Much more than a drink, Moroccan tea is a hospitality ritual. Poured from high to create foam, generously sweetened.", note:5 },
+    { id:7, nom:"Mechoui", nom_en:"Mechoui", type:"Plat principal", prix:"8–20€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Agneau entier rôti lentement dans un four traditionnel. Servi avec du cumin et du sel, une spécialité des grandes occasions.", desc_en:"Whole lamb slowly roasted in a traditional oven. Served with cumin and salt, a speciality for grand occasions.", note:5 },
+    { id:8, nom:"Briouates", nom_en:"Briouates", type:"Entrée", prix:"2–5€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Petits triangles de pâte filo farcis de viande épicée ou amandes miel. Croustillants et savoureux, servis en entrée ou en snack.", desc_en:"Small filo pastry triangles filled with spiced meat or honey almonds. Crispy and flavourful, served as a starter or snack.", note:4 },
+    { id:9, nom:"Sardines grillées", nom_en:"Grilled Sardines", type:"Plat principal", prix:"3–8€", img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Spécialité des villes côtières. Pêchées le matin, grillées au charbon le midi, servies avec du pain et du citron. Frais et délicieux.", desc_en:"Speciality of coastal cities. Caught in the morning, charcoal-grilled at noon, served with bread and lemon. Fresh and delicious.", note:5 },
+    { id:10, nom:"Chebakia", nom_en:"Chebakia", type:"Dessert", prix:"1–3€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Pâtisserie en forme de fleur, frite puis trempée dans du miel et parsemée de sésame. Incontournable pendant le Ramadan.", desc_en:"Flower-shaped pastry, fried then dipped in honey and sprinkled with sesame seeds. A must during Ramadan.", note:4 }
+  ],
+  evenements: [
+    { id:1, nom:"Festival Gnaoua", nom_en:"Gnaoua Festival", ville:"Essaouira", periode:"Juin", periode_en:"June", jour:"15", desc_fr:"Festival mondial de musique Gnaoua à Essaouira. Des dizaines de scènes gratuites investissent la ville pendant 4 jours. Un événement unique en son genre.", desc_en:"World festival of Gnaoua music in Essaouira. Dozens of free stages fill the city for 4 days. A one-of-a-kind event." },
+    { id:2, nom:"Ramadan au Maroc", nom_en:"Ramadan in Morocco", ville:"Tout le Maroc", periode:"Variable", periode_en:"Variable", jour:"01", desc_fr:"Le mois sacré transforme le Maroc : journées calmes, nuits festives. Les tables de l'ftour dans les médinas sont une expérience culturelle inoubliable.", desc_en:"The holy month transforms Morocco: quiet days, festive nights. The ftour tables in the medinas are an unforgettable cultural experience." },
+    { id:3, nom:"Festival Film Marrakech", nom_en:"Marrakech Film Festival", ville:"Marrakech", periode:"Décembre", periode_en:"December", jour:"01", desc_fr:"L'un des plus grands festivals de cinéma d'Afrique, attirant des stars internationales. Projections en plein air sur la place Jemaa el-Fna.", desc_en:"One of Africa's largest film festivals, attracting international stars. Open-air screenings on Jemaa el-Fna square." },
+    { id:4, nom:"Fête du Trône", nom_en:"Throne Day", ville:"Tout le Maroc", periode:"Juillet", periode_en:"July", jour:"30", desc_fr:"Célébration nationale du 30 juillet. Feux d'artifice, défilés et festivités dans toutes les villes du Maroc.", desc_en:"National celebration on July 30th. Fireworks, parades and festivities in every Moroccan city." },
+    { id:5, nom:"Marathon des Sables", nom_en:"Marathon des Sables", ville:"Sahara Sud", periode:"Avril", periode_en:"April", jour:"10", desc_fr:"La course à pied la plus difficile du monde : 250 km en 6 jours dans le Sahara marocain. Un spectacle humain extraordinaire.", desc_en:"The world's toughest foot race: 250 km in 6 days through the Moroccan Sahara. An extraordinary human spectacle." },
+    { id:6, nom:"Moussem de Tan-Tan", nom_en:"Tan-Tan Moussem", ville:"Tan-Tan", periode:"Avril", periode_en:"April", jour:"20", desc_fr:"Grand rassemblement de tribus nomades sahariennes, inscrit au patrimoine UNESCO. Chameaux, fantasia, musique hassanie.", desc_en:"Grand gathering of Saharan nomadic tribes, UNESCO-listed. Camels, fantasia, hassani music." }
+  ],
+  conseils: [
+    { icon:"💰", titre:"Monnaie", titre_en:"Currency", cat:"Argent", importance:"Essentiel", desc_fr:"La monnaie est le Dirham marocain (MAD). 1€ ≈ 10,8 MAD. Les distributeurs ATM sont disponibles partout. Négocier dans les souks est normal — commencez à 40% du prix affiché.", desc_en:"The currency is the Moroccan Dirham (MAD). €1 ≈ 10.8 MAD. ATMs are everywhere. Bargaining in the souks is normal — start at 40% of the displayed price." },
+    { icon:"🌤️", titre:"Meilleure période", titre_en:"Best Season", cat:"Météo", importance:"Essentiel", desc_fr:"Mars–Mai et Septembre–Novembre sont les meilleures périodes : températures douces (20–28°C). Évitez Juillet–Août (40°C+ dans les villes intérieures).", desc_en:"March–May and September–November are the best periods: mild temperatures (20–28°C). Avoid July–August (40°C+ in inland cities)." },
+    { icon:"🚌", titre:"Transport", titre_en:"Transport", cat:"Mobilité", importance:"Essentiel", desc_fr:"Le train CTM relie Tanger, Rabat, Casablanca et Marrakech confortablement. Les bus CTM sont fiables et bon marché.", desc_en:"The CTM train links Tangier, Rabat, Casablanca and Marrakech comfortably. CTM buses are reliable and cheap." },
+    { icon:"👗", titre:"Tenue vestimentaire", titre_en:"Dress Code", cat:"Culture", importance:"Important", desc_fr:"Respectez la culture locale : épaules et genoux couverts dans les médinas et lieux religieux. Sur les plages, les tenues occidentales sont acceptées.", desc_en:"Respect local culture: shoulders and knees covered in medinas and religious sites. On beaches, western dress is accepted." },
+    { icon:"🔒", titre:"Sécurité", titre_en:"Safety", cat:"Sécurité", importance:"Important", desc_fr:"Le Maroc est l'un des pays les plus sûrs d'Afrique. Méfiez-vous des faux guides dans les médinas. Utilisez des taxis officiels.", desc_en:"Morocco is one of Africa's safest countries. Beware of fake guides in medinas. Use official taxis." },
+    { icon:"🗣️", titre:"Langue", titre_en:"Language", cat:"Communication", importance:"Utile", desc_fr:"L'arabe dialectal (darija) et le français sont les langues du quotidien. L'espagnol est compris à Tanger. Quelques mots en arabe sont très appréciés.", desc_en:"Dialectal Arabic (darija) and French are the everyday languages. Spanish is understood in Tangier. A few words in Arabic are greatly appreciated." },
+    { icon:"🍽️", titre:"Nourriture & Eau", titre_en:"Food & Water", cat:"Santé", importance:"Important", desc_fr:"Buvez uniquement de l'eau en bouteille. La nourriture de rue est délicieuse et généralement sûre dans les endroits fréquentés.", desc_en:"Drink bottled water only. Street food is delicious and generally safe in busy spots." },
+    { icon:"📶", titre:"Wifi & SIM", titre_en:"Wifi & SIM", cat:"Connectivité", importance:"Utile", desc_fr:"Les opérateurs Maroc Telecom, Orange et Inwi proposent des SIM locales à moins de 5€ avec data incluse.", desc_en:"Operators Maroc Telecom, Orange and Inwi offer local SIMs for under €5 with data included." }
+  ]
+};
+
+let lang = 'fr';
+let userName = '';
+
+window.onload = () => {
+  setTimeout(() => {
+    document.getElementById('splash').classList.add('hide');
+    setTimeout(() => document.getElementById('splash').style.display='none', 700);
+  }, 2200);
+};
+
+function login() {
+  const n = document.getElementById('auth-name').value;
+  const e = document.getElementById('auth-email').value;
+  userName = n || (e ? e.split('@')[0] : 'Voyageur');
+  startApp();
+}
+function loginGuest() { userName = 'Voyageur'; startApp(); }
+function startApp() {
+  document.getElementById('auth-screen').classList.add('hide');
+  document.getElementById('app').classList.add('show');
+  renderAll();
+}
+
+function getName(i) { return lang==='en' && i.nom_en ? i.nom_en : i.nom; }
+function getDesc(i) { return lang==='en' && i.desc_en ? i.desc_en : i.desc_fr; }
+function stars(n) { return '⭐'.repeat(n); }
+
+function renderAll() {
+  renderVilles(); renderLieux(); renderGastro(); renderEvents(); renderConseils();
+}
+
+function renderVilles() {
+  const el = document.getElementById('villes-grid');
+  if(!el) return;
+  el.innerHTML = DATA.villes.map(v => `
+    <div class="ville-card" onclick="showVille(${v.id})">
+      <img src="${v.img}" alt="${v.nom}" loading="lazy">
+      <div class="ville-card-info">
+        <div class="ville-card-name">${getName(v)}</div>
+        <div class="ville-card-region">${lang==='en'?v.region_en:v.region}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderLieux() {
+  const el = document.getElementById('lieux-scroll-full');
+  if(!el) return;
+  el.innerHTML = DATA.lieux.map(l => `
+    <div class="lieu-card" onclick="showLieu(${l.id})" style="min-width:calc(50% - 5px);">
+      <img src="${l.img}" alt="${l.nom}" loading="lazy">
+      <div class="lieu-card-info">
+        <div class="lieu-card-cat">${l.cat}</div>
+        <div class="lieu-card-name">${getName(l)}</div>
+        <div class="lieu-card-ville">📍 ${l.ville}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderGastro() {
+  const el = document.getElementById('gastro-grid');
+  if(!el) return;
+  el.innerHTML = DATA.gastronomie.map(g => `
+    <div class="gastro-card" style="min-width:unset;">
+      <img src="${g.img}" alt="${g.nom}" loading="lazy">
+      <div class="gastro-card-info">
+        <div class="gastro-card-name">${getName(g)}</div>
+        <div class="gastro-card-type">${g.type}</div>
+        <div class="gastro-card-prix">💰 ${g.prix}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderEvents() {
+  const el = document.getElementById('events-list');
+  if(!el) return;
+  el.innerHTML = DATA.evenements.map(e => `
+    <div class="event-card">
+      <div class="event-date">
+        <div class="event-month">${(lang==='en'?e.periode_en:e.periode).substring(0,3)}</div>
+        <div class="event-day">${e.jour}</div>
+      </div>
+      <div class="event-info">
+        <div class="event-name">${getName(e)}</div>
+        <div class="event-ville">📍 ${e.ville}</div>
+        <div class="event-desc">${getDesc(e).substring(0,100)}...</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderConseils() {
+  const el = document.getElementById('conseils-list');
+  if(!el) return;
+  el.innerHTML = DATA.conseils.map(c => `
+    <div class="conseil-card">
+      <div class="conseil-header">
+        <div class="conseil-icon">${c.icon}</div>
+        <div>
+          <div class="conseil-title">${lang==='en'?c.titre_en:c.titre}</div>
+          <div class="conseil-cat">${c.cat}</div>
+        </div>
+      </div>
+      <div class="conseil-text">${getDesc(c)}</div>
+      <span class="conseil-badge badge-${c.importance.toLowerCase()}">${c.importance}</span>
+    </div>`).join('');
+}
+
+function switchTab(tab, title) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('nav-'+tab).classList.add('active');
+  document.getElementById('header-title').textContent = title;
+  window.scrollTo(0,0);
+}
+
+function showVille(id) {
+  const v = DATA.villes.find(x=>x.id===id);
+  document.getElementById('dv-img').src = v.img;
+  document.getElementById('dv-name').textContent = getName(v);
+  document.getElementById('dv-region').textContent = lang==='en'?v.region_en:v.region;
+  document.getElementById('dv-region2').textContent = lang==='en'?v.region_en:v.region;
+  document.getElementById('dv-note').textContent = stars(v.note)+' '+v.note+'/5';
+  document.getElementById('dv-note2').textContent = v.note+'/5';
+  document.getElementById('dv-desc').textContent = getDesc(v);
+  const lieux = DATA.lieux.filter(l=>l.ville===v.nom);
+  document.getElementById('dv-lieux').innerHTML = lieux.map(l=>`
+    <div class="detail-lieu-item" onclick="showLieu(${l.id})">
+      <img class="detail-lieu-img" src="${l.img}" alt="${l.nom}">
+      <div>
+        <div class="detail-lieu-name">${getName(l)}</div>
+        <div class="detail-lieu-cat">${l.cat}</div>
+      </div>
+    </div>`).join('');
+  document.getElementById('detail-ville').classList.add('open');
+}
+
+function showLieu(id) {
+  const l = DATA.lieux.find(x=>x.id===id);
+  document.getElementById('dl-img').src = l.img;
+  document.getElementById('dl-name').textContent = getName(l);
+  document.getElementById('dl-cat').textContent = l.cat;
+  document.getElementById('dl-cat2').textContent = l.cat;
+  document.getElementById('dl-ville').textContent = '📍 '+l.ville;
+  document.getElementById('dl-ville2').textContent = l.ville;
+  document.getElementById('dl-desc').textContent = getDesc(l);
+  document.getElementById('detail-lieu').classList.add('open');
+}
+
+function closeDetail(id) { document.getElementById(id).classList.remove('open'); }
+function showAbout() { document.getElementById('about-page').classList.add('open'); }
+function hideAbout() { document.getElementById('about-page').classList.remove('open'); }
+function toggleFav(el) { el.textContent = el.textContent==='🤍'?'❤️':'🤍'; }
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('btn-'+l).classList.add('active');
+  renderAll();
+}
+function cycleLang() {
+  const ls=['fr','en','ar'];
+  setLang(ls[(ls.indexOf(lang)+1)%ls.length]);
+}
+
+function handleSearch() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  if(!q) { renderVilles(); return; }
+  const res = DATA.villes.filter(v=>v.nom.toLowerCase().includes(q)||v.region.toLowerCase().includes(q));
+  document.getElementById('villes-grid').innerHTML = res.map(v=>`
+    <div class="ville-card" onclick="showVille(${v.id})">
+      <img src="${v.img}" alt="${v.nom}" loading="lazy">
+      <div class="ville-card-info">
+        <div class="ville-card-name">${v.nom}</div>
+        <div class="ville-card-region">${v.region}</div>
+      </div>
+    </div>`).join('') || '<p style="padding:20px;color:#999;font-size:14px;">Aucun résultat</p>';
+}
+</script>
+</body>
+</html>

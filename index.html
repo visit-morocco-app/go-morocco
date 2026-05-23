@@ -453,10 +453,8 @@ let DATA = { villes:[], lieux:[], gastronomie:[], evenements:[], conseils:[], ur
 let currentVilleFilter = 'Tous';
 
 // INIT
-window.onload = async function() {
+window.onload = function() {
   document.getElementById('loading').classList.add('hide');
-  document.getElementById('auth-screen').style.display = 'flex';
-  loadAllData();
 };
 
 // LOAD DATA FROM FIREBASE
@@ -476,7 +474,7 @@ async function loadAllData() {
 function login() {
   document.getElementById('auth-screen').classList.add('hide');
   document.getElementById('app').classList.add('show');
-  renderAll();
+  loadAllData().then(function() { renderAll(); });
 }
 function loginGuest() { login(); }
 

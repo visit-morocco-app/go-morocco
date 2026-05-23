@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Import Data — Go Morocco</title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background: #f5f5f5; }
+h1 { color: #7B1FA2; }
+.btn { background: #7B1FA2; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px 5px; }
+.btn:hover { background: #6A1B9A; }
+.btn.danger { background: #C62828; }
+.log { background: #1a1a1a; color: #00ff00; padding: 20px; border-radius: 8px; height: 400px; overflow-y: auto; font-family: monospace; font-size: 13px; margin-top: 20px; }
+.success { color: #00ff00; }
+.error { color: #ff4444; }
+.info { color: #ffaa00; }
+.progress { background: #e0e0e0; border-radius: 4px; height: 8px; margin: 10px 0; }
+.progress-bar { background: #7B1FA2; height: 100%; border-radius: 4px; transition: width 0.3s; width: 0%; }
+</style>
+</head>
+<body>
+<h1>🔥 Import Data — Go Morocco</h1>
+<p>Cet outil importe toutes les données dans ta base Firebase Firestore.</p>
+<div class="progress"><div class="progress-bar" id="progress"></div></div>
+<p id="status">Prêt à importer</p>
+<button class="btn" id="importBtn" onclick="startImport()">🚀 Lancer l'import complet</button>
+<button class="btn danger" onclick="clearLog()">🗑️ Effacer les logs</button>
+<div class="log" id="log"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyByked3kmXQ0x84UYesmeyUUtLOJG2T7pE",
+  authDomain: "go-morocco-18dd9.firebaseapp.com",
+  projectId: "go-morocco-18dd9",
+  storageBucket: "go-morocco-18dd9.firebasestorage.app",
+  messagingSenderId: "892203342392",
+  appId: "1:892203342392:web:004cc62ab9ffafb9e024cd"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const DATA = {
+  villes: [
+    { nom:"Marrakech", nom_en:"Marrakech", region:"Sud", region_en:"South", note:5, img:"images/Marrakech.jpg", maps_url:"https://maps.google.com/?q=Marrakech+Morocco", desc_fr:"La ville ocre, capitale culturelle du Maroc. Ses souks labyrinthiques, la place Jemaa el-Fna et ses riads cachés en font une destination envoûtante entre tradition et modernité.", desc_en:"The Red City, Morocco's cultural capital. Its labyrinthine souks, the Jemaa el-Fna square and hidden riads make it a mesmerizing destination between tradition and modernity." },
+    { nom:"Casablanca", nom_en:"Casablanca", region:"Centre-Ouest", region_en:"West-Center", note:4, img:"images/Casablanca.jpg", maps_url:"https://maps.google.com/?q=Casablanca+Morocco", desc_fr:"La métropole économique du Maroc. Moderne et cosmopolite, elle abrite la majestueuse mosquée Hassan II, de beaux quartiers Art déco et une scène gastronomique vibrante.", desc_en:"Morocco's economic metropolis. Modern and cosmopolitan, home to the majestic Hassan II Mosque, beautiful Art Deco neighborhoods and a vibrant gastronomic scene." },
+    { nom:"Rabat", nom_en:"Rabat", region:"Nord-Ouest", region_en:"North-West", note:4, img:"images/Rabat.jpg", maps_url:"https://maps.google.com/?q=Rabat+Morocco", desc_fr:"La capitale royale, ville d'histoire et de culture. Entre la Tour Hassan, la Kasbah des Oudayas et ses musées, Rabat offre une expérience authentique loin des foules.", desc_en:"The royal capital, a city of history and culture. Between the Hassan Tower, the Kasbah of the Udayas and its museums, Rabat offers an authentic experience away from crowds." },
+    { nom:"Essaouira", nom_en:"Essaouira", region:"Côte Atlantique", region_en:"Atlantic Coast", note:5, img:"images/Essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Morocco", desc_fr:"La cité des vents, ville côtière enchanteresse aux remparts bleus et blancs. Connue pour son ambiance bohème, ses galeries d'art et ses plages de surf.", desc_en:"The City of Winds, an enchanting coastal town with blue and white ramparts. Known for its bohemian vibe, art galleries and surf beaches." },
+    { nom:"Agadir", nom_en:"Agadir", region:"Sud", region_en:"South", note:4, img:"images/Agadir.jpg", maps_url:"https://maps.google.com/?q=Agadir+Morocco", desc_fr:"La station balnéaire par excellence du Maroc. Avec ses 300 jours de soleil par an, sa longue plage de sable fin et sa marina moderne, c'est le paradis des vacanciers.", desc_en:"Morocco's premier beach resort. With 300 days of sunshine a year, its long sandy beach and modern marina, it is a paradise for holidaymakers." },
+    { nom:"Tanger", nom_en:"Tangier", region:"Nord", region_en:"North", note:5, img:"images/Tanger.jpg", maps_url:"https://maps.google.com/?q=Tangier+Morocco", desc_fr:"La porte de l'Afrique, ville mythique au carrefour de l'Europe et du Maroc. Sa médina, sa kasbah et la légendaire Grotte d'Hercule en font une destination unique.", desc_en:"The Gateway to Africa, a mythical city at the crossroads of Europe and Morocco. Its medina, kasbah and the legendary Cave of Hercules make it a unique destination." }
+  ],
+  lieux: [
+    { nom:"Jemaa el-Fna", nom_en:"Jemaa el-Fna", ville:"Marrakech", cat:"Place", note:5, img:"https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400&q=80", maps_url:"https://maps.google.com/?q=Jemaa+el+Fna+Marrakech", desc_fr:"La place mythique de Marrakech, classée au patrimoine UNESCO. Le jour des vendeurs de jus d'orange, la nuit des conteurs, musiciens et restaurants en plein air.", desc_en:"Marrakech's mythical square, UNESCO-listed. Day brings orange juice sellers, night brings storytellers, musicians and open-air restaurants." },
+    { nom:"Mosquée Hassan II", nom_en:"Hassan II Mosque", ville:"Casablanca", cat:"Monument", note:5, img:"images/Casablanca.jpg", maps_url:"https://maps.google.com/?q=Hassan+II+Mosque+Casablanca", desc_fr:"La 3e plus grande mosquée du monde, chef-d'œuvre de l'architecture marocaine moderne. Construite sur l'océan Atlantique, sa visite guidée est un moment inoubliable.", desc_en:"The 3rd largest mosque in the world, a masterpiece of modern Moroccan architecture. Built over the Atlantic Ocean, the guided tour is unforgettable." },
+    { nom:"Kasbah des Oudayas", nom_en:"Kasbah of the Udayas", ville:"Rabat", cat:"Patrimoine", note:5, img:"images/Rabat.jpg", maps_url:"https://maps.google.com/?q=Kasbah+Oudayas+Rabat", desc_fr:"Forteresse du 12e siècle aux ruelles bleues et blanches dominant l'embouchure du Bou Regreg. Un des endroits les plus photogéniques du Maroc.", desc_en:"12th-century fortress with blue and white alleys overlooking the Bou Regreg estuary. One of Morocco's most photogenic spots." },
+    { nom:"Remparts d'Essaouira", nom_en:"Essaouira Ramparts", ville:"Essaouira", cat:"Patrimoine", note:5, img:"images/Essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Ramparts", desc_fr:"Les célèbres remparts portugais du 18e siècle qui surplombent l'Atlantique. Idéal pour une promenade au coucher du soleil avec vue sur les bateaux de pêche.", desc_en:"The famous 18th-century Portuguese ramparts overlooking the Atlantic. Perfect for a sunset walk with views over fishing boats." },
+    { nom:"Marina d'Agadir", nom_en:"Agadir Marina", ville:"Agadir", cat:"Loisirs", note:4, img:"images/Agadir.jpg", maps_url:"https://maps.google.com/?q=Agadir+Marina", desc_fr:"Le cœur moderne d'Agadir, avec ses restaurants, boutiques et bateaux de plaisance. Animée le soir, c'est l'endroit idéal pour dîner face à l'océan.", desc_en:"The modern heart of Agadir, with restaurants, shops and pleasure boats. Lively in the evening, ideal for dinner facing the ocean." },
+    { nom:"Grotte d'Hercule", nom_en:"Cave of Hercules", ville:"Tanger", cat:"Nature", note:5, img:"images/Tanger.jpg", maps_url:"https://maps.google.com/?q=Cave+of+Hercules+Tangier", desc_fr:"Grotte naturelle spectaculaire à 14 km de Tanger dont l'ouverture en forme de carte de l'Afrique donne sur l'Atlantique. Lieu mythique lié à la légende d'Hercule.", desc_en:"Spectacular natural cave 14 km from Tangier whose Africa-shaped opening overlooks the Atlantic. A mythical site linked to the legend of Hercules." },
+    { nom:"Jardin Majorelle", nom_en:"Majorelle Garden", ville:"Marrakech", cat:"Jardin", note:5, img:"https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400&q=80", maps_url:"https://maps.google.com/?q=Jardin+Majorelle+Marrakech", desc_fr:"Oasis de verdure créée par Jacques Majorelle et sauvée par Yves Saint Laurent. Ses bâtiments bleu cobalt et sa collection de cactus sont mondialement célèbres.", desc_en:"Green oasis created by Jacques Majorelle and saved by Yves Saint Laurent. Its cobalt blue buildings and cactus collection are world-famous." },
+    { nom:"Tour Hassan", nom_en:"Hassan Tower", ville:"Rabat", cat:"Monument", note:5, img:"images/Rabat.jpg", maps_url:"https://maps.google.com/?q=Hassan+Tower+Rabat", desc_fr:"Minaret inachevé du 12e siècle, symbole de Rabat. Face à lui, le Mausolée Mohammed V, chef-d'œuvre du marbre blanc et de l'artisanat marocain.", desc_en:"Unfinished 12th-century minaret, symbol of Rabat. Opposite it stands the Mohammed V Mausoleum, a masterpiece of white marble and Moroccan craftsmanship." },
+    { nom:"Souk de Marrakech", nom_en:"Marrakech Souk", ville:"Marrakech", cat:"Marché", note:5, img:"https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400&q=80", maps_url:"https://maps.google.com/?q=Souk+Marrakech", desc_fr:"Le plus grand souk du Maroc, un labyrinthe de ruelles thématiques : épices, cuir, tapis, bijoux, poterie. Se perdre dans les souks est une expérience en soi.", desc_en:"Morocco's largest souk, a maze of themed alleys: spices, leather, carpets, jewellery, pottery. Getting lost in the souks is an experience in itself." },
+    { nom:"Plage d'Agadir", nom_en:"Agadir Beach", ville:"Agadir", cat:"Plage", note:5, img:"images/Agadir.jpg", maps_url:"https://maps.google.com/?q=Agadir+Beach", desc_fr:"10 km de sable fin protégé du vent par une baie naturelle. Eau chaude, vagues douces, infrastructures modernes. La plus belle plage urbaine du Maroc.", desc_en:"10 km of fine sand sheltered from the wind by a natural bay. Warm water, gentle waves, modern facilities. Morocco's finest urban beach." },
+    { nom:"Médina de Tanger", nom_en:"Tangier Medina", ville:"Tanger", cat:"Médina", note:4, img:"images/Tanger.jpg", maps_url:"https://maps.google.com/?q=Medina+Tangier", desc_fr:"Un dédale de ruelles authentiques perché sur une colline avec vue sur le détroit de Gibraltar. Moins touristique que Marrakech, elle garde une atmosphère d'époque unique.", desc_en:"A maze of authentic alleys perched on a hill with views over the Strait of Gibraltar. Less touristy than Marrakech, it retains a uniquely timeless atmosphere." },
+    { nom:"Port d'Essaouira", nom_en:"Essaouira Port", ville:"Essaouira", cat:"Port", note:4, img:"images/Essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Port", desc_fr:"Port de pêche authentique où les barques bleues rentrent chaque matin. Un tableau vivant.", desc_en:"Authentic fishing port where blue boats return each morning. A living painting." },
+    { nom:"Corniche de Casablanca", nom_en:"Casablanca Corniche", ville:"Casablanca", cat:"Promenade", note:4, img:"images/Casablanca.jpg", maps_url:"https://maps.google.com/?q=Corniche+Casablanca", desc_fr:"Boulevard longeant l'Atlantique, bordé de cafés, restaurants et clubs. Animée en toute saison.", desc_en:"Boulevard along the Atlantic, lined with cafes, restaurants and clubs. Lively all year round." },
+    { nom:"Chellah", nom_en:"Chellah", ville:"Rabat", cat:"Patrimoine", note:4, img:"images/Rabat.jpg", maps_url:"https://maps.google.com/?q=Chellah+Rabat", desc_fr:"Nécropole romaine et mérinide à Rabat, envahie par la végétation et peuplée de cigognes. Un lieu magique à 10 minutes du centre.", desc_en:"Roman and Merinid necropolis in Rabat, overgrown with vegetation and populated by storks. A magical place 10 minutes from the centre." },
+    { nom:"Cap Spartel", nom_en:"Cap Spartel", ville:"Tanger", cat:"Nature", note:5, img:"images/Tanger.jpg", maps_url:"https://maps.google.com/?q=Cap+Spartel+Tangier", desc_fr:"Le point de rencontre de l'Atlantique et de la Méditerranée, à 14 km de Tanger. Son phare et son panorama sur deux mers sont uniques au monde.", desc_en:"The meeting point of the Atlantic and Mediterranean, 14 km from Tangier. Its lighthouse and panoramic view over two seas is unique." }
+  ],
+  gastronomie: [
+    { nom:"Tajine", nom_en:"Tajine", type:"Plat principal", prix:"5-12€", note:5, img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Le plat emblématique du Maroc, cuit lentement dans un plat en terre cuite conique.", desc_en:"Morocco's emblematic dish, slow-cooked in a conical earthenware pot." },
+    { nom:"Couscous", nom_en:"Couscous", type:"Plat principal", prix:"6-15€", note:5, img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Le plat du vendredi par excellence, servi en famille avec légumes et viande mijotés.", desc_en:"The quintessential Friday dish, served with family with simmered vegetables and meat." },
+    { nom:"Pastilla", nom_en:"Pastilla", type:"Entrée", prix:"4-10€", note:5, img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Feuilleté sucré-salé farci de poulet, amandes et cannelle. Une explosion de saveurs.", desc_en:"Sweet-savoury pastry stuffed with chicken, almonds and cinnamon. A flavour explosion." },
+    { nom:"Harira", nom_en:"Harira", type:"Soupe", prix:"1-3€", note:5, img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Soupe épaisse à base de tomates, lentilles, pois chiches et herbes fraîches.", desc_en:"Thick soup made with tomatoes, lentils, chickpeas and fresh herbs." },
+    { nom:"Msemen", nom_en:"Msemen", type:"Petit-déjeuner", prix:"0.5-2€", note:4, img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Crêpe feuilletée marocaine, grillée à la poêle, servie avec du miel et du beurre.", desc_en:"Moroccan layered flatbread, pan-grilled, served with honey and butter." },
+    { nom:"Thé à la menthe", nom_en:"Mint Tea", type:"Boisson", prix:"0.5-2€", note:5, img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Bien plus qu'une boisson, le thé marocain est un rituel d'hospitalité.", desc_en:"Much more than a drink, Moroccan tea is a hospitality ritual." },
+    { nom:"Mechoui", nom_en:"Mechoui", type:"Plat principal", prix:"8-20€", note:5, img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Agneau entier rôti lentement dans un four traditionnel. Spécialité des grandes occasions.", desc_en:"Whole lamb slowly roasted in a traditional oven. A speciality for grand occasions." },
+    { nom:"Briouates", nom_en:"Briouates", type:"Entrée", prix:"2-5€", note:4, img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Petits triangles de pâte filo farcis de viande épicée ou amandes miel. Croustillants.", desc_en:"Small filo pastry triangles filled with spiced meat or honey almonds. Crispy." },
+    { nom:"Sardines grillées", nom_en:"Grilled Sardines", type:"Plat principal", prix:"3-8€", note:5, img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Spécialité des villes côtières. Pêchées le matin, grillées au charbon le midi.", desc_en:"Speciality of coastal cities. Caught in the morning, charcoal-grilled at noon." },
+    { nom:"Chebakia", nom_en:"Chebakia", type:"Dessert", prix:"1-3€", note:4, img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Pâtisserie en forme de fleur, frite puis trempée dans du miel et parsemée de sésame.", desc_en:"Flower-shaped pastry, fried then dipped in honey and sprinkled with sesame seeds." }
+  ],
+  evenements: [
+    { nom:"Festival Gnaoua", nom_en:"Gnaoua Festival", ville:"Essaouira", periode:"Juin", jour:"15", desc_fr:"Festival mondial de musique Gnaoua à Essaouira. Des dizaines de scènes gratuites pendant 4 jours.", desc_en:"World festival of Gnaoua music in Essaouira. Dozens of free stages for 4 days." },
+    { nom:"Ramadan au Maroc", nom_en:"Ramadan in Morocco", ville:"Tout le Maroc", periode:"Variable", jour:"01", desc_fr:"Le mois sacré transforme le Maroc : journées calmes, nuits festives.", desc_en:"The holy month transforms Morocco: quiet days, festive nights." },
+    { nom:"Festival Film Marrakech", nom_en:"Marrakech Film Festival", ville:"Marrakech", periode:"Décembre", jour:"01", desc_fr:"L'un des plus grands festivals de cinéma d'Afrique avec des stars internationales.", desc_en:"One of Africa's largest film festivals with international stars." },
+    { nom:"Fête du Trône", nom_en:"Throne Day", ville:"Tout le Maroc", periode:"Juillet", jour:"30", desc_fr:"Célébration nationale du 30 juillet. Feux d'artifice et festivités partout au Maroc.", desc_en:"National celebration on July 30th. Fireworks and festivities everywhere in Morocco." },
+    { nom:"Marathon des Sables", nom_en:"Marathon des Sables", ville:"Sahara Sud", periode:"Avril", jour:"10", desc_fr:"La course à pied la plus difficile du monde : 250 km en 6 jours dans le Sahara.", desc_en:"The world's toughest foot race: 250 km in 6 days through the Moroccan Sahara." },
+    { nom:"Moussem de Tan-Tan", nom_en:"Tan-Tan Moussem", ville:"Tan-Tan", periode:"Avril", jour:"20", desc_fr:"Grand rassemblement de tribus nomades sahariennes, inscrit au patrimoine UNESCO.", desc_en:"Grand gathering of Saharan nomadic tribes, UNESCO-listed." }
+  ],
+  conseils: [
+    { icon:"💰", titre:"Monnaie", titre_en:"Currency", cat:"Argent", importance:"Essentiel", desc_fr:"La monnaie est le Dirham (MAD). 1€ = 10,8 MAD. Négocier dans les souks est normal.", desc_en:"The currency is the Dirham (MAD). €1 = 10.8 MAD. Bargaining in souks is normal." },
+    { icon:"🌤️", titre:"Meilleure période", titre_en:"Best Season", cat:"Météo", importance:"Essentiel", desc_fr:"Mars-Mai et Sept-Nov sont les meilleures périodes. Évitez Juillet-Août (40°C+).", desc_en:"March-May and Sept-Nov are the best periods. Avoid July-August (40°C+)." },
+    { icon:"🚌", titre:"Transport", titre_en:"Transport", cat:"Mobilité", importance:"Essentiel", desc_fr:"Le train CTM relie Tanger, Rabat, Casablanca et Marrakech. Bus CTM pour les autres villes.", desc_en:"CTM train links Tangier, Rabat, Casablanca and Marrakech. CTM bus for other cities." },
+    { icon:"👗", titre:"Tenue vestimentaire", titre_en:"Dress Code", cat:"Culture", importance:"Important", desc_fr:"Épaules et genoux couverts dans les médinas. Tenues occidentales acceptées sur les plages.", desc_en:"Shoulders and knees covered in medinas. Western dress accepted on beaches." },
+    { icon:"🔒", titre:"Sécurité", titre_en:"Safety", cat:"Sécurité", importance:"Important", desc_fr:"Le Maroc est très sûr. Méfiez-vous des faux guides. Utilisez des taxis officiels.", desc_en:"Morocco is very safe. Beware of fake guides. Use official taxis." },
+    { icon:"🗣️", titre:"Langue", titre_en:"Language", cat:"Communication", importance:"Utile", desc_fr:"Darija et français sont les langues du quotidien. Espagnol compris à Tanger.", desc_en:"Darija and French are everyday languages. Spanish understood in Tangier." },
+    { icon:"🍽️", titre:"Nourriture et Eau", titre_en:"Food and Water", cat:"Santé", importance:"Important", desc_fr:"Buvez de l'eau en bouteille. La nourriture de rue est délicieuse et sûre.", desc_en:"Drink bottled water. Street food is delicious and generally safe." },
+    { icon:"📶", titre:"Wifi et SIM", titre_en:"Wifi and SIM", cat:"Connectivité", importance:"Utile", desc_fr:"SIM locales Maroc Telecom, Orange ou Inwi à moins de 5€ avec data incluse.", desc_en:"Local SIMs from Maroc Telecom, Orange or Inwi for under €5 with data included." }
+  ],
+  urgences: [
+    { ville:"Marrakech", police:"19", samu:"150", pompiers:"15", hopital:"Hôpital Ibn Tofail", hopital_tel:"+212 524 448 811", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Tofail+Marrakech", consulat_france:"+212 524 388 600", desc_fr:"Urgences : SAMU 150 · Police 19. Hôpital Ibn Tofail pour les soins publics. Des cliniques privées sont disponibles pour les touristes.", desc_en:"Emergency: SAMU 150 · Police 19. Ibn Tofail Hospital for public care. Private clinics available for tourists." },
+    { ville:"Casablanca", police:"19", samu:"150", pompiers:"15", hopital:"CHU Ibn Rochd", hopital_tel:"+212 522 225 325", hopital_maps:"https://maps.google.com/?q=CHU+Ibn+Rochd+Casablanca", consulat_france:"+212 522 489 500", desc_fr:"Urgences : SAMU 150 · Police 19. CHU Ibn Rochd est le principal centre hospitalier universitaire de Casa.", desc_en:"Emergency: SAMU 150 · Police 19. CHU Ibn Rochd is Casablanca's main university hospital." },
+    { ville:"Rabat", police:"19", samu:"150", pompiers:"15", hopital:"Hôpital Ibn Sina", hopital_tel:"+212 537 672 871", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Sina+Rabat", consulat_france:"+212 537 689 700", desc_fr:"Urgences : SAMU 150 · Police 19. Hôpital Ibn Sina est le principal hôpital de la capitale.", desc_en:"Emergency: SAMU 150 · Police 19. Ibn Sina Hospital is the main hospital in the capital." },
+    { ville:"Agadir", police:"19", samu:"150", pompiers:"15", hopital:"Hôpital Hassan II", hopital_tel:"+212 528 211 477", hopital_maps:"https://maps.google.com/?q=Hopital+Hassan+II+Agadir", consulat_france:"+212 528 840 846", desc_fr:"Urgences : SAMU 150 · Police 19. Hôpital Hassan II est le principal établissement de santé d'Agadir.", desc_en:"Emergency: SAMU 150 · Police 19. Hassan II Hospital is Agadir's main healthcare facility." },
+    { ville:"Tanger", police:"19", samu:"150", pompiers:"15", hopital:"Hôpital Mohammed V", hopital_tel:"+212 539 932 444", hopital_maps:"https://maps.google.com/?q=Hopital+Mohammed+V+Tanger", consulat_france:"+212 539 322 222", desc_fr:"Urgences : SAMU 150 · Police 19. Hôpital Mohammed V est le principal établissement de Tanger.", desc_en:"Emergency: SAMU 150 · Police 19. Mohammed V Hospital is Tangier's main healthcare facility." },
+    { ville:"Essaouira", police:"19", samu:"150", pompiers:"15", hopital:"Hôpital Sidi Mohammed Ben Abdallah", hopital_tel:"+212 524 475 716", hopital_maps:"https://maps.google.com/?q=Hopital+Essaouira", consulat_france:"+212 522 489 500", desc_fr:"Urgences : SAMU 150 · Police 19. Pour urgences graves, transfert vers Marrakech possible.", desc_en:"Emergency: SAMU 150 · Police 19. For serious emergencies, transfer to Marrakech is possible." }
+  ],
+  transport: [
+    { type:"Train", nom:"ONCF Train Maroc", villes:"Tanger-Rabat-Casa-Marrakech", prix:"5-15€", site:"https://oncf.ma", desc_fr:"Réseau ferroviaire national. Confortable, ponctuel et abordable. Réservation en ligne recommandée.", desc_en:"National rail network. Comfortable, punctual and affordable. Online booking recommended." },
+    { type:"Bus", nom:"CTM Bus longue distance", villes:"Toutes grandes villes + Essaouira + Agadir", prix:"3-12€", site:"https://ctm.ma", desc_fr:"Opérateur de bus le plus fiable du Maroc. Climatisé et ponctuel.", desc_en:"Morocco's most reliable bus operator. Air-conditioned and punctual." },
+    { type:"Taxi", nom:"Petit taxi ville", villes:"Trajets urbains uniquement", prix:"1-5€", site:"", desc_fr:"Pour les trajets en ville uniquement. Insistez pour activer le compteur.", desc_en:"For city trips only. Insist the meter is turned on." },
+    { type:"Taxi", nom:"Grand taxi inter-villes", villes:"Entre villes proches", prix:"3-10€", site:"", desc_fr:"Trajets inter-villes à prix fixe. Partent quand ils sont pleins (6 passagers).", desc_en:"Inter-city trips at fixed prices. Leave when full (6 passengers)." },
+    { type:"Navette", nom:"Navette aéroport Marrakech", villes:"Aéroport Menara → Centre ville", prix:"1€ bus / 10€ taxi", site:"", desc_fr:"Bus n°19 pour 1 MAD vers Jemaa el-Fna. Taxi officiel environ 100 MAD.", desc_en:"Bus n°19 for 1 MAD to Jemaa el-Fna. Official taxi about 100 MAD." },
+    { type:"Navette", nom:"Navette aéroport Casablanca", villes:"Aéroport Mohammed V → Casa Voyageurs", prix:"4€ train", site:"https://oncf.ma", desc_fr:"Train aéroport : rapide, ponctuel, départ toutes les 30 minutes.", desc_en:"Airport train: fast, punctual, departure every 30 minutes." }
+  ],
+  lexique: [
+    { mot_fr:"Bonjour (matin)", translitteration:"Sbah lkhir", mot_darija:"صباح الخير", mot_en:"Good morning", categorie:"Salutations" },
+    { mot_fr:"Bonjour", translitteration:"Marhaba", mot_darija:"مرحبا", mot_en:"Hello", categorie:"Salutations" },
+    { mot_fr:"Merci", translitteration:"Chokran", mot_darija:"شكرا", mot_en:"Thank you", categorie:"Politesse" },
+    { mot_fr:"S'il vous plaît", translitteration:"Afak", mot_darija:"عافاك", mot_en:"Please", categorie:"Politesse" },
+    { mot_fr:"Oui", translitteration:"Iyeh", mot_darija:"إيه", mot_en:"Yes", categorie:"Basique" },
+    { mot_fr:"Non", translitteration:"La", mot_darija:"لا", mot_en:"No", categorie:"Basique" },
+    { mot_fr:"Combien ça coûte ?", translitteration:"Bchhal had chi?", mot_darija:"بشحال هاد الشي؟", mot_en:"How much is this?", categorie:"Shopping" },
+    { mot_fr:"C'est trop cher", translitteration:"Ghali bzzaf", mot_darija:"غالي بزاف", mot_en:"It's too expensive", categorie:"Shopping" },
+    { mot_fr:"Où est... ?", translitteration:"Fin kayn...?", mot_darija:"فين كاين؟", mot_en:"Where is...?", categorie:"Navigation" },
+    { mot_fr:"Restaurant", translitteration:"Mataam", mot_darija:"مطعم", mot_en:"Restaurant", categorie:"Navigation" },
+    { mot_fr:"L'addition s'il vous plaît", translitteration:"Lhsab afak", mot_darija:"الحساب عافاك", mot_en:"The bill please", categorie:"Restaurant" },
+    { mot_fr:"Délicieux !", translitteration:"Bnin bzzaf!", mot_darija:"بنين بزاف", mot_en:"Delicious!", categorie:"Restaurant" },
+    { mot_fr:"Au revoir", translitteration:"Bslama", mot_darija:"بسلامة", mot_en:"Goodbye", categorie:"Salutations" },
+    { mot_fr:"Je ne comprends pas", translitteration:"Ma fhamtch", mot_darija:"ما فهمتش", mot_en:"I don't understand", categorie:"Basique" },
+    { mot_fr:"Appelez la police !", translitteration:"Ayyet l'police!", mot_darija:"عيط للبوليس", mot_en:"Call the police!", categorie:"Urgence" }
+  ]
+};
+
+let totalDocs = 0;
+let importedDocs = 0;
+
+function log(msg, type) {
+  var el = document.getElementById('log');
+  var div = document.createElement('div');
+  div.className = type || 'info';
+  div.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
+  el.appendChild(div);
+  el.scrollTop = el.scrollHeight;
+}
+
+function updateProgress() {
+  var pct = totalDocs > 0 ? Math.round((importedDocs / totalDocs) * 100) : 0;
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('status').textContent = 'Import en cours... ' + importedDocs + '/' + totalDocs + ' documents (' + pct + '%)';
+}
+
+async function importCollection(name, data) {
+  log('📂 Collection: ' + name + ' (' + data.length + ' documents)', 'info');
+  for (var i = 0; i < data.length; i++) {
+    try {
+      var label = data[i].nom || data[i].mot_fr || data[i].type || data[i].titre || 'doc';
+      await db.collection(name).add(data[i]);
+      importedDocs++;
+      updateProgress();
+      log('  ✅ ' + label + ' importé', 'success');
+    } catch(e) {
+      log('  ❌ Erreur: ' + e.message, 'error');
+    }
+  }
+}
+
+async function startImport() {
+  document.getElementById('importBtn').disabled = true;
+  var collections = Object.keys(DATA);
+  totalDocs = 0;
+  for (var k of collections) totalDocs += DATA[k].length;
+  importedDocs = 0;
+
+  log('🚀 Démarrage import Go Morocco...', 'info');
+  log('📊 Total: ' + totalDocs + ' documents à importer', 'info');
+
+  for (var name of collections) {
+    await importCollection(name, DATA[name]);
+  }
+
+  document.getElementById('progress').style.width = '100%';
+  document.getElementById('status').textContent = '✅ Import terminé ! ' + importedDocs + ' documents dans Firebase.';
+  log('🎉 Import terminé avec succès !', 'success');
+  log('👉 Vérifie sur console.firebase.google.com', 'info');
+  document.getElementById('importBtn').disabled = false;
+}
+
+function clearLog() {
+  document.getElementById('log').innerHTML = '';
+}
+</script>
+</body>
+</html>

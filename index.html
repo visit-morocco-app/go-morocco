@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Go Morocco">
 <title>Go Morocco</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 :root {
@@ -20,6 +20,13 @@
 }
 body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); max-width:430px; margin:0 auto; min-height:100vh; overflow-x:hidden; }
 ::-webkit-scrollbar { width:0; height:0; }
+
+/* ARABIC */
+body.ar { font-family:'Amiri', 'Inter', sans-serif; direction:rtl; }
+body.ar .bottom-nav { direction:ltr; }
+body.ar .detail-back { left:auto; right:16px; }
+body.ar .detail-fav { right:auto; left:16px; }
+body.ar .about-back { left:auto; right:16px; }
 
 /* SPLASH */
 #splash { position:fixed; inset:0; z-index:9999; background:var(--violet); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; transition:opacity 0.6s; }
@@ -38,12 +45,12 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .auth-sub { font-size:13px; color:rgba(255,255,255,0.75); text-align:center; font-style:italic; }
 .auth-body { padding:32px 28px 40px; display:flex; flex-direction:column; gap:14px; }
 .auth-label { font-size:13px; font-weight:500; color:var(--text2); margin-bottom:-6px; }
-.auth-input { width:100%; padding:15px 18px; border:1.5px solid var(--border); border-radius:12px; font-family:'Inter',sans-serif; font-size:15px; color:var(--text); outline:none; transition:border-color 0.2s; }
+.auth-input { width:100%; padding:15px 18px; border:1.5px solid var(--border); border-radius:12px; font-family:'Inter',sans-serif; font-size:15px; color:var(--text); outline:none; transition:border-color 0.2s; direction:ltr; }
 .auth-input:focus { border-color:var(--violet); }
 .auth-input::placeholder { color:var(--text3); }
-.auth-btn { width:100%; padding:16px; background:var(--violet); border:none; border-radius:12px; font-family:'Inter',sans-serif; font-size:16px; font-weight:600; color:white; cursor:pointer; transition:all 0.2s; }
+.auth-btn { width:100%; padding:16px; background:var(--violet); border:none; border-radius:12px; font-family:'Inter',sans-serif; font-size:16px; font-weight:600; color:white; cursor:pointer; }
 .auth-btn:active { transform:scale(0.98); }
-.auth-guest { text-align:center; font-size:13px; color:var(--text3); cursor:pointer; margin-top:4px; text-decoration:underline; }
+.auth-guest { text-align:center; font-size:13px; color:var(--text3); cursor:pointer; text-decoration:underline; }
 
 /* APP */
 #app { display:none; flex-direction:column; min-height:100vh; }
@@ -55,14 +62,12 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .header-menu { font-size:22px; color:rgba(255,255,255,0.8); cursor:pointer; }
 .header-title { font-family:'Playfair Display',serif; font-size:22px; color:white; font-style:italic; }
 .header-right { display:flex; gap:10px; position:relative; }
-.header-btn { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:white; transition:background 0.2s; }
-.header-btn:active { background:rgba(255,255,255,0.3); }
+.header-btn { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; }
 
 /* LANG DROPDOWN */
-.lang-dropdown { position:absolute; top:46px; right:0; background:white; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.15); overflow:hidden; z-index:999; min-width:160px; display:none; }
-.lang-dropdown.open { display:block; animation:fadeDown 0.15s ease; }
-@keyframes fadeDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
-.lang-option { display:flex; align-items:center; gap:10px; padding:13px 16px; cursor:pointer; font-size:14px; font-weight:500; color:var(--text); border-bottom:1px solid var(--border); transition:background 0.15s; }
+.lang-dropdown { position:absolute; top:46px; right:0; background:white; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.15); overflow:hidden; z-index:999; min-width:160px; display:none; direction:ltr; }
+.lang-dropdown.open { display:block; }
+.lang-option { display:flex; align-items:center; gap:10px; padding:13px 16px; cursor:pointer; font-size:14px; font-weight:500; color:var(--text); border-bottom:1px solid var(--border); }
 .lang-option:last-child { border-bottom:none; }
 .lang-option:hover { background:var(--violet-bg); }
 .lang-option.active { color:var(--violet); background:var(--violet-bg); font-weight:600; }
@@ -71,8 +76,8 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 
 /* SEARCH */
 .search-wrap { background:var(--violet); padding:0 16px 16px; }
-.search-bar { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:12px; padding:11px 16px; display:flex; align-items:center; gap:10px; }
-.search-bar input { background:none; border:none; outline:none; font-family:'Inter',sans-serif; font-size:14px; color:white; width:100%; }
+.search-bar { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:12px; padding:11px 16px; display:flex; align-items:center; gap:10px; direction:ltr; }
+.search-bar input { background:none; border:none; outline:none; font-family:'Inter',sans-serif; font-size:14px; color:white; width:100%; direction:ltr; }
 .search-bar input::placeholder { color:rgba(255,255,255,0.6); }
 
 /* CONTENT */
@@ -83,7 +88,7 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 
 /* VILLES */
 .villes-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.ville-card { border-radius:var(--radius); overflow:hidden; cursor:pointer; background:var(--border); transition:transform 0.15s; position:relative; }
+.ville-card { border-radius:var(--radius); overflow:hidden; cursor:pointer; background:var(--border); transition:transform 0.15s; }
 .ville-card:active { transform:scale(0.97); }
 .ville-card img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
 .ville-card-info { padding:10px 10px 12px; background:white; }
@@ -101,7 +106,7 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .lieu-card-ville { font-size:11px; color:var(--text3); }
 
 /* FILTER */
-.ville-filter { display:flex; gap:8px; overflow-x:auto; padding:16px 16px 0; }
+.ville-filter { display:flex; gap:8px; overflow-x:auto; padding:16px 16px 0; direction:ltr; }
 .ville-filter::-webkit-scrollbar { height:0; }
 .filter-btn { padding:7px 16px; border-radius:20px; font-size:12px; font-weight:500; border:1.5px solid var(--border); background:white; color:var(--text2); cursor:pointer; white-space:nowrap; transition:all 0.2s; font-family:'Inter',sans-serif; flex-shrink:0; }
 .filter-btn.active { background:var(--violet); color:white; border-color:var(--violet); }
@@ -119,12 +124,12 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 /* EVENTS */
 .events-list { display:flex; flex-direction:column; gap:10px; padding:20px 16px 0; }
 .event-card { background:white; border:1px solid var(--border); border-radius:var(--radius); padding:14px; display:flex; gap:14px; }
-.event-date { min-width:52px; background:var(--violet-bg); border-radius:var(--radius-sm); padding:8px 4px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.event-date { min-width:52px; background:var(--violet-bg); border-radius:var(--radius-sm); padding:8px 4px; display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; }
 .event-month { font-size:10px; color:var(--violet); font-weight:600; text-transform:uppercase; }
 .event-day { font-size:22px; font-weight:700; color:var(--violet); line-height:1.1; }
 .event-info { flex:1; }
 .event-name { font-size:14px; font-weight:600; color:var(--text); margin-bottom:3px; }
-.event-ville { font-size:12px; color:var(--violet); margin-bottom:5px; display:flex; align-items:center; gap:4px; }
+.event-ville { font-size:12px; color:var(--violet); margin-bottom:5px; }
 .event-desc { font-size:12px; color:var(--text2); line-height:1.5; }
 
 /* CONSEILS */
@@ -140,78 +145,86 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .badge-important { background:#FFF8E1; color:var(--or); }
 .badge-utile { background:#E8F5E9; color:var(--vert); }
 
-/* URGENCES - Style liste propre */
-.urgence-list { display:flex; flex-direction:column; gap:12px; padding:20px 16px 0; }
-.urgence-header { background:var(--rouge); border-radius:var(--radius); padding:14px 16px; display:flex; align-items:center; gap:10px; margin-bottom:4px; }
-.urgence-header-icon { font-size:24px; }
-.urgence-header-info { flex:1; }
-.urgence-header-title { font-size:16px; font-weight:700; color:white; }
-.urgence-header-sub { font-size:12px; color:rgba(255,255,255,0.8); margin-top:2px; }
-.urgence-numéros { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px; }
-.urgence-num-card { background:white; border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 8px; text-align:center; }
+/* URGENCES */
+.urgence-wrap { padding:20px 16px 0; }
+.urgence-global { background:var(--rouge); border-radius:var(--radius); padding:16px; margin-bottom:16px; }
+.urgence-global-title { font-size:15px; font-weight:700; color:white; margin-bottom:12px; }
+.urgence-nums { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; direction:ltr; }
+.urgence-num { background:rgba(255,255,255,0.15); border-radius:10px; padding:10px 6px; text-align:center; }
 .urgence-num-icon { font-size:20px; margin-bottom:4px; }
-.urgence-num-label { font-size:10px; color:var(--text3); margin-bottom:2px; }
-.urgence-num-val { font-size:18px; font-weight:700; color:var(--rouge); }
+.urgence-num-label { font-size:10px; color:rgba(255,255,255,0.8); margin-bottom:2px; }
+.urgence-num-val { font-size:20px; font-weight:700; color:white; }
+.urgence-cards { display:flex; flex-direction:column; gap:10px; }
 .urgence-card { background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-.urgence-card-header { background:var(--violet-bg); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
+.urgence-card-top { background:var(--violet-bg); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
 .urgence-card-ville { font-size:15px; font-weight:700; color:var(--violet); }
 .urgence-card-body { padding:12px 16px; display:flex; flex-direction:column; gap:10px; }
-.urgence-info-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--border); }
-.urgence-info-row:last-child { border-bottom:none; }
-.urgence-info-icon { font-size:18px; width:28px; text-align:center; flex-shrink:0; }
-.urgence-info-content { flex:1; }
-.urgence-info-label { font-size:11px; color:var(--text3); }
-.urgence-info-val { font-size:13px; font-weight:500; color:var(--text); }
-.urgence-call-btn { background:var(--vert); color:white; border:none; border-radius:8px; padding:6px 12px; font-size:12px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-block; white-space:nowrap; }
-.urgence-maps-btn { background:var(--violet); color:white; border:none; border-radius:8px; padding:6px 12px; font-size:12px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-block; }
+.urgence-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--border); }
+.urgence-row:last-child { border-bottom:none; }
+.urgence-row-icon { font-size:18px; width:28px; text-align:center; flex-shrink:0; }
+.urgence-row-info { flex:1; }
+.urgence-row-label { font-size:11px; color:var(--text3); }
+.urgence-row-val { font-size:13px; font-weight:500; color:var(--text); }
+.urgence-call-btn { background:var(--vert); color:white; border:none; border-radius:8px; padding:7px 12px; font-size:12px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-block; white-space:nowrap; }
+.urgence-maps-btn { background:var(--violet); color:white; border:none; border-radius:8px; padding:7px 12px; font-size:12px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-block; }
 
-/* TRANSPORT - Style timeline */
-.transport-wrap { padding:20px 16px 0; }
-.transport-timeline { position:relative; padding-left:28px; }
-.transport-timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--violet), var(--violet-bg)); border-radius:2px; }
-.transport-item { position:relative; margin-bottom:20px; }
-.transport-dot { position:absolute; left:-24px; top:14px; width:14px; height:14px; border-radius:50%; background:var(--violet); border:2px solid white; box-shadow:0 0 0 2px var(--violet); }
-.transport-card { background:white; border:1px solid var(--border); border-radius:var(--radius); padding:14px; }
-.transport-card-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
-.transport-type-badge { background:var(--violet-bg); color:var(--violet); font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; }
-.transport-card-name { font-size:14px; font-weight:600; color:var(--text); margin-bottom:4px; }
-.transport-card-route { font-size:12px; color:var(--violet); margin-bottom:6px; display:flex; align-items:center; gap:4px; }
-.transport-card-desc { font-size:12px; color:var(--text2); line-height:1.6; margin-bottom:8px; }
-.transport-card-footer { display:flex; align-items:center; justify-content:space-between; }
-.transport-prix { font-size:13px; font-weight:600; color:var(--vert); }
-.transport-site-btn { background:var(--violet); color:white; border:none; border-radius:8px; padding:6px 12px; font-size:11px; cursor:pointer; text-decoration:none; display:inline-block; }
+/* TRANSPORT - Accordéon */
+.transport-wrap { padding:20px 16px 0; display:flex; flex-direction:column; gap:10px; }
+.transport-accord { background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+.transport-accord-header { padding:16px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:background 0.15s; }
+.transport-accord-header:active { background:var(--bg); }
+.transport-accord-icon { font-size:28px; flex-shrink:0; }
+.transport-accord-info { flex:1; }
+.transport-accord-type { font-size:11px; color:var(--violet); font-weight:600; text-transform:uppercase; letter-spacing:1px; margin-bottom:2px; }
+.transport-accord-name { font-size:14px; font-weight:600; color:var(--text); }
+.transport-accord-arrow { font-size:16px; color:var(--text3); transition:transform 0.3s; }
+.transport-accord.open .transport-accord-arrow { transform:rotate(180deg); }
+.transport-accord-body { display:none; padding:0 16px 16px; border-top:1px solid var(--border); }
+.transport-accord.open .transport-accord-body { display:block; }
+.transport-detail-row { display:flex; gap:8px; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; }
+.transport-detail-row:last-child { border-bottom:none; }
+.transport-detail-label { color:var(--text3); min-width:70px; flex-shrink:0; font-size:12px; padding-top:1px; }
+.transport-detail-val { color:var(--text); font-weight:500; flex:1; line-height:1.5; }
+.transport-detail-val a { color:var(--violet); text-decoration:none; }
+.transport-prix-badge { display:inline-block; background:#E8F5E9; color:var(--vert); font-size:12px; font-weight:600; padding:4px 12px; border-radius:20px; margin-top:8px; }
 
-/* DARIJA - Style Quiz */
-.quiz-wrap { padding:20px 16px 0; }
-.quiz-score { background:var(--violet); border-radius:var(--radius); padding:16px; display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-.quiz-score-text { color:white; font-size:14px; font-weight:500; }
-.quiz-score-num { font-family:'Playfair Display',serif; font-size:28px; color:white; font-weight:700; }
-.quiz-progress { background:rgba(255,255,255,0.3); border-radius:4px; height:6px; margin-top:8px; overflow:hidden; }
-.quiz-progress-bar { height:100%; background:white; border-radius:4px; transition:width 0.3s; }
-.quiz-card { background:white; border:1px solid var(--border); border-radius:var(--radius); padding:24px; text-align:center; margin-bottom:12px; min-height:200px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; transition:all 0.3s; position:relative; overflow:hidden; }
-.quiz-card.flipped { background:var(--violet-bg); border-color:var(--violet); }
-.quiz-card-front { display:flex; flex-direction:column; align-items:center; gap:12px; }
-.quiz-card-back { display:none; flex-direction:column; align-items:center; gap:10px; }
-.quiz-card.flipped .quiz-card-front { display:none; }
-.quiz-card.flipped .quiz-card-back { display:flex; }
-.quiz-fr { font-size:22px; font-weight:700; color:var(--text); }
-.quiz-tap { font-size:12px; color:var(--text3); margin-top:8px; }
-.quiz-darija { font-size:28px; color:var(--violet); direction:rtl; font-weight:600; }
-.quiz-trans { font-size:16px; color:var(--text2); font-style:italic; }
-.quiz-en { font-size:13px; color:var(--text3); }
-.quiz-cat-badge { background:var(--violet-bg); color:var(--violet); font-size:11px; padding:3px 10px; border-radius:20px; }
-.quiz-nav { display:flex; gap:10px; margin-bottom:16px; }
-.quiz-nav-btn { flex:1; padding:12px; border:none; border-radius:var(--radius-sm); font-family:'Inter',sans-serif; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.2s; }
-.quiz-prev { background:var(--bg); color:var(--text2); }
-.quiz-next { background:var(--violet); color:white; }
-.quiz-filter { display:flex; gap:8px; overflow-x:auto; padding-bottom:12px; }
-.quiz-filter::-webkit-scrollbar { height:0; }
-.quiz-filter-btn { padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500; border:1.5px solid var(--border); background:white; color:var(--text2); cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0; transition:all 0.2s; }
-.quiz-filter-btn.active { background:var(--violet); color:white; border-color:var(--violet); }
-.quiz-counter { font-size:12px; color:var(--text3); text-align:center; margin-bottom:12px; }
+/* FLASHCARDS DARIJA */
+.flashcard-wrap { padding:20px 16px 0; }
+.flashcard-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.flashcard-title { font-size:16px; font-weight:700; color:var(--text); }
+.flashcard-counter { font-size:13px; color:var(--text3); }
+.flashcard-filter { display:flex; gap:8px; overflow-x:auto; padding-bottom:14px; direction:ltr; }
+.flashcard-filter::-webkit-scrollbar { height:0; }
+.flashcard-filter-btn { padding:6px 14px; border-radius:20px; font-size:12px; font-weight:500; border:1.5px solid var(--border); background:white; color:var(--text2); cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0; transition:all 0.2s; }
+.flashcard-filter-btn.active { background:var(--violet); color:white; border-color:var(--violet); }
+
+/* Card flip 3D */
+.flashcard-scene { width:100%; height:220px; perspective:1000px; margin-bottom:16px; cursor:pointer; }
+.flashcard-inner { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+.flashcard-scene.flipped .flashcard-inner { transform:rotateY(180deg); }
+.flashcard-front, .flashcard-back { position:absolute; inset:0; border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; backface-visibility:hidden; padding:24px; }
+.flashcard-front { background:white; border:2px solid var(--violet); }
+.flashcard-back { background:var(--violet); transform:rotateY(180deg); }
+.flashcard-fr { font-size:22px; font-weight:700; color:var(--text); text-align:center; }
+.flashcard-cat-badge { background:var(--violet-bg); color:var(--violet); font-size:11px; padding:3px 10px; border-radius:20px; }
+.flashcard-hint { font-size:12px; color:var(--text3); margin-top:8px; }
+.flashcard-darija { font-size:30px; color:white; font-family:'Amiri',serif; direction:rtl; font-weight:700; text-align:center; }
+.flashcard-trans { font-size:16px; color:rgba(255,255,255,0.9); font-style:italic; text-align:center; }
+.flashcard-en { font-size:13px; color:rgba(255,255,255,0.7); text-align:center; }
+
+.flashcard-nav { display:flex; gap:10px; margin-bottom:16px; }
+.flashcard-nav-btn { flex:1; padding:13px; border:none; border-radius:var(--radius-sm); font-family:'Inter',sans-serif; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.2s; }
+.flashcard-prev { background:var(--bg); color:var(--text2); border:1px solid var(--border); }
+.flashcard-next { background:var(--violet); color:white; }
+.flashcard-next:active { background:var(--violet-dark); }
+
+.flashcard-progress { background:var(--border); border-radius:4px; height:6px; overflow:hidden; margin-bottom:8px; }
+.flashcard-progress-bar { height:100%; background:var(--violet); border-radius:4px; transition:width 0.4s; }
+.flashcard-stats { display:flex; justify-content:center; gap:20px; font-size:13px; color:var(--text3); }
+.flashcard-stats span { font-weight:600; color:var(--violet); }
 
 /* BOTTOM NAV */
-.bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:white; border-top:1px solid var(--border); display:flex; padding:8px 0 20px; z-index:100; }
+.bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:white; border-top:1px solid var(--border); display:flex; padding:8px 0 20px; z-index:100; direction:ltr; }
 .nav-item { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:4px 0; }
 .nav-icon { font-size:18px; }
 .nav-label { font-size:9px; color:var(--text3); font-weight:500; }
@@ -238,7 +251,7 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 .detail-info-label { font-size:11px; color:var(--text3); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
 .detail-info-value { font-size:14px; font-weight:600; color:var(--text); }
 .detail-section-title { font-size:16px; font-weight:700; color:var(--text); margin-bottom:12px; }
-.detail-lieu-item { display:flex; gap:12px; align-items:center; padding:12px; border:1px solid var(--border); border-radius:var(--radius-sm); margin-bottom:10px; cursor:pointer; transition:background 0.15s; }
+.detail-lieu-item { display:flex; gap:12px; align-items:center; padding:12px; border:1px solid var(--border); border-radius:var(--radius-sm); margin-bottom:10px; cursor:pointer; }
 .detail-lieu-item:active { background:var(--bg); }
 .detail-lieu-img { width:58px; height:58px; border-radius:10px; object-fit:cover; flex-shrink:0; }
 .detail-lieu-name { font-size:14px; font-weight:600; color:var(--text); margin-bottom:3px; }
@@ -314,13 +327,13 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
       <div class="header-title" id="header-title">Villes</div>
     </div>
     <div class="header-right">
-      <div class="header-btn" onclick="toggleLangDropdown(event)" title="Langue">🌐</div>
+      <div class="header-btn" onclick="toggleLangDropdown(event)">🌐</div>
       <div class="lang-dropdown" id="lang-dropdown">
         <div class="lang-option active" id="opt-fr" onclick="setLang('fr')">🇫🇷 Français</div>
         <div class="lang-option" id="opt-en" onclick="setLang('en')">🇬🇧 English</div>
         <div class="lang-option" id="opt-ar" onclick="setLang('ar')">🇲🇦 العربية</div>
       </div>
-      <div class="header-btn" onclick="showAbout()" title="À propos">ℹ️</div>
+      <div class="header-btn" onclick="showAbout()">ℹ️</div>
     </div>
   </div>
   <div class="overlay" id="overlay" onclick="closeLangDropdown()"></div>
@@ -328,7 +341,7 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
   <div class="search-wrap">
     <div class="search-bar">
       <span style="color:rgba(255,255,255,0.7)">🔍</span>
-      <input type="text" placeholder="Rechercher une ville, un lieu..." id="search-input" oninput="handleSearch()">
+      <input type="text" placeholder="Rechercher..." id="search-input" oninput="handleSearch()">
     </div>
   </div>
 
@@ -338,51 +351,58 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
     <div class="tab-content" id="tab-gastro"><div class="gastro-grid" id="gastro-grid"></div></div>
     <div class="tab-content" id="tab-events"><div class="events-list" id="events-list"></div></div>
     <div class="tab-content" id="tab-conseils"><div class="conseils-list" id="conseils-list"></div></div>
+
+    <!-- URGENCES -->
     <div class="tab-content" id="tab-urgences">
-      <div class="urgence-list">
-        <div class="urgence-header">
-          <div class="urgence-header-icon">🚨</div>
-          <div class="urgence-header-info">
-            <div class="urgence-header-title">Numéros d'urgence</div>
-            <div class="urgence-header-sub">Valables dans tout le Maroc</div>
+      <div class="urgence-wrap">
+        <div class="urgence-global">
+          <div class="urgence-global-title">🚨 Numéros d'urgence — Tout le Maroc</div>
+          <div class="urgence-nums">
+            <div class="urgence-num"><div class="urgence-num-icon">🚑</div><div class="urgence-num-label">SAMU</div><div class="urgence-num-val">150</div></div>
+            <div class="urgence-num"><div class="urgence-num-icon">👮</div><div class="urgence-num-label">Police</div><div class="urgence-num-val">19</div></div>
+            <div class="urgence-num"><div class="urgence-num-icon">🚒</div><div class="urgence-num-label">Pompiers</div><div class="urgence-num-val">15</div></div>
           </div>
         </div>
-        <div class="urgence-numéros">
-          <div class="urgence-num-card"><div class="urgence-num-icon">🚑</div><div class="urgence-num-label">SAMU</div><div class="urgence-num-val">150</div></div>
-          <div class="urgence-num-card"><div class="urgence-num-icon">👮</div><div class="urgence-num-label">Police</div><div class="urgence-num-val">19</div></div>
-          <div class="urgence-num-card"><div class="urgence-num-icon">🚒</div><div class="urgence-num-label">Pompiers</div><div class="urgence-num-val">15</div></div>
-        </div>
-        <div id="urgence-list"></div>
+        <div class="urgence-cards" id="urgence-list"></div>
       </div>
     </div>
-    <div class="tab-content" id="tab-transport"><div class="transport-wrap"><div class="transport-timeline" id="transport-list"></div></div></div>
+
+    <!-- TRANSPORT ACCORDÉON -->
+    <div class="tab-content" id="tab-transport">
+      <div class="transport-wrap" id="transport-list"></div>
+    </div>
+
+    <!-- DARIJA FLASHCARDS -->
     <div class="tab-content" id="tab-lexique">
-      <div class="quiz-wrap">
-        <div class="quiz-score">
-          <div>
-            <div class="quiz-score-text">Quiz Darija 🇲🇦</div>
-            <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-progress-bar"></div></div>
-          </div>
-          <div class="quiz-score-num" id="quiz-score">0 ✓</div>
+      <div class="flashcard-wrap">
+        <div class="flashcard-header">
+          <div class="flashcard-title">🗣️ Apprenez le Darija</div>
+          <div class="flashcard-counter" id="fc-counter">1 / 20</div>
         </div>
-        <div class="quiz-filter" id="quiz-filter"></div>
-        <div class="quiz-counter" id="quiz-counter"></div>
-        <div class="quiz-card" id="quiz-card" onclick="flipCard()">
-          <div class="quiz-card-front" id="quiz-front">
-            <div class="quiz-fr" id="quiz-fr-text"></div>
-            <div class="quiz-cat-badge" id="quiz-cat"></div>
-            <div class="quiz-tap">👆 Appuie pour voir la réponse</div>
-          </div>
-          <div class="quiz-card-back" id="quiz-back">
-            <div class="quiz-darija" id="quiz-darija"></div>
-            <div class="quiz-trans" id="quiz-trans"></div>
-            <div class="quiz-en" id="quiz-en"></div>
+        <div class="flashcard-filter" id="fc-filter"></div>
+        <div class="flashcard-progress"><div class="flashcard-progress-bar" id="fc-progress"></div></div>
+        <div style="height:8px;"></div>
+
+        <div class="flashcard-scene" id="fc-scene" onclick="flipFlashcard()">
+          <div class="flashcard-inner" id="fc-inner">
+            <div class="flashcard-front">
+              <div class="flashcard-fr" id="fc-fr"></div>
+              <div class="flashcard-cat-badge" id="fc-cat"></div>
+              <div class="flashcard-hint">👆 Appuie pour voir en Darija</div>
+            </div>
+            <div class="flashcard-back">
+              <div class="flashcard-darija" id="fc-darija"></div>
+              <div class="flashcard-trans" id="fc-trans"></div>
+              <div class="flashcard-en" id="fc-en"></div>
+            </div>
           </div>
         </div>
-        <div class="quiz-nav">
-          <button class="quiz-nav-btn quiz-prev" onclick="quizPrev()">← Précédent</button>
-          <button class="quiz-nav-btn quiz-next" onclick="quizNext()">Suivant →</button>
+
+        <div class="flashcard-nav">
+          <button class="flashcard-nav-btn flashcard-prev" onclick="fcPrev()">← Précédent</button>
+          <button class="flashcard-nav-btn flashcard-next" onclick="fcNext()">Suivant →</button>
         </div>
+        <div class="flashcard-stats">Carte <span id="fc-idx">1</span> sur <span id="fc-total">20</span></div>
       </div>
     </div>
   </div>
@@ -394,7 +414,7 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
     <div class="nav-item" onclick="switchTab('events','Événements')" id="nav-events"><div class="nav-icon">🎉</div><div class="nav-label">Événements</div><div class="nav-dot"></div></div>
     <div class="nav-item" onclick="switchTab('urgences','Urgences')" id="nav-urgences"><div class="nav-icon">🚨</div><div class="nav-label">Urgences</div><div class="nav-dot"></div></div>
     <div class="nav-item" onclick="switchTab('transport','Transport')" id="nav-transport"><div class="nav-icon">🚌</div><div class="nav-label">Transport</div><div class="nav-dot"></div></div>
-    <div class="nav-item" onclick="switchTab('lexique','Darija Quiz')" id="nav-lexique"><div class="nav-icon">🗣️</div><div class="nav-label">Darija</div><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="switchTab('lexique','Darija')" id="nav-lexique"><div class="nav-icon">🗣️</div><div class="nav-label">Darija</div><div class="nav-dot"></div></div>
   </div>
 </div>
 
@@ -404,12 +424,12 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
   <div class="detail-content">
     <div class="detail-badge" id="dv-region"></div>
     <div class="detail-title" id="dv-name"></div>
-    <div class="detail-sub" id="dv-desc-short"></div>
+    <div class="detail-sub" id="dv-sub"></div>
     <div class="detail-desc" id="dv-desc"></div>
     <a class="detail-maps-btn" id="dv-maps" href="#" target="_blank">🗺️ Ouvrir dans Google Maps</a>
     <div class="detail-info-grid">
       <div class="detail-info-item"><div class="detail-info-label">Région</div><div class="detail-info-value" id="dv-region2"></div></div>
-      <div class="detail-info-item"><div class="detail-info-label">Meilleure saison</div><div class="detail-info-value">Avril — Juin</div></div>
+      <div class="detail-info-item"><div class="detail-info-label">Meilleure saison</div><div class="detail-info-value">Avr — Juin</div></div>
     </div>
     <div class="detail-section-title">📍 Lieux incontournables</div>
     <div id="dv-lieux"></div>
@@ -454,8 +474,7 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
       <div class="about-stat"><div class="about-stat-num">15</div><div class="about-stat-label">Plats</div></div>
       <div class="about-stat"><div class="about-stat-num">20</div><div class="about-stat-label">Darija</div></div>
     </div>
-    <div class="about-section"><div class="about-section-title">Notre mission</div><div class="about-section-text">Go Morocco est votre guide de voyage authentique pour découvrir le Royaume du Maroc. Des médinas labyrinthiques aux plages atlantiques, des sommets de l'Atlas aux dunes du Sahara.</div></div>
-    <div class="about-section"><div class="about-section-title">Urgences</div><div class="about-section-text">🚨 SAMU : 150 · Police : 19 · Pompiers : 15<br>Retrouvez les coordonnées des hôpitaux dans l'onglet Urgences.</div></div>
+    <div class="about-section"><div class="about-section-title">Notre mission</div><div class="about-section-text">Go Morocco est votre guide de voyage authentique pour découvrir le Royaume du Maroc. Des médinas labyrinthiques aux plages atlantiques.</div></div>
     <div class="about-section"><div class="about-section-title">Contact</div><div class="about-section-text">📧 contact@gomorocco.app<br>📱 @gomorocco</div></div>
     <div class="about-section"><div class="about-section-title">Version</div><div class="about-section-text">Go Morocco v1.0 — 2025 🇲🇦</div></div>
   </div>
@@ -464,84 +483,84 @@ body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); 
 <script>
 var DATA = {
   villes: [
-    { id:1, nom:"Marrakech", nom_en:"Marrakech", region:"Sud", region_en:"South", img:"images/Marrakech.jpg", maps_url:"https://maps.google.com/?q=Marrakech+Morocco", desc_fr:"La ville ocre, capitale culturelle du Maroc. Ses souks labyrinthiques, la place Jemaa el-Fna et ses riads cachés en font une destination envoûtante entre tradition et modernité.", desc_en:"The Red City, Morocco's cultural capital. Its labyrinthine souks, the Jemaa el-Fna square and hidden riads make it a mesmerizing destination." },
-    { id:2, nom:"Casablanca", nom_en:"Casablanca", region:"Centre-Ouest", region_en:"West-Center", img:"images/Casablanca.jpg", maps_url:"https://maps.google.com/?q=Casablanca+Morocco", desc_fr:"La métropole économique du Maroc. Moderne et cosmopolite, elle abrite la majestueuse mosquée Hassan II et une scène gastronomique vibrante.", desc_en:"Morocco's economic metropolis. Modern and cosmopolitan, home to the majestic Hassan II Mosque and a vibrant gastronomic scene." },
-    { id:3, nom:"Rabat", nom_en:"Rabat", region:"Nord-Ouest", region_en:"North-West", img:"images/Rabat.jpg", maps_url:"https://maps.google.com/?q=Rabat+Morocco", desc_fr:"La capitale royale, ville d'histoire et de culture. Entre la Tour Hassan, la Kasbah des Oudayas et ses musées, Rabat offre une expérience authentique.", desc_en:"The royal capital, a city of history and culture. Between the Hassan Tower and the Kasbah of the Udayas, Rabat offers an authentic experience." },
-    { id:4, nom:"Essaouira", nom_en:"Essaouira", region:"Côte Atlantique", region_en:"Atlantic Coast", img:"images/Essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Morocco", desc_fr:"La cité des vents, ville côtière enchanteresse aux remparts bleus et blancs. Connue pour son ambiance bohème, ses galeries d'art et ses plages de surf.", desc_en:"The City of Winds, an enchanting coastal town with blue and white ramparts. Known for its bohemian vibe and surf beaches." },
-    { id:5, nom:"Agadir", nom_en:"Agadir", region:"Sud", region_en:"South", img:"images/Agadir.jpg", maps_url:"https://maps.google.com/?q=Agadir+Morocco", desc_fr:"La station balnéaire par excellence du Maroc. Avec ses 300 jours de soleil par an, sa longue plage et sa marina moderne.", desc_en:"Morocco's premier beach resort. With 300 days of sunshine a year, its long sandy beach and modern marina." },
-    { id:6, nom:"Tanger", nom_en:"Tangier", region:"Nord", region_en:"North", img:"images/Tanger.jpg", maps_url:"https://maps.google.com/?q=Tangier+Morocco", desc_fr:"La porte de l'Afrique, ville mythique au carrefour de l'Europe et du Maroc. Sa médina, sa kasbah et la légendaire Grotte d'Hercule.", desc_en:"The Gateway to Africa, a mythical city at the crossroads of Europe and Morocco. Its medina, kasbah and the legendary Cave of Hercules." }
+    { id:1, nom:"Marrakech", nom_en:"Marrakech", nom_ar:"مراكش", region:"Sud", region_en:"South", region_ar:"الجنوب", img:"images/Marrakech.jpg", maps_url:"https://maps.google.com/?q=Marrakech+Morocco", desc_fr:"La ville ocre, capitale culturelle du Maroc. Ses souks labyrinthiques, la place Jemaa el-Fna et ses riads cachés en font une destination envoûtante entre tradition et modernité.", desc_en:"The Red City, Morocco's cultural capital. Its labyrinthine souks, the Jemaa el-Fna square and hidden riads make it a mesmerizing destination.", desc_ar:"المدينة الحمراء، العاصمة الثقافية للمغرب. أسواقها المتاهة وساحة جامع الفنا والرياضات المخفية تجعلها وجهة رائعة." },
+    { id:2, nom:"Casablanca", nom_en:"Casablanca", nom_ar:"الدار البيضاء", region:"Centre-Ouest", region_en:"West-Center", region_ar:"وسط الغرب", img:"images/Casablanca.jpg", maps_url:"https://maps.google.com/?q=Casablanca+Morocco", desc_fr:"La métropole économique du Maroc. Moderne et cosmopolite, elle abrite la majestueuse mosquée Hassan II et une scène gastronomique vibrante.", desc_en:"Morocco's economic metropolis. Modern and cosmopolitan, home to the majestic Hassan II Mosque.", desc_ar:"المدينة الاقتصادية للمغرب. حديثة وكوزموبوليتانية، تضم المسجد الرائع الحسن الثاني." },
+    { id:3, nom:"Rabat", nom_en:"Rabat", nom_ar:"الرباط", region:"Nord-Ouest", region_en:"North-West", region_ar:"شمال الغرب", img:"images/Rabat.jpg", maps_url:"https://maps.google.com/?q=Rabat+Morocco", desc_fr:"La capitale royale, ville d'histoire et de culture. Entre la Tour Hassan, la Kasbah des Oudayas et ses musées.", desc_en:"The royal capital, a city of history and culture. Between the Hassan Tower and the Kasbah of the Udayas.", desc_ar:"العاصمة الملكية، مدينة التاريخ والثقافة. بين صومعة حسان وقصبة الوداية." },
+    { id:4, nom:"Essaouira", nom_en:"Essaouira", nom_ar:"الصويرة", region:"Côte Atlantique", region_en:"Atlantic Coast", region_ar:"الساحل الأطلسي", img:"images/Essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Morocco", desc_fr:"La cité des vents, ville côtière enchanteresse aux remparts bleus et blancs.", desc_en:"The City of Winds, an enchanting coastal town with blue and white ramparts.", desc_ar:"مدينة الرياح، مدينة ساحلية ساحرة بأسوارها الزرقاء والبيضاء." },
+    { id:5, nom:"Agadir", nom_en:"Agadir", nom_ar:"أكادير", region:"Sud", region_en:"South", region_ar:"الجنوب", img:"images/Agadir.jpg", maps_url:"https://maps.google.com/?q=Agadir+Morocco", desc_fr:"La station balnéaire par excellence du Maroc. Avec ses 300 jours de soleil par an.", desc_en:"Morocco's premier beach resort. With 300 days of sunshine a year.", desc_ar:"المنتجع الشاطئي الرائد في المغرب. مع 300 يوم مشمس في السنة." },
+    { id:6, nom:"Tanger", nom_en:"Tangier", nom_ar:"طنجة", region:"Nord", region_en:"North", region_ar:"الشمال", img:"images/Tanger.jpg", maps_url:"https://maps.google.com/?q=Tangier+Morocco", desc_fr:"La porte de l'Afrique, ville mythique au carrefour de l'Europe et du Maroc.", desc_en:"The Gateway to Africa, a mythical city at the crossroads of Europe and Morocco.", desc_ar:"بوابة أفريقيا، مدينة أسطورية عند تقاطع أوروبا والمغرب." }
   ],
   lieux: [
-    { id:1, nom:"Jemaa el-Fna", nom_en:"Jemaa el-Fna", ville:"Marrakech", cat:"Place", img:"images/PLACE_JEMAA_EL_FNA.jpg", maps_url:"https://maps.google.com/?q=Jemaa+el+Fna+Marrakech", desc_fr:"La place mythique de Marrakech, classée au patrimoine UNESCO. Le jour des vendeurs de jus d'orange, la nuit des conteurs et musiciens.", desc_en:"Marrakech's mythical square, UNESCO-listed. Day brings orange juice sellers, night brings storytellers and musicians." },
-    { id:2, nom:"Mosquée Hassan II", nom_en:"Hassan II Mosque", ville:"Casablanca", cat:"Monument", img:"images/Mosquée Hassan II.png", maps_url:"https://maps.google.com/?q=Hassan+II+Mosque+Casablanca", desc_fr:"La 3e plus grande mosquée du monde, chef-d'œuvre de l'architecture marocaine moderne. Construite sur l'océan Atlantique.", desc_en:"The 3rd largest mosque in the world, a masterpiece of modern Moroccan architecture. Built over the Atlantic Ocean." },
-    { id:3, nom:"Kasbah des Oudayas", nom_en:"Kasbah of the Udayas", ville:"Rabat", cat:"Patrimoine", img:"images/Kasbah_Oudayas.jpg", maps_url:"https://maps.google.com/?q=Kasbah+Oudayas+Rabat", desc_fr:"Forteresse du 12e siècle aux ruelles bleues et blanches. Un des endroits les plus photogéniques du Maroc.", desc_en:"12th-century fortress with blue and white alleys. One of Morocco's most photogenic spots." },
-    { id:4, nom:"Remparts d'Essaouira", nom_en:"Essaouira Ramparts", ville:"Essaouira", cat:"Patrimoine", img:"images/remparts-essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Ramparts", desc_fr:"Les célèbres remparts portugais du 18e siècle qui surplombent l'Atlantique. Idéal pour une promenade au coucher du soleil.", desc_en:"The famous 18th-century Portuguese ramparts overlooking the Atlantic. Perfect for a sunset walk." },
-    { id:5, nom:"Marina d'Agadir", nom_en:"Agadir Marina", ville:"Agadir", cat:"Loisirs", img:"images/Marina Agadir.jpg", maps_url:"https://maps.google.com/?q=Agadir+Marina", desc_fr:"Le cœur moderne d'Agadir, avec ses restaurants, boutiques et bateaux de plaisance. Animée le soir.", desc_en:"The modern heart of Agadir, with restaurants, shops and pleasure boats. Lively in the evening." },
-    { id:6, nom:"Grotte d'Hercule", nom_en:"Cave of Hercules", ville:"Tanger", cat:"Nature", img:"images/Grotte_Hercule_Tanger.jpg", maps_url:"https://maps.google.com/?q=Cave+of+Hercules+Tangier", desc_fr:"Grotte naturelle spectaculaire à 14 km de Tanger dont l'ouverture en forme de carte de l'Afrique donne sur l'Atlantique.", desc_en:"Spectacular natural cave 14 km from Tangier whose Africa-shaped opening overlooks the Atlantic." },
-    { id:7, nom:"Jardin Majorelle", nom_en:"Majorelle Garden", ville:"Marrakech", cat:"Jardin", img:"images/le-jardin-majorelle.jpg", maps_url:"https://maps.google.com/?q=Jardin+Majorelle+Marrakech", desc_fr:"Oasis de verdure créée par Jacques Majorelle et sauvée par Yves Saint Laurent. Ses bâtiments bleu cobalt sont mondialement célèbres.", desc_en:"Green oasis created by Jacques Majorelle and saved by Yves Saint Laurent. Its cobalt blue buildings are world-famous." },
-    { id:8, nom:"Tour Hassan", nom_en:"Hassan Tower", ville:"Rabat", cat:"Monument", img:"images/Tour Hassan.png", maps_url:"https://maps.google.com/?q=Hassan+Tower+Rabat", desc_fr:"Minaret inachevé du 12e siècle, symbole de Rabat. Face à lui, le Mausolée Mohammed V.", desc_en:"Unfinished 12th-century minaret, symbol of Rabat. Opposite it stands the Mohammed V Mausoleum." },
-    { id:9, nom:"Souk de Marrakech", nom_en:"Marrakech Souk", ville:"Marrakech", cat:"Marché", img:"images/Souk de Marrakech.jpg", maps_url:"https://maps.google.com/?q=Souk+Marrakech", desc_fr:"Le plus grand souk du Maroc, un labyrinthe de ruelles thématiques : épices, cuir, tapis, bijoux, poterie.", desc_en:"Morocco's largest souk, a maze of themed alleys: spices, leather, carpets, jewellery, pottery." },
-    { id:10, nom:"Plage d'Agadir", nom_en:"Agadir Beach", ville:"Agadir", cat:"Plage", img:"images/Plage Agadir.jpeg", maps_url:"https://maps.google.com/?q=Agadir+Beach", desc_fr:"10 km de sable fin protégé du vent par une baie naturelle. Eau chaude et vagues douces.", desc_en:"10 km of fine sand sheltered from the wind by a natural bay. Warm water and gentle waves." },
-    { id:11, nom:"Médina de Tanger", nom_en:"Tangier Medina", ville:"Tanger", cat:"Médina", img:"images/Mdina de tanger.jpg", maps_url:"https://maps.google.com/?q=Medina+Tangier", desc_fr:"Un dédale de ruelles authentiques avec vue sur le détroit de Gibraltar.", desc_en:"A maze of authentic alleys with views over the Strait of Gibraltar." },
-    { id:12, nom:"Port d'Essaouira", nom_en:"Essaouira Port", ville:"Essaouira", cat:"Port", img:"images/Port de essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Port", desc_fr:"Port de pêche authentique où les barques bleues rentrent chaque matin. Un tableau vivant.", desc_en:"Authentic fishing port where blue boats return each morning. A living painting." },
-    { id:13, nom:"Corniche de Casablanca", nom_en:"Casablanca Corniche", ville:"Casablanca", cat:"Promenade", img:"images/Corniche de Casablanca.jpeg", maps_url:"https://maps.google.com/?q=Corniche+Casablanca", desc_fr:"Boulevard longeant l'Atlantique, bordé de cafés et restaurants. Animée en toute saison.", desc_en:"Boulevard along the Atlantic, lined with cafes and restaurants. Lively all year round." },
-    { id:14, nom:"Chellah", nom_en:"Chellah", ville:"Rabat", cat:"Patrimoine", img:"images/Chellah.jpeg", maps_url:"https://maps.google.com/?q=Chellah+Rabat", desc_fr:"Nécropole romaine et mérinide à Rabat, envahie par la végétation et peuplée de cigognes.", desc_en:"Roman and Merinid necropolis in Rabat, overgrown with vegetation and populated by storks." },
-    { id:15, nom:"Cap Spartel", nom_en:"Cap Spartel", ville:"Tanger", cat:"Nature", img:"images/Cap Spartal.jpg", maps_url:"https://maps.google.com/?q=Cap+Spartel+Tangier", desc_fr:"Le point de rencontre de l'Atlantique et de la Méditerranée, à 14 km de Tanger.", desc_en:"The meeting point of the Atlantic and Mediterranean, 14 km from Tangier." }
+    { id:1, nom:"Jemaa el-Fna", nom_en:"Jemaa el-Fna", nom_ar:"جامع الفنا", ville:"Marrakech", cat:"Place", img:"images/PLACE_JEMAA_EL_FNA.jpg", maps_url:"https://maps.google.com/?q=Jemaa+el+Fna+Marrakech", desc_fr:"La place mythique de Marrakech, classée au patrimoine UNESCO. Le jour des vendeurs de jus d'orange, la nuit des conteurs et musiciens.", desc_en:"Marrakech's mythical square, UNESCO-listed. Day brings orange juice sellers, night brings storytellers and musicians.", desc_ar:"الميدان الأسطوري لمراكش، مدرج في التراث العالمي لليونسكو." },
+    { id:2, nom:"Mosquée Hassan II", nom_en:"Hassan II Mosque", nom_ar:"مسجد الحسن الثاني", ville:"Casablanca", cat:"Monument", img:"images/Mosquée Hassan II.png", maps_url:"https://maps.google.com/?q=Hassan+II+Mosque+Casablanca", desc_fr:"La 3e plus grande mosquée du monde, chef-d'œuvre de l'architecture marocaine moderne.", desc_en:"The 3rd largest mosque in the world, a masterpiece of modern Moroccan architecture.", desc_ar:"ثالث أكبر مسجد في العالم، تحفة معمارية مغربية حديثة." },
+    { id:3, nom:"Kasbah des Oudayas", nom_en:"Kasbah of the Udayas", nom_ar:"قصبة الوداية", ville:"Rabat", cat:"Patrimoine", img:"images/Kasbah_Oudayas.jpg", maps_url:"https://maps.google.com/?q=Kasbah+Oudayas+Rabat", desc_fr:"Forteresse du 12e siècle aux ruelles bleues et blanches. Un des endroits les plus photogéniques du Maroc.", desc_en:"12th-century fortress with blue and white alleys. One of Morocco's most photogenic spots.", desc_ar:"قلعة من القرن الثاني عشر بأزقة زرقاء وبيضاء." },
+    { id:4, nom:"Remparts d'Essaouira", nom_en:"Essaouira Ramparts", nom_ar:"أسوار الصويرة", ville:"Essaouira", cat:"Patrimoine", img:"images/remparts-essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Ramparts", desc_fr:"Les célèbres remparts portugais du 18e siècle qui surplombent l'Atlantique.", desc_en:"The famous 18th-century Portuguese ramparts overlooking the Atlantic.", desc_ar:"الأسوار البرتغالية الشهيرة من القرن الثامن عشر المطلة على الأطلسي." },
+    { id:5, nom:"Marina d'Agadir", nom_en:"Agadir Marina", nom_ar:"ميناء أكادير", ville:"Agadir", cat:"Loisirs", img:"images/Marina Agadir.jpg", maps_url:"https://maps.google.com/?q=Agadir+Marina", desc_fr:"Le cœur moderne d'Agadir, avec ses restaurants, boutiques et bateaux de plaisance.", desc_en:"The modern heart of Agadir, with restaurants, shops and pleasure boats.", desc_ar:"قلب أكادير الحديث، مع المطاعم والمحلات وقوارب النزهة." },
+    { id:6, nom:"Grotte d'Hercule", nom_en:"Cave of Hercules", nom_ar:"كهف هرقل", ville:"Tanger", cat:"Nature", img:"images/Grotte_Hercule_Tanger.jpg", maps_url:"https://maps.google.com/?q=Cave+of+Hercules+Tangier", desc_fr:"Grotte naturelle spectaculaire à 14 km de Tanger dont l'ouverture donne sur l'Atlantique.", desc_en:"Spectacular natural cave 14 km from Tangier whose opening overlooks the Atlantic.", desc_ar:"كهف طبيعي رائع على بعد 14 كم من طنجة يطل على الأطلسي." },
+    { id:7, nom:"Jardin Majorelle", nom_en:"Majorelle Garden", nom_ar:"حديقة ماجوريل", ville:"Marrakech", cat:"Jardin", img:"images/le-jardin-majorelle.jpg", maps_url:"https://maps.google.com/?q=Jardin+Majorelle+Marrakech", desc_fr:"Oasis de verdure créée par Jacques Majorelle et sauvée par Yves Saint Laurent.", desc_en:"Green oasis created by Jacques Majorelle and saved by Yves Saint Laurent.", desc_ar:"واحة خضراء أنشأها جاك ماجوريل وأنقذها إيف سان لوران." },
+    { id:8, nom:"Tour Hassan", nom_en:"Hassan Tower", nom_ar:"صومعة حسان", ville:"Rabat", cat:"Monument", img:"images/Tour Hassan.png", maps_url:"https://maps.google.com/?q=Hassan+Tower+Rabat", desc_fr:"Minaret inachevé du 12e siècle, symbole de Rabat.", desc_en:"Unfinished 12th-century minaret, symbol of Rabat.", desc_ar:"صومعة غير مكتملة من القرن الثاني عشر، رمز الرباط." },
+    { id:9, nom:"Souk de Marrakech", nom_en:"Marrakech Souk", nom_ar:"سوق مراكش", ville:"Marrakech", cat:"Marché", img:"images/Souk de Marrakech.jpg", maps_url:"https://maps.google.com/?q=Souk+Marrakech", desc_fr:"Le plus grand souk du Maroc : épices, cuir, tapis, bijoux, poterie.", desc_en:"Morocco's largest souk: spices, leather, carpets, jewellery, pottery.", desc_ar:"أكبر سوق في المغرب: التوابل والجلود والسجاد والمجوهرات." },
+    { id:10, nom:"Plage d'Agadir", nom_en:"Agadir Beach", nom_ar:"شاطئ أكادير", ville:"Agadir", cat:"Plage", img:"images/Plage Agadir.jpeg", maps_url:"https://maps.google.com/?q=Agadir+Beach", desc_fr:"10 km de sable fin protégé du vent par une baie naturelle.", desc_en:"10 km of fine sand sheltered from the wind by a natural bay.", desc_ar:"10 كم من الرمال الناعمة محمية من الريح بخليج طبيعي." },
+    { id:11, nom:"Médina de Tanger", nom_en:"Tangier Medina", nom_ar:"مدينة طنجة القديمة", ville:"Tanger", cat:"Médina", img:"images/Mdina de tanger.jpg", maps_url:"https://maps.google.com/?q=Medina+Tangier", desc_fr:"Un dédale de ruelles authentiques avec vue sur le détroit de Gibraltar.", desc_en:"A maze of authentic alleys with views over the Strait of Gibraltar.", desc_ar:"متاهة من الأزقة الأصيلة مع إطلالة على مضيق جبل طارق." },
+    { id:12, nom:"Port d'Essaouira", nom_en:"Essaouira Port", nom_ar:"ميناء الصويرة", ville:"Essaouira", cat:"Port", img:"images/Port de essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Port", desc_fr:"Port de pêche authentique où les barques bleues rentrent chaque matin.", desc_en:"Authentic fishing port where blue boats return each morning.", desc_ar:"ميناء صيد أصيل حيث تعود القوارب الزرقاء كل صباح." },
+    { id:13, nom:"Corniche de Casablanca", nom_en:"Casablanca Corniche", nom_ar:"كورنيش الدار البيضاء", ville:"Casablanca", cat:"Promenade", img:"images/Corniche de Casablanca.jpeg", maps_url:"https://maps.google.com/?q=Corniche+Casablanca", desc_fr:"Boulevard longeant l'Atlantique, bordé de cafés et restaurants.", desc_en:"Boulevard along the Atlantic, lined with cafes and restaurants.", desc_ar:"شارع على طول الأطلسي مع المقاهي والمطاعم." },
+    { id:14, nom:"Chellah", nom_en:"Chellah", nom_ar:"شالة", ville:"Rabat", cat:"Patrimoine", img:"images/Chellah.jpeg", maps_url:"https://maps.google.com/?q=Chellah+Rabat", desc_fr:"Nécropole romaine et mérinide à Rabat, peuplée de cigognes.", desc_en:"Roman and Merinid necropolis in Rabat, populated by storks.", desc_ar:"مقبرة رومانية ومرينية في الرباط، تسكنها اللقالق." },
+    { id:15, nom:"Cap Spartel", nom_en:"Cap Spartel", nom_ar:"رأس سبارطيل", ville:"Tanger", cat:"Nature", img:"images/Cap Spartal.jpg", maps_url:"https://maps.google.com/?q=Cap+Spartel+Tangier", desc_fr:"Le point de rencontre de l'Atlantique et de la Méditerranée.", desc_en:"The meeting point of the Atlantic and Mediterranean.", desc_ar:"نقطة التقاء الأطلسي والبحر الأبيض المتوسط." }
   ],
   gastronomie: [
-    { id:1, nom:"Tajine", nom_en:"Tajine", type:"Plat principal", prix:"5-12€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Le plat emblématique du Maroc, cuit lentement dans un plat en terre cuite conique. Agneau aux pruneaux, poulet au citron confit ou légumes.", desc_en:"Morocco's emblematic dish, slow-cooked in a conical earthenware pot. Lamb with prunes, chicken with preserved lemon or vegetables." },
-    { id:2, nom:"Couscous", nom_en:"Couscous", type:"Plat principal", prix:"6-15€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Le plat du vendredi par excellence, servi en famille avec légumes et viande mijotés, accompagné de bouillon parfumé.", desc_en:"The quintessential Friday dish, served with family with simmered vegetables and meat." },
-    { id:3, nom:"Pastilla", nom_en:"Pastilla", type:"Entrée", prix:"4-10€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Feuilleté sucré-salé farci de poulet, amandes et cannelle. Une explosion de saveurs unique.", desc_en:"Sweet-savoury pastry stuffed with chicken, almonds and cinnamon. A unique flavour explosion." },
-    { id:4, nom:"Harira", nom_en:"Harira", type:"Soupe", prix:"1-3€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Soupe épaisse à base de tomates, lentilles et pois chiches. Incontournable pendant le Ramadan.", desc_en:"Thick soup made with tomatoes, lentils and chickpeas. A must during Ramadan." },
-    { id:5, nom:"Msemen", nom_en:"Msemen", type:"Petit-déjeuner", prix:"0.5-2€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Crêpe feuilletée marocaine servie avec du miel et du beurre. Le meilleur en-cas du matin.", desc_en:"Moroccan layered flatbread served with honey and butter. The best morning snack." },
-    { id:6, nom:"Thé à la menthe", nom_en:"Mint Tea", type:"Boisson", prix:"0.5-2€", img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Bien plus qu'une boisson, le thé marocain est un rituel d'hospitalité. Versé de haut pour créer de la mousse.", desc_en:"Much more than a drink, Moroccan tea is a hospitality ritual. Poured from high to create foam." },
-    { id:7, nom:"Mechoui", nom_en:"Mechoui", type:"Plat principal", prix:"8-20€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Agneau entier rôti lentement dans un four traditionnel. Servi avec du cumin et du sel.", desc_en:"Whole lamb slowly roasted in a traditional oven. Served with cumin and salt." },
-    { id:8, nom:"Briouates", nom_en:"Briouates", type:"Entrée", prix:"2-5€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Petits triangles de pâte filo farcis de viande épicée ou amandes au miel. Croustillants et savoureux.", desc_en:"Small filo pastry triangles filled with spiced meat or honey almonds. Crispy and flavourful." },
-    { id:9, nom:"Sardines grillées", nom_en:"Grilled Sardines", type:"Plat principal", prix:"3-8€", img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Spécialité des villes côtières. Pêchées le matin, grillées au charbon le midi, servies avec du citron.", desc_en:"Speciality of coastal cities. Caught in the morning, charcoal-grilled at noon, served with lemon." },
-    { id:10, nom:"Chebakia", nom_en:"Chebakia", type:"Dessert", prix:"1-3€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Pâtisserie en forme de fleur trempée dans du miel et parsemée de sésame. Incontournable pendant le Ramadan.", desc_en:"Flower-shaped pastry dipped in honey and sprinkled with sesame seeds. A must during Ramadan." },
-    { id:11, nom:"Rfissa", nom_en:"Rfissa", type:"Plat principal", prix:"5-12€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Plat traditionnel à base de msemen émietté, poulet, lentilles et fenugrec. Servi lors des grandes occasions familiales.", desc_en:"Traditional dish made of crumbled msemen, chicken, lentils and fenugreek. Served at family celebrations." },
-    { id:12, nom:"Tanjia", nom_en:"Tanjia", type:"Plat principal", prix:"6-14€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Spécialité de Marrakech : viande d'agneau cuite lentement dans une amphore en terre cuite dans les braises du hammam.", desc_en:"Marrakech speciality: lamb meat slowly cooked in a clay amphora in the embers of a hammam." },
-    { id:13, nom:"Bastilla au lait", nom_en:"Milk Bastilla", type:"Dessert", prix:"3-7€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Version sucrée de la pastilla : feuilles de brick croustillantes garnies de crème pâtissière, amandes et cannelle.", desc_en:"Sweet version of pastilla: crispy brick pastry filled with custard cream, almonds and cinnamon." },
-    { id:14, nom:"Khobz", nom_en:"Moroccan Bread", type:"Accompagnement", prix:"0.2-0.5€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Pain rond marocain, cuit au four traditionnel. Accompagne tous les plats et sert de cuillère pour la sauce.", desc_en:"Round Moroccan bread, baked in a traditional oven. Accompanies all dishes and serves as a spoon for the sauce." },
-    { id:15, nom:"Zaalouk", nom_en:"Zaalouk", type:"Entrée", prix:"2-4€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Salade chaude d'aubergines et tomates grillées, assaisonnée d'ail, cumin et paprika. Servie avec du pain.", desc_en:"Warm salad of grilled eggplant and tomatoes, seasoned with garlic, cumin and paprika. Served with bread." }
+    { id:1, nom:"Tajine", nom_en:"Tajine", nom_ar:"الطاجين", type:"Plat principal", prix:"5-12€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Le plat emblématique du Maroc, cuit lentement dans un plat en terre cuite conique.", desc_en:"Morocco's emblematic dish, slow-cooked in a conical earthenware pot.", desc_ar:"الطبق الرمزي للمغرب، يُطهى ببطء في وعاء طيني مخروطي." },
+    { id:2, nom:"Couscous", nom_en:"Couscous", nom_ar:"الكسكس", type:"Plat principal", prix:"6-15€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Le plat du vendredi par excellence, servi en famille avec légumes et viande.", desc_en:"The quintessential Friday dish, served with family.", desc_ar:"طبق الجمعة بامتياز، يُقدَّم عائلياً مع الخضر واللحم." },
+    { id:3, nom:"Pastilla", nom_en:"Pastilla", nom_ar:"البسطيلة", type:"Entrée", prix:"4-10€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Feuilleté sucré-salé farci de poulet, amandes et cannelle.", desc_en:"Sweet-savoury pastry stuffed with chicken, almonds and cinnamon.", desc_ar:"فطيرة حلوة ومالحة محشوة بالدجاج واللوز والقرفة." },
+    { id:4, nom:"Harira", nom_en:"Harira", nom_ar:"الحريرة", type:"Soupe", prix:"1-3€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Soupe épaisse de tomates, lentilles et pois chiches. Incontournable pendant le Ramadan.", desc_en:"Thick soup of tomatoes, lentils and chickpeas. A must during Ramadan.", desc_ar:"حساء كثيف بالطماطم والعدس والحمص. لا غنى عنه في رمضان." },
+    { id:5, nom:"Msemen", nom_en:"Msemen", nom_ar:"المسمن", type:"Petit-déjeuner", prix:"0.5-2€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Crêpe feuilletée marocaine servie avec du miel et du beurre.", desc_en:"Moroccan layered flatbread served with honey and butter.", desc_ar:"خبز مغربي طبقي يُقدَّم مع العسل والزبدة." },
+    { id:6, nom:"Thé à la menthe", nom_en:"Mint Tea", nom_ar:"أتاي", type:"Boisson", prix:"0.5-2€", img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Bien plus qu'une boisson, le thé marocain est un rituel d'hospitalité.", desc_en:"Much more than a drink, Moroccan tea is a hospitality ritual.", desc_ar:"أكثر من مجرد مشروب، الشاي المغربي طقس للضيافة." },
+    { id:7, nom:"Mechoui", nom_en:"Mechoui", nom_ar:"المشوي", type:"Plat principal", prix:"8-20€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Agneau entier rôti lentement dans un four traditionnel.", desc_en:"Whole lamb slowly roasted in a traditional oven.", desc_ar:"خروف كامل يُشوى ببطء في فرن تقليدي." },
+    { id:8, nom:"Briouates", nom_en:"Briouates", nom_ar:"البريوات", type:"Entrée", prix:"2-5€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Petits triangles de pâte filo farcis de viande épicée ou amandes au miel.", desc_en:"Small filo pastry triangles filled with spiced meat or honey almonds.", desc_ar:"مثلثات صغيرة من عجينة الفيلو محشوة باللحم المتبل أو اللوز بالعسل." },
+    { id:9, nom:"Sardines grillées", nom_en:"Grilled Sardines", nom_ar:"السردين المشوي", type:"Plat principal", prix:"3-8€", img:"https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80", desc_fr:"Spécialité des villes côtières. Pêchées le matin, grillées au charbon le midi.", desc_en:"Speciality of coastal cities. Caught in the morning, charcoal-grilled at noon.", desc_ar:"تخصص المدن الساحلية. يُصاد صباحاً ويُشوى على الفحم ظهراً." },
+    { id:10, nom:"Chebakia", nom_en:"Chebakia", nom_ar:"الشباكية", type:"Dessert", prix:"1-3€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Pâtisserie en forme de fleur trempée dans du miel. Incontournable pendant le Ramadan.", desc_en:"Flower-shaped pastry dipped in honey. A must during Ramadan.", desc_ar:"حلوى على شكل زهرة مغموسة في العسل. لا غنى عنها في رمضان." },
+    { id:11, nom:"Rfissa", nom_en:"Rfissa", nom_ar:"الرفيسة", type:"Plat principal", prix:"5-12€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Plat traditionnel à base de msemen émietté, poulet, lentilles et fenugrec.", desc_en:"Traditional dish made of crumbled msemen, chicken, lentils and fenugreek.", desc_ar:"طبق تقليدي من المسمن المفتت والدجاج والعدس والحلبة." },
+    { id:12, nom:"Tanjia", nom_en:"Tanjia", nom_ar:"التنجية", type:"Plat principal", prix:"6-14€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Spécialité de Marrakech : viande d'agneau cuite dans une amphore dans les braises.", desc_en:"Marrakech speciality: lamb meat slowly cooked in a clay amphora in embers.", desc_ar:"تخصص مراكش: لحم الخروف يُطهى في جرة طينية على الجمر." },
+    { id:13, nom:"Bastilla au lait", nom_en:"Milk Bastilla", nom_ar:"بسطيلة بالحليب", type:"Dessert", prix:"3-7€", img:"https://images.unsplash.com/photo-1563379091339-03246963d29f?w=400&q=80", desc_fr:"Feuilles de brick croustillantes garnies de crème pâtissière, amandes et cannelle.", desc_en:"Crispy brick pastry filled with custard cream, almonds and cinnamon.", desc_ar:"فطائر بريك مقرمشة محشوة بكريمة الكاسترد واللوز والقرفة." },
+    { id:14, nom:"Khobz", nom_en:"Moroccan Bread", nom_ar:"الخبز", type:"Accompagnement", prix:"0.2-0.5€", img:"https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80", desc_fr:"Pain rond marocain cuit au four traditionnel. Accompagne tous les plats.", desc_en:"Round Moroccan bread baked in a traditional oven. Accompanies all dishes.", desc_ar:"خبز مغربي مستدير مخبوز في فرن تقليدي. يرافق جميع الأطباق." },
+    { id:15, nom:"Zaalouk", nom_en:"Zaalouk", nom_ar:"الزعلوك", type:"Entrée", prix:"2-4€", img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80", desc_fr:"Salade chaude d'aubergines et tomates grillées, assaisonnée d'ail et cumin.", desc_en:"Warm salad of grilled eggplant and tomatoes, seasoned with garlic and cumin.", desc_ar:"سلطة دافئة من الباذنجان والطماطم المشوية مع الثوم والكمون." }
   ],
   evenements: [
-    { id:1, nom:"Festival Gnaoua", nom_en:"Gnaoua Festival", ville:"Essaouira", periode:"Juin", jour:"15", emoji:"🎵", desc_fr:"Festival mondial de musique Gnaoua à Essaouira. Des dizaines de scènes gratuites investissent la ville pendant 4 jours.", desc_en:"World festival of Gnaoua music in Essaouira. Dozens of free stages fill the city for 4 days." },
-    { id:2, nom:"Ramadan au Maroc", nom_en:"Ramadan in Morocco", ville:"Tout le Maroc", periode:"Variable", jour:"01", emoji:"🌙", desc_fr:"Le mois sacré transforme le Maroc : journées calmes, nuits festives. Les tables de l'ftour dans les médinas sont inoubliables.", desc_en:"The holy month transforms Morocco: quiet days, festive nights. The ftour tables in the medinas are unforgettable." },
-    { id:3, nom:"Festival Film Marrakech", nom_en:"Marrakech Film Festival", ville:"Marrakech", periode:"Décembre", jour:"01", emoji:"🎬", desc_fr:"L'un des plus grands festivals de cinéma d'Afrique avec des stars internationales. Projections en plein air sur Jemaa el-Fna.", desc_en:"One of Africa's largest film festivals with international stars. Open-air screenings on Jemaa el-Fna." },
-    { id:4, nom:"Fête du Trône", nom_en:"Throne Day", ville:"Tout le Maroc", periode:"Juillet", jour:"30", emoji:"👑", desc_fr:"Célébration nationale du 30 juillet. Feux d'artifice spectaculaires, défilés et festivités dans toutes les villes.", desc_en:"National celebration on July 30th. Spectacular fireworks, parades and festivities in every city." },
-    { id:5, nom:"Marathon des Sables", nom_en:"Marathon des Sables", ville:"Sahara Sud", periode:"Avril", jour:"10", emoji:"🏃", desc_fr:"La course à pied la plus difficile du monde : 250 km en 6 jours dans le Sahara marocain. Un spectacle humain extraordinaire.", desc_en:"The world's toughest foot race: 250 km in 6 days through the Moroccan Sahara." },
-    { id:6, nom:"Moussem de Tan-Tan", nom_en:"Tan-Tan Moussem", ville:"Tan-Tan", periode:"Avril", jour:"20", emoji:"🐪", desc_fr:"Grand rassemblement de tribus nomades sahariennes, inscrit au patrimoine UNESCO. Chameaux, fantasia, musique hassanie.", desc_en:"Grand gathering of Saharan nomadic tribes, UNESCO-listed. Camels, fantasia, hassani music." },
-    { id:7, nom:"Festival des Roses", nom_en:"Rose Festival", ville:"Kelaat M'Gouna", periode:"Mai", jour:"10", emoji:"🌹", desc_fr:"Festival célébrant la récolte des roses dans la vallée du Dadès. Parade de la reine des roses, musique berbère et artisanat.", desc_en:"Festival celebrating the rose harvest in the Dadès valley. Rose queen parade, Berber music and crafts." },
-    { id:8, nom:"Moussem de Moulay Idriss", nom_en:"Moulay Idriss Moussem", ville:"Moulay Idriss Zerhoun", periode:"Août", jour:"15", emoji:"🕌", desc_fr:"Pèlerinage religieux annuel à la ville sainte de Moulay Idriss. Fantasia, musique et célébrations religieuses.", desc_en:"Annual religious pilgrimage to the holy city of Moulay Idriss. Fantasia, music and religious celebrations." },
-    { id:9, nom:"Festival Timitar", nom_en:"Timitar Festival", ville:"Agadir", periode:"Juillet", jour:"05", emoji:"🎶", desc_fr:"Grand festival de musiques amazighes et du monde à Agadir. Scènes gratuites en bord de mer avec des artistes internationaux.", desc_en:"Major Amazigh and world music festival in Agadir. Free stages by the sea with international artists." },
-    { id:10, nom:"Eid al-Adha", nom_en:"Eid al-Adha", ville:"Tout le Maroc", periode:"Variable", jour:"01", emoji:"🐑", desc_fr:"Fête du sacrifice, l'une des plus importantes du calendrier islamique. Les rues sont festives et les familles se réunissent.", desc_en:"Feast of Sacrifice, one of the most important in the Islamic calendar. Streets are festive and families reunite." }
+    { id:1, nom:"Festival Gnaoua", nom_en:"Gnaoua Festival", nom_ar:"مهرجان كناوة", ville:"Essaouira", periode:"Juin", jour:"15", emoji:"🎵", desc_fr:"Festival mondial de musique Gnaoua à Essaouira. Des dizaines de scènes gratuites pendant 4 jours.", desc_en:"World festival of Gnaoua music in Essaouira. Dozens of free stages for 4 days.", desc_ar:"مهرجان موسيقى كناوة العالمي في الصويرة. عشرات المسارح المجانية لمدة 4 أيام." },
+    { id:2, nom:"Ramadan au Maroc", nom_en:"Ramadan in Morocco", nom_ar:"رمضان في المغرب", ville:"Tout le Maroc", periode:"Variable", jour:"01", emoji:"🌙", desc_fr:"Le mois sacré transforme le Maroc : journées calmes, nuits festives.", desc_en:"The holy month transforms Morocco: quiet days, festive nights.", desc_ar:"الشهر المقدس يحوّل المغرب: أيام هادئة وليالٍ احتفالية." },
+    { id:3, nom:"Festival Film Marrakech", nom_en:"Marrakech Film Festival", nom_ar:"مهرجان مراكش للفيلم", ville:"Marrakech", periode:"Décembre", jour:"01", emoji:"🎬", desc_fr:"L'un des plus grands festivals de cinéma d'Afrique avec des stars internationales.", desc_en:"One of Africa's largest film festivals with international stars.", desc_ar:"أحد أكبر مهرجانات السينما في أفريقيا مع نجوم دوليين." },
+    { id:4, nom:"Fête du Trône", nom_en:"Throne Day", nom_ar:"عيد العرش", ville:"Tout le Maroc", periode:"Juillet", jour:"30", emoji:"👑", desc_fr:"Célébration nationale du 30 juillet. Feux d'artifice et festivités dans toutes les villes.", desc_en:"National celebration on July 30th. Fireworks and festivities in every city.", desc_ar:"احتفال وطني في 30 يوليو. ألعاب نارية واحتفالات في جميع المدن." },
+    { id:5, nom:"Marathon des Sables", nom_en:"Marathon des Sables", nom_ar:"ماراثون الرمال", ville:"Sahara Sud", periode:"Avril", jour:"10", emoji:"🏃", desc_fr:"La course à pied la plus difficile du monde : 250 km en 6 jours dans le Sahara.", desc_en:"The world's toughest foot race: 250 km in 6 days through the Sahara.", desc_ar:"أصعب سباق مشي في العالم: 250 كم في 6 أيام عبر الصحراء." },
+    { id:6, nom:"Moussem de Tan-Tan", nom_en:"Tan-Tan Moussem", nom_ar:"موسم طانطان", ville:"Tan-Tan", periode:"Avril", jour:"20", emoji:"🐪", desc_fr:"Grand rassemblement de tribus nomades sahariennes. Inscrit au patrimoine UNESCO.", desc_en:"Grand gathering of Saharan nomadic tribes. UNESCO-listed.", desc_ar:"تجمع كبير للقبائل الصحراوية الرحالة. مدرج في التراث العالمي لليونسكو." },
+    { id:7, nom:"Festival des Roses", nom_en:"Rose Festival", nom_ar:"مهرجان الورود", ville:"Kelaat M'Gouna", periode:"Mai", jour:"10", emoji:"🌹", desc_fr:"Festival célébrant la récolte des roses dans la vallée du Dadès.", desc_en:"Festival celebrating the rose harvest in the Dadès valley.", desc_ar:"مهرجان يحتفل بحصاد الورود في وادي دادس." },
+    { id:8, nom:"Festival Timitar", nom_en:"Timitar Festival", nom_ar:"مهرجان تيميتار", ville:"Agadir", periode:"Juillet", jour:"05", emoji:"🎶", desc_fr:"Grand festival de musiques amazighes et du monde à Agadir.", desc_en:"Major Amazigh and world music festival in Agadir.", desc_ar:"مهرجان كبير للموسيقى الأمازيغية والعالمية في أكادير." },
+    { id:9, nom:"Moussem de Moulay Idriss", nom_en:"Moulay Idriss Moussem", nom_ar:"موسم مولاي إدريس", ville:"Moulay Idriss Zerhoun", periode:"Août", jour:"15", emoji:"🕌", desc_fr:"Pèlerinage religieux annuel à la ville sainte de Moulay Idriss.", desc_en:"Annual religious pilgrimage to the holy city of Moulay Idriss.", desc_ar:"حج ديني سنوي إلى مدينة مولاي إدريس المقدسة." },
+    { id:10, nom:"Eid al-Adha", nom_en:"Eid al-Adha", nom_ar:"عيد الأضحى", ville:"Tout le Maroc", periode:"Variable", jour:"01", emoji:"🐑", desc_fr:"Fête du sacrifice, l'une des plus importantes du calendrier islamique.", desc_en:"Feast of Sacrifice, one of the most important in the Islamic calendar.", desc_ar:"عيد الأضحى، أحد أهم الأعياد في التقويم الإسلامي." }
   ],
   conseils: [
-    { id:1, icon:"💰", titre:"Monnaie", titre_en:"Currency", cat:"Argent", importance:"Essentiel", desc_fr:"La monnaie est le Dirham (MAD). 1€ = 10,8 MAD. Négocier dans les souks est normal — commencez à 40% du prix affiché.", desc_en:"The currency is the Dirham (MAD). €1 = 10.8 MAD. Bargaining in souks is normal — start at 40% of the displayed price." },
-    { id:2, icon:"🌤️", titre:"Meilleure période", titre_en:"Best Season", cat:"Météo", importance:"Essentiel", desc_fr:"Mars-Mai et Sept-Nov sont les meilleures périodes (20-28°C). Évitez Juillet-Août (40°C+ dans les villes intérieures).", desc_en:"March-May and Sept-Nov are the best periods (20-28°C). Avoid July-August (40°C+ in inland cities)." },
-    { id:3, icon:"🚌", titre:"Transport", titre_en:"Transport", cat:"Mobilité", importance:"Essentiel", desc_fr:"Le train CTM relie Tanger, Rabat, Casablanca et Marrakech. Bus CTM pour Essaouira et Agadir.", desc_en:"CTM train links Tangier, Rabat, Casablanca and Marrakech. CTM bus for Essaouira and Agadir." },
-    { id:4, icon:"👗", titre:"Tenue vestimentaire", titre_en:"Dress Code", cat:"Culture", importance:"Important", desc_fr:"Épaules et genoux couverts dans les médinas et lieux religieux. Tenues occidentales acceptées sur les plages.", desc_en:"Shoulders and knees covered in medinas and religious sites. Western dress accepted on beaches." },
-    { id:5, icon:"🔒", titre:"Sécurité", titre_en:"Safety", cat:"Sécurité", importance:"Important", desc_fr:"Le Maroc est très sûr. Méfiez-vous des faux guides dans les médinas. Utilisez des taxis officiels.", desc_en:"Morocco is very safe. Beware of fake guides in medinas. Use official taxis." },
-    { id:6, icon:"🗣️", titre:"Langue", titre_en:"Language", cat:"Communication", importance:"Utile", desc_fr:"Darija et français sont les langues du quotidien. L'espagnol est compris à Tanger.", desc_en:"Darija and French are everyday languages. Spanish is understood in Tangier." },
-    { id:7, icon:"🍽️", titre:"Nourriture et Eau", titre_en:"Food and Water", cat:"Santé", importance:"Important", desc_fr:"Buvez de l'eau en bouteille. La nourriture de rue est délicieuse et généralement sûre.", desc_en:"Drink bottled water. Street food is delicious and generally safe." },
-    { id:8, icon:"📶", titre:"Wifi et SIM", titre_en:"Wifi and SIM", cat:"Connectivité", importance:"Utile", desc_fr:"SIM locales Maroc Telecom, Orange ou Inwi à moins de 5€ avec data incluse.", desc_en:"Local SIMs from Maroc Telecom, Orange or Inwi for under €5 with data included." }
+    { id:1, icon:"💰", titre:"Monnaie", titre_en:"Currency", titre_ar:"العملة", cat:"Argent", importance:"Essentiel", desc_fr:"La monnaie est le Dirham (MAD). 1€ = 10,8 MAD. Négocier dans les souks est normal.", desc_en:"The currency is the Dirham (MAD). €1 = 10.8 MAD. Bargaining in souks is normal.", desc_ar:"العملة هي الدرهم المغربي. 1€ = 10.8 درهم. المساومة في الأسواق أمر طبيعي." },
+    { id:2, icon:"🌤️", titre:"Meilleure période", titre_en:"Best Season", titre_ar:"أفضل موسم", cat:"Météo", importance:"Essentiel", desc_fr:"Mars-Mai et Sept-Nov sont les meilleures périodes (20-28°C). Évitez Juillet-Août.", desc_en:"March-May and Sept-Nov are the best periods (20-28°C). Avoid July-August.", desc_ar:"مارس-مايو وسبتمبر-نوفمبر هي أفضل الفترات. تجنب يوليو-أغسطس." },
+    { id:3, icon:"🚌", titre:"Transport", titre_en:"Transport", titre_ar:"النقل", cat:"Mobilité", importance:"Essentiel", desc_fr:"Le train CTM relie Tanger, Rabat, Casablanca et Marrakech. Bus CTM pour les autres.", desc_en:"CTM train links Tangier, Rabat, Casablanca and Marrakech. CTM bus for others.", desc_ar:"قطار CTM يربط طنجة والرباط والدار البيضاء ومراكش." },
+    { id:4, icon:"👗", titre:"Tenue vestimentaire", titre_en:"Dress Code", titre_ar:"اللباس", cat:"Culture", importance:"Important", desc_fr:"Épaules et genoux couverts dans les médinas. Tenues occidentales sur les plages.", desc_en:"Shoulders and knees covered in medinas. Western dress on beaches.", desc_ar:"تغطية الكتفين والركبتين في المدن. اللباس الغربي مقبول على الشواطئ." },
+    { id:5, icon:"🔒", titre:"Sécurité", titre_en:"Safety", titre_ar:"الأمان", cat:"Sécurité", importance:"Important", desc_fr:"Le Maroc est très sûr. Méfiez-vous des faux guides. Utilisez des taxis officiels.", desc_en:"Morocco is very safe. Beware of fake guides. Use official taxis.", desc_ar:"المغرب آمن جداً. احذر من المرشدين المزيفين. استخدم سيارات الأجرة الرسمية." },
+    { id:6, icon:"🗣️", titre:"Langue", titre_en:"Language", titre_ar:"اللغة", cat:"Communication", importance:"Utile", desc_fr:"Darija et français sont les langues du quotidien. L'espagnol est compris à Tanger.", desc_en:"Darija and French are everyday languages. Spanish is understood in Tangier.", desc_ar:"الدارجة والفرنسية لغات يومية. الإسبانية مفهومة في طنجة." },
+    { id:7, icon:"🍽️", titre:"Nourriture et Eau", titre_en:"Food and Water", titre_ar:"الطعام والماء", cat:"Santé", importance:"Important", desc_fr:"Buvez de l'eau en bouteille. La nourriture de rue est délicieuse et généralement sûre.", desc_en:"Drink bottled water. Street food is delicious and generally safe.", desc_ar:"اشرب الماء المعبأ. طعام الشارع لذيذ وآمن عموماً." },
+    { id:8, icon:"📶", titre:"Wifi et SIM", titre_en:"Wifi and SIM", titre_ar:"الواي فاي والشريحة", cat:"Connectivité", importance:"Utile", desc_fr:"SIM locales Maroc Telecom, Orange ou Inwi à moins de 5€ avec data incluse.", desc_en:"Local SIMs from Maroc Telecom, Orange or Inwi for under €5 with data.", desc_ar:"شرائح محلية من مارك تيليكوم أو أورنج أو إنوي بأقل من 5 يورو." }
   ],
   urgences: [
-    { id:1, ville:"Marrakech", hopital:"Hôpital Ibn Tofail", hopital_tel:"+212 524 448 811", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Tofail+Marrakech", consulat_france:"+212 524 388 600" },
-    { id:2, ville:"Casablanca", hopital:"CHU Ibn Rochd", hopital_tel:"+212 522 225 325", hopital_maps:"https://maps.google.com/?q=CHU+Ibn+Rochd+Casablanca", consulat_france:"+212 522 489 500" },
-    { id:3, ville:"Rabat", hopital:"Hôpital Ibn Sina", hopital_tel:"+212 537 672 871", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Sina+Rabat", consulat_france:"+212 537 689 700" },
-    { id:4, ville:"Agadir", hopital:"Hôpital Hassan II", hopital_tel:"+212 528 211 477", hopital_maps:"https://maps.google.com/?q=Hopital+Hassan+II+Agadir", consulat_france:"+212 528 840 846" },
-    { id:5, ville:"Tanger", hopital:"Hôpital Mohammed V", hopital_tel:"+212 539 932 444", hopital_maps:"https://maps.google.com/?q=Hopital+Mohammed+V+Tanger", consulat_france:"+212 539 322 222" },
-    { id:6, ville:"Essaouira", hopital:"Hôpital Sidi Mohammed Ben Abdallah", hopital_tel:"+212 524 475 716", hopital_maps:"https://maps.google.com/?q=Hopital+Essaouira", consulat_france:"+212 522 489 500" }
+    { id:1, ville:"Marrakech", hopital:"Hôpital Ibn Tofail", hopital_tel:"+212 524 448 811", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Tofail+Marrakech" },
+    { id:2, ville:"Casablanca", hopital:"CHU Ibn Rochd", hopital_tel:"+212 522 225 325", hopital_maps:"https://maps.google.com/?q=CHU+Ibn+Rochd+Casablanca" },
+    { id:3, ville:"Rabat", hopital:"Hôpital Ibn Sina", hopital_tel:"+212 537 672 871", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Sina+Rabat" },
+    { id:4, ville:"Agadir", hopital:"Hôpital Hassan II", hopital_tel:"+212 528 211 477", hopital_maps:"https://maps.google.com/?q=Hopital+Hassan+II+Agadir" },
+    { id:5, ville:"Tanger", hopital:"Hôpital Mohammed V", hopital_tel:"+212 539 932 444", hopital_maps:"https://maps.google.com/?q=Hopital+Mohammed+V+Tanger" },
+    { id:6, ville:"Essaouira", hopital:"Hôpital Sidi Mohammed Ben Abdallah", hopital_tel:"+212 524 475 716", hopital_maps:"https://maps.google.com/?q=Hopital+Essaouira" }
   ],
   transport: [
-    { id:1, type:"Train 🚂", nom:"ONCF — Train national", route:"Tanger → Rabat → Casablanca → Marrakech", prix:"5-15€", duree:"2h30 Casa-Marrakech", site:"https://oncf.ma", desc_fr:"Réseau ferroviaire national. Confortable, ponctuel et abordable. Réservation en ligne recommandée pour les week-ends.", desc_en:"National rail network. Comfortable, punctual and affordable. Online booking recommended for weekends." },
-    { id:2, type:"Bus 🚌", nom:"CTM — Bus longue distance", route:"Toutes villes + Essaouira + Agadir", prix:"3-12€", duree:"Variable", site:"https://ctm.ma", desc_fr:"Opérateur de bus le plus fiable du Maroc. Climatisé, ponctuel et couvrant toutes les destinations.", desc_en:"Morocco's most reliable bus operator. Air-conditioned, punctual and covering all destinations." },
-    { id:3, type:"Taxi 🚕", nom:"Petit taxi — Trajets urbains", route:"À l'intérieur de chaque ville", prix:"1-5€", duree:"Selon trajet", site:"", desc_fr:"Pour les trajets en ville uniquement. Insistez pour activer le compteur. Couleurs : rouge à Marrakech, bleu à Rabat.", desc_en:"For city trips only. Insist the meter is turned on. Colors: red in Marrakech, blue in Rabat." },
-    { id:4, type:"Taxi 🚙", nom:"Grand taxi — Inter-villes", route:"Entre villes proches", prix:"3-10€", duree:"Variable", site:"", desc_fr:"Trajets inter-villes à prix fixe. Partent quand ils sont pleins (6 passagers). Pratique et bon marché.", desc_en:"Inter-city trips at fixed prices. Leave when full (6 passengers). Practical and cheap." },
-    { id:5, type:"Navette ✈️", nom:"Aéroport Marrakech → Centre", route:"Aéroport Menara → Jemaa el-Fna", prix:"1€ bus / 10€ taxi", duree:"30-45 min", site:"", desc_fr:"Bus n°19 pour 1 MAD. Taxi officiel environ 100 MAD. Évitez les rabatteurs à la sortie.", desc_en:"Bus n°19 for 1 MAD. Official taxi about 100 MAD. Avoid touts at the airport exit." },
-    { id:6, type:"Navette ✈️", nom:"Aéroport Casablanca → Centre", route:"Aéroport Mohammed V → Casa Voyageurs", prix:"4€ train", duree:"35 min", site:"https://oncf.ma", desc_fr:"Train aéroport : rapide, ponctuel, départ toutes les 30 minutes. La meilleure option.", desc_en:"Airport train: fast, punctual, departure every 30 minutes. The best option." }
+    { id:1, icon:"🚂", type:"Train", nom:"ONCF — Train national", nom_en:"ONCF — National Train", nom_ar:"القطار الوطني", route:"Tanger → Rabat → Casablanca → Marrakech", prix:"5-15€", duree:"2h30 Casa-Marrakech", site:"https://oncf.ma", desc_fr:"Réseau ferroviaire national. Confortable, ponctuel et abordable. Réservation en ligne recommandée.", desc_en:"National rail network. Comfortable, punctual and affordable. Online booking recommended.", desc_ar:"شبكة السكك الحديدية الوطنية. مريح ومنضبط وبأسعار معقولة." },
+    { id:2, icon:"🚌", type:"Bus", nom:"CTM — Bus longue distance", nom_en:"CTM — Long distance bus", nom_ar:"حافلة CTM", route:"Toutes villes + Essaouira + Agadir", prix:"3-12€", duree:"Variable", site:"https://ctm.ma", desc_fr:"Opérateur de bus le plus fiable du Maroc. Climatisé, ponctuel, couvre toutes les destinations.", desc_en:"Morocco's most reliable bus operator. Air-conditioned, punctual, covers all destinations.", desc_ar:"أكثر شركة حافلات موثوقية في المغرب. مكيفة ومنضبطة." },
+    { id:3, icon:"🚕", type:"Taxi", nom:"Petit taxi — Ville", nom_en:"Small taxi — City", nom_ar:"طاكسي صغير", route:"À l'intérieur de chaque ville", prix:"1-5€", duree:"Selon trajet", site:"", desc_fr:"Trajets urbains uniquement. Insistez pour activer le compteur. Rouge à Marrakech, bleu à Rabat.", desc_en:"City trips only. Insist the meter is turned on. Red in Marrakech, blue in Rabat.", desc_ar:"رحلات داخل المدينة فقط. أصر على تشغيل العداد." },
+    { id:4, icon:"🚙", type:"Taxi", nom:"Grand taxi — Inter-villes", nom_en:"Grand taxi — Inter-city", nom_ar:"طاكسي كبير", route:"Entre villes proches", prix:"3-10€", duree:"Variable", site:"", desc_fr:"Trajets inter-villes à prix fixe. Partent quand pleins (6 passagers). Pratique et bon marché.", desc_en:"Inter-city trips at fixed prices. Leave when full (6 passengers). Practical and cheap.", desc_ar:"رحلات بين المدن بأسعار ثابتة. تنطلق عند الامتلاء (6 ركاب)." },
+    { id:5, icon:"✈️", type:"Navette", nom:"Navette aéroport Marrakech", nom_en:"Marrakech airport shuttle", nom_ar:"حافلة مطار مراكش", route:"Aéroport Menara → Jemaa el-Fna", prix:"1€ bus / 10€ taxi", duree:"30-45 min", site:"", desc_fr:"Bus n°19 pour 1 MAD. Taxi officiel environ 100 MAD. Évitez les rabatteurs à la sortie.", desc_en:"Bus n°19 for 1 MAD. Official taxi about 100 MAD. Avoid touts at the exit.", desc_ar:"الحافلة رقم 19 بـ1 درهم. سيارة أجرة رسمية حوالي 100 درهم." },
+    { id:6, icon:"✈️", type:"Navette", nom:"Navette aéroport Casablanca", nom_en:"Casablanca airport shuttle", nom_ar:"حافلة مطار الدار البيضاء", route:"Aéroport Mohammed V → Casa Voyageurs", prix:"4€ train", duree:"35 min", site:"https://oncf.ma", desc_fr:"Train aéroport : rapide, ponctuel, départ toutes les 30 minutes. La meilleure option.", desc_en:"Airport train: fast, punctual, departure every 30 minutes. The best option.", desc_ar:"قطار المطار: سريع ومنضبط، كل 30 دقيقة. الخيار الأفضل." }
   ],
   lexique: [
     { id:1, mot_fr:"Bonjour (matin)", translitteration:"Sbah lkhir", mot_darija:"صباح الخير", mot_en:"Good morning", categorie:"Salutations" },
@@ -554,15 +573,15 @@ var DATA = {
     { id:8, mot_fr:"Oui", translitteration:"Iyeh", mot_darija:"إيه", mot_en:"Yes", categorie:"Basique" },
     { id:9, mot_fr:"Non", translitteration:"La", mot_darija:"لا", mot_en:"No", categorie:"Basique" },
     { id:10, mot_fr:"Je ne comprends pas", translitteration:"Ma fhamtch", mot_darija:"ما فهمتش", mot_en:"I don't understand", categorie:"Basique" },
-    { id:11, mot_fr:"Combien ça coûte ?", translitteration:"Bchhal had chi?", mot_darija:"بشحال هاد الشي؟", mot_en:"How much is this?", categorie:"Shopping" },
-    { id:12, mot_fr:"C'est trop cher", translitteration:"Ghali bzzaf", mot_darija:"غالي بزاف", mot_en:"It's too expensive", categorie:"Shopping" },
+    { id:11, mot_fr:"Combien ça coûte ?", translitteration:"Bchhal had chi?", mot_darija:"بشحال هاد الشي؟", mot_en:"How much?", categorie:"Shopping" },
+    { id:12, mot_fr:"C'est trop cher", translitteration:"Ghali bzzaf", mot_darija:"غالي بزاف", mot_en:"Too expensive", categorie:"Shopping" },
     { id:13, mot_fr:"Moins cher", translitteration:"Arkhas", mot_darija:"أرخص", mot_en:"Cheaper", categorie:"Shopping" },
     { id:14, mot_fr:"Où est... ?", translitteration:"Fin kayn...?", mot_darija:"فين كاين؟", mot_en:"Where is...?", categorie:"Navigation" },
     { id:15, mot_fr:"Restaurant", translitteration:"Mataam", mot_darija:"مطعم", mot_en:"Restaurant", categorie:"Navigation" },
     { id:16, mot_fr:"Hôtel", translitteration:"Otil", mot_darija:"أوطيل", mot_en:"Hotel", categorie:"Navigation" },
-    { id:17, mot_fr:"L'addition s'il vous plaît", translitteration:"Lhsab afak", mot_darija:"الحساب عافاك", mot_en:"The bill please", categorie:"Restaurant" },
+    { id:17, mot_fr:"L'addition", translitteration:"Lhsab afak", mot_darija:"الحساب عافاك", mot_en:"The bill please", categorie:"Restaurant" },
     { id:18, mot_fr:"Délicieux !", translitteration:"Bnin bzzaf!", mot_darija:"بنين بزاف", mot_en:"Delicious!", categorie:"Restaurant" },
-    { id:19, mot_fr:"De l'eau s'il vous plaît", translitteration:"Lma afak", mot_darija:"الما عافاك", mot_en:"Water please", categorie:"Restaurant" },
+    { id:19, mot_fr:"De l'eau", translitteration:"Lma afak", mot_darija:"الما عافاك", mot_en:"Water please", categorie:"Restaurant" },
     { id:20, mot_fr:"Appelez la police !", translitteration:"Ayyet l'police!", mot_darija:"عيط للبوليس", mot_en:"Call the police!", categorie:"Urgence" }
   ]
 };
@@ -570,11 +589,10 @@ var DATA = {
 // STATE
 var lang = 'fr';
 var currentVilleFilter = 'Tous';
-var quizIndex = 0;
-var quizScore = 0;
-var quizFlipped = false;
-var quizCatFilter = 'Tous';
-var quizFiltered = DATA.lexique.slice();
+var fcIndex = 0;
+var fcCatFilter = 'Tous';
+var fcFiltered = DATA.lexique.slice();
+var fcFlipped = false;
 
 // INIT
 window.onload = function() {
@@ -596,29 +614,56 @@ function login() {
 
 // HELPERS
 function getName(i) {
-  if(lang === 'ar') return i.nom || i.nom_en;
-  return lang==='en' && i.nom_en ? i.nom_en : i.nom;
+  if(lang==='ar') return i.nom_ar || i.nom;
+  if(lang==='en') return i.nom_en || i.nom;
+  return i.nom;
 }
 function getDesc(i) {
-  if(lang === 'ar') return i.desc_fr;
-  return lang==='en' && i.desc_en ? i.desc_en : i.desc_fr;
+  if(lang==='ar') return i.desc_ar || i.desc_fr;
+  if(lang==='en') return i.desc_en || i.desc_fr;
+  return i.desc_fr;
+}
+function getTitre(i) {
+  if(lang==='ar') return i.titre_ar || i.titre;
+  if(lang==='en') return i.titre_en || i.titre;
+  return i.titre;
 }
 
 // RENDER ALL
 function renderAll() {
-  renderVilles();
-  renderLieux();
-  renderGastro();
-  renderEvents();
-  renderConseils();
-  renderUrgences();
-  renderTransport();
-  initQuiz();
-  updateDirection();
+  renderVilles(); renderLieux(); renderGastro();
+  renderEvents(); renderConseils(); renderUrgences();
+  renderTransport(); initFlashcards();
 }
 
-function updateDirection() {
-  document.body.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+// LANG
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-option').forEach(function(o){o.classList.remove('active');});
+  document.getElementById('opt-'+l).classList.add('active');
+  closeLangDropdown();
+  // Arabic direction
+  if(l==='ar') {
+    document.body.classList.add('ar');
+    document.documentElement.setAttribute('lang','ar');
+    document.documentElement.setAttribute('dir','rtl');
+  } else {
+    document.body.classList.remove('ar');
+    document.documentElement.setAttribute('lang',l);
+    document.documentElement.setAttribute('dir','ltr');
+  }
+  currentVilleFilter = 'Tous';
+  renderAll();
+}
+
+function toggleLangDropdown(e) {
+  e.stopPropagation();
+  document.getElementById('lang-dropdown').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeLangDropdown() {
+  document.getElementById('lang-dropdown').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
 }
 
 // VILLES
@@ -630,7 +675,7 @@ function renderVilles() {
       +'<img src="'+v.img+'" alt="'+v.nom+'" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400\'">'
       +'<div class="ville-card-info">'
       +'<div class="ville-card-name">'+getName(v)+'</div>'
-      +'<div class="ville-card-region">'+(lang==='en'?(v.region_en||v.region):v.region)+'</div>'
+      +'<div class="ville-card-region">'+(lang==='ar'?v.region_ar:(lang==='en'?v.region_en:v.region))+'</div>'
       +'</div></div>';
   }).join('');
 }
@@ -641,11 +686,10 @@ function renderVilleFilter() {
   if(!el) return;
   var villes = ['Tous'].concat(DATA.villes.map(function(v){return v.nom;}));
   el.innerHTML = villes.map(function(v) {
-    var label = v==='Tous'?(lang==='en'?'All':lang==='ar'?'الكل':'Tous'):v;
+    var label = v==='Tous'?(lang==='ar'?'الكل':lang==='en'?'All':'Tous'):v;
     return '<button class="filter-btn '+(v===currentVilleFilter?'active':'')+'" onclick="filterLieux(\''+v+'\')">'+label+'</button>';
   }).join('');
 }
-
 function filterLieux(ville) {
   currentVilleFilter = ville;
   renderVilleFilter();
@@ -662,7 +706,6 @@ function filterLieux(ville) {
       +'</div></div>';
   }).join('');
 }
-
 function renderLieux() { renderVilleFilter(); filterLieux(currentVilleFilter); }
 
 // GASTRO
@@ -688,10 +731,10 @@ function renderEvents() {
     return '<div class="event-card">'
       +'<div class="event-date">'
       +'<div class="event-month">'+(e.periode||'').substring(0,3)+'</div>'
-      +'<div class="event-day">'+(e.jour||'01')+'</div>'
+      +'<div class="event-day">'+e.jour+'</div>'
       +'</div>'
       +'<div class="event-info">'
-      +'<div class="event-name">'+(e.emoji||'')+'  '+getName(e)+'</div>'
+      +'<div class="event-name">'+(e.emoji||'')+' '+getName(e)+'</div>'
       +'<div class="event-ville">📍 '+e.ville+'</div>'
       +'<div class="event-desc">'+(getDesc(e)||'').substring(0,120)+'...</div>'
       +'</div></div>';
@@ -705,12 +748,12 @@ function renderConseils() {
   el.innerHTML = DATA.conseils.map(function(c) {
     return '<div class="conseil-card">'
       +'<div class="conseil-header">'
-      +'<div class="conseil-icon">'+(c.icon||'💡')+'</div>'
-      +'<div><div class="conseil-title">'+(lang==='en'?(c.titre_en||c.titre):c.titre)+'</div>'
+      +'<div class="conseil-icon">'+c.icon+'</div>'
+      +'<div><div class="conseil-title">'+getTitre(c)+'</div>'
       +'<div class="conseil-cat">'+c.cat+'</div></div>'
       +'</div>'
       +'<div class="conseil-text">'+getDesc(c)+'</div>'
-      +'<span class="conseil-badge badge-'+(c.importance||'utile').toLowerCase()+'">'+c.importance+'</span>'
+      +'<span class="conseil-badge badge-'+c.importance.toLowerCase()+'">'+c.importance+'</span>'
       +'</div>';
   }).join('');
 }
@@ -721,124 +764,114 @@ function renderUrgences() {
   if(!el) return;
   el.innerHTML = DATA.urgences.map(function(u) {
     return '<div class="urgence-card">'
-      +'<div class="urgence-card-header">'
-      +'<div class="urgence-card-ville">🏙️ '+u.ville+'</div>'
-      +'</div>'
+      +'<div class="urgence-card-top"><div class="urgence-card-ville">🏙️ '+u.ville+'</div></div>'
       +'<div class="urgence-card-body">'
-      +'<div class="urgence-info-row">'
-      +'<div class="urgence-info-icon">🏥</div>'
-      +'<div class="urgence-info-content"><div class="urgence-info-label">Hôpital principal</div>'
-      +'<div class="urgence-info-val">'+u.hopital+'</div></div>'
+      +'<div class="urgence-row">'
+      +'<div class="urgence-row-icon">🏥</div>'
+      +'<div class="urgence-row-info"><div class="urgence-row-label">Hôpital</div><div class="urgence-row-val">'+u.hopital+'</div></div>'
       +'<a href="'+u.hopital_maps+'" target="_blank" class="urgence-maps-btn">🗺️</a>'
       +'</div>'
-      +'<div class="urgence-info-row">'
-      +'<div class="urgence-info-icon">📞</div>'
-      +'<div class="urgence-info-content"><div class="urgence-info-label">Téléphone hôpital</div>'
-      +'<div class="urgence-info-val">'+u.hopital_tel+'</div></div>'
+      +'<div class="urgence-row">'
+      +'<div class="urgence-row-icon">📞</div>'
+      +'<div class="urgence-row-info"><div class="urgence-row-label">Téléphone</div><div class="urgence-row-val">'+u.hopital_tel+'</div></div>'
       +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">📱 Appeler</a>'
-      +'</div>'
-      +'<div class="urgence-info-row">'
-      +'<div class="urgence-info-icon">🇫🇷</div>'
-      +'<div class="urgence-info-content"><div class="urgence-info-label">Consulat de France</div>'
-      +'<div class="urgence-info-val">'+u.consulat_france+'</div></div>'
-      +'<a href="tel:'+u.consulat_france+'" class="urgence-call-btn">📱 Appeler</a>'
       +'</div>'
       +'</div></div>';
   }).join('');
 }
 
-// TRANSPORT TIMELINE
+// TRANSPORT ACCORDÉON
 function renderTransport() {
   var el = document.getElementById('transport-list');
   if(!el) return;
   el.innerHTML = DATA.transport.map(function(t) {
-    return '<div class="transport-item">'
-      +'<div class="transport-dot"></div>'
-      +'<div class="transport-card">'
-      +'<div class="transport-card-header">'
-      +'<div class="transport-type-badge">'+t.type+'</div>'
+    var nom = lang==='ar'?(t.nom_ar||t.nom):lang==='en'?(t.nom_en||t.nom):t.nom;
+    return '<div class="transport-accord" id="ta-'+t.id+'">'
+      +'<div class="transport-accord-header" onclick="toggleTransport('+t.id+')">'
+      +'<div class="transport-accord-icon">'+t.icon+'</div>'
+      +'<div class="transport-accord-info">'
+      +'<div class="transport-accord-type">'+t.type+'</div>'
+      +'<div class="transport-accord-name">'+nom+'</div>'
       +'</div>'
-      +'<div class="transport-card-name">'+t.nom+'</div>'
-      +'<div class="transport-card-route">🗺️ '+t.route+'</div>'
-      +'<div class="transport-card-desc">'+getDesc(t)+'</div>'
-      +'<div class="transport-card-footer">'
-      +'<div class="transport-prix">💰 '+t.prix+' · ⏱️ '+t.duree+'</div>'
-      +(t.site?'<a href="'+t.site+'" target="_blank" class="transport-site-btn">🌐 Réserver</a>':'')
-      +'</div></div></div>';
+      +'<div class="transport-accord-arrow">▼</div>'
+      +'</div>'
+      +'<div class="transport-accord-body">'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">🗺️ Route</div><div class="transport-detail-val">'+t.route+'</div></div>'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">⏱️ Durée</div><div class="transport-detail-val">'+t.duree+'</div></div>'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">ℹ️ Infos</div><div class="transport-detail-val">'+getDesc(t)+'</div></div>'
+      +(t.site?'<div class="transport-detail-row"><div class="transport-detail-label">🌐 Site</div><div class="transport-detail-val"><a href="'+t.site+'" target="_blank">'+t.site+'</a></div></div>':'')
+      +'<div class="transport-prix-badge">💰 '+t.prix+'</div>'
+      +'</div></div>';
   }).join('');
 }
 
-// QUIZ DARIJA
-function initQuiz() {
-  quizFiltered = DATA.lexique.slice();
-  quizIndex = 0;
-  quizScore = 0;
-  quizFlipped = false;
-  renderQuizFilter();
-  renderQuizCard();
+function toggleTransport(id) {
+  var el = document.getElementById('ta-'+id);
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.transport-accord').forEach(function(a){a.classList.remove('open');});
+  if(!isOpen) el.classList.add('open');
 }
 
-function renderQuizFilter() {
-  var el = document.getElementById('quiz-filter');
+// FLASHCARDS
+function initFlashcards() {
+  fcFiltered = DATA.lexique.slice();
+  fcIndex = 0;
+  fcFlipped = false;
+  renderFcFilter();
+  renderFcCard();
+}
+
+function renderFcFilter() {
+  var el = document.getElementById('fc-filter');
   if(!el) return;
-  var cats = ['Tous'].concat([...new Set(DATA.lexique.map(function(l){return l.categorie;}))]);
+  var cats = ['Tous'].concat(Array.from(new Set(DATA.lexique.map(function(l){return l.categorie;}))));
   el.innerHTML = cats.map(function(c) {
-    return '<button class="quiz-filter-btn '+(c===quizCatFilter?'active':'')+'" onclick="filterQuiz(\''+c+'\')">'+c+'</button>';
+    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+c+'</button>';
   }).join('');
 }
 
-function filterQuiz(cat) {
-  quizCatFilter = cat;
-  quizFiltered = cat==='Tous' ? DATA.lexique.slice() : DATA.lexique.filter(function(l){return l.categorie===cat;});
-  quizIndex = 0;
-  quizFlipped = false;
-  renderQuizFilter();
-  renderQuizCard();
+function filterFc(cat) {
+  fcCatFilter = cat;
+  fcFiltered = cat==='Tous' ? DATA.lexique.slice() : DATA.lexique.filter(function(l){return l.categorie===cat;});
+  fcIndex = 0;
+  fcFlipped = false;
+  renderFcFilter();
+  renderFcCard();
 }
 
-function renderQuizCard() {
-  if(quizFiltered.length === 0) return;
-  var l = quizFiltered[quizIndex];
-  var card = document.getElementById('quiz-card');
-  card.classList.remove('flipped');
-  quizFlipped = false;
-  document.getElementById('quiz-fr-text').textContent = l.mot_fr;
-  document.getElementById('quiz-cat').textContent = l.categorie;
-  document.getElementById('quiz-darija').textContent = l.mot_darija;
-  document.getElementById('quiz-trans').textContent = l.translitteration;
-  document.getElementById('quiz-en').textContent = l.mot_en;
-  document.getElementById('quiz-counter').textContent = (quizIndex+1)+' / '+quizFiltered.length;
-  document.getElementById('quiz-score').textContent = quizScore+' ✓';
-  var pct = Math.round(((quizIndex+1)/quizFiltered.length)*100);
-  document.getElementById('quiz-progress-bar').style.width = pct+'%';
+function renderFcCard() {
+  if(fcFiltered.length===0) return;
+  var l = fcFiltered[fcIndex];
+  var scene = document.getElementById('fc-scene');
+  scene.classList.remove('flipped');
+  fcFlipped = false;
+  document.getElementById('fc-fr').textContent = l.mot_fr;
+  document.getElementById('fc-cat').textContent = l.categorie;
+  document.getElementById('fc-darija').textContent = l.mot_darija;
+  document.getElementById('fc-trans').textContent = l.translitteration;
+  document.getElementById('fc-en').textContent = l.mot_en;
+  document.getElementById('fc-counter').textContent = (fcIndex+1)+' / '+fcFiltered.length;
+  document.getElementById('fc-idx').textContent = fcIndex+1;
+  document.getElementById('fc-total').textContent = fcFiltered.length;
+  var pct = Math.round(((fcIndex+1)/fcFiltered.length)*100);
+  document.getElementById('fc-progress').style.width = pct+'%';
 }
 
-function flipCard() {
-  var card = document.getElementById('quiz-card');
-  quizFlipped = !quizFlipped;
-  card.classList.toggle('flipped', quizFlipped);
-  if(quizFlipped) quizScore++;
-  document.getElementById('quiz-score').textContent = quizScore+' ✓';
+function flipFlashcard() {
+  fcFlipped = !fcFlipped;
+  document.getElementById('fc-scene').classList.toggle('flipped', fcFlipped);
 }
 
-function quizNext() {
-  if(quizIndex < quizFiltered.length-1) {
-    quizIndex++;
-    quizFlipped = false;
-    renderQuizCard();
-  } else {
-    quizIndex = 0;
-    quizScore = 0;
-    renderQuizCard();
-  }
+function fcNext() {
+  fcIndex = fcIndex < fcFiltered.length-1 ? fcIndex+1 : 0;
+  fcFlipped = false;
+  renderFcCard();
 }
 
-function quizPrev() {
-  if(quizIndex > 0) {
-    quizIndex--;
-    quizFlipped = false;
-    renderQuizCard();
-  }
+function fcPrev() {
+  fcIndex = fcIndex > 0 ? fcIndex-1 : fcFiltered.length-1;
+  fcFlipped = false;
+  renderFcCard();
 }
 
 // DETAILS
@@ -848,9 +881,9 @@ function showVille(id) {
   document.getElementById('dv-img').src = v.img;
   document.getElementById('dv-img').onerror = function(){this.src='https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600';};
   document.getElementById('dv-name').textContent = getName(v);
-  document.getElementById('dv-region').textContent = lang==='en'?(v.region_en||v.region):v.region;
-  document.getElementById('dv-region2').textContent = lang==='en'?(v.region_en||v.region):v.region;
-  document.getElementById('dv-desc-short').textContent = '📍 '+v.region;
+  document.getElementById('dv-region').textContent = lang==='ar'?v.region_ar:(lang==='en'?v.region_en:v.region);
+  document.getElementById('dv-region2').textContent = lang==='ar'?v.region_ar:(lang==='en'?v.region_en:v.region);
+  document.getElementById('dv-sub').textContent = '📍 '+(lang==='ar'?v.region_ar:(lang==='en'?v.region_en:v.region));
   document.getElementById('dv-desc').textContent = getDesc(v);
   document.getElementById('dv-maps').href = v.maps_url||'#';
   var lieux = DATA.lieux.filter(function(l){return l.ville===v.nom;});
@@ -893,30 +926,13 @@ function switchTab(tab, title) {
   window.scrollTo(0,0);
 }
 
-// LANG
-function toggleLangDropdown(e) {
-  e.stopPropagation();
-  document.getElementById('lang-dropdown').classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('show');
-}
-function closeLangDropdown() {
-  document.getElementById('lang-dropdown').classList.remove('open');
-  document.getElementById('overlay').classList.remove('show');
-}
-function setLang(l) {
-  lang = l;
-  document.querySelectorAll('.lang-option').forEach(function(o){o.classList.remove('active');});
-  document.getElementById('opt-'+l).classList.add('active');
-  closeLangDropdown();
-  currentVilleFilter = 'Tous';
-  renderAll();
-}
-
 // SEARCH
 function handleSearch() {
   var q = document.getElementById('search-input').value.toLowerCase();
   if(!q) { renderVilles(); return; }
-  var res = DATA.villes.filter(function(v){return v.nom.toLowerCase().includes(q)||v.region.toLowerCase().includes(q);});
+  var res = DATA.villes.filter(function(v){
+    return v.nom.toLowerCase().includes(q)||v.region.toLowerCase().includes(q)||(v.nom_ar&&v.nom_ar.includes(q));
+  });
   document.getElementById('villes-grid').innerHTML = res.length ? res.map(function(v){
     return '<div class="ville-card" onclick="showVille('+v.id+')">'
       +'<img src="'+v.img+'" alt="'+v.nom+'" loading="lazy">'

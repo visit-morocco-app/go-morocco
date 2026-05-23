@@ -454,9 +454,9 @@ let currentVilleFilter = 'Tous';
 
 // INIT
 window.onload = async function() {
-  await loadAllData();
   document.getElementById('loading').classList.add('hide');
   document.getElementById('auth-screen').style.display = 'flex';
+  loadAllData();
 };
 
 // LOAD DATA FROM FIREBASE

@@ -223,6 +223,39 @@ body.ar .about-back { left:auto; right:16px; }
 .flashcard-stats { display:flex; justify-content:center; gap:20px; font-size:13px; color:var(--text3); }
 .flashcard-stats span { font-weight:600; color:var(--violet); }
 
+
+/* TIMELINE PLAN 2 JOURS */
+.plan-header { display:flex; gap:10px; margin-bottom:20px; }
+.plan-day-btn { flex:1; padding:12px; border-radius:12px; border:2px solid var(--border); background:white; font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:var(--text2); cursor:pointer; transition:all 0.2s; text-align:center; }
+.plan-day-btn.active { background:var(--violet); color:white; border-color:var(--violet); }
+.plan-day { display:none; }
+.plan-day.active { display:block; }
+.plan-budget { background:linear-gradient(135deg,#1a1a2e,#16213e); border-radius:var(--radius); padding:16px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; }
+.plan-budget-label { font-size:12px; color:rgba(255,255,255,0.7); margin-bottom:4px; }
+.plan-budget-val { font-size:22px; font-weight:700; color:#FFD700; }
+.plan-budget-note { font-size:11px; color:rgba(255,255,255,0.5); }
+.plan-budget-icon { font-size:36px; }
+.timeline { position:relative; }
+.timeline-item { display:flex; gap:0; margin-bottom:0; }
+.timeline-left { display:flex; flex-direction:column; align-items:center; width:60px; flex-shrink:0; }
+.timeline-time { font-size:11px; font-weight:700; color:var(--violet); background:var(--violet-bg); padding:4px 6px; border-radius:8px; text-align:center; white-space:nowrap; }
+.timeline-line { width:2px; background:linear-gradient(to bottom,var(--violet),var(--violet-bg)); flex:1; min-height:20px; }
+.timeline-item:last-child .timeline-line { display:none; }
+.timeline-dot { width:12px; height:12px; border-radius:50%; background:var(--violet); border:2px solid white; box-shadow:0 0 0 3px var(--violet-bg); margin-top:8px; }
+.timeline-content { flex:1; background:white; border:1px solid var(--border); border-radius:var(--radius); padding:14px; margin-bottom:12px; margin-left:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+.timeline-emoji { font-size:20px; margin-bottom:6px; display:block; }
+.timeline-activity { font-size:14px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.timeline-place { font-size:12px; color:var(--violet); margin-bottom:4px; }
+.timeline-tip { font-size:11px; color:var(--text3); line-height:1.5; }
+.timeline-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.timeline-tag { font-size:10px; padding:3px 8px; border-radius:20px; font-weight:500; }
+.tag-food { background:#FFF3E0; color:#E65100; }
+.tag-culture { background:#E8EAF6; color:#283593; }
+.tag-nature { background:#E8F5E9; color:#1B5E20; }
+.tag-shopping { background:#FCE4EC; color:#880E4F; }
+.tag-relax { background:#E0F2F1; color:#004D40; }
+.tag-nuit { background:#1a1a2e; color:#FFD700; }
+
 /* BOTTOM NAV */
 .bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:white; border-top:1px solid var(--border); display:flex; padding:8px 0 20px; z-index:100; direction:ltr; }
 .nav-item { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:4px 0; }
@@ -472,7 +505,7 @@ body.ar .about-back { left:auto; right:16px; }
       <div class="about-stat"><div class="about-stat-num">12</div><div class="about-stat-label">Villes</div></div>
       <div class="about-stat"><div class="about-stat-num">15</div><div class="about-stat-label">Lieux</div></div>
       <div class="about-stat"><div class="about-stat-num">15</div><div class="about-stat-label">Plats</div></div>
-      <div class="about-stat"><div class="about-stat-num">20</div><div class="about-stat-label">Darija</div></div>
+      <div class="about-stat"><div class="about-stat-num">35</div><div class="about-stat-label">Darija</div></div>
     </div>
     <div class="about-section"><div class="about-section-title">Notre mission</div><div class="about-section-text">Go Morocco est votre guide de voyage authentique pour découvrir le Royaume du Maroc. Des médinas labyrinthiques aux plages atlantiques.</div></div>
     <div class="about-section"><div class="about-section-title">Contact</div><div class="about-section-text">📧 contact@gomorocco.app<br>📱 @gomorocco</div></div>
@@ -483,7 +516,7 @@ body.ar .about-back { left:auto; right:16px; }
 <script>
 var DATA = {
   villes: [
-    { id:1, nom:"Marrakech", nom_en:"Marrakech", nom_ar:"مراكش", region:"Sud", region_en:"South", region_ar:"الجنوب", img:"images/Marrakech.jpg", maps_url:"https://maps.google.com/?q=Marrakech+Morocco", desc_fr:"La ville ocre, capitale culturelle du Maroc. Ses souks labyrinthiques, la place Jemaa el-Fna et ses riads cachés en font une destination envoûtante entre tradition et modernité.", desc_en:"The Red City, Morocco's cultural capital. Its labyrinthine souks, the Jemaa el-Fna square and hidden riads make it a mesmerizing destination.", desc_ar:"المدينة الحمراء، العاصمة الثقافية للمغرب. أسواقها المتاهة وساحة جامع الفنا والرياضات المخفية تجعلها وجهة رائعة." },
+    { id:1, nom:"Marrakech", nom_en:"Marrakech", nom_ar:"مراكش", region:"Sud", region_en:"South", region_ar:"الجنوب", img:"images/Marrakech.jpg", maps_url:"https://maps.google.com/?q=Marrakech+Morocco", saison:"Avr — Juin", budget:"50 — 80€", desc_fr:"La ville ocre, capitale culturelle du Maroc. Ses souks labyrinthiques, la place Jemaa el-Fna et ses riads cachés en font une destination envoûtante entre tradition et modernité.", desc_en:"The Red City, Morocco's cultural capital. Its labyrinthine souks, the Jemaa el-Fna square and hidden riads make it a mesmerizing destination.", desc_ar:"المدينة الحمراء، العاصمة الثقافية للمغرب. أسواقها المتاهة وساحة جامع الفنا والرياضات المخفية تجعلها وجهة رائعة." },
     { id:2, nom:"Casablanca", nom_en:"Casablanca", nom_ar:"الدار البيضاء", region:"Centre-Ouest", region_en:"West-Center", region_ar:"وسط الغرب", img:"images/Casablanca.jpg", maps_url:"https://maps.google.com/?q=Casablanca+Morocco", desc_fr:"La métropole économique du Maroc. Moderne et cosmopolite, elle abrite la majestueuse mosquée Hassan II et une scène gastronomique vibrante.", desc_en:"Morocco's economic metropolis. Modern and cosmopolitan, home to the majestic Hassan II Mosque.", desc_ar:"المدينة الاقتصادية للمغرب. حديثة وكوزموبوليتانية، تضم المسجد الرائع الحسن الثاني." },
     { id:3, nom:"Rabat", nom_en:"Rabat", nom_ar:"الرباط", region:"Nord-Ouest", region_en:"North-West", region_ar:"شمال الغرب", img:"images/Rabat.jpg", maps_url:"https://maps.google.com/?q=Rabat+Morocco", desc_fr:"La capitale royale, ville d'histoire et de culture. Entre la Tour Hassan, la Kasbah des Oudayas et ses musées.", desc_en:"The royal capital, a city of history and culture. Between the Hassan Tower and the Kasbah of the Udayas.", desc_ar:"العاصمة الملكية، مدينة التاريخ والثقافة. بين صومعة حسان وقصبة الوداية." },
     { id:4, nom:"Essaouira", nom_en:"Essaouira", nom_ar:"الصويرة", region:"Côte Atlantique", region_en:"Atlantic Coast", region_ar:"الساحل الأطلسي", img:"images/Essaouira.jpg", maps_url:"https://maps.google.com/?q=Essaouira+Morocco", desc_fr:"La cité des vents, ville côtière enchanteresse aux remparts bleus et blancs.", desc_en:"The City of Winds, an enchanting coastal town with blue and white ramparts.", desc_ar:"مدينة الرياح، مدينة ساحلية ساحرة بأسوارها الزرقاء والبيضاء." },
@@ -558,7 +591,13 @@ var DATA = {
     { id:3, ville:"Rabat", hopital:"Hôpital Ibn Sina", hopital_tel:"+212 537 672 871", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Sina+Rabat" },
     { id:4, ville:"Agadir", hopital:"Hôpital Hassan II", hopital_tel:"+212 528 211 477", hopital_maps:"https://maps.google.com/?q=Hopital+Hassan+II+Agadir" },
     { id:5, ville:"Tanger", hopital:"Hôpital Mohammed V", hopital_tel:"+212 539 932 444", hopital_maps:"https://maps.google.com/?q=Hopital+Mohammed+V+Tanger" },
-    { id:6, ville:"Essaouira", hopital:"Hôpital Sidi Mohammed Ben Abdallah", hopital_tel:"+212 524 475 716", hopital_maps:"https://maps.google.com/?q=Hopital+Essaouira" }
+    { id:6, ville:"Essaouira", hopital:"Hôpital Sidi Mohammed Ben Abdallah", hopital_tel:"+212 524 475 716", hopital_maps:"https://maps.google.com/?q=Hopital+Essaouira" },
+    { id:7, ville:"Fès", hopital:"CHU Hassan II de Fès", hopital_tel:"+212 535 612 222", hopital_maps:"https://maps.google.com/?q=CHU+Hassan+II+Fes" },
+    { id:8, ville:"Chefchaouen", hopital:"Hôpital Mohammed V Chefchaouen", hopital_tel:"+212 539 986 228", hopital_maps:"https://maps.google.com/?q=Hopital+Chefchaouen" },
+    { id:9, ville:"Ouarzazate", hopital:"Hôpital Boulmane Dadès", hopital_tel:"+212 524 882 444", hopital_maps:"https://maps.google.com/?q=Hopital+Ouarzazate" },
+    { id:10, ville:"Merzouga", hopital:"Centre de Santé (urgences à Errachidia)", hopital_tel:"+212 535 572 444", hopital_maps:"https://maps.google.com/?q=Hopital+Errachidia" },
+    { id:11, ville:"Ifrane", hopital:"Hôpital My Abdallah Ifrane", hopital_tel:"+212 535 566 604", hopital_maps:"https://maps.google.com/?q=Hopital+Ifrane" },
+    { id:12, ville:"Taghazout", hopital:"Clinique Agadir (15 km)", hopital_tel:"+212 528 211 477", hopital_maps:"https://maps.google.com/?q=Hopital+Hassan+II+Agadir" }
   ],
   transport: [
     { id:1, icon:"🚂", type:"Train", nom:"ONCF — Train national", nom_en:"ONCF — National Train", nom_ar:"القطار الوطني", route:"Tanger → Rabat → Casablanca → Marrakech", prix:"5-15€", duree:"2h30 Casa-Marrakech", site:"https://oncf.ma", desc_fr:"Réseau ferroviaire national. Confortable, ponctuel et abordable. Réservation en ligne recommandée.", desc_en:"National rail network. Comfortable, punctual and affordable. Online booking recommended.", desc_ar:"شبكة السكك الحديدية الوطنية. مريح ومنضبط وبأسعار معقولة." },
@@ -588,7 +627,22 @@ var DATA = {
     { id:17, mot_fr:"L'addition", translitteration:"Lhsab afak", mot_darija:"الحساب عافاك", mot_en:"The bill please", categorie:"Restaurant" },
     { id:18, mot_fr:"Délicieux !", translitteration:"Bnin bzzaf!", mot_darija:"بنين بزاف", mot_en:"Delicious!", categorie:"Restaurant" },
     { id:19, mot_fr:"De l'eau", translitteration:"Lma afak", mot_darija:"الما عافاك", mot_en:"Water please", categorie:"Restaurant" },
-    { id:20, mot_fr:"Appelez la police !", translitteration:"Ayyet l'police!", mot_darija:"عيط للبوليس", mot_en:"Call the police!", categorie:"Urgence" }
+    { id:20, mot_fr:"Appelez la police !", translitteration:"Ayyet l'police!", mot_darija:"عيط للبوليس", mot_en:"Call the police!", categorie:"Urgence" },
+    { id:21, mot_fr:"Je ne sais pas", translitteration:"Ma areftch", mot_darija:"ما عرفتش", mot_en:"I don't know", categorie:"Basique" },
+    { id:22, mot_fr:"Comment allez-vous ?", translitteration:"Labas ?", mot_darija:"لاباس؟", mot_en:"How are you?", categorie:"Salutations" },
+    { id:23, mot_fr:"De rien", translitteration:"La shokr ala wajib", mot_darija:"لا شكر على واجب", mot_en:"You're welcome", categorie:"Politesse" },
+    { id:24, mot_fr:"Parlez-vous français ?", translitteration:"Kat tkellem blfransawi?", mot_darija:"كتتكلم بالفرنساوي؟", mot_en:"Do you speak French?", categorie:"Basique" },
+    { id:25, mot_fr:"Je regarde seulement", translitteration:"Ana ghir kanshuf", mot_darija:"أنا غير كانشوف", mot_en:"I'm just looking", categorie:"Shopping" },
+    { id:26, mot_fr:"Tout droit", translitteration:"Niyshan", mot_darija:"نيشان", mot_en:"Straight ahead", categorie:"Navigation" },
+    { id:27, mot_fr:"À gauche", translitteration:"Lisar", mot_darija:"ليسار", mot_en:"To the left", categorie:"Navigation" },
+    { id:28, mot_fr:"À droite", translitteration:"Limin", mot_darija:"ليمين", mot_en:"To the right", categorie:"Navigation" },
+    { id:29, mot_fr:"Sans piment", translitteration:"Bla harr", mot_darija:"بلا حار", mot_en:"Without spice", categorie:"Restaurant" },
+    { id:30, mot_fr:"Arrêtez ici", translitteration:"Wqef hna", mot_darija:"وقف هنا", mot_en:"Stop here", categorie:"Transport" },
+    { id:31, mot_fr:"Combien jusqu'à... ?", translitteration:"Bchhal hta...?", mot_darija:"بشحال حتى...؟", mot_en:"How much to...?", categorie:"Transport" },
+    { id:32, mot_fr:"J'ai besoin d'un médecin", translitteration:"Khassni tabib", mot_darija:"خاصني طبيب", mot_en:"I need a doctor", categorie:"Urgence" },
+    { id:33, mot_fr:"Au secours !", translitteration:"Awenni!", mot_darija:"عاونّي!", mot_en:"Help!", categorie:"Urgence" },
+    { id:34, mot_fr:"Je suis perdu(e)", translitteration:"Ana dayae", mot_darija:"أنا ضايع", mot_en:"I'm lost", categorie:"Urgence" },
+    { id:35, mot_fr:"Bonne nuit", translitteration:"Tsbah l'kheir", mot_darija:"تصبح على خير", mot_en:"Good night", categorie:"Salutations" }
   ]
 };
 
@@ -917,6 +971,37 @@ function showLieu(id) {
   document.getElementById('detail-lieu').classList.add('open');
 }
 
+function switchDetailTab(tab) {
+  var tabs = ['info','lieux','plan'];
+  document.querySelectorAll('.detail-tab').forEach(function(t,i){ t.classList.toggle('active', tabs[i]===tab); });
+  document.querySelectorAll('.detail-tab-content').forEach(function(c){c.classList.remove('active');});
+  var el = document.getElementById('dtab-'+tab);
+  if(el) el.classList.add('active');
+}
+function switchPlanDay(day) {
+  document.querySelectorAll('.plan-day-btn').forEach(function(b,i){ b.classList.toggle('active', i+1===day); });
+  document.querySelectorAll('.plan-day').forEach(function(d,i){ d.classList.toggle('active', i+1===day); });
+}
+function renderTimeline(v, day) {
+  var el = document.getElementById('timeline-day'+day);
+  if(!el) return;
+  if(!v.plan) { el.innerHTML='<p style="color:var(--text3);font-size:13px;padding:10px 0;">Plan à venir...</p>'; return; }
+  var items = day===1 ? v.plan.jour1 : v.plan.jour2;
+  if(!items||!items.length) { el.innerHTML='<p style="color:var(--text3);font-size:13px;padding:10px 0;">Plan à venir...</p>'; return; }
+  var tagLabels = {food:'🍽️ Repas',culture:'🏛️ Culture',nature:'🌿 Nature',shopping:'🛍️ Shopping',relax:'😌 Détente',nuit:'🌙 Soirée'};
+  el.innerHTML = items.map(function(item) {
+    var tags = (item.tags||[]).map(function(t){ return '<span class="timeline-tag tag-'+t+'">'+(tagLabels[t]||t)+'</span>'; }).join('');
+    return '<div class="timeline-item">'
+      +'<div class="timeline-left"><div class="timeline-time">'+item.time+'</div><div class="timeline-line"></div></div>'
+      +'<div class="timeline-content">'
+      +'<span class="timeline-emoji">'+item.emoji+'</span>'
+      +'<div class="timeline-activity">'+item.activity+'</div>'
+      +'<div class="timeline-place">📍 '+item.place+'</div>'
+      +'<div class="timeline-tip">💡 '+item.tip+'</div>'
+      +'<div class="timeline-tags">'+tags+'</div>'
+      +'</div></div>';
+  }).join('');
+}
 function closeDetail(id) { document.getElementById(id).classList.remove('open'); }
 function showAbout() { document.getElementById('about-page').classList.add('open'); }
 function hideAbout() { document.getElementById('about-page').classList.remove('open'); }

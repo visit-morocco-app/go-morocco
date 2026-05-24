@@ -1,0 +1,8 @@
+{
+  "appId": "com.gomorocco.app",
+  "appName": "Go Morocco",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

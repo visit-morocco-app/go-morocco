@@ -1,0 +1,417 @@
+// =============================================
+// GO MOROCCO — APP.JS
+// Toute la logique JavaScript
+// =============================================
+
+var lang = 'fr';
+var currentVilleFilter = 'Tous';
+var fcIndex = 0;
+var fcCatFilter = 'Tous';
+var fcFiltered = [];
+var fcFlipped = false;
+var currentDetailVille = null;
+
+// ======== INIT ========
+window.onload = function() {
+  fcFiltered = DATA.lexique.slice();
+  setTimeout(function() {
+    document.getElementById('splash').classList.add('hide');
+    setTimeout(function() {
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('auth-screen').classList.add('show');
+    }, 600);
+  }, 2000);
+};
+
+function login() {
+  document.getElementById('auth-screen').classList.remove('show');
+  document.getElementById('app').classList.add('show');
+  renderAll();
+}
+
+// ======== HELPERS ========
+function getName(i) {
+  if(lang==='ar') return i.nom_ar || i.nom;
+  if(lang==='en') return i.nom_en || i.nom;
+  return i.nom;
+}
+function getDesc(i) {
+  if(lang==='ar') return i.desc_ar || i.desc_fr;
+  if(lang==='en') return i.desc_en || i.desc_fr;
+  return i.desc_fr;
+}
+function getTitre(i) {
+  if(lang==='ar') return i.titre_ar || i.titre;
+  if(lang==='en') return i.titre_en || i.titre;
+  return i.titre;
+}
+
+// ======== RENDER ALL ========
+function renderAll() {
+  renderVilles();
+  renderLieux();
+  renderGastro();
+  renderEvents();
+  renderConseils();
+  renderUrgences();
+  renderTransport();
+  initFlashcards();
+}
+
+// ======== LANGUE ========
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-option').forEach(function(o){ o.classList.remove('active'); });
+  document.getElementById('opt-'+l).classList.add('active');
+  closeLangDropdown();
+  if(l==='ar') {
+    document.body.classList.add('ar');
+    document.documentElement.setAttribute('lang','ar');
+    document.documentElement.setAttribute('dir','rtl');
+  } else {
+    document.body.classList.remove('ar');
+    document.documentElement.setAttribute('lang',l);
+    document.documentElement.setAttribute('dir','ltr');
+  }
+  currentVilleFilter = 'Tous';
+  renderAll();
+}
+function toggleLangDropdown(e) {
+  e.stopPropagation();
+  document.getElementById('lang-dropdown').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeLangDropdown() {
+  document.getElementById('lang-dropdown').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// ======== NAVIGATION ========
+function switchTab(tab, title) {
+  document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('nav-'+tab).classList.add('active');
+  document.getElementById('header-title').textContent = title;
+  window.scrollTo(0,0);
+}
+
+// ======== VILLES ========
+function renderVilles() {
+  var el = document.getElementById('villes-grid');
+  if(!el) return;
+  el.innerHTML = DATA.villes.map(function(v) {
+    return '<div class="ville-card" onclick="showVille('+v.id+')">'
+      +'<img src="'+v.img+'" alt="'+v.nom+'" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400\'">'
+      +'<div class="ville-card-info">'
+      +'<div class="ville-card-name">'+getName(v)+'</div>'
+      +'<div class="ville-card-region">'+(lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region)+'</div>'
+      +'</div></div>';
+  }).join('');
+}
+
+// ======== LIEUX ========
+function renderVilleFilter() {
+  var el = document.getElementById('ville-filter');
+  if(!el) return;
+  var villes = ['Tous'].concat(DATA.villes.map(function(v){ return v.nom; }));
+  el.innerHTML = villes.map(function(v) {
+    var label = v==='Tous'?(lang==='ar'?'الكل':lang==='en'?'All':'Tous'):v;
+    return '<button class="filter-btn '+(v===currentVilleFilter?'active':'')+'" onclick="filterLieux(\''+v+'\')">'+label+'</button>';
+  }).join('');
+}
+function filterLieux(ville) {
+  currentVilleFilter = ville;
+  renderVilleFilter();
+  var lieux = ville==='Tous' ? DATA.lieux : DATA.lieux.filter(function(l){ return l.ville===ville; });
+  var el = document.getElementById('lieux-grid');
+  if(!el) return;
+  el.innerHTML = lieux.map(function(l) {
+    return '<div class="lieu-card" onclick="showLieu('+l.id+')">'
+      +'<img src="'+l.img+'" alt="'+l.nom+'" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400\'">'
+      +'<div class="lieu-card-info">'
+      +'<div class="lieu-card-badge">'+l.cat+'</div>'
+      +'<div class="lieu-card-name">'+getName(l)+'</div>'
+      +'<div class="lieu-card-ville">📍 '+l.ville+'</div>'
+      +'</div></div>';
+  }).join('');
+}
+function renderLieux() {
+  renderVilleFilter();
+  filterLieux(currentVilleFilter);
+}
+
+// ======== GASTRO ========
+function renderGastro() {
+  var el = document.getElementById('gastro-grid');
+  if(!el) return;
+  el.innerHTML = DATA.gastronomie.map(function(g) {
+    return '<div class="gastro-card">'
+      +'<img src="'+g.img+'" alt="'+g.nom+'" loading="lazy">'
+      +'<div class="gastro-card-info">'
+      +'<div class="gastro-card-name">'+getName(g)+'</div>'
+      +'<div class="gastro-card-type">'+g.type+'</div>'
+      +'<div class="gastro-card-prix">💰 '+g.prix+'</div>'
+      +'</div></div>';
+  }).join('');
+}
+
+// ======== EVENTS ========
+function renderEvents() {
+  var el = document.getElementById('events-list');
+  if(!el) return;
+  el.innerHTML = DATA.evenements.map(function(e) {
+    return '<div class="event-card">'
+      +'<div class="event-date">'
+      +'<div class="event-month">'+(e.periode||'').substring(0,3)+'</div>'
+      +'<div class="event-day">'+e.jour+'</div>'
+      +'</div>'
+      +'<div class="event-info">'
+      +'<div class="event-name">'+(e.emoji||'')+' '+getName(e)+'</div>'
+      +'<div class="event-ville">📍 '+e.ville+'</div>'
+      +'<div class="event-desc">'+getDesc(e).substring(0,120)+'...</div>'
+      +'</div></div>';
+  }).join('');
+}
+
+// ======== CONSEILS ========
+function renderConseils() {
+  var el = document.getElementById('conseils-list');
+  if(!el) return;
+  el.innerHTML = DATA.conseils.map(function(c) {
+    return '<div class="conseil-card">'
+      +'<div class="conseil-header">'
+      +'<div class="conseil-icon">'+c.icon+'</div>'
+      +'<div><div class="conseil-title">'+getTitre(c)+'</div>'
+      +'<div class="conseil-cat">'+c.cat+'</div></div>'
+      +'</div>'
+      +'<div class="conseil-text">'+getDesc(c)+'</div>'
+      +'<span class="conseil-badge badge-'+c.importance.toLowerCase()+'">'+c.importance+'</span>'
+      +'</div>';
+  }).join('');
+}
+
+// ======== URGENCES ========
+function renderUrgences() {
+  var el = document.getElementById('urgence-list');
+  if(!el) return;
+  el.innerHTML = DATA.urgences.map(function(u) {
+    return '<div class="urgence-card">'
+      +'<div class="urgence-card-top"><div class="urgence-card-ville">🏙️ '+u.ville+'</div></div>'
+      +'<div class="urgence-card-body">'
+      +'<div class="urgence-row">'
+      +'<div class="urgence-row-icon">🏥</div>'
+      +'<div class="urgence-row-info"><div class="urgence-row-label">Hôpital</div>'
+      +'<div class="urgence-row-val">'+u.hopital+'</div></div>'
+      +'<a href="'+u.hopital_maps+'" target="_blank" class="urgence-maps-btn">🗺️</a></div>'
+      +'<div class="urgence-row">'
+      +'<div class="urgence-row-icon">📞</div>'
+      +'<div class="urgence-row-info"><div class="urgence-row-label">Téléphone</div>'
+      +'<div class="urgence-row-val">'+u.hopital_tel+'</div></div>'
+      +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">📱 Appeler</a></div>'
+      +'</div></div>';
+  }).join('');
+}
+
+// ======== TRANSPORT ========
+function renderTransport() {
+  var el = document.getElementById('transport-list');
+  if(!el) return;
+  el.innerHTML = DATA.transport.map(function(t) {
+    var nom = lang==='ar'?(t.nom_ar||t.nom):lang==='en'?(t.nom_en||t.nom):t.nom;
+    return '<div class="transport-accord" id="ta-'+t.id+'">'
+      +'<div class="transport-accord-header" onclick="toggleTransport('+t.id+')">'
+      +'<div class="transport-accord-icon">'+t.icon+'</div>'
+      +'<div class="transport-accord-info">'
+      +'<div class="transport-accord-type">'+t.type+'</div>'
+      +'<div class="transport-accord-name">'+nom+'</div>'
+      +'</div>'
+      +'<div class="transport-accord-arrow">▼</div>'
+      +'</div>'
+      +'<div class="transport-accord-body">'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">🗺️ Route</div><div class="transport-detail-val">'+t.route+'</div></div>'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">⏱️ Durée</div><div class="transport-detail-val">'+t.duree+'</div></div>'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">ℹ️ Infos</div><div class="transport-detail-val">'+getDesc(t)+'</div></div>'
+      +(t.site?'<div class="transport-detail-row"><div class="transport-detail-label">🌐 Site</div><div class="transport-detail-val"><a href="'+t.site+'" target="_blank">'+t.site+'</a></div></div>':'')
+      +'<div class="transport-prix-badge">💰 '+t.prix+'</div>'
+      +'</div></div>';
+  }).join('');
+}
+function toggleTransport(id) {
+  var el = document.getElementById('ta-'+id);
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.transport-accord').forEach(function(a){ a.classList.remove('open'); });
+  if(!isOpen) el.classList.add('open');
+}
+
+// ======== FLASHCARDS DARIJA ========
+function initFlashcards() {
+  fcFiltered = DATA.lexique.slice();
+  fcIndex = 0;
+  fcFlipped = false;
+  renderFcFilter();
+  renderFcCard();
+}
+function renderFcFilter() {
+  var el = document.getElementById('fc-filter');
+  if(!el) return;
+  var cats = ['Tous'].concat(Array.from(new Set(DATA.lexique.map(function(l){ return l.categorie; }))));
+  el.innerHTML = cats.map(function(c) {
+    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+c+'</button>';
+  }).join('');
+}
+function filterFc(cat) {
+  fcCatFilter = cat;
+  fcFiltered = cat==='Tous' ? DATA.lexique.slice() : DATA.lexique.filter(function(l){ return l.categorie===cat; });
+  fcIndex = 0;
+  fcFlipped = false;
+  renderFcFilter();
+  renderFcCard();
+}
+function renderFcCard() {
+  if(!fcFiltered.length) return;
+  var l = fcFiltered[fcIndex];
+  document.getElementById('fc-scene').classList.remove('flipped');
+  fcFlipped = false;
+  document.getElementById('fc-fr').textContent = l.mot_fr;
+  document.getElementById('fc-cat').textContent = l.categorie;
+  document.getElementById('fc-darija').textContent = l.mot_darija;
+  document.getElementById('fc-trans').textContent = l.translitteration;
+  document.getElementById('fc-en').textContent = l.mot_en;
+  document.getElementById('fc-counter').textContent = (fcIndex+1)+' / '+fcFiltered.length;
+  document.getElementById('fc-idx').textContent = fcIndex+1;
+  document.getElementById('fc-total').textContent = fcFiltered.length;
+  document.getElementById('fc-progress').style.width = Math.round(((fcIndex+1)/fcFiltered.length)*100)+'%';
+}
+function flipFlashcard() {
+  fcFlipped = !fcFlipped;
+  document.getElementById('fc-scene').classList.toggle('flipped', fcFlipped);
+}
+function fcNext() { fcIndex = fcIndex < fcFiltered.length-1 ? fcIndex+1 : 0; fcFlipped=false; renderFcCard(); }
+function fcPrev() { fcIndex = fcIndex > 0 ? fcIndex-1 : fcFiltered.length-1; fcFlipped=false; renderFcCard(); }
+
+// ======== DETAIL VILLE ========
+function showVille(id) {
+  var v = DATA.villes.find(function(x){ return x.id===id; });
+  if(!v) return;
+  currentDetailVille = v;
+
+  document.getElementById('dv-img').src = v.img;
+  document.getElementById('dv-img').onerror = function(){ this.src='https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600'; };
+  document.getElementById('dv-name').textContent = getName(v);
+  document.getElementById('dv-region').textContent = '📍 '+(lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region);
+  document.getElementById('dv-region2').textContent = lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region;
+  document.getElementById('dv-saison').textContent = v.saison || 'Avr — Juin';
+  document.getElementById('dv-desc').textContent = getDesc(v);
+  document.getElementById('dv-maps').href = v.maps_url||'#';
+  if(document.getElementById('dv-budget')) document.getElementById('dv-budget').textContent = v.budget || '50 — 80€';
+
+  // Lieux de la ville
+  var lieux = DATA.lieux.filter(function(l){ return l.ville===v.nom; });
+  document.getElementById('dv-lieux').innerHTML = lieux.length ? lieux.map(function(l){
+    return '<div class="detail-lieu-item" onclick="showLieu('+l.id+')">'
+      +'<img class="detail-lieu-img" src="'+l.img+'" alt="'+l.nom+'" onerror="this.src=\'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200\'">'
+      +'<div><div class="detail-lieu-name">'+getName(l)+'</div>'
+      +'<div class="detail-lieu-cat">'+l.cat+'</div></div>'
+      +'</div>';
+  }).join('') : '<p style="color:var(--text3);font-size:13px;padding:10px 0;">Lieux à venir...</p>';
+
+  // Timeline Plan 2 jours
+  renderTimeline(v, 1);
+  renderTimeline(v, 2);
+
+  // Reset tabs
+  switchDetailTab('info');
+  switchPlanDay(1);
+
+  document.getElementById('detail-ville').classList.add('open');
+}
+
+// ======== TIMELINE ========
+function renderTimeline(v, day) {
+  var el = document.getElementById('timeline-day'+day);
+  if(!el) return;
+  if(!v.plan) {
+    el.innerHTML = '<p style="color:var(--text3);font-size:13px;padding:10px 0;">Plan à venir...</p>';
+    return;
+  }
+  var items = day===1 ? v.plan.jour1 : v.plan.jour2;
+  if(!items || !items.length) {
+    el.innerHTML = '<p style="color:var(--text3);font-size:13px;padding:10px 0;">Plan à venir...</p>';
+    return;
+  }
+  var tagLabels = {food:'🍽️ Repas', culture:'🏛️ Culture', nature:'🌿 Nature', shopping:'🛍️ Shopping', relax:'😌 Détente', nuit:'🌙 Soirée'};
+  el.innerHTML = items.map(function(item) {
+    var tags = (item.tags||[]).map(function(t){
+      return '<span class="timeline-tag tag-'+t+'">'+(tagLabels[t]||t)+'</span>';
+    }).join('');
+    return '<div class="timeline-item">'
+      +'<div class="timeline-left">'
+      +'<div class="timeline-time">'+item.time+'</div>'
+      +'<div class="timeline-line"></div>'
+      +'</div>'
+      +'<div class="timeline-content">'
+      +'<span class="timeline-emoji">'+item.emoji+'</span>'
+      +'<div class="timeline-activity">'+item.activity+'</div>'
+      +'<div class="timeline-place">📍 '+item.place+'</div>'
+      +'<div class="timeline-tip">💡 '+item.tip+'</div>'
+      +'<div class="timeline-tags">'+tags+'</div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ======== TABS DETAIL VILLE ========
+function switchDetailTab(tab) {
+  var tabs = ['info','lieux','plan'];
+  document.querySelectorAll('.detail-tab').forEach(function(t,i){
+    t.classList.toggle('active', tabs[i]===tab);
+  });
+  document.querySelectorAll('.detail-tab-content').forEach(function(c){ c.classList.remove('active'); });
+  var el = document.getElementById('dtab-'+tab);
+  if(el) el.classList.add('active');
+}
+
+function switchPlanDay(day) {
+  document.querySelectorAll('.plan-day-btn').forEach(function(b,i){ b.classList.toggle('active', i+1===day); });
+  document.querySelectorAll('.plan-day').forEach(function(d,i){ d.classList.toggle('active', i+1===day); });
+}
+
+// ======== DETAIL LIEU ========
+function showLieu(id) {
+  var l = DATA.lieux.find(function(x){ return x.id===id; });
+  if(!l) return;
+  document.getElementById('dl-img').src = l.img;
+  document.getElementById('dl-img').onerror = function(){ this.src='https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600'; };
+  document.getElementById('dl-name').textContent = getName(l);
+  document.getElementById('dl-cat').textContent = l.cat;
+  document.getElementById('dl-cat2').textContent = l.cat;
+  document.getElementById('dl-ville').textContent = '📍 '+l.ville;
+  document.getElementById('dl-ville2').textContent = l.ville;
+  document.getElementById('dl-desc').textContent = getDesc(l);
+  document.getElementById('dl-maps').href = l.maps_url||'#';
+  document.getElementById('detail-lieu').classList.add('open');
+}
+function closeLieu() { document.getElementById('detail-lieu').classList.remove('open'); }
+
+// ======== AUTRES ========
+function closeDetail(id) { document.getElementById(id).classList.remove('open'); }
+function showAbout() { document.getElementById('about-page').classList.add('open'); }
+function hideAbout() { document.getElementById('about-page').classList.remove('open'); }
+function toggleFav(el) { el.textContent = el.textContent==='🤍'?'❤️':'🤍'; }
+
+function handleSearch() {
+  var q = document.getElementById('search-input').value.toLowerCase();
+  if(!q) { renderVilles(); return; }
+  var res = DATA.villes.filter(function(v){
+    return v.nom.toLowerCase().includes(q) || v.region.toLowerCase().includes(q) || (v.nom_ar&&v.nom_ar.includes(q));
+  });
+  document.getElementById('villes-grid').innerHTML = res.length ? res.map(function(v){
+    return '<div class="ville-card" onclick="showVille('+v.id+')">'
+      +'<img src="'+v.img+'" alt="'+v.nom+'" loading="lazy">'
+      +'<div class="ville-card-info">'
+      +'<div class="ville-card-name">'+v.nom+'</div>'
+      +'<div class="ville-card-region">'+v.region+'</div>'
+      +'</div></div>';
+  }).join('') : '<p style="padding:20px;color:#999;font-size:14px;grid-column:span 2;">Aucun résultat</p>';
+}

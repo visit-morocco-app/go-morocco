@@ -256,6 +256,12 @@ body.ar .about-back { left:auto; right:16px; }
 .tag-relax { background:#E0F2F1; color:#004D40; }
 .tag-nuit { background:#1a1a2e; color:#FFD700; }
 
+/* DETAIL TABS */
+.detail-tabs { display:flex; background:white; border-bottom:2px solid var(--border); position:sticky; top:0; z-index:10; }
+.detail-tab { flex:1; padding:14px 8px; text-align:center; font-size:12px; font-weight:600; color:var(--text3); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+.detail-tab.active { color:var(--violet); border-bottom-color:var(--violet); }
+.detail-tab-content { display:none; padding:20px 20px 100px; }
+.detail-tab-content.active { display:block; }
 /* BOTTOM NAV */
 .bottom-nav { position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:430px; background:white; border-top:1px solid var(--border); display:flex; padding:8px 0 20px; z-index:100; direction:ltr; }
 .nav-item { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:4px 0; }
@@ -455,6 +461,12 @@ body.ar .about-back { left:auto; right:16px; }
 <div class="page-detail" id="detail-ville">
   <div class="detail-hero"><img id="dv-img" src="" alt=""><div class="detail-hero-overlay"></div><div class="detail-back" onclick="closeDetail('detail-ville')">←</div><div class="detail-fav" onclick="toggleFav(this)">🤍</div></div>
   <div class="detail-content">
+    <div class="detail-tabs">
+    <div class="detail-tab active" onclick="switchDetailTab('info')">📖 Info</div>
+    <div class="detail-tab" onclick="switchDetailTab('lieux')">📍 Lieux</div>
+    <div class="detail-tab" onclick="switchDetailTab('plan')">🗓️ Plan 2j</div>
+  </div>
+  <div class="detail-tab-content active" id="dtab-info">
     <div class="detail-badge" id="dv-region"></div>
     <div class="detail-title" id="dv-name"></div>
     <div class="detail-sub" id="dv-sub"></div>
@@ -464,8 +476,31 @@ body.ar .about-back { left:auto; right:16px; }
       <div class="detail-info-item"><div class="detail-info-label">Région</div><div class="detail-info-value" id="dv-region2"></div></div>
       <div class="detail-info-item"><div class="detail-info-label">Meilleure saison</div><div class="detail-info-value">Avr — Juin</div></div>
     </div>
+    </div>
+  <div class="detail-tab-content" id="dtab-lieux">
     <div class="detail-section-title">📍 Lieux incontournables</div>
     <div id="dv-lieux"></div>
+  </div>
+  <!-- PLAN TAB -->
+  <div class="detail-tab-content" id="dtab-plan" style="padding:20px 20px 100px;">
+    <div class="plan-header">
+      <button class="plan-day-btn active" onclick="switchPlanDay(1)">☀️ Jour 1</button>
+      <button class="plan-day-btn" onclick="switchPlanDay(2)">🌙 Jour 2</button>
+    </div>
+    <div class="plan-budget">
+      <div>
+        <div class="plan-budget-label">Budget estimé / personne</div>
+        <div class="plan-budget-val" id="dv-budget">50 — 80€</div>
+        <div class="plan-budget-note">Hébergement non inclus</div>
+      </div>
+      <div class="plan-budget-icon">💰</div>
+    </div>
+    <div class="plan-day active" id="plan-day1" style="padding-left:72px;">
+      <div class="timeline" id="timeline-day1"></div>
+    </div>
+    <div class="plan-day" id="plan-day2" style="padding-left:72px;">
+      <div class="timeline" id="timeline-day2"></div>
+    </div>
   </div>
 </div>
 
@@ -953,6 +988,10 @@ function showVille(id) {
       +'<div><div class="detail-lieu-name">'+getName(l)+'</div><div class="detail-lieu-cat">'+l.cat+'</div></div>'
       +'</div>';
   }).join('');
+  if(document.getElementById('dv-budget')) document.getElementById('dv-budget').textContent = v.budget || '50 — 80€';
+  renderTimeline(v, 1);
+  renderTimeline(v, 2);
+  switchDetailTab('info');
   document.getElementById('detail-ville').classList.add('open');
 }
 

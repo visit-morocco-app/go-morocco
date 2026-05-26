@@ -278,6 +278,144 @@ var DATA = {
           {time:"19:30",emoji:"🌙",activity:"Feu de camp sur la plage",place:"Plage de Taghazout",tip:"Certains cafés organisent des soirées",tags:["nuit"]}
         ]
       }
+    },
+    { id:13, nom:"Dakhla", nom_en:"Dakhla", nom_ar:"الداخلة", region:"Dakhla-Oued Ed-Dahab", region_en:"Dakhla-Oued Ed-Dahab", region_ar:"الداخلة-وادي الذهب", img:"images/Dakhla.jpg", maps_url:"https://maps.google.com/?q=Dakhla+Morocco", saison:"Oct — Avr", budget:"40 — 70€",
+      desc_fr:"Dakhla est une péninsule magnifique dans le Sahara atlantique, mondialement connue comme le paradis du kitesurf et du windsurf. Ses lagons turquoise, ses dunes de sable et son ambiance unique entre désert et océan en font une destination de rêve.",
+      desc_en:"Dakhla is a magnificent peninsula in the Atlantic Sahara, world-renowned as a paradise for kitesurfing and windsurfing. Its turquoise lagoons, sand dunes and unique atmosphere between desert and ocean make it a dream destination.",
+      desc_ar:"الداخلة شبه جزيرة رائعة في الصحراء الأطلسية، مشهورة عالمياً كجنة لرياضة الكايت سيرف والشراع. بحيراتها الفيروزية وكثبانها الرملية وأجواؤها الفريدة.",
+      plan: {
+        jour1: [
+          {time:"09:00",emoji:"🏄",activity:"Session kitesurf ou windsurf",place:"Lagon de Dakhla",tip:"Le lagon est parfait pour tous niveaux — eau plate et vent régulier",tags:["nature"]},
+          {time:"12:00",emoji:"🐟",activity:"Déjeuner fruits de mer",place:"Restaurant bord de lagon",tip:"Les fruits de mer de Dakhla sont exceptionnels et très frais",tags:["food"]},
+          {time:"14:00",emoji:"🏜️",activity:"Excursion dunes de sable",place:"Dunes du Sahara atlantique",tip:"Contraste unique entre les dunes et l'océan",tags:["nature"]},
+          {time:"16:30",emoji:"🦜",activity:"Observation des oiseaux",place:"Réserve naturelle",tip:"Dakhla est un paradis pour le birdwatching — flamants et pélicans",tags:["nature"]},
+          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil sur le lagon",place:"Lagon de Dakhla",tip:"Les couleurs du coucher de soleil sur le lagon sont magiques",tags:["nature"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner poissons grillés",place:"Restaurant Dakhla",tip:"La dorade et le loup de mer sont les spécialités locales",tags:["food","nuit"]}
+        ],
+        jour2: [
+          {time:"08:00",emoji:"🚤",activity:"Excursion en bateau",place:"Lagon de Dakhla",tip:"Tour en bateau pour découvrir les îlots et la faune marine",tags:["nature"]},
+          {time:"11:00",emoji:"🏄",activity:"Surf ou paddle",place:"Plage océanique",tip:"La côte atlantique offre de belles vagues pour le surf",tags:["nature"]},
+          {time:"13:00",emoji:"🥗",activity:"Déjeuner camp nomade",place:"Camp du désert",tip:"Certains camps proposent des déjeuners typiques sahraouis",tags:["food","culture"]},
+          {time:"15:00",emoji:"🐪",activity:"Balade à dos de chameau",place:"Dunes atlantiques",tip:"Expérience unique entre désert et océan",tags:["nature"]},
+          {time:"17:30",emoji:"🎣",activity:"Pêche traditionnelle",place:"Port de Dakhla",tip:"Accompagnez les pêcheurs locaux pour une expérience authentique",tags:["culture"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée sahraouie",place:"Camp traditionnel",tip:"Musique hassanie et thé à la menthe autour du feu",tags:["culture","nuit"]}
+        ]
+      }
+    },
+    { id:14, nom:"Saïdia", nom_en:"Saidia", nom_ar:"السعيدية", region:"Oriental", region_en:"Oriental", region_ar:"الشرق", img:"images/Saidia.jpg", maps_url:"https://maps.google.com/?q=Saidia+Morocco", saison:"Juin — Sept", budget:"30 — 55€",
+      desc_fr:"Saïdia est surnommée la perle bleue de la Méditerranée. Avec ses 14 km de plage de sable fin, son eau cristalline et sa marina moderne, c'est la station balnéaire la plus prisée du nord-est du Maroc.",
+      desc_en:"Saidia is nicknamed the Blue Pearl of the Mediterranean. With its 14 km of fine sand beach, crystal-clear water and modern marina, it is the most popular seaside resort in north-east Morocco.",
+      desc_ar:"تُلقَّب السعيدية باللؤلؤة الزرقاء للبحر الأبيض المتوسط. بشاطئها الرملي الممتد 14 كم ومياهها الصافية ومارينا حديثة.",
+      plan: {
+        jour1: [
+          {time:"09:00",emoji:"🏖️",activity:"Plage de Saïdia",place:"Plage de Saïdia",tip:"14 km de plage — installez-vous loin de la marina pour plus de calme",tags:["nature"]},
+          {time:"12:00",emoji:"🐟",activity:"Déjeuner restaurant marina",place:"Marina de Saïdia",tip:"Les restaurants de la marina servent d'excellents poissons",tags:["food"]},
+          {time:"14:00",emoji:"🛍️",activity:"Shopping marina et souks",place:"Marina de Saïdia",tip:"La marina propose boutiques et artisanat local",tags:["shopping"]},
+          {time:"16:00",emoji:"🌊",activity:"Baignade en Méditerranée",place:"Plage de Saïdia",tip:"Eau calme et chaude — idéale pour les familles",tags:["nature"]},
+          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil Méditerranée",place:"Front de mer",tip:"Vue magnifique sur la Méditerranée et les côtes espagnoles",tags:["nature"]},
+          {time:"20:30",emoji:"🌙",activity:"Soirée animée marina",place:"Marina de Saïdia",tip:"La marina est très animée en été",tags:["nuit"]}
+        ],
+        jour2: [
+          {time:"09:00",emoji:"🚴",activity:"Vélo le long de la plage",place:"Piste cyclable Saïdia",tip:"Plusieurs loueurs de vélos disponibles sur le front de mer",tags:["nature"]},
+          {time:"11:00",emoji:"🏊",activity:"Sports nautiques",place:"Centre nautique",tip:"Jet ski, banane, paddle — nombreuses activités disponibles",tags:["nature"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner typique oriental",place:"Restaurant Saïdia",tip:"La cuisine orientale est différente du reste du Maroc",tags:["food"]},
+          {time:"15:00",emoji:"🌿",activity:"Forêt de la Moulouya",place:"Embouchure de la Moulouya",tip:"Réserve naturelle avec des oiseaux rares à 10 km",tags:["nature"]},
+          {time:"17:30",emoji:"☕",activity:"Café vue mer",place:"Terrasse front de mer",tip:"Profitez d'un café en regardant la Méditerranée",tags:["relax"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner de fruits de mer",place:"Restaurant bord de mer",tip:"Les crevettes et langoustes de Saïdia sont excellentes",tags:["food","nuit"]}
+        ]
+      }
+    },
+    { id:15, nom:"Al Hoceïma", nom_en:"Al Hoceima", nom_ar:"الحسيمة", region:"Tanger-Tétouan-Al Hoceïma", region_en:"Tangier-Tetouan-Al Hoceima", region_ar:"طنجة-تطوان-الحسيمة", img:"images/Al_Hoceima.jpg", maps_url:"https://maps.google.com/?q=Al+Hoceima+Morocco", saison:"Juin — Sept", budget:"25 — 50€",
+      desc_fr:"Al Hoceïma est un joyau caché du Rif méditerranéen. Ses plages aux eaux turquoise parmi les plus belles du Maroc, son parc national et ses criques sauvages en font une destination authentique et préservée.",
+      desc_en:"Al Hoceima is a hidden gem of the Mediterranean Rif. Its beaches with turquoise waters among the most beautiful in Morocco, its national park and wild coves make it an authentic preserved destination.",
+      desc_ar:"الحسيمة جوهرة مخفية في الريف المتوسطي. شواطئها ذات المياه الفيروزية من أجمل شواطئ المغرب.",
+      plan: {
+        jour1: [
+          {time:"09:00",emoji:"🏖️",activity:"Plage Quemado",place:"Plage Quemado",tip:"La plage principale d'Al Hoceïma avec eau cristalline",tags:["nature"]},
+          {time:"11:00",emoji:"🚤",activity:"Excursion en bateau",place:"Port d'Al Hoceïma",tip:"Tour des criques et grottes marines inaccessibles à pied",tags:["nature"]},
+          {time:"13:00",emoji:"🐟",activity:"Déjeuner poissons frais",place:"Restaurant port",tip:"Le poisson pêché le matin est servi directement au restaurant",tags:["food"]},
+          {time:"15:00",emoji:"🌊",activity:"Plage Asfiha",place:"Plage Asfiha",tip:"Moins fréquentée — eau turquoise exceptionnelle",tags:["nature"]},
+          {time:"17:30",emoji:"🌅",activity:"Coucher de soleil sur la Méditerranée",place:"Corniche Al Hoceïma",tip:"Vue magnifique sur l'îlot d'Al Hoceïma",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner méditerranéen",place:"Restaurant Al Hoceïma",tip:"Cuisine rifaine avec influence méditerranéenne unique",tags:["food","nuit"]}
+        ],
+        jour2: [
+          {time:"09:00",emoji:"🌿",activity:"Parc National d'Al Hoceïma",place:"Parc National",tip:"Randonnée dans le parc avec vue sur la Méditerranée",tags:["nature"]},
+          {time:"12:00",emoji:"🥗",activity:"Pique-nique dans le parc",place:"Parc National",tip:"Emportez des provisions depuis la ville",tags:["food","nature"]},
+          {time:"14:00",emoji:"🏖️",activity:"Plage Torres",place:"Plage Torres",tip:"Plage sauvage accessible en bateau — paradisiaque",tags:["nature"]},
+          {time:"16:30",emoji:"🛍️",activity:"Médina d'Al Hoceïma",place:"Médina",tip:"Petite médina authentique avec artisanat du Rif",tags:["shopping","culture"]},
+          {time:"18:30",emoji:"☕",activity:"Café terrasse vue mer",place:"Place du Rif",tip:"La place principale avec vue sur la baie",tags:["relax"]},
+          {time:"20:30",emoji:"🌙",activity:"Soirée en bord de mer",place:"Front de mer",tip:"Al Hoceïma est animée en été — ambiance détendue",tags:["nuit"]}
+        ]
+      }
+    },
+    { id:16, nom:"Asilah", nom_en:"Asilah", nom_ar:"أصيلة", region:"Tanger-Tétouan-Al Hoceïma", region_en:"Tangier-Tetouan", region_ar:"طنجة-تطوان-الحسيمة", img:"images/Asilah.jpg", maps_url:"https://maps.google.com/?q=Asilah+Morocco", saison:"Avr — Oct", budget:"25 — 50€",
+      desc_fr:"Asilah est une charmante ville côtière aux murailles blanches et bleues à 46 km de Tanger. Connue pour son festival culturel international et ses frises murales, c'est un joyau artistique face à l'Atlantique.",
+      desc_en:"Asilah is a charming coastal town with white and blue walls 46 km from Tangier. Known for its international cultural festival and wall murals, it is an artistic gem facing the Atlantic.",
+      desc_ar:"أصيلة مدينة ساحلية ساحرة بأسوارها البيضاء والزرقاء على بعد 46 كم من طنجة. مشهورة بمهرجانها الثقافي الدولي ولوحاتها الجدارية.",
+      plan: {
+        jour1: [
+          {time:"09:00",emoji:"🎨",activity:"Murales et art de rue",place:"Médina d'Asilah",tip:"Les fresques murales changent chaque année pendant le festival",tags:["culture"]},
+          {time:"11:00",emoji:"🏰",activity:"Remparts portugais",place:"Remparts d'Asilah",tip:"Vue magnifique sur l'Atlantique depuis les remparts",tags:["culture","nature"]},
+          {time:"13:00",emoji:"🐟",activity:"Déjeuner fruits de mer",place:"Restaurant médina",tip:"Asilah est réputée pour ses excellents restaurants de poissons",tags:["food"]},
+          {time:"15:00",emoji:"🏖️",activity:"Plage d'Asilah",place:"Plage d'Asilah",tip:"Belle plage atlantique face aux remparts — très photogénique",tags:["nature"]},
+          {time:"17:30",emoji:"🌅",activity:"Coucher de soleil remparts",place:"Remparts face à l'Atlantique",tip:"Un des plus beaux couchers de soleil du Maroc",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner sur terrasse",place:"Restaurant vue mer",tip:"Plusieurs restaurants offrent vue sur l'Atlantique",tags:["food","nuit"]}
+        ],
+        jour2: [
+          {time:"09:00",emoji:"🛍️",activity:"Galeries d'art",place:"Médina d'Asilah",tip:"Asilah a de nombreuses galeries d'artistes locaux et internationaux",tags:["culture"]},
+          {time:"11:00",emoji:"🏺",activity:"Palais de la Culture",place:"Palais Raissouni",tip:"Magnifique palais du 19e siècle avec vue sur l'Atlantique",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner traditionnel",place:"Restaurant médina",tip:"Tajine de poisson — spécialité d'Asilah",tags:["food"]},
+          {time:"15:00",emoji:"🚴",activity:"Vélo autour des remparts",place:"Tour des remparts",tip:"Le tour des remparts en vélo est une expérience unique",tags:["nature"]},
+          {time:"17:00",emoji:"🌊",activity:"Plage du nord",place:"Plage nord d'Asilah",tip:"Moins fréquentée que la plage principale",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée culturelle",place:"Centre Hassan II",tip:"En juillet le festival international attire artistes du monde entier",tags:["culture","nuit"]}
+        ]
+      }
+    },
+    { id:17, nom:"Mirleft", nom_en:"Mirleft", nom_ar:"ميرلفت", region:"Souss-Massa", region_en:"Souss-Massa", region_ar:"سوس-ماسة", img:"images/Mirleft.jpg", maps_url:"https://maps.google.com/?q=Mirleft+Morocco", saison:"Toute l'année", budget:"20 — 45€",
+      desc_fr:"Mirleft est un petit village côtier sauvage entre Agadir et Sidi Ifni. Ses criques préservées, ses falaises spectaculaires et son ambiance hippie et authentique en font un paradis pour les voyageurs en quête d'authenticité.",
+      desc_en:"Mirleft is a small wild coastal village between Agadir and Sidi Ifni. Its preserved coves, spectacular cliffs and hippie authentic atmosphere make it a paradise for travellers seeking authenticity.",
+      desc_ar:"ميرلفت قرية ساحلية صغيرة برية بين أكادير وسيدي إفني. خلجانها المحفوظة وجرفها الرائع وأجواؤها الأصيلة.",
+      plan: {
+        jour1: [
+          {time:"09:00",emoji:"🏖️",activity:"Exploration des criques",place:"Criques de Mirleft",tip:"Chaque crique est différente — explorez à pied le long des falaises",tags:["nature"]},
+          {time:"12:00",emoji:"🥗",activity:"Déjeuner café du village",place:"Village de Mirleft",tip:"Ambiance très détendue — petits cafés locaux authentiques",tags:["food"]},
+          {time:"14:00",emoji:"🏄",activity:"Surf ou bodyboard",place:"Plage principale Mirleft",tip:"Vagues excellentes pour le surf — spots peu fréquentés",tags:["nature"]},
+          {time:"16:30",emoji:"🌅",activity:"Falaises au coucher du soleil",place:"Falaises de Mirleft",tip:"Vue spectaculaire sur l'Atlantique depuis les falaises",tags:["nature"]},
+          {time:"19:00",emoji:"⭐",activity:"Observation des étoiles",place:"Collines de Mirleft",tip:"Pas de pollution lumineuse — ciel étoilé exceptionnel",tags:["nature","nuit"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner auberge locale",place:"Auberge de Mirleft",tip:"Les auberges servent une cuisine marocaine simple et délicieuse",tags:["food","nuit"]}
+        ],
+        jour2: [
+          {time:"08:00",emoji:"🥾",activity:"Randonnée côtière",place:"Sentier côtier Mirleft",tip:"Randonnée de 2h le long des falaises avec vues époustouflantes",tags:["nature"]},
+          {time:"11:00",emoji:"🌊",activity:"Baignade crique secrète",place:"Crique cachée",tip:"Demandez aux locaux l'accès aux criques secrètes",tags:["nature"]},
+          {time:"13:00",emoji:"🐟",activity:"Déjeuner poissons grillés",place:"Restaurant local",tip:"Poissons pêchés localement — ultra frais",tags:["food"]},
+          {time:"15:00",emoji:"🧘",activity:"Yoga face à l'Atlantique",place:"Falaises de Mirleft",tip:"Plusieurs retraites de yoga dans la région",tags:["relax"]},
+          {time:"17:30",emoji:"🌅",activity:"Sunset depuis les rochers",place:"Rochers de Mirleft",tip:"Un des plus beaux couchers de soleil du Maroc",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée étoilée",place:"Mirleft",tip:"Ambiance très calme et ressourçante",tags:["relax","nuit"]}
+        ]
+      }
+    },
+    { id:18, nom:"Sidi Ifni", nom_en:"Sidi Ifni", nom_ar:"سيدي إفني", region:"Guelmim-Oued Noun", region_en:"Guelmim-Oued Noun", region_ar:"كلميم-واد نون", img:"images/Sidi_Ifni.jpg", maps_url:"https://maps.google.com/?q=Sidi+Ifni+Morocco", saison:"Toute l'année", budget:"20 — 40€",
+      desc_fr:"Sidi Ifni est une ville côtière unique avec son architecture Art Déco espagnole exceptionnelle. Ancienne enclave espagnole jusqu'en 1969, elle offre un mélange fascinant de cultures berbère, africaine et espagnole face à l'Atlantique.",
+      desc_en:"Sidi Ifni is a unique coastal town with exceptional Spanish Art Deco architecture. A former Spanish enclave until 1969, it offers a fascinating mix of Berber, African and Spanish cultures.",
+      desc_ar:"سيدي إفني مدينة ساحلية فريدة بطرازها المعماري الإسباني الاستثنائي. كانت مستعمرة إسبانية حتى 1969.",
+      plan: {
+        jour1: [
+          {time:"09:00",emoji:"🏛️",activity:"Architecture Art Déco espagnole",place:"Centre-ville Sidi Ifni",tip:"Les bâtiments Art Déco des années 1930 sont uniques en Afrique",tags:["culture"]},
+          {time:"11:00",emoji:"🏖️",activity:"Plage de Sidi Ifni",place:"Plage de Sidi Ifni",tip:"Longue plage sauvage face à l'Atlantique",tags:["nature"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner spécialités locales",place:"Restaurant Sidi Ifni",tip:"Cuisine berbère avec influence espagnole — unique au Maroc",tags:["food"]},
+          {time:"15:00",emoji:"🎨",activity:"Ancienne église espagnole",place:"Église convertie",tip:"L'ancienne église espagnole est maintenant un tribunal — architecture remarquable",tags:["culture"]},
+          {time:"17:00",emoji:"🌅",activity:"Coucher de soleil Atlantique",place:"Front de mer",tip:"Le coucher de soleil sur l'Atlantique depuis Sidi Ifni est spectaculaire",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner poissons grillés",place:"Restaurant bord de mer",tip:"Poissons frais pêchés localement",tags:["food","nuit"]}
+        ],
+        jour2: [
+          {time:"09:00",emoji:"🛍️",activity:"Marché hebdomadaire",place:"Souk de Sidi Ifni",tip:"Le marché du dimanche rassemble les tribus berbères locales",tags:["culture","shopping"]},
+          {time:"11:00",emoji:"🏄",activity:"Surf atlantique",place:"Plage de Sidi Ifni",tip:"Spots de surf excellents peu fréquentés",tags:["nature"]},
+          {time:"13:00",emoji:"🥗",activity:"Déjeuner café local",place:"Café du centre",tip:"Ambiance très authentique loin du tourisme de masse",tags:["food"]},
+          {time:"15:00",emoji:"🚗",activity:"Route des criques vers Mirleft",place:"Côte entre Sidi Ifni et Mirleft",tip:"Route côtière avec des paysages époustouflants",tags:["nature"]},
+          {time:"17:30",emoji:"🌅",activity:"Falaises du sud",place:"Côte sud de Sidi Ifni",tip:"Falaises dramatiques face à l'Atlantique",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée tranquille",place:"Sidi Ifni",tip:"Ville très calme et authentique — parfaite pour se ressourcer",tags:["relax","nuit"]}
+        ]
+      }
     }
   ],
 
@@ -361,7 +499,22 @@ var DATA = {
     { id:77, nom:"Anchor Point Taghazout", nom_en:"Anchor Point", nom_ar:"نقطة الارتكاز", ville:"Taghazout", cat:"Surf", img:"images/Taghazout.jpg", maps_url:"https://maps.google.com/?q=Anchor+Point+Taghazout", desc_fr:"L'un des meilleurs spots de surf d'Afrique avec des vagues de droite pouvant atteindre 4 mètres.", desc_en:"One of Africa's best surf spots with right-hand waves up to 4 metres.", desc_ar:"أحد أفضل مواقع ركوب الأمواج في أفريقيا." },
     { id:78, nom:"Village d'Aourir", nom_en:"Aourir Village", nom_ar:"قرية أورير", ville:"Taghazout", cat:"Culture", img:"images/Taghazout.jpg", maps_url:"https://maps.google.com/?q=Aourir+Beach+Taghazout", desc_fr:"Village côtier adjacent à Taghazout avec son marché aux bananes et sa plage tranquille.", desc_en:"Coastal village adjacent to Taghazout with its banana market.", desc_ar:"قرية ساحلية مجاورة لتغاوت بسوق الموز." },
     { id:79, nom:"Centre Yoga Taghazout", nom_en:"Taghazout Yoga Center", nom_ar:"مركز يوغا تغاوت", ville:"Taghazout", cat:"Bien-être", img:"images/Taghazout.jpg", maps_url:"https://maps.google.com/?q=Yoga+Taghazout", desc_fr:"Taghazout est devenu un centre de bien-être avec de nombreuses retraites de yoga face à l'Atlantique.", desc_en:"Taghazout has become a wellness hub with numerous yoga retreats.", desc_ar:"أصبحت تغاوت مركزاً للعافية مع ملاجئ اليوغا العديدة." }
-  ],
+,
+    { id:80, nom:"Lagon de Dakhla", nom_en:"Dakhla Lagoon", nom_ar:"بحيرة الداخلة", ville:"Dakhla", cat:"Nature", img:"images/Dakhla.jpg", maps_url:"https://maps.google.com/?q=Dakhla+Lagoon", desc_fr:"Le lagon de Dakhla s'étend sur 40 km, avec des eaux turquoise parfaites pour le kitesurf et le windsurf.", desc_en:"Dakhla lagoon stretches 40 km with turquoise waters perfect for kitesurfing.", desc_ar:"يمتد بحيرة الداخلة على 40 كم بمياه فيروزية مثالية للكايت سيرف." },
+    { id:81, nom:"Dunes atlantiques Dakhla", nom_en:"Dakhla Atlantic Dunes", nom_ar:"كثبان الداخلة الأطلسية", ville:"Dakhla", cat:"Nature", img:"images/Dakhla.jpg", maps_url:"https://maps.google.com/?q=Dakhla+Dunes", desc_fr:"Dunes de sable dorées qui rencontrent l'océan Atlantique — un paysage unique au monde.", desc_en:"Golden sand dunes meeting the Atlantic Ocean — a unique landscape worldwide.", desc_ar:"كثبان رملية ذهبية تلتقي بالمحيط الأطلسي — منظر فريد في العالم." },
+    { id:82, nom:"Port de Dakhla", nom_en:"Dakhla Port", nom_ar:"ميناء الداخلة", ville:"Dakhla", cat:"Port", img:"images/Dakhla.jpg", maps_url:"https://maps.google.com/?q=Dakhla+Port", desc_fr:"Port de pêche animé où les bateaux ramènent chaque matin homards, crevettes et poissons frais.", desc_en:"Lively fishing port where boats bring back lobsters, shrimps and fresh fish every morning.", desc_ar:"ميناء صيد نابض بالحياة تعود منه القوارب كل صباح بالكركند والروبيان." },
+    { id:83, nom:"Plage de Saïdia", nom_en:"Saidia Beach", nom_ar:"شاطئ السعيدية", ville:"Saïdia", cat:"Plage", img:"images/Saidia.jpg", maps_url:"https://maps.google.com/?q=Saidia+Beach", desc_fr:"14 km de sable fin sur la Méditerranée, la plus longue plage du Maroc méditerranéen.", desc_en:"14 km of fine sand on the Mediterranean, the longest beach on Morocco's Mediterranean coast.", desc_ar:"14 كم من الرمال الناعمة على البحر المتوسط، أطول شاطئ على الساحل المتوسطي للمغرب." },
+    { id:84, nom:"Marina de Saïdia", nom_en:"Saidia Marina", nom_ar:"مارينا السعيدية", ville:"Saïdia", cat:"Loisirs", img:"images/Saidia.jpg", maps_url:"https://maps.google.com/?q=Saidia+Marina", desc_fr:"Marina moderne avec restaurants, boutiques et activités nautiques au bord de la Méditerranée.", desc_en:"Modern marina with restaurants, shops and water sports on the Mediterranean.", desc_ar:"مارينا حديثة مع مطاعم ومحلات وأنشطة مائية على شاطئ البحر المتوسط." },
+    { id:85, nom:"Réserve de la Moulouya", nom_en:"Moulouya Reserve", nom_ar:"محمية ملوية", ville:"Saïdia", cat:"Nature", img:"images/Saidia.jpg", maps_url:"https://maps.google.com/?q=Moulouya+Reserve+Saidia", desc_fr:"Réserve naturelle à l'embouchure de la Moulouya, paradis pour les oiseaux migrateurs.", desc_en:"Natural reserve at the Moulouya estuary, paradise for migratory birds.", desc_ar:"محمية طبيعية عند مصب ملوية، جنة للطيور المهاجرة." },
+    { id:86, nom:"Plage Quemado Al Hoceïma", nom_en:"Quemado Beach Al Hoceima", nom_ar:"شاطئ الكيمادو الحسيمة", ville:"Al Hoceïma", cat:"Plage", img:"images/Al_Hoceima.jpg", maps_url:"https://maps.google.com/?q=Quemado+Beach+Al+Hoceima", desc_fr:"La plage principale d'Al Hoceïma avec ses eaux turquoise cristallines, parmi les plus belles du Maroc.", desc_en:"Al Hoceima's main beach with crystal turquoise waters, among Morocco's most beautiful.", desc_ar:"الشاطئ الرئيسي للحسيمة بمياه فيروزية صافية من أجمل شواطئ المغرب." },
+    { id:87, nom:"Parc National Al Hoceïma", nom_en:"Al Hoceima National Park", nom_ar:"الحديقة الوطنية الحسيمة", ville:"Al Hoceïma", cat:"Nature", img:"images/Al_Hoceima.jpg", maps_url:"https://maps.google.com/?q=Al+Hoceima+National+Park", desc_fr:"Parc national marin avec des falaises spectaculaires, des grottes marines et une biodiversité exceptionnelle.", desc_en:"Marine national park with spectacular cliffs, sea caves and exceptional biodiversity.", desc_ar:"حديقة وطنية بحرية بجروف رائعة وكهوف بحرية وتنوع بيولوجي استثنائي." },
+    { id:88, nom:"Remparts d'Asilah", nom_en:"Asilah Ramparts", nom_ar:"أسوار أصيلة", ville:"Asilah", cat:"Patrimoine", img:"images/Asilah.jpg", maps_url:"https://maps.google.com/?q=Asilah+Ramparts", desc_fr:"Remparts portugais du 15e siècle dominant l'Atlantique, entourés de fresques murales contemporaines.", desc_en:"15th century Portuguese ramparts overlooking the Atlantic, surrounded by contemporary murals.", desc_ar:"أسوار برتغالية من القرن الخامس عشر تطل على الأطلسي محاطة بجداريات معاصرة." },
+    { id:89, nom:"Fresques murales Asilah", nom_en:"Asilah Wall Murals", nom_ar:"جداريات أصيلة", ville:"Asilah", cat:"Culture", img:"images/Asilah.jpg", maps_url:"https://maps.google.com/?q=Asilah+Murals", desc_fr:"Des fresques murales d'artistes du monde entier ornent les murs de la médina depuis le festival annuel.", desc_en:"Wall murals by artists from around the world adorn the medina walls since the annual festival.", desc_ar:"جداريات فنية لفنانين من العالم أجمع تزيّن جدران المدينة منذ المهرجان السنوي." },
+    { id:90, nom:"Plage d'Asilah", nom_en:"Asilah Beach", nom_ar:"شاطئ أصيلة", ville:"Asilah", cat:"Plage", img:"images/Asilah.jpg", maps_url:"https://maps.google.com/?q=Asilah+Beach", desc_fr:"Belle plage atlantique face aux remparts historiques d'Asilah — très photogénique.", desc_en:"Beautiful Atlantic beach facing Asilah's historic ramparts — very photogenic.", desc_ar:"شاطئ أطلسي جميل مقابل الأسوار التاريخية لأصيلة." },
+    { id:91, nom:"Criques de Mirleft", nom_en:"Mirleft Coves", nom_ar:"خلجان ميرلفت", ville:"Mirleft", cat:"Nature", img:"images/Mirleft.jpg", maps_url:"https://maps.google.com/?q=Mirleft+Coves", desc_fr:"Des criques sauvages et préservées accessibles à pied depuis Mirleft — parmi les plus belles du Maroc.", desc_en:"Wild and preserved coves accessible on foot from Mirleft — among Morocco's most beautiful.", desc_ar:"خلجان برية محفوظة يمكن الوصول إليها سيراً من ميرلفت." },
+    { id:92, nom:"Falaises de Mirleft", nom_en:"Mirleft Cliffs", nom_ar:"جروف ميرلفت", ville:"Mirleft", cat:"Nature", img:"images/Mirleft.jpg", maps_url:"https://maps.google.com/?q=Mirleft+Cliffs", desc_fr:"Falaises spectaculaires plongeant dans l'Atlantique — couchers de soleil inoubliables.", desc_en:"Spectacular cliffs plunging into the Atlantic — unforgettable sunsets.", desc_ar:"جروف رائعة تنغمس في الأطلسي وغروب شمس لا يُنسى." },
+    { id:93, nom:"Architecture Art Déco Sidi Ifni", nom_en:"Sidi Ifni Art Deco", nom_ar:"طراز فن الديكو سيدي إفني", ville:"Sidi Ifni", cat:"Architecture", img:"images/Sidi_Ifni.jpg", maps_url:"https://maps.google.com/?q=Sidi+Ifni+Architecture", desc_fr:"Ensemble architectural Art Déco espagnol des années 1930 unique en Afrique — classé monument historique.", desc_en:"Spanish Art Deco architectural ensemble from the 1930s unique in Africa.", desc_ar:"مجموعة معمارية إسبانية من الثلاثينيات فريدة في أفريقيا." },
+    { id:94, nom:"Plage de Sidi Ifni", nom_en:"Sidi Ifni Beach", nom_ar:"شاطئ سيدي إفني", ville:"Sidi Ifni", cat:"Plage", img:"images/Sidi_Ifni.jpg", maps_url:"https://maps.google.com/?q=Sidi+Ifni+Beach", desc_fr:"Longue plage sauvage face à l'Atlantique avec de bonnes vagues pour le surf.", desc_en:"Long wild beach facing the Atlantic with good waves for surfing.", desc_ar:"شاطئ طويل برية على الأطلسي بأمواج جيدة للتزلج." }  ],
 
   gastronomie: [
     { id:1, nom:"Tajine", nom_en:"Tajine", nom_ar:"الطاجين", type:"Plat principal", prix:"5-12€", img:"images/Tajine.jpg", desc_fr:"Le plat emblématique du Maroc cuit lentement dans un plat en terre cuite conique.", desc_en:"Morocco's emblematic dish slow-cooked in a conical earthenware pot.", desc_ar:"الطبق الرمزي للمغرب." },

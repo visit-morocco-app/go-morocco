@@ -900,30 +900,32 @@ body.ar .bottom-nav{direction:ltr}
     console.log('Redirect error:', e.code);
   });
 
-  // Listen to auth state - keep splash visible until Firebase responds
-  let authResolved = false;
-  onAuthStateChanged(auth, async (user) => {
-    if (!authResolved) {
-      authResolved = true;
-      // Hide splash only after Firebase confirms auth state
-      document.getElementById('splash').classList.add('hide');
-      setTimeout(() => { document.getElementById('splash').style.display='none'; }, 600);
-    }
-    if (user) {
-      currentUser = user;
-      await loadUserFavorites(user.uid);
-      showApp();
-    } else {
-      // Only show auth if not coming from a redirect
-      getRedirectResult(auth).then((result) => {
-        if (!result) {
+  // Check redirect result first, THEN listen to auth state
+  getRedirectResult(auth)
+    .then(async (result) => {
+      if (result && result.user) {
+        await createUserProfile(result.user);
+      }
+    })
+    .catch((e) => console.log('redirect:', e.code))
+    .finally(() => {
+      // NOW listen to auth state after redirect is resolved
+      onAuthStateChanged(auth, async (user) => {
+        // Hide splash
+        document.getElementById('splash').classList.add('hide');
+        setTimeout(() => { 
+          document.getElementById('splash').style.display='none'; 
+        }, 600);
+        
+        if (user) {
+          currentUser = user;
+          await loadUserFavorites(user.uid);
+          showApp();
+        } else {
           document.getElementById('auth-screen').classList.add('show');
         }
-      }).catch(() => {
-        document.getElementById('auth-screen').classList.add('show');
       });
-    }
-  });
+    });
 
   window.loginWithGoogle = async function() {
     try {

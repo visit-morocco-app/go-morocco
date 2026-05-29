@@ -891,6 +891,16 @@ body.ar .bottom-nav{direction:ltr}
   var currentUser = null;
   var userFavorites = { villes: [], lieux: [] };
 
+  // Handle redirect result FIRST
+  getRedirectResult(auth).then(async (result) => {
+    if (result && result.user) {
+      await createUserProfile(result.user);
+    }
+  }).catch((e) => {
+    console.log('Redirect error:', e.code);
+  });
+
+  // Then listen to auth state
   onAuthStateChanged(auth, async (user) => {
     document.getElementById('splash').classList.add('hide');
     setTimeout(() => { document.getElementById('splash').style.display='none'; }, 600);
@@ -901,15 +911,6 @@ body.ar .bottom-nav{direction:ltr}
     } else {
       document.getElementById('auth-screen').classList.add('show');
     }
-  });
-
-  // Handle redirect result on page load
-  getRedirectResult(auth).then(async (result) => {
-    if (result && result.user) {
-      await createUserProfile(result.user);
-    }
-  }).catch((e) => {
-    console.log('Redirect error:', e);
   });
 
   window.loginWithGoogle = async function() {

@@ -312,6 +312,218 @@ body.ar .bottom-nav{direction:ltr}
 .about-section{margin-bottom:20px}
 .about-section-title{font-size:12px;font-weight:600;color:var(--violet);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 .about-section-text{font-size:14px;color:var(--text2);line-height:1.7}
+/* =============================================
+   AUTH SCREEN CSS
+   ============================================= */
+
+#auth-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  background: white;
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+}
+#auth-screen.show { display: flex; }
+
+/* HEADER */
+.auth-bg {
+  background: linear-gradient(160deg, #4A148C 0%, #6A1B9A 50%, #880E4F 100%);
+  padding: 60px 28px 50px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.auth-bg::before {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  top: -100px;
+  right: -80px;
+}
+.auth-bg::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  bottom: -60px;
+  left: -40px;
+}
+.auth-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+.auth-app-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: white;
+  font-style: italic;
+  font-weight: 700;
+}
+.auth-app-tag {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+/* BODY */
+.auth-body {
+  padding: 28px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+/* TABS */
+.auth-tabs {
+  display: flex;
+  background: #F3E5F5;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.auth-tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.auth-tab.active {
+  background: white;
+  color: #4A148C;
+  box-shadow: 0 2px 8px rgba(74,20,140,0.15);
+}
+
+/* FORMS */
+.auth-form { display: none; flex-direction: column; gap: 14px; }
+.auth-form.active { display: flex; }
+
+/* GOOGLE BTN */
+.btn-google {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #E8E8E8;
+  border-radius: 12px;
+  background: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.btn-google:active { transform: scale(0.98); }
+.btn-google:hover { border-color: #4A148C; }
+
+/* DIVIDER */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #CCC;
+  font-size: 13px;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #E8E8E8;
+}
+
+/* FIELDS */
+.auth-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid #E8E8E8;
+  border-radius: 12px;
+  padding: 0 16px;
+  transition: border-color 0.2s;
+  background: white;
+}
+.auth-field:focus-within { border-color: #4A148C; }
+.auth-field-icon { font-size: 18px; flex-shrink: 0; }
+.auth-input {
+  flex: 1;
+  padding: 14px 0;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #1A1A1A;
+  background: transparent;
+  direction: ltr;
+}
+.auth-input::placeholder { color: #BBB; }
+
+/* PRIMARY BTN */
+.btn-primary {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #4A148C, #6A1B9A);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(74,20,140,0.3);
+  transition: all 0.2s;
+  margin-top: 4px;
+}
+.btn-primary:active { transform: scale(0.98); }
+
+/* FORGOT */
+.auth-forgot {
+  text-align: right;
+  font-size: 13px;
+  color: #4A148C;
+  cursor: pointer;
+  margin-top: -6px;
+}
+
+/* ERROR */
+.auth-error {
+  font-size: 13px;
+  color: #C62828;
+  text-align: center;
+  min-height: 18px;
+}
+
+/* GUEST */
+.auth-guest-btn {
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+  cursor: pointer;
+  padding: 20px 0 10px;
+  text-decoration: underline;
+}
+
 </style>
 </head>
 <body>
@@ -331,29 +543,100 @@ body.ar .bottom-nav{direction:ltr}
   <div class="splash-tag">Where every journey leaves a mark</div>
 </div>
 
-<!-- AUTH -->
+<!-- AUTH SCREEN - Remplace l'ancien #auth-screen -->
 <div id="auth-screen">
-  <div class="auth-header">
-    <svg class="auth-logo" viewBox="0 0 200 200">
-      <g transform="translate(100,100)" fill="none" stroke-linecap="round">
-        <ellipse cx="0" cy="0" rx="6" ry="8" stroke="#FFF" stroke-width="3"/>
-        <ellipse cx="0" cy="0" rx="14" ry="18" stroke="#FFF" stroke-width="2.5"/>
-        <ellipse cx="0" cy="0" rx="22" ry="28" stroke="#FFE88A" stroke-width="2.2"/>
-        <path d="M-32,-8 Q-28,-34 0,-42 Q28,-34 32,-8 Q28,16 0,36 Q-28,16 -32,-8Z" stroke="#FFD85A" stroke-width="2"/>
-      </g>
-    </svg>
-    <div class="auth-title">Go Morocco</div>
-    <div class="auth-sub">Where every journey leaves a mark</div>
+  <div class="auth-bg">
+    <div class="auth-logo-wrap">
+      <svg width="80" height="80" viewBox="0 0 200 200">
+        <g transform="translate(100,100)" fill="none" stroke-linecap="round">
+          <ellipse cx="0" cy="0" rx="6" ry="8" stroke="#FFF" stroke-width="3"/>
+          <ellipse cx="0" cy="0" rx="14" ry="18" stroke="#FFF" stroke-width="2.5"/>
+          <ellipse cx="0" cy="0" rx="22" ry="28" stroke="#FFE88A" stroke-width="2.2"/>
+          <path d="M-32,-8 Q-28,-34 0,-42 Q28,-34 32,-8 Q28,16 0,36 Q-28,16 -32,-8Z" stroke="#FFD85A" stroke-width="2"/>
+        </g>
+      </svg>
+      <div class="auth-app-name">Go Morocco</div>
+      <div class="auth-app-tag">Where every journey leaves a mark</div>
+    </div>
   </div>
+
   <div class="auth-body">
-    <div class="auth-label">Votre prénom</div>
-    <input class="auth-input" type="text" placeholder="Ex: Ahmed" id="auth-name">
-    <div class="auth-label">Votre email</div>
-    <input class="auth-input" type="email" placeholder="exemple@email.com" id="auth-email">
-    <button class="auth-btn" onclick="login()">Commencer l'aventure →</button>
-    <div class="auth-guest" onclick="login()">Continuer sans compte</div>
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tab-login" onclick="showAuthTab('login')">Connexion</div>
+      <div class="auth-tab" id="tab-register" onclick="showAuthTab('register')">Inscription</div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="auth-form active" id="form-login">
+      <!-- Google Login -->
+      <button class="btn-google" onclick="loginWithGoogle()">
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        Continuer avec Google
+      </button>
+
+      <div class="auth-divider"><span>ou</span></div>
+
+      <div class="auth-field">
+        <div class="auth-field-icon">📧</div>
+        <input type="email" id="login-email" placeholder="Votre email" class="auth-input">
+      </div>
+      <div class="auth-field">
+        <div class="auth-field-icon">🔒</div>
+        <input type="password" id="login-password" placeholder="Mot de passe" class="auth-input">
+      </div>
+
+      <div class="auth-forgot" onclick="forgotPassword()">Mot de passe oublié ?</div>
+
+      <button class="btn-primary" onclick="loginWithEmail()">Se connecter</button>
+
+      <div id="login-error" class="auth-error"></div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="auth-form" id="form-register">
+      <button class="btn-google" onclick="loginWithGoogle()">
+        <svg width="20" height="20" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        S'inscrire avec Google
+      </button>
+
+      <div class="auth-divider"><span>ou</span></div>
+
+      <div class="auth-field">
+        <div class="auth-field-icon">👤</div>
+        <input type="text" id="register-name" placeholder="Votre prénom" class="auth-input">
+      </div>
+      <div class="auth-field">
+        <div class="auth-field-icon">📧</div>
+        <input type="email" id="register-email" placeholder="Votre email" class="auth-input">
+      </div>
+      <div class="auth-field">
+        <div class="auth-field-icon">🔒</div>
+        <input type="password" id="register-password" placeholder="Mot de passe (6+ caractères)" class="auth-input">
+      </div>
+
+      <button class="btn-primary" onclick="registerWithEmail()">Créer mon compte</button>
+
+      <div id="register-error" class="auth-error"></div>
+    </div>
+
+    <!-- GUEST -->
+    <div class="auth-guest-btn" onclick="loginAsGuest()">
+      Continuer sans compte →
+    </div>
   </div>
 </div>
+
 
 <!-- APP -->
 <div id="app">
@@ -585,6 +868,195 @@ body.ar .bottom-nav{direction:ltr}
 </div>
 
 <!-- SCRIPTS -->
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyARbKS_Tsph4EAaJKedfUh3VItDsPPh_MQ",
+    authDomain: "go-morocco-71608.firebaseapp.com",
+    projectId: "go-morocco-71608",
+    storageBucket: "go-morocco-71608.firebasestorage.app",
+    messagingSenderId: "328164981722",
+    appId: "1:328164981722:web:9bc9b8fe5cf5ca2b44dee3"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  var currentUser = null;
+  var userFavorites = { villes: [], lieux: [] };
+
+  onAuthStateChanged(auth, async (user) => {
+    document.getElementById('splash').classList.add('hide');
+    setTimeout(() => { document.getElementById('splash').style.display='none'; }, 600);
+    if (user) {
+      currentUser = user;
+      await loadUserFavorites(user.uid);
+      showApp();
+    } else {
+      document.getElementById('auth-screen').classList.add('show');
+    }
+  });
+
+  // Handle redirect result on page load
+  getRedirectResult(auth).then(async (result) => {
+    if (result && result.user) {
+      await createUserProfile(result.user);
+    }
+  }).catch((e) => {
+    console.log('Redirect error:', e);
+  });
+
+  window.loginWithGoogle = async function() {
+    try {
+      await signInWithRedirect(auth, googleProvider);
+    } catch(e) {
+      showError('login-error', getErrorMsg(e.code));
+    }
+  };
+
+  window.loginWithEmail = async function() {
+    const email = document.getElementById('login-email').value.trim();
+    const pass = document.getElementById('login-password').value;
+    if(!email||!pass){ showError('login-error','Remplissez tous les champs'); return; }
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+    } catch(e) { showError('login-error', getErrorMsg(e.code)); }
+  };
+
+  window.registerWithEmail = async function() {
+    const name = document.getElementById('register-name').value.trim();
+    const email = document.getElementById('register-email').value.trim();
+    const pass = document.getElementById('register-password').value;
+    if(!name||!email||!pass){ showError('register-error','Remplissez tous les champs'); return; }
+    if(pass.length<6){ showError('register-error','Mot de passe trop court (6+ caractères)'); return; }
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(result.user, { displayName: name });
+      await createUserProfile(result.user, name);
+    } catch(e) { showError('register-error', getErrorMsg(e.code)); }
+  };
+
+  window.forgotPassword = async function() {
+    const email = document.getElementById('login-email').value.trim();
+    if(!email){ showError('login-error','Entrez votre email'); return; }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      showError('login-error','✅ Email envoyé !');
+    } catch(e) { showError('login-error', getErrorMsg(e.code)); }
+  };
+
+  window.loginAsGuest = function() {
+    document.getElementById('auth-screen').classList.remove('show');
+    showApp();
+  };
+
+  window.logout = async function() {
+    await signOut(auth);
+    currentUser = null;
+    userFavorites = { villes:[], lieux:[] };
+    document.getElementById('app').classList.remove('show');
+    document.getElementById('auth-screen').classList.add('show');
+  };
+
+  async function createUserProfile(user, name) {
+    const ref = doc(db,'users',user.uid);
+    const snap = await getDoc(ref);
+    if(!snap.exists()) {
+      await setDoc(ref, {
+        uid: user.uid,
+        name: name||user.displayName||'Voyageur',
+        email: user.email,
+        photo: user.photoURL||'',
+        lang: 'fr',
+        favorites: { villes:[], lieux:[] },
+        createdAt: new Date().toISOString()
+      });
+    }
+  }
+
+  async function loadUserFavorites(uid) {
+    try {
+      const snap = await getDoc(doc(db,'users',uid));
+      if(snap.exists()) userFavorites = snap.data().favorites||{villes:[],lieux:[]};
+    } catch(e) { console.log('Favoris:', e); }
+  }
+
+  window.toggleFavVille = async function(id) {
+    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
+    const isFav = userFavorites.villes.includes(id);
+    const ref = doc(db,'users',currentUser.uid);
+    if(isFav) {
+      userFavorites.villes = userFavorites.villes.filter(x=>x!==id);
+      await updateDoc(ref,{'favorites.villes': arrayRemove(id)});
+    } else {
+      userFavorites.villes.push(id);
+      await updateDoc(ref,{'favorites.villes': arrayUnion(id)});
+    }
+    const btn = document.getElementById('fav-ville-'+id);
+    if(btn) btn.textContent = isFav ? '🤍' : '❤️';
+  };
+
+  window.toggleFavLieu = async function(id) {
+    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
+    const isFav = userFavorites.lieux.includes(id);
+    const ref = doc(db,'users',currentUser.uid);
+    if(isFav) {
+      userFavorites.lieux = userFavorites.lieux.filter(x=>x!==id);
+      await updateDoc(ref,{'favorites.lieux': arrayRemove(id)});
+    } else {
+      userFavorites.lieux.push(id);
+      await updateDoc(ref,{'favorites.lieux': arrayUnion(id)});
+    }
+    const btn = document.getElementById('fav-lieu-'+id);
+    if(btn) btn.textContent = isFav ? '❤️' : '🤍';
+  };
+
+  window.isFavVille = function(id) { return userFavorites.villes.includes(id); };
+  window.isFavLieu = function(id) { return userFavorites.lieux.includes(id); };
+
+  function showApp() {
+    document.getElementById('auth-screen').classList.remove('show');
+    document.getElementById('app').classList.add('show');
+    renderAll();
+  }
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    if(el) el.textContent = msg;
+  }
+
+  function getErrorMsg(code) {
+    const msgs = {
+      'auth/user-not-found': 'Aucun compte avec cet email',
+      'auth/wrong-password': 'Mot de passe incorrect',
+      'auth/email-already-in-use': 'Email déjà utilisé',
+      'auth/weak-password': 'Mot de passe trop faible',
+      'auth/invalid-email': 'Email invalide',
+      'auth/too-many-requests': 'Trop de tentatives, réessayez plus tard',
+      'auth/network-request-failed': 'Erreur réseau',
+      'auth/popup-closed-by-user': 'Connexion annulée',
+      'auth/invalid-credential': 'Email ou mot de passe incorrect',
+    };
+    return msgs[code] || 'Une erreur est survenue';
+  }
+
+  window.showAuthTab = function(tab) {
+    document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active'));
+    document.getElementById('tab-'+tab).classList.add('active');
+    document.getElementById('form-'+tab).classList.add('active');
+    document.getElementById('login-error').textContent='';
+    document.getElementById('register-error').textContent='';
+  };
+
+  window.getCurrentUser = function() { return currentUser; };
+</script>
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>

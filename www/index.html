@@ -19,7 +19,7 @@ body.ar{font-family:'Amiri','Inter',sans-serif;direction:rtl}
 body.ar .bottom-nav{direction:ltr}
 
 /* SPLASH */
-#splash{position:fixed;inset:0;z-index:9999;background:var(--violet);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity 0.6s}
+#splash{position:fixed;inset:0;z-index:9999;background:var(--violet);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity 0.8s ease}
 #splash.hide{opacity:0;pointer-events:none}
 .splash-logo{width:90px;height:90px;animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
@@ -900,177 +900,46 @@ body.ar .bottom-nav{direction:ltr}
     console.log('Redirect error:', e.code);
   });
 
-  // Check redirect result first, THEN listen to auth state
-  getRedirectResult(auth)
-    .then(async (result) => {
-      if (result && result.user) {
-        await createUserProfile(result.user);
-      }
-    })
-    .catch((e) => console.log('redirect:', e.code))
-    .finally(() => {
-      // NOW listen to auth state after redirect is resolved
-      onAuthStateChanged(auth, async (user) => {
-        // Hide splash
-        document.getElementById('splash').classList.add('hide');
-        setTimeout(() => { 
-          document.getElementById('splash').style.display='none'; 
-        }, 600);
-        
-        if (user) {
-          currentUser = user;
-          await loadUserFavorites(user.uid);
-          showApp();
-        } else {
+  // Simple auth flow
+  var authReady = false;
+  var splashHidden = false;
+
+  function hideSplash() {
+    if (!splashHidden) {
+      splashHidden = true;
+      document.getElementById('splash').classList.add('hide');
+      setTimeout(() => { 
+        document.getElementById('splash').style.display = 'none'; 
+      }, 800);
+    }
+  }
+
+  // Handle Google redirect result
+  getRedirectResult(auth).then(async (result) => {
+    if (result && result.user) {
+      await createUserProfile(result.user);
+    }
+  }).catch((e) => {
+    console.log('redirect error:', e.code);
+  });
+
+  // Auth state listener
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      await loadUserFavorites(user.uid);
+      hideSplash();
+      showApp();
+    } else {
+      // Wait 2.5s before showing auth to handle Google redirect timing
+      setTimeout(() => {
+        if (!currentUser) {
+          hideSplash();
           document.getElementById('auth-screen').classList.add('show');
         }
-      });
-    });
-
-  window.loginWithGoogle = async function() {
-    try {
-      await signInWithRedirect(auth, googleProvider);
-    } catch(e) {
-      showError('login-error', getErrorMsg(e.code));
+      }, 2500);
     }
-  };
-
-  window.loginWithEmail = async function() {
-    const email = document.getElementById('login-email').value.trim();
-    const pass = document.getElementById('login-password').value;
-    if(!email||!pass){ showError('login-error','Remplissez tous les champs'); return; }
-    try {
-      await signInWithEmailAndPassword(auth, email, pass);
-    } catch(e) { showError('login-error', getErrorMsg(e.code)); }
-  };
-
-  window.registerWithEmail = async function() {
-    const name = document.getElementById('register-name').value.trim();
-    const email = document.getElementById('register-email').value.trim();
-    const pass = document.getElementById('register-password').value;
-    if(!name||!email||!pass){ showError('register-error','Remplissez tous les champs'); return; }
-    if(pass.length<6){ showError('register-error','Mot de passe trop court (6+ caractères)'); return; }
-    try {
-      const result = await createUserWithEmailAndPassword(auth, email, pass);
-      await updateProfile(result.user, { displayName: name });
-      await createUserProfile(result.user, name);
-    } catch(e) { showError('register-error', getErrorMsg(e.code)); }
-  };
-
-  window.forgotPassword = async function() {
-    const email = document.getElementById('login-email').value.trim();
-    if(!email){ showError('login-error','Entrez votre email'); return; }
-    try {
-      await sendPasswordResetEmail(auth, email);
-      showError('login-error','✅ Email envoyé !');
-    } catch(e) { showError('login-error', getErrorMsg(e.code)); }
-  };
-
-  window.loginAsGuest = function() {
-    document.getElementById('auth-screen').classList.remove('show');
-    showApp();
-  };
-
-  window.logout = async function() {
-    await signOut(auth);
-    currentUser = null;
-    userFavorites = { villes:[], lieux:[] };
-    document.getElementById('app').classList.remove('show');
-    document.getElementById('auth-screen').classList.add('show');
-  };
-
-  async function createUserProfile(user, name) {
-    const ref = doc(db,'users',user.uid);
-    const snap = await getDoc(ref);
-    if(!snap.exists()) {
-      await setDoc(ref, {
-        uid: user.uid,
-        name: name||user.displayName||'Voyageur',
-        email: user.email,
-        photo: user.photoURL||'',
-        lang: 'fr',
-        favorites: { villes:[], lieux:[] },
-        createdAt: new Date().toISOString()
-      });
-    }
-  }
-
-  async function loadUserFavorites(uid) {
-    try {
-      const snap = await getDoc(doc(db,'users',uid));
-      if(snap.exists()) userFavorites = snap.data().favorites||{villes:[],lieux:[]};
-    } catch(e) { console.log('Favoris:', e); }
-  }
-
-  window.toggleFavVille = async function(id) {
-    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
-    const isFav = userFavorites.villes.includes(id);
-    const ref = doc(db,'users',currentUser.uid);
-    if(isFav) {
-      userFavorites.villes = userFavorites.villes.filter(x=>x!==id);
-      await updateDoc(ref,{'favorites.villes': arrayRemove(id)});
-    } else {
-      userFavorites.villes.push(id);
-      await updateDoc(ref,{'favorites.villes': arrayUnion(id)});
-    }
-    const btn = document.getElementById('fav-ville-'+id);
-    if(btn) btn.textContent = isFav ? '🤍' : '❤️';
-  };
-
-  window.toggleFavLieu = async function(id) {
-    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
-    const isFav = userFavorites.lieux.includes(id);
-    const ref = doc(db,'users',currentUser.uid);
-    if(isFav) {
-      userFavorites.lieux = userFavorites.lieux.filter(x=>x!==id);
-      await updateDoc(ref,{'favorites.lieux': arrayRemove(id)});
-    } else {
-      userFavorites.lieux.push(id);
-      await updateDoc(ref,{'favorites.lieux': arrayUnion(id)});
-    }
-    const btn = document.getElementById('fav-lieu-'+id);
-    if(btn) btn.textContent = isFav ? '❤️' : '🤍';
-  };
-
-  window.isFavVille = function(id) { return userFavorites.villes.includes(id); };
-  window.isFavLieu = function(id) { return userFavorites.lieux.includes(id); };
-
-  function showApp() {
-    document.getElementById('auth-screen').classList.remove('show');
-    document.getElementById('app').classList.add('show');
-    renderAll();
-  }
-
-  function showError(id, msg) {
-    const el = document.getElementById(id);
-    if(el) el.textContent = msg;
-  }
-
-  function getErrorMsg(code) {
-    const msgs = {
-      'auth/user-not-found': 'Aucun compte avec cet email',
-      'auth/wrong-password': 'Mot de passe incorrect',
-      'auth/email-already-in-use': 'Email déjà utilisé',
-      'auth/weak-password': 'Mot de passe trop faible',
-      'auth/invalid-email': 'Email invalide',
-      'auth/too-many-requests': 'Trop de tentatives, réessayez plus tard',
-      'auth/network-request-failed': 'Erreur réseau',
-      'auth/popup-closed-by-user': 'Connexion annulée',
-      'auth/invalid-credential': 'Email ou mot de passe incorrect',
-    };
-    return msgs[code] || 'Une erreur est survenue';
-  }
-
-  window.showAuthTab = function(tab) {
-    document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active'));
-    document.getElementById('tab-'+tab).classList.add('active');
-    document.getElementById('form-'+tab).classList.add('active');
-    document.getElementById('login-error').textContent='';
-    document.getElementById('register-error').textContent='';
-  };
-
-  window.getCurrentUser = function() { return currentUser; };
+  });
 </script>
 <script src="data.js"></script>
 <script src="app.js"></script>

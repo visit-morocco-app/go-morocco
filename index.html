@@ -53,6 +53,9 @@ body.ar .bottom-nav{direction:ltr}
 .header-title{font-family:'Playfair Display',serif;font-size:22px;color:white;font-style:italic}
 .header-right{display:flex;gap:10px;position:relative}
 .header-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+.header-btn-lang{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:6px 12px;cursor:pointer;font-size:15px;color:white}
+.lang-arrow{font-size:10px;color:rgba(255,255,255,0.8)}
+.header-btn-info{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:white;font-weight:700}
 
 /* LANG DROPDOWN */
 .lang-dropdown{position:absolute;top:46px;right:0;background:white;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15);overflow:hidden;z-index:999;min-width:160px;display:none;direction:ltr}
@@ -116,7 +119,8 @@ body.ar .bottom-nav{direction:ltr}
 .event-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;gap:14px}
 .event-date{min-width:52px;background:var(--violet-bg);border-radius:var(--radius-sm);padding:8px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
 .event-month{font-size:10px;color:var(--violet);font-weight:600;text-transform:uppercase}
-.event-day{font-size:22px;font-weight:700;color:var(--violet);line-height:1.1}
+.event-day{font-size:20px;font-weight:700;color:var(--violet);line-height:1.1}
+.event-emoji{font-size:22px;margin-top:4px}
 .event-info{flex:1}
 .event-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
 .event-ville{font-size:12px;color:var(--violet);margin-bottom:5px}
@@ -194,7 +198,8 @@ body.ar .bottom-nav{direction:ltr}
 .flashcard-back{background:var(--violet);transform:rotateY(180deg)}
 .flashcard-fr{font-size:22px;font-weight:700;color:var(--text);text-align:center}
 .flashcard-cat-badge{background:var(--violet-bg);color:var(--violet);font-size:11px;padding:3px 10px;border-radius:20px}
-.flashcard-hint{font-size:12px;color:var(--text3);margin-top:8px}
+.flashcard-hint{font-size:12px;color:var(--text3);margin-top:8px;animation:bounce 1.5s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 .flashcard-darija{font-size:30px;color:white;font-family:'Amiri',serif;direction:rtl;font-weight:700;text-align:center}
 .flashcard-trans{font-size:16px;color:rgba(255,255,255,0.9);font-style:italic;text-align:center}
 .flashcard-en{font-size:13px;color:rgba(255,255,255,0.7);text-align:center}
@@ -268,7 +273,8 @@ body.ar .bottom-nav{direction:ltr}
 .timeline-time{font-size:11px;font-weight:700;color:var(--violet);background:var(--violet-bg);padding:4px 6px;border-radius:8px;text-align:center;white-space:nowrap;z-index:2}
 .timeline-line{width:2px;background:linear-gradient(to bottom,var(--violet),var(--violet-bg));flex:1;min-height:20px}
 .timeline-item:last-child .timeline-line{display:none}
-.timeline-content{flex:1;background:white;border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:12px;margin-left:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.timeline-content{flex:1;background:white;border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:12px;margin-left:8px;box-shadow:0 2px 8px rgba(0,0,0,0.05);text-align:left}
+.timeline-left{min-width:56px;width:56px}
 .timeline-emoji{font-size:20px;margin-bottom:6px;display:block}
 .timeline-activity{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
 .timeline-place{font-size:12px;color:var(--violet);margin-bottom:4px}
@@ -310,6 +316,12 @@ body.ar .bottom-nav{direction:ltr}
 .about-stat-num{font-family:'Playfair Display',serif;font-size:22px;color:var(--violet);font-weight:700}
 .about-stat-label{font-size:10px;color:var(--text3);margin-top:2px}
 .about-section{margin-bottom:20px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.about-feature{background:var(--violet-bg);border-radius:var(--radius-sm);padding:12px;display:flex;align-items:center;gap:10px}
+.about-feature-icon{font-size:22px;flex-shrink:0}
+.about-feature-text{font-size:12px;font-weight:500;color:var(--violet)}
+.about-logout{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1.5px solid #FFEBEE;border-radius:12px;color:#C62828;font-size:14px;font-weight:500;cursor:pointer;margin-top:10px}
+.about-logout:active{background:#FFEBEE}
 .about-section-title{font-size:12px;font-weight:600;color:var(--violet);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 .about-section-text{font-size:14px;color:var(--text2);line-height:1.7}
 /* =============================================
@@ -642,17 +654,21 @@ body.ar .bottom-nav{direction:ltr}
 <div id="app">
   <div class="header">
     <div class="header-left">
-      <div class="header-menu">☰</div>
       <div class="header-title" id="header-title">Villes</div>
     </div>
     <div class="header-right">
-      <div class="header-btn" onclick="toggleLangDropdown(event)">🌐</div>
+      <div class="header-btn-lang" onclick="toggleLangDropdown(event)">
+        <span id="current-flag">🇫🇷</span>
+        <span class="lang-arrow">▾</span>
+      </div>
       <div class="lang-dropdown" id="lang-dropdown">
         <div class="lang-option active" id="opt-fr" onclick="setLang('fr')">🇫🇷 Français</div>
         <div class="lang-option" id="opt-en" onclick="setLang('en')">🇬🇧 English</div>
         <div class="lang-option" id="opt-ar" onclick="setLang('ar')">🇲🇦 العربية</div>
       </div>
-      <div class="header-btn" onclick="showAbout()">ℹ️</div>
+      <div class="header-btn-info" onclick="showAbout()">
+        <span>ℹ</span>
+      </div>
     </div>
   </div>
   <div class="overlay" id="overlay" onclick="closeLangDropdown()"></div>
@@ -800,10 +816,10 @@ body.ar .bottom-nav{direction:ltr}
       </div>
       <div class="plan-budget-icon">💰</div>
     </div>
-    <div class="plan-day active" id="plan-day1" style="padding-left:72px">
+    <div class="plan-day active" id="plan-day1" style="padding-left:0">
       <div class="timeline" id="timeline-day1"></div>
     </div>
-    <div class="plan-day" id="plan-day2" style="padding-left:72px">
+    <div class="plan-day" id="plan-day2" style="padding-left:0">
       <div class="timeline" id="timeline-day2"></div>
     </div>
   </div>
@@ -854,15 +870,26 @@ body.ar .bottom-nav{direction:ltr}
     </div>
     <div class="about-section">
       <div class="about-section-title">Notre mission</div>
-      <div class="about-section-text">Go Morocco est votre guide de voyage authentique pour découvrir le Royaume du Maroc. Des médinas labyrinthiques aux plages atlantiques, des sommets de l'Atlas aux dunes du Sahara.</div>
+      <div class="about-section-text">Go Morocco est votre guide de voyage authentique pour découvrir le Royaume du Maroc. Des médinas labyrinthiques aux plages atlantiques, des sommets de l'Atlas aux dunes du Sahara — explorez le Maroc comme jamais auparavant.</div>
+    </div>
+    <div class="about-features">
+      <div class="about-feature"><div class="about-feature-icon">🗓️</div><div class="about-feature-text">Plan 2 jours pour chaque ville</div></div>
+      <div class="about-feature"><div class="about-feature-icon">🌍</div><div class="about-feature-text">3 langues — FR / EN / AR</div></div>
+      <div class="about-feature"><div class="about-feature-icon">📍</div><div class="about-feature-text">94 lieux avec Google Maps</div></div>
+      <div class="about-feature"><div class="about-feature-icon">🗣️</div><div class="about-feature-text">35 mots de Darija</div></div>
+      <div class="about-feature"><div class="about-feature-icon">🚨</div><div class="about-feature-text">Urgences pour 18 villes</div></div>
+      <div class="about-feature"><div class="about-feature-icon">❤️</div><div class="about-feature-text">Favoris sauvegardés</div></div>
     </div>
     <div class="about-section">
       <div class="about-section-title">Contact</div>
-      <div class="about-section-text">📧 contact@gomorocco.app<br>📱 @gomorocco</div>
+      <div class="about-section-text">📧 contact@gomorocco.app<br>📱 @gomorocco<br>🌐 gomorocco.app</div>
     </div>
     <div class="about-section">
       <div class="about-section-title">Version</div>
-      <div class="about-section-text">Go Morocco v2.0 — 2025 🇲🇦</div>
+      <div class="about-section-text">Go Morocco v2.0 — 2025 🇲🇦<br><span style="font-size:12px;color:var(--text3)">Développé avec ❤️ pour les voyageurs du monde</span></div>
+    </div>
+    <div class="about-logout" onclick="logout ? logout() : null">
+      <span>🚪</span> Se déconnecter
     </div>
   </div>
 </div>

@@ -64,6 +64,12 @@ function setLang(l) {
   document.querySelectorAll('.lang-option').forEach(function(o){ o.classList.remove('active'); });
   document.getElementById('opt-'+l).classList.add('active');
   closeLangDropdown();
+
+  // Update flag display
+  var flags = {fr:'🇫🇷', en:'🇬🇧', ar:'🇲🇦'};
+  var flagEl = document.getElementById('current-flag');
+  if(flagEl) flagEl.textContent = flags[l] || '🌐';
+
   if(l==='ar') {
     document.body.classList.add('ar');
     document.documentElement.setAttribute('lang','ar');
@@ -74,6 +80,14 @@ function setLang(l) {
     document.documentElement.setAttribute('dir','ltr');
   }
   currentVilleFilter = 'Tous';
+
+  // Update header title
+  var titles = {
+    fr: {villes:'Villes', lieux:'Lieux', gastro:'Gastronomie', events:'Événements', urgences:'Urgences', transport:'Transport', lexique:'Darija'},
+    en: {villes:'Cities', lieux:'Places', gastro:'Gastronomy', events:'Events', urgences:'Emergencies', transport:'Transport', lexique:'Darija'},
+    ar: {villes:'المدن', lieux:'الأماكن', gastro:'المطبخ', events:'الفعاليات', urgences:'الطوارئ', transport:'النقل', lexique:'الدارجة'}
+  };
+
   renderAll();
 }
 function toggleLangDropdown(e) {
@@ -160,16 +174,35 @@ function renderGastro() {
 function renderEvents() {
   var el = document.getElementById('events-list');
   if(!el) return;
+  var catColors = {
+    'Musique':'#E8EAF6', 'Cinéma':'#FCE4EC', 'Sport':'#E8F5E9',
+    'Culture':'#FFF3E0', 'National':'#F3E5F5', 'Religieux':'#E0F2F1',
+    'Art':'#FFF8E1'
+  };
+  var catText = {
+    'Musique':'#283593', 'Cinéma':'#880E4F', 'Sport':'#1B5E20',
+    'Culture':'#E65100', 'National':'#4A148C', 'Religieux':'#004D40',
+    'Art':'#F57F17'
+  };
   el.innerHTML = DATA.evenements.map(function(e) {
+    var cat = e.categorie || 'Culture';
+    var bgc = catColors[cat] || '#F5F5F5';
+    var tc = catText[cat] || '#333';
+    var desc = getDesc(e);
+    var shortDesc = desc.length > 140 ? desc.substring(0,140)+'...' : desc;
     return '<div class="event-card">'
       +'<div class="event-date">'
-      +'<div class="event-month">'+(e.periode||'').substring(0,3)+'</div>'
+      +'<div class="event-month">'+(e.mois||e.periode||'').substring(0,3)+'</div>'
       +'<div class="event-day">'+e.jour+'</div>'
+      +'<div class="event-emoji">'+e.emoji+'</div>'
       +'</div>'
       +'<div class="event-info">'
-      +'<div class="event-name">'+(e.emoji||'')+' '+getName(e)+'</div>'
+      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">'
+      +'<div class="event-name">'+getName(e)+'</div>'
+      +'<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:'+bgc+';color:'+tc+';font-weight:500;white-space:nowrap;margin-left:8px">'+cat+'</span>'
+      +'</div>'
       +'<div class="event-ville">📍 '+e.ville+'</div>'
-      +'<div class="event-desc">'+getDesc(e).substring(0,120)+'...</div>'
+      +'<div class="event-desc">'+shortDesc+'</div>'
       +'</div></div>';
   }).join('');
 }
@@ -350,7 +383,7 @@ function renderTimeline(v, day) {
       +'<div class="timeline-time">'+item.time+'</div>'
       +'<div class="timeline-line"></div>'
       +'</div>'
-      +'<div class="timeline-content">'
+      +'<div class="timeline-content" style="text-align:left">'
       +'<span class="timeline-emoji">'+item.emoji+'</span>'
       +'<div class="timeline-activity">'+item.activity+'</div>'
       +'<div class="timeline-place">📍 '+item.place+'</div>'

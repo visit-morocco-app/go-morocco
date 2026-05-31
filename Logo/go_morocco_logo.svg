@@ -1,0 +1,36 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" style="" xmlns="http://www.w3.org/2000/svg">
+<title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Logo Go Morocco</title>
+<desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Logo Go Morocco avec empreinte digitale dorée sur fond violet foncé</desc>
+
+<!-- Background rond violet foncé -->
+<rect x="140" y="40" width="400" height="400" rx="80" fill="#4A148C" style="fill:rgb(74, 20, 140);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- Empreinte digitale - cercles concentriques stylisés -->
+<g transform="translate(340, 240)" fill="none" stroke-linecap="round" stroke-linejoin="round" style="fill:none;stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+  <!-- Centre -->
+  <ellipse cx="0" cy="0" rx="8" ry="11" stroke="#FFD700" stroke-width="5" style="fill:none;stroke:rgb(255, 215, 0);color:rgb(0, 0, 0);stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Anneau 1 -->
+  <ellipse cx="0" cy="0" rx="22" ry="30" stroke="#FFD700" stroke-width="4.5" style="fill:none;stroke:rgb(255, 215, 0);color:rgb(0, 0, 0);stroke-width:4.5px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Anneau 2 -->
+  <ellipse cx="0" cy="0" rx="36" ry="50" stroke="#FFD700" stroke-width="4" style="fill:none;stroke:rgb(255, 215, 0);color:rgb(0, 0, 0);stroke-width:4px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Anneau 3 - forme ovale élargie -->
+  <path d="M-52,-18 Q-48,-56 0,-68 Q48,-56 52,-18 Q48,20 0,46 Q-48,20 -52,-18Z" stroke="#FFE44D" stroke-width="3.5" style="fill:none;stroke:rgb(255, 228, 77);color:rgb(0, 0, 0);stroke-width:3.5px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Anneau 4 -->
+  <path d="M-70,-14 Q-64,-68 0,-88 Q64,-68 70,-14 Q64,28 0,62 Q-64,28 -70,-14Z" stroke="#FFE44D" stroke-width="3" style="fill:none;stroke:rgb(255, 228, 77);color:rgb(0, 0, 0);stroke-width:3px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Anneau 5 -->
+  <path d="M-88,-10 Q-80,-82 0,-108 Q80,-82 88,-10 Q80,36 0,78 Q-80,36 -88,-10Z" stroke="#FFF0A0" stroke-width="2.5" style="fill:none;stroke:rgb(255, 240, 160);color:rgb(0, 0, 0);stroke-width:2.5px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Anneau 6 -->
+  <path d="M-106,-6 Q-96,-96 0,-128 Q96,-96 106,-6 Q96,44 0,94 Q-96,44 -106,-6Z" stroke="#FFF0A0" stroke-width="2" style="fill:none;stroke:rgb(255, 240, 160);color:rgb(0, 0, 0);stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+</g>
+
+<!-- Texte Go Morocco -->
+<text x="340" y="510" text-anchor="middle" font-family="Georgia, serif" font-size="52" font-weight="700" fill="#4A148C" font-style="italic" style="fill:rgb(74, 20, 140);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:52px;font-weight:700;font-style:italic;text-anchor:middle;dominant-baseline:auto">Go Morocco</text>
+
+<!-- Tagline -->
+<text x="340" y="555" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#888" font-style="italic" letter-spacing="1" style="fill:rgb(136, 136, 136);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:18px;font-weight:400;font-style:italic;text-anchor:middle;dominant-baseline:auto">Where every journey leaves a mark</text>
+
+<!-- Note utilisation -->
+<text x="340" y="620" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#aaa" style="fill:rgb(170, 170, 170);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:14px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Logo 512×512px pour Play Store</text>
+<rect x="200" y="635" width="280" height="32" rx="8" fill="#4A148C" style="fill:rgb(74, 20, 140);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="340" y="656" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#FFD700" style="fill:rgb(255, 215, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:sans-serif;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Fond : #4A148C — Or : #FFD700</text>
+</svg>

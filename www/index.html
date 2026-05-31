@@ -895,13 +895,12 @@ body.ar .bottom-nav{direction:ltr}
 </div>
 
 <!-- SCRIPTS -->
-<!-- Firebase -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-
-  const firebaseConfig = {
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+  var firebaseConfig = {
     apiKey: "AIzaSyARbKS_Tsph4EAaJKedfUh3VItDsPPh_MQ",
     authDomain: "go-morocco-71608.firebaseapp.com",
     projectId: "go-morocco-71608",
@@ -909,64 +908,167 @@ body.ar .bottom-nav{direction:ltr}
     messagingSenderId: "328164981722",
     appId: "1:328164981722:web:9bc9b8fe5cf5ca2b44dee3"
   };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const googleProvider = new GoogleAuthProvider();
-
+  firebase.initializeApp(firebaseConfig);
+  var auth = firebase.auth();
+  var db = firebase.firestore();
   var currentUser = null;
-  var userFavorites = { villes: [], lieux: [] };
-
-  // Handle redirect result FIRST
-  getRedirectResult(auth).then(async (result) => {
-    if (result && result.user) {
-      await createUserProfile(result.user);
-    }
-  }).catch((e) => {
-    console.log('Redirect error:', e.code);
-  });
-
-  // Simple auth flow
-  var authReady = false;
-  var splashHidden = false;
-
-  function hideSplash() {
-    if (!splashHidden) {
-      splashHidden = true;
-      document.getElementById('splash').classList.add('hide');
-      setTimeout(() => { 
-        document.getElementById('splash').style.display = 'none'; 
-      }, 800);
-    }
-  }
-
-  // Handle Google redirect result
-  getRedirectResult(auth).then(async (result) => {
-    if (result && result.user) {
-      await createUserProfile(result.user);
-    }
-  }).catch((e) => {
-    console.log('redirect error:', e.code);
-  });
+  var userFavorites = { villes:[], lieux:[] };
 
   // Auth state listener
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
+  auth.onAuthStateChanged(async function(user) {
+    document.getElementById('splash').classList.add('hide');
+    setTimeout(function(){ document.getElementById('splash').style.display='none'; }, 600);
+    if(user) {
       currentUser = user;
       await loadUserFavorites(user.uid);
-      hideSplash();
-      showApp();
+      showAppFromAuth();
     } else {
-      // Wait 2.5s before showing auth to handle Google redirect timing
-      setTimeout(() => {
-        if (!currentUser) {
-          hideSplash();
-          document.getElementById('auth-screen').classList.add('show');
-        }
-      }, 2500);
+      document.getElementById('auth-screen').classList.add('show');
     }
   });
+
+  function showAppFromAuth() {
+    document.getElementById('auth-screen').classList.remove('show');
+    document.getElementById('app').classList.add('show');
+    if(typeof renderAll === 'function') renderAll();
+  }
+
+  async function loadUserFavorites(uid) {
+    try {
+      var snap = await db.collection('users').doc(uid).get();
+      if(snap.exists) userFavorites = snap.data().favorites || {villes:[], lieux:[]};
+    } catch(e) { console.log('Favoris:', e); }
+  }
+
+  async function createUserProfile(user, name) {
+    try {
+      var ref = db.collection('users').doc(user.uid);
+      var snap = await ref.get();
+      if(!snap.exists) {
+        await ref.set({
+          uid: user.uid,
+          name: name || user.displayName || 'Voyageur',
+          email: user.email,
+          photo: user.photoURL || '',
+          lang: 'fr',
+          favorites: { villes:[], lieux:[] },
+          createdAt: new Date().toISOString()
+        });
+      }
+    } catch(e) { console.log('Profile:', e); }
+  }
+
+  function loginWithGoogle() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithRedirect(provider);
+  }
+
+  async function loginWithEmail() {
+    var email = document.getElementById('login-email').value.trim();
+    var pass = document.getElementById('login-password').value;
+    if(!email||!pass){ showError('login-error','Remplissez tous les champs'); return; }
+    try {
+      await auth.signInWithEmailAndPassword(email, pass);
+    } catch(e) { showError('login-error', getErrorMsg(e.code)); }
+  }
+
+  async function registerWithEmail() {
+    var name = document.getElementById('register-name').value.trim();
+    var email = document.getElementById('register-email').value.trim();
+    var pass = document.getElementById('register-password').value;
+    if(!name||!email||!pass){ showError('register-error','Remplissez tous les champs'); return; }
+    if(pass.length<6){ showError('register-error','Mot de passe trop court (6+ caractères)'); return; }
+    try {
+      var result = await auth.createUserWithEmailAndPassword(email, pass);
+      await result.user.updateProfile({ displayName: name });
+      await createUserProfile(result.user, name);
+    } catch(e) { showError('register-error', getErrorMsg(e.code)); }
+  }
+
+  async function forgotPassword() {
+    var email = document.getElementById('login-email').value.trim();
+    if(!email){ showError('login-error','Entrez votre email'); return; }
+    try {
+      await auth.sendPasswordResetEmail(email);
+      showError('login-error','✅ Email de réinitialisation envoyé !');
+    } catch(e) { showError('login-error', getErrorMsg(e.code)); }
+  }
+
+  function loginAsGuest() {
+    document.getElementById('auth-screen').classList.remove('show');
+    document.getElementById('app').classList.add('show');
+    if(typeof renderAll === 'function') renderAll();
+  }
+
+  async function logout() {
+    await auth.signOut();
+    currentUser = null;
+    userFavorites = { villes:[], lieux:[] };
+    document.getElementById('app').classList.remove('show');
+    document.getElementById('auth-screen').classList.add('show');
+  }
+
+  async function toggleFavVille(id) {
+    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
+    var isFav = userFavorites.villes.includes(id);
+    var ref = db.collection('users').doc(currentUser.uid);
+    if(isFav) {
+      userFavorites.villes = userFavorites.villes.filter(function(x){ return x!==id; });
+      await ref.update({'favorites.villes': firebase.firestore.FieldValue.arrayRemove(id)});
+    } else {
+      userFavorites.villes.push(id);
+      await ref.update({'favorites.villes': firebase.firestore.FieldValue.arrayUnion(id)});
+    }
+    var btn = document.getElementById('fav-ville-'+id);
+    if(btn) btn.textContent = isFav ? '🤍' : '❤️';
+  }
+
+  async function toggleFavLieu(id) {
+    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
+    var isFav = userFavorites.lieux.includes(id);
+    var ref = db.collection('users').doc(currentUser.uid);
+    if(isFav) {
+      userFavorites.lieux = userFavorites.lieux.filter(function(x){ return x!==id; });
+      await ref.update({'favorites.lieux': firebase.firestore.FieldValue.arrayRemove(id)});
+    } else {
+      userFavorites.lieux.push(id);
+      await ref.update({'favorites.lieux': firebase.firestore.FieldValue.arrayUnion(id)});
+    }
+    var btn = document.getElementById('fav-lieu-'+id);
+    if(btn) btn.textContent = isFav ? '❤️' : '🤍';
+  }
+
+  function isFavVille(id) { return userFavorites.villes.includes(id); }
+  function isFavLieu(id) { return userFavorites.lieux.includes(id); }
+
+  function showError(id, msg) {
+    var el = document.getElementById(id);
+    if(el) el.textContent = msg;
+  }
+
+  function showAuthTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.auth-form').forEach(function(f){ f.classList.remove('active'); });
+    document.getElementById('tab-'+tab).classList.add('active');
+    document.getElementById('form-'+tab).classList.add('active');
+    document.getElementById('login-error').textContent='';
+    document.getElementById('register-error').textContent='';
+  }
+
+  function getErrorMsg(code) {
+    var msgs = {
+      'auth/user-not-found':'Aucun compte avec cet email',
+      'auth/wrong-password':'Mot de passe incorrect',
+      'auth/email-already-in-use':'Email déjà utilisé',
+      'auth/weak-password':'Mot de passe trop faible',
+      'auth/invalid-email':'Email invalide',
+      'auth/too-many-requests':'Trop de tentatives, réessayez plus tard',
+      'auth/network-request-failed':'Erreur réseau',
+      'auth/popup-closed-by-user':'Connexion annulée',
+      'auth/invalid-credential':'Email ou mot de passe incorrect',
+    };
+    return msgs[code] || 'Une erreur est survenue';
+  }
 </script>
 <script src="data.js"></script>
 <script src="app.js"></script>

@@ -56,6 +56,20 @@ function renderAll() {
   renderUrgences();
   renderTransport();
   initFlashcards();
+  updateNavLabels();
+}
+
+function updateNavLabels() {
+  var navLabels = {
+    fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastro',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
+    en:{villes:'Cities',lieux:'Places',gastro:'Gastro',events:'Events',urgences:'Emergency',transport:'Transport',lexique:'Darija'},
+    ar:{villes:'المدن',lieux:'الأماكن',gastro:'المطبخ',events:'فعاليات',urgences:'طوارئ',transport:'نقل',lexique:'دارجة'}
+  };
+  var labels = navLabels[lang] || navLabels.fr;
+  Object.keys(labels).forEach(function(key) {
+    var navEl = document.querySelector('#nav-'+key+' .nav-label');
+    if(navEl) navEl.textContent = labels[key];
+  });
 }
 
 // ======== LANGUE ========
@@ -106,7 +120,14 @@ function switchTab(tab, title) {
   document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
   document.getElementById('tab-'+tab).classList.add('active');
   document.getElementById('nav-'+tab).classList.add('active');
-  document.getElementById('header-title').textContent = title;
+  // Translate title
+  var titles = {
+    fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastronomie',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
+    en:{villes:'Cities',lieux:'Places',gastro:'Gastronomy',events:'Events',urgences:'Emergencies',transport:'Transport',lexique:'Darija'},
+    ar:{villes:'المدن',lieux:'الأماكن',gastro:'المطبخ',events:'الفعاليات',urgences:'الطوارئ',transport:'النقل',lexique:'الدارجة'}
+  };
+  var translatedTitle = (titles[lang]||titles.fr)[tab] || title;
+  document.getElementById('header-title').textContent = translatedTitle;
   window.scrollTo(0,0);
 }
 
@@ -211,7 +232,13 @@ function renderEvents() {
 function renderConseils() {
   var el = document.getElementById('conseils-list');
   if(!el) return;
+  var importanceLabel = {
+    fr:{Essentiel:'Essentiel', Important:'Important', Utile:'Utile'},
+    en:{Essentiel:'Essential', Important:'Important', Utile:'Useful'},
+    ar:{Essentiel:'ضروري', Important:'مهم', Utile:'مفيد'}
+  };
   el.innerHTML = DATA.conseils.map(function(c) {
+    var imp = (importanceLabel[lang]||importanceLabel.fr)[c.importance] || c.importance;
     return '<div class="conseil-card">'
       +'<div class="conseil-header">'
       +'<div class="conseil-icon">'+c.icon+'</div>'
@@ -219,7 +246,7 @@ function renderConseils() {
       +'<div class="conseil-cat">'+c.cat+'</div></div>'
       +'</div>'
       +'<div class="conseil-text">'+getDesc(c)+'</div>'
-      +'<span class="conseil-badge badge-'+c.importance.toLowerCase()+'">'+c.importance+'</span>'
+      +'<span class="conseil-badge badge-'+c.importance.toLowerCase()+'">'+imp+'</span>'
       +'</div>';
   }).join('');
 }
@@ -228,20 +255,26 @@ function renderConseils() {
 function renderUrgences() {
   var el = document.getElementById('urgence-list');
   if(!el) return;
+  var labels = {
+    fr:{hopital:'Hôpital', tel:'Téléphone', appeler:'📱 Appeler'},
+    en:{hopital:'Hospital', tel:'Phone', appeler:'📱 Call'},
+    ar:{hopital:'المستشفى', tel:'الهاتف', appeler:'📱 اتصل'}
+  };
+  var l = labels[lang] || labels.fr;
   el.innerHTML = DATA.urgences.map(function(u) {
     return '<div class="urgence-card">'
       +'<div class="urgence-card-top"><div class="urgence-card-ville">🏙️ '+u.ville+'</div></div>'
       +'<div class="urgence-card-body">'
       +'<div class="urgence-row">'
       +'<div class="urgence-row-icon">🏥</div>'
-      +'<div class="urgence-row-info"><div class="urgence-row-label">Hôpital</div>'
+      +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.hopital+'</div>'
       +'<div class="urgence-row-val">'+u.hopital+'</div></div>'
       +'<a href="'+u.hopital_maps+'" target="_blank" class="urgence-maps-btn">🗺️</a></div>'
       +'<div class="urgence-row">'
       +'<div class="urgence-row-icon">📞</div>'
-      +'<div class="urgence-row-info"><div class="urgence-row-label">Téléphone</div>'
+      +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.tel+'</div>'
       +'<div class="urgence-row-val">'+u.hopital_tel+'</div></div>'
-      +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">📱 Appeler</a></div>'
+      +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">'+l.appeler+'</a></div>'
       +'</div></div>';
   }).join('');
 }
@@ -250,6 +283,10 @@ function renderUrgences() {
 function renderTransport() {
   var el = document.getElementById('transport-list');
   if(!el) return;
+  var routeLabel = lang==='ar'?'المسار':lang==='en'?'Route':'Route';
+  var dureeLabel = lang==='ar'?'المدة':lang==='en'?'Duration':'Durée';
+  var infoLabel = lang==='ar'?'معلومات':lang==='en'?'Info':'Infos';
+  var siteLabel = lang==='ar'?'الموقع':lang==='en'?'Website':'Site';
   el.innerHTML = DATA.transport.map(function(t) {
     var nom = lang==='ar'?(t.nom_ar||t.nom):lang==='en'?(t.nom_en||t.nom):t.nom;
     return '<div class="transport-accord" id="ta-'+t.id+'">'
@@ -262,10 +299,10 @@ function renderTransport() {
       +'<div class="transport-accord-arrow">▼</div>'
       +'</div>'
       +'<div class="transport-accord-body">'
-      +'<div class="transport-detail-row"><div class="transport-detail-label">🗺️ Route</div><div class="transport-detail-val">'+t.route+'</div></div>'
-      +'<div class="transport-detail-row"><div class="transport-detail-label">⏱️ Durée</div><div class="transport-detail-val">'+t.duree+'</div></div>'
-      +'<div class="transport-detail-row"><div class="transport-detail-label">ℹ️ Infos</div><div class="transport-detail-val">'+getDesc(t)+'</div></div>'
-      +(t.site?'<div class="transport-detail-row"><div class="transport-detail-label">🌐 Site</div><div class="transport-detail-val"><a href="'+t.site+'" target="_blank">'+t.site+'</a></div></div>':'')
+      +'<div class="transport-detail-row"><div class="transport-detail-label">🗺️ '+routeLabel+'</div><div class="transport-detail-val">'+t.route+'</div></div>'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">⏱️ '+dureeLabel+'</div><div class="transport-detail-val">'+t.duree+'</div></div>'
+      +'<div class="transport-detail-row"><div class="transport-detail-label">ℹ️ '+infoLabel+'</div><div class="transport-detail-val">'+getDesc(t)+'</div></div>'
+      +(t.site?'<div class="transport-detail-row"><div class="transport-detail-label">🌐 '+siteLabel+'</div><div class="transport-detail-val"><a href="'+t.site+'" target="_blank">'+t.site+'</a></div></div>':'')
       +'<div class="transport-prix-badge">💰 '+t.prix+'</div>'
       +'</div></div>';
   }).join('');
@@ -306,7 +343,12 @@ function renderFcCard() {
   var l = fcFiltered[fcIndex];
   document.getElementById('fc-scene').classList.remove('flipped');
   fcFlipped = false;
-  document.getElementById('fc-fr').textContent = l.mot_fr;
+  // Show word in current language on front
+  var frontWord = lang==='ar'?(l.mot_ar||l.mot_fr):lang==='en'?l.mot_en:l.mot_fr;
+  var hintText = lang==='ar'?'اضغط لرؤية الدارجة':lang==='en'?'Tap to see in Darija':'👆 Appuie pour voir en Darija';
+  var cardLabel = lang==='ar'?'بطاقة':lang==='en'?'Card':'Carte';
+  var ofLabel = lang==='ar'?'من':lang==='en'?'of':'sur';
+  document.getElementById('fc-fr').textContent = frontWord;
   document.getElementById('fc-cat').textContent = l.categorie;
   document.getElementById('fc-darija').textContent = l.mot_darija;
   document.getElementById('fc-trans').textContent = l.translitteration;
@@ -315,6 +357,12 @@ function renderFcCard() {
   document.getElementById('fc-idx').textContent = fcIndex+1;
   document.getElementById('fc-total').textContent = fcFiltered.length;
   document.getElementById('fc-progress').style.width = Math.round(((fcIndex+1)/fcFiltered.length)*100)+'%';
+  var hintEl = document.querySelector('.flashcard-hint');
+  if(hintEl) hintEl.textContent = hintText;
+  var prevBtn = document.querySelector('.flashcard-prev');
+  var nextBtn = document.querySelector('.flashcard-next');
+  if(prevBtn) prevBtn.textContent = lang==='ar'?'→ السابق':lang==='en'?'← Previous':'← Précédent';
+  if(nextBtn) nextBtn.textContent = lang==='ar'?'التالي ←':lang==='en'?'Next →':'Suivant →';
 }
 function flipFlashcard() {
   fcFlipped = !fcFlipped;
@@ -352,6 +400,28 @@ function showVille(id) {
   // Timeline Plan 2 jours
   renderTimeline(v, 1);
   renderTimeline(v, 2);
+
+  // Update tab labels based on language
+  var tabLabels = document.querySelectorAll('.detail-tab');
+  var tabs = [
+    {fr:'📖 Info', en:'📖 Info', ar:'📖 معلومات'},
+    {fr:'📍 Lieux', en:'📍 Places', ar:'📍 الأماكن'},
+    {fr:'🗓️ Plan 2j', en:'🗓️ 2-Day Plan', ar:'🗓️ خطة يومين'}
+  ];
+  tabLabels.forEach(function(tab, i){
+    if(tabs[i]) tab.textContent = (tabs[i][lang] || tabs[i].fr);
+  });
+
+  // Update budget label
+  var budgetLabel = document.querySelector('.plan-budget-label');
+  var budgetNote = document.querySelector('.plan-budget-note');
+  if(budgetLabel) budgetLabel.textContent = lang==='ar'?'الميزانية التقديرية / شخص':lang==='en'?'Estimated budget / person':'Budget estimé / personne';
+  if(budgetNote) budgetNote.textContent = lang==='ar'?'الإقامة غير مشمولة':lang==='en'?'Accommodation not included':'Hébergement non inclus';
+
+  // Update plan day buttons
+  var dayBtns = document.querySelectorAll('.plan-day-btn');
+  if(dayBtns[0]) dayBtns[0].textContent = lang==='ar'?'☀️ اليوم 1':lang==='en'?'☀️ Day 1':'☀️ Jour 1';
+  if(dayBtns[1]) dayBtns[1].textContent = lang==='ar'?'🌙 اليوم 2':lang==='en'?'🌙 Day 2':'🌙 Jour 2';
 
   // Reset tabs
   switchDetailTab('info');

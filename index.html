@@ -658,12 +658,12 @@ body.ar .bottom-nav{direction:ltr}
     </div>
     <div class="header-right">
       <div class="header-btn-lang" onclick="toggleLangDropdown(event)">
-        <span id="current-flag">🇫🇷</span>
+        <span id="current-flag">🇬🇧</span>
         <span class="lang-arrow">▾</span>
       </div>
       <div class="lang-dropdown" id="lang-dropdown">
-        <div class="lang-option active" id="opt-fr" onclick="setLang('fr')">🇫🇷 Français</div>
-        <div class="lang-option" id="opt-en" onclick="setLang('en')">🇬🇧 English</div>
+        <div class="lang-option" id="opt-fr" onclick="setLang('fr')">🇫🇷 Français</div>
+        <div class="lang-option active" id="opt-en" onclick="setLang('en')">🇬🇧 English</div>
         <div class="lang-option" id="opt-ar" onclick="setLang('ar')">🇲🇦 العربية</div>
       </div>
       <div class="header-btn-info" onclick="showAbout()">
@@ -675,7 +675,7 @@ body.ar .bottom-nav{direction:ltr}
   <div class="search-wrap">
     <div class="search-bar">
       <span style="color:rgba(255,255,255,0.7)">🔍</span>
-      <input type="text" placeholder="Rechercher une ville..." id="search-input" oninput="handleSearch()">
+      <input type="text" placeholder="Search a city..." id="search-input" id="search-input" oninput="handleSearch()">
     </div>
   </div>
 
@@ -793,8 +793,8 @@ body.ar .bottom-nav{direction:ltr}
     <div class="detail-desc-text" id="dv-desc"></div>
     <a class="detail-maps-btn" id="dv-maps" href="#" target="_blank">🗺️ Ouvrir dans Google Maps</a>
     <div class="detail-info-grid">
-      <div class="detail-info-item"><div class="detail-info-label">Région</div><div class="detail-info-value" id="dv-region2"></div></div>
-      <div class="detail-info-item"><div class="detail-info-label">Meilleure saison</div><div class="detail-info-value" id="dv-saison">Avr — Juin</div></div>
+      <div class="detail-info-item"><div class="detail-info-label" id="label-region">Région</div><div class="detail-info-value" id="dv-region2"></div></div>
+      <div class="detail-info-item"><div class="detail-info-label" id="label-saison">Meilleure saison</div><div class="detail-info-value" id="dv-saison">Avr — Juin</div></div>
     </div>
   </div>
   <!-- LIEUX -->

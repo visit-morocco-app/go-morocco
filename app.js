@@ -454,7 +454,8 @@ function renderFcFilter() {
   if(!el) return;
   var cats = ['Tous'].concat(Array.from(new Set(DATA.lexique.map(function(l){ return l.categorie; }))));
   el.innerHTML = cats.map(function(c) {
-    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+c+'</button>';
+    var label = c==='Tous' ? t('tous') : translateCat(c);
+    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+label+'</button>';
   }).join('');
 }
 function filterFc(cat) {
@@ -592,6 +593,9 @@ function showVille(id) {
   document.getElementById('detail-ville').classList.add('open');
   // Update header when detail opens
   document.getElementById('header-title').textContent = getName(v);
+  // Update fav button
+  var dvFav = document.getElementById('dv-fav');
+  if(dvFav) { dvFav.textContent = isFavVille(v.id) ? '❤️' : '🤍'; dvFav.onclick = function(){ toggleFavVille(v.id); }; }
 }
 
 // ======== TIMELINE ========
@@ -673,6 +677,9 @@ function showLieu(id) {
   if(lieuLabels[0]) lieuLabels[0].textContent = t('ville_label');
   if(lieuLabels[1]) lieuLabels[1].textContent = t('cat_label');
   document.getElementById('detail-lieu').classList.add('open');
+  // Update fav button
+  var dlFav = document.getElementById('dl-fav-btn');
+  if(dlFav) { dlFav.textContent = isFavLieu(l.id) ? '❤️' : '🤍'; dlFav.onclick = function(){ toggleFavLieu(l.id); }; }
 }
 function closeLieu() { document.getElementById('detail-lieu').classList.remove('open'); }
 
@@ -680,6 +687,33 @@ function closeLieu() { document.getElementById('detail-lieu').classList.remove('
 function closeDetail(id) { document.getElementById(id).classList.remove('open'); }
 function showAbout() { document.getElementById('about-page').classList.add('open'); }
 function hideAbout() { document.getElementById('about-page').classList.remove('open'); }
+// ======== FAVORIS (localStorage) ========
+function getFavs() {
+  try { return JSON.parse(localStorage.getItem('gm_favs') || '{"villes":[],"lieux":[]}'); }
+  catch(e) { return {villes:[], lieux:[]}; }
+}
+function saveFavs(favs) {
+  try { localStorage.setItem('gm_favs', JSON.stringify(favs)); } catch(e) {}
+}
+function isFavVille(id) { return getFavs().villes.indexOf(id) !== -1; }
+function isFavLieu(id)  { return getFavs().lieux.indexOf(id)  !== -1; }
+
+function toggleFavVille(id) {
+  var favs = getFavs();
+  var idx = favs.villes.indexOf(id);
+  if(idx === -1) { favs.villes.push(id); } else { favs.villes.splice(idx,1); }
+  saveFavs(favs);
+  var btn = document.getElementById('dv-fav');
+  if(btn) btn.textContent = isFavVille(id) ? '❤️' : '🤍';
+}
+function toggleFavLieu(id) {
+  var favs = getFavs();
+  var idx = favs.lieux.indexOf(id);
+  if(idx === -1) { favs.lieux.push(id); } else { favs.lieux.splice(idx,1); }
+  saveFavs(favs);
+  var btn = document.getElementById('dl-fav-btn');
+  if(btn) btn.textContent = isFavLieu(id) ? '❤️' : '🤍';
+}
 function toggleFav(el) { el.textContent = el.textContent==='🤍'?'❤️':'🤍'; }
 
 function updateSearchPlaceholder() {

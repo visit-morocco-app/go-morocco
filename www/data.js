@@ -11,22 +11,22 @@ var DATA = {
       desc_ar:"المدينة الحمراء، العاصمة الثقافية للمغرب. أسواقها المتاهة وساحة جامع الفنا والرياضات المخفية تجعلها وجهة رائعة.",
       plan: {
         jour1: [
-          {time:"08:00",emoji:"☕",activity:"Petit-déjeuner au riad",place:"Médina",tip:"Essayez le msemen avec du miel",tags:["food"]},
-          {time:"09:30",emoji:"🕌",activity:"Visite de la Koutoubia",place:"Mosquée Koutoubia",tip:"Magnifique le matin avec la lumière dorée",tags:["culture"]},
-          {time:"11:00",emoji:"🛍️",activity:"Exploration des souks",place:"Souk de Marrakech",tip:"Négociez à 40% du prix affiché",tags:["shopping"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner tajine",place:"Restaurant médina",tip:"Évitez les restaurants sur Jemaa el-Fna",tags:["food"]},
-          {time:"15:00",emoji:"🌿",activity:"Jardin Majorelle",place:"Jardin Majorelle",tip:"Achetez les billets en ligne",tags:["nature"]},
-          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil",place:"Place Jemaa el-Fna",tip:"Montez sur une terrasse pour la vue",tags:["culture"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner sous les étoiles",place:"Jemaa el-Fna",tip:"Les stands nocturnes sont uniques",tags:["food","nuit"]}
+          {time:"08:00",emoji:"☕",activity:"Petit-déjeuner au riad",activity_en:"Breakfast at the riad",place:"Médina",place_en:"Medina",tip:"Essayez le msemen avec du miel",tip_en:"Try msemen with honey",tags:["food"]},
+          {time:"09:30",emoji:"🕌",activity:"Visite de la Koutoubia",activity_en:"Visit the Koutoubia",place:"Mosquée Koutoubia",place_en:"Koutoubia Mosque",tip:"Magnifique le matin avec la lumière dorée",tip_en:"Beautiful in the morning with golden light",tags:["culture"]},
+          {time:"11:00",emoji:"🛍️",activity:"Exploration des souks",activity_en:"Explore the souks",place:"Souk de Marrakech",place_en:"Marrakech Souk",tip:"Négociez à 40% du prix affiché",tip_en:"Negotiate down to 40% of the listed price",tags:["shopping"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner tajine",activity_en:"Tajine lunch",place:"Restaurant médina",place_en:"Medina restaurant",tip:"Évitez les restaurants sur Jemaa el-Fna",tip_en:"Avoid restaurants directly on Jemaa el-Fna",tags:["food"]},
+          {time:"15:00",emoji:"🌿",activity:"Jardin Majorelle",activity_en:"Majorelle Garden",place:"Jardin Majorelle",place_en:"Majorelle Garden",tip:"Achetez les billets en ligne",tip_en:"Buy tickets online in advance",tags:["nature"]},
+          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil",activity_en:"Sunset hour",place:"Place Jemaa el-Fna",place_en:"Jemaa el-Fna Square",tip:"Montez sur une terrasse pour la vue",tip_en:"Head to a rooftop terrace for the best view",tags:["culture"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner sous les étoiles",activity_en:"Dinner under the stars",place:"Jemaa el-Fna",place_en:"Jemaa el-Fna",tip:"Les stands nocturnes sont uniques",tip_en:"The night food stalls are a unique experience",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🏛️",activity:"Palais Bahia",place:"Palais Bahia",tip:"Arrivez tôt avant les groupes",tags:["culture"]},
-          {time:"10:30",emoji:"🪦",activity:"Tombeaux Saadiens",place:"Tombeaux Saadiens",tip:"Incontournable — réservez en ligne",tags:["culture"]},
-          {time:"12:00",emoji:"🥗",activity:"Déjeuner au Mellah",place:"Mellah",tip:"Saveurs uniques du quartier",tags:["food"]},
-          {time:"14:00",emoji:"🎨",activity:"Madrasa Ben Youssef",place:"Madrasa Ben Youssef",tip:"Architecture époustouflante",tags:["culture"]},
-          {time:"16:00",emoji:"🛁",activity:"Hammam traditionnel",place:"Hammam El Bacha",tip:"Expérience authentique",tags:["relax"]},
-          {time:"18:30",emoji:"🍷",activity:"Apéritif en rooftop",place:"Guéliz",tip:"Vue magnifique sur la ville",tags:["relax"]},
-          {time:"20:30",emoji:"🌙",activity:"Dîner gastronomique",place:"Restaurant médina",tip:"La tanjia est une spécialité locale",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏛️",activity:"Palais Bahia",activity_en:"Bahia Palace",place:"Palais Bahia",place_en:"Bahia Palace",tip:"Arrivez tôt avant les groupes",tip_en:"Arrive early before the tour groups",tags:["culture"]},
+          {time:"10:30",emoji:"🪦",activity:"Tombeaux Saadiens",activity_en:"Saadian Tombs",place:"Tombeaux Saadiens",place_en:"Saadian Tombs",tip:"Incontournable — réservez en ligne",tip_en:"A must-see — book online",tags:["culture"]},
+          {time:"12:00",emoji:"🥗",activity:"Déjeuner au Mellah",activity_en:"Lunch in the Mellah",place:"Mellah",place_en:"Mellah",tip:"Saveurs uniques du quartier",tip_en:"Unique flavours from this historic quarter",tags:["food"]},
+          {time:"14:00",emoji:"🎨",activity:"Madrasa Ben Youssef",activity_en:"Ben Youssef Madrasa",place:"Madrasa Ben Youssef",place_en:"Ben Youssef Madrasa",tip:"Architecture époustouflante",tip_en:"Breathtaking architecture",tags:["culture"]},
+          {time:"16:00",emoji:"🛁",activity:"Hammam traditionnel",activity_en:"Traditional hammam",place:"Hammam El Bacha",place_en:"Hammam El Bacha",tip:"Expérience authentique",tip_en:"A truly authentic experience",tags:["relax"]},
+          {time:"18:30",emoji:"🍷",activity:"Apéritif en rooftop",activity_en:"Rooftop drinks",place:"Guéliz",place_en:"Guéliz district",tip:"Vue magnifique sur la ville",tip_en:"Magnificent view over the city",tags:["relax"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner gastronomique",activity_en:"Gourmet dinner",place:"Restaurant médina",place_en:"Medina restaurant",tip:"La tanjia est une spécialité locale",tip_en:"Tanjia is a local speciality — a must try",tags:["food","nuit"]}
         ]
       }
     },
@@ -36,20 +36,20 @@ var DATA = {
       desc_ar:"المدينة الاقتصادية للمغرب. حديثة وكوزموبوليتانية، تضم المسجد الرائع الحسن الثاني.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🕌",activity:"Mosquée Hassan II",place:"Mosquée Hassan II",tip:"Réservez la visite guidée à l'avance",tags:["culture"]},
-          {time:"11:30",emoji:"☕",activity:"Café sur la corniche",place:"Corniche",tip:"Vue magnifique sur l'Atlantique",tags:["relax"]},
-          {time:"13:00",emoji:"🐟",activity:"Déjeuner fruits de mer",place:"Restaurant corniche",tip:"Poissons ultra-frais",tags:["food"]},
-          {time:"15:00",emoji:"🏛️",activity:"Architecture Art Déco",place:"Centre-ville",tip:"Levez la tête — les façades sont remarquables",tags:["culture"]},
-          {time:"17:00",emoji:"🛍️",activity:"Shopping Habous",place:"Quartier Habous",tip:"Meilleure adresse pour l'artisanat authentique",tags:["shopping"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner gastronomique",place:"Restaurant moderne",tip:"Casa a une scène culinaire internationale",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🕌",activity:"Mosquée Hassan II",activity_en:"Hassan II Mosque",place:"Mosquée Hassan II",place_en:"Hassan II Mosque",tip:"Réservez la visite guidée à l'avance",tip_en:"Book the guided tour in advance",tags:["culture"]},
+          {time:"11:30",emoji:"☕",activity:"Café sur la corniche",activity_en:"Coffee on the corniche",place:"Corniche",place_en:"Corniche",tip:"Vue magnifique sur l'Atlantique",tip_en:"Stunning view over the Atlantic",tags:["relax"]},
+          {time:"13:00",emoji:"🐟",activity:"Déjeuner fruits de mer",activity_en:"Seafood lunch",place:"Restaurant corniche",place_en:"Corniche restaurant",tip:"Poissons ultra-frais",tip_en:"Ultra-fresh fish",tags:["food"]},
+          {time:"15:00",emoji:"🏛️",activity:"Architecture Art Déco",activity_en:"Art Deco architecture",place:"Centre-ville",place_en:"City centre",tip:"Levez la tête — les façades sont remarquables",tip_en:"Look up — the facades are remarkable",tags:["culture"]},
+          {time:"17:00",emoji:"🛍️",activity:"Shopping Habous",activity_en:"Habous shopping",place:"Quartier Habous",place_en:"Habous Quarter",tip:"Meilleure adresse pour l'artisanat authentique",tip_en:"Best place for authentic crafts",tags:["shopping"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner gastronomique",activity_en:"Gourmet dinner",place:"Restaurant moderne",place_en:"Modern restaurant",tip:"Casa a une scène culinaire internationale",tip_en:"Casablanca has a vibrant international food scene",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🎨",activity:"Villa des Arts",place:"Villa des Arts",tip:"Superbe villa Art Déco avec expositions",tags:["culture"]},
-          {time:"11:00",emoji:"🏺",activity:"Médina historique",place:"Médina de Casablanca",tip:"Moins touristique — plus authentique",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner Habous",place:"Quartier Habous",tip:"Cuisine marocaine traditionnelle",tags:["food"]},
-          {time:"15:00",emoji:"🌊",activity:"Plage Ain Diab",place:"Ain Diab",tip:"Agréable en semaine — évitez le weekend",tags:["nature"]},
-          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil Atlantique",place:"Corniche",tip:"Magnifique depuis la corniche",tags:["nature"]},
-          {time:"20:30",emoji:"🌙",activity:"Soirée Ain Diab",place:"Clubs Ain Diab",tip:"Ain Diab s'anime le soir",tags:["nuit"]}
+          {time:"09:00",emoji:"🎨",activity:"Villa des Arts",activity_en:"Villa des Arts",place:"Villa des Arts",place_en:"Villa des Arts",tip:"Superbe villa Art Déco avec expositions",tip_en:"Superb Art Deco villa with exhibitions",tags:["culture"]},
+          {time:"11:00",emoji:"🏺",activity:"Médina historique",activity_en:"Historic Medina",place:"Médina de Casablanca",place_en:"Casablanca Medina",tip:"Moins touristique — plus authentique",tip_en:"Less touristy — more authentic",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner Habous",activity_en:"Lunch in Habous",place:"Quartier Habous",place_en:"Habous Quarter",tip:"Cuisine marocaine traditionnelle",tip_en:"Traditional Moroccan cuisine",tags:["food"]},
+          {time:"15:00",emoji:"🌊",activity:"Plage Ain Diab",activity_en:"Ain Diab beach",place:"Ain Diab",place_en:"Ain Diab",tip:"Agréable en semaine — évitez le weekend",tip_en:"Pleasant on weekdays — avoid weekends",tags:["nature"]},
+          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil Atlantique",activity_en:"Atlantic sunset",place:"Corniche",place_en:"Corniche",tip:"Magnifique depuis la corniche",tip_en:"Magnificent from the corniche",tags:["nature"]},
+          {time:"20:30",emoji:"🌙",activity:"Soirée Ain Diab",activity_en:"Ain Diab nightlife",place:"Clubs Ain Diab",place_en:"Ain Diab clubs",tip:"Ain Diab s'anime le soir",tip_en:"Ain Diab comes alive at night",tags:["nuit"]}
         ]
       }
     },
@@ -59,20 +59,20 @@ var DATA = {
       desc_ar:"العاصمة الملكية، مدينة التاريخ والثقافة. بين صومعة حسان وقصبة الوداية.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏛️",activity:"Tour Hassan et Mausolée",place:"Tour Hassan",tip:"Le Mausolée Mohammed V est libre d'accès",tags:["culture"]},
-          {time:"11:00",emoji:"🔵",activity:"Kasbah des Oudayas",place:"Kasbah des Oudayas",tip:"Ruelles bleues parfaites pour les photos",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner en médina",place:"Médina de Rabat",tip:"Moins chère et plus authentique",tags:["food"]},
-          {time:"15:00",emoji:"🌿",activity:"Jardin botanique",place:"Jardin d'Essais",tip:"Magnifique jardin colonial",tags:["nature"]},
-          {time:"17:00",emoji:"🏺",activity:"Chellah",place:"Chellah",tip:"Les cigognes dans les ruines sont fascinantes",tags:["culture","nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner Agdal",place:"Quartier Agdal",tip:"Centre de la vie nocturne de Rabat",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏛️",activity:"Tour Hassan et Mausolée",activity_en:"Hassan Tower & Mausoleum",place:"Tour Hassan",place_en:"Hassan Tower",tip:"Le Mausolée Mohammed V est libre d'accès",tip_en:"The Mohammed V Mausoleum is free to enter",tags:["culture"]},
+          {time:"11:00",emoji:"🔵",activity:"Kasbah des Oudayas",activity_en:"Kasbah of the Udayas",place:"Kasbah des Oudayas",place_en:"Kasbah of the Udayas",tip:"Ruelles bleues parfaites pour les photos",tip_en:"Blue alleys perfect for photos",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner en médina",activity_en:"Lunch in the Medina",place:"Médina de Rabat",place_en:"Rabat Medina",tip:"Moins chère et plus authentique",tip_en:"Cheaper and more authentic",tags:["food"]},
+          {time:"15:00",emoji:"🌿",activity:"Jardin botanique",activity_en:"Botanical garden",place:"Jardin d'Essais",place_en:"Jardin d'Essais",tip:"Magnifique jardin colonial",tip_en:"Beautiful colonial garden",tags:["nature"]},
+          {time:"17:00",emoji:"🏺",activity:"Chellah",activity_en:"Chellah ruins",place:"Chellah",place_en:"Chellah",tip:"Les cigognes dans les ruines sont fascinantes",tip_en:"The storks nesting in the ruins are fascinating",tags:["culture","nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner Agdal",activity_en:"Dinner in Agdal",place:"Quartier Agdal",place_en:"Agdal district",tip:"Centre de la vie nocturne de Rabat",tip_en:"Heart of Rabat's nightlife",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🎨",activity:"Musée Mohammed VI",place:"Musée Mohammed VI",tip:"Plus grand musée d'art contemporain d'Afrique",tags:["culture"]},
-          {time:"11:30",emoji:"🏺",activity:"Musée archéologique",place:"Musée Archéologique",tip:"Les bronzes de Volubilis sont exceptionnels",tags:["culture"]},
-          {time:"13:30",emoji:"🐟",activity:"Déjeuner port de Salé",place:"Port de Salé",tip:"Poisson ultra-frais de l'autre rive",tags:["food"]},
-          {time:"15:30",emoji:"🌊",activity:"Plage de Rabat",place:"Plage de Rabat",tip:"Belle plage atlantique méconnue",tags:["nature"]},
-          {time:"18:00",emoji:"🛍️",activity:"Médina de Salé",place:"Médina de Salé",tip:"Très authentique et peu touristique",tags:["culture","shopping"]},
-          {time:"20:30",emoji:"🌙",activity:"Dîner avenue Mohammed V",place:"Avenue Mohammed V",tip:"L'avenue principale animée le soir",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🎨",activity:"Musée Mohammed VI",activity_en:"Mohammed VI Museum",place:"Musée Mohammed VI",place_en:"Mohammed VI Museum",tip:"Plus grand musée d'art contemporain d'Afrique",tip_en:"Largest contemporary art museum in Africa",tags:["culture"]},
+          {time:"11:30",emoji:"🏺",activity:"Musée archéologique",activity_en:"Archaeological Museum",place:"Musée Archéologique",place_en:"Archaeological Museum",tip:"Les bronzes de Volubilis sont exceptionnels",tip_en:"The Volubilis bronzes are exceptional",tags:["culture"]},
+          {time:"13:30",emoji:"🐟",activity:"Déjeuner port de Salé",activity_en:"Lunch at Salé port",place:"Port de Salé",place_en:"Salé port",tip:"Poisson ultra-frais de l'autre rive",tip_en:"Ultra-fresh fish from the other bank",tags:["food"]},
+          {time:"15:30",emoji:"🌊",activity:"Plage de Rabat",activity_en:"Rabat beach",place:"Plage de Rabat",place_en:"Rabat beach",tip:"Belle plage atlantique méconnue",tip_en:"A beautiful and underrated Atlantic beach",tags:["nature"]},
+          {time:"18:00",emoji:"🛍️",activity:"Médina de Salé",activity_en:"Salé Medina",place:"Médina de Salé",place_en:"Salé Medina",tip:"Très authentique et peu touristique",tip_en:"Very authentic and off the tourist trail",tags:["culture","shopping"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner avenue Mohammed V",activity_en:"Dinner on Avenue Mohammed V",place:"Avenue Mohammed V",place_en:"Avenue Mohammed V",tip:"L'avenue principale animée le soir",tip_en:"The main avenue buzzing with life at night",tags:["food","nuit"]}
         ]
       }
     },
@@ -82,21 +82,21 @@ var DATA = {
       desc_ar:"مدينة الرياح، مدينة ساحلية ساحرة بأسوارها الزرقاء والبيضاء.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🌊",activity:"Promenade remparts",place:"Remparts d'Essaouira",tip:"Le matin les remparts sont quasi-déserts",tags:["nature"]},
-          {time:"10:30",emoji:"🐟",activity:"Visite du port",place:"Port d'Essaouira",tip:"Les barques bleues rentrent tôt le matin",tags:["culture"]},
-          {time:"12:00",emoji:"🍽️",activity:"Déjeuner poisson grillé",place:"Restaurants du port",tip:"Poisson grillé directement au port",tags:["food"]},
-          {time:"14:00",emoji:"🎨",activity:"Galeries d'art médina",place:"Médina d'Essaouira",tip:"Plus de 30 galeries — ambiance bohème",tags:["culture"]},
-          {time:"16:00",emoji:"🪵",activity:"Artisans thuya",place:"Souks d'Essaouira",tip:"Le bois de thuya est unique à Essaouira",tags:["shopping"]},
-          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil remparts",place:"Skala du Port",tip:"Le coucher de soleil depuis la skala est magique",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner avec musique gnaoua",place:"Restaurant médina",tip:"Certains restaurants proposent de la musique live",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🌊",activity:"Promenade remparts",activity_en:"Ramparts walk",place:"Remparts d'Essaouira",place_en:"Essaouira ramparts",tip:"Le matin les remparts sont quasi-déserts",tip_en:"In the morning the ramparts are almost empty",tags:["nature"]},
+          {time:"10:30",emoji:"🐟",activity:"Visite du port",activity_en:"Visit the harbour",place:"Port d'Essaouira",place_en:"Essaouira harbour",tip:"Les barques bleues rentrent tôt le matin",tip_en:"The blue fishing boats return early in the morning",tags:["culture"]},
+          {time:"12:00",emoji:"🍽️",activity:"Déjeuner poisson grillé",activity_en:"Grilled fish lunch",place:"Restaurants du port",place_en:"Harbour restaurants",tip:"Poisson grillé directement au port",tip_en:"Grilled fish straight from the harbour",tags:["food"]},
+          {time:"14:00",emoji:"🎨",activity:"Galeries d'art médina",activity_en:"Medina art galleries",place:"Médina d'Essaouira",place_en:"Essaouira Medina",tip:"Plus de 30 galeries — ambiance bohème",tip_en:"Over 30 galleries — bohemian atmosphere",tags:["culture"]},
+          {time:"16:00",emoji:"🪵",activity:"Artisans thuya",activity_en:"Thuya wood craftsmen",place:"Souks d'Essaouira",place_en:"Essaouira souks",tip:"Le bois de thuya est unique à Essaouira",tip_en:"Thuya wood carving is unique to Essaouira",tags:["shopping"]},
+          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil remparts",activity_en:"Sunset on the ramparts",place:"Skala du Port",place_en:"Skala du Port",tip:"Le coucher de soleil depuis la skala est magique",tip_en:"The sunset from the skala is magical",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner avec musique gnaoua",activity_en:"Dinner with gnaoua music",place:"Restaurant médina",place_en:"Medina restaurant",tip:"Certains restaurants proposent de la musique live",tip_en:"Some restaurants feature live music",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🏄",activity:"Cours de surf ou kitesurf",place:"Plage d'Essaouira",tip:"Spot de kitesurf de renommée mondiale",tags:["nature"]},
-          {time:"12:00",emoji:"🥗",activity:"Déjeuner café de plage",place:"Café de la plage",tip:"Cuisine simple et fraîche en bord de plage",tags:["food"]},
-          {time:"14:00",emoji:"🏝️",activity:"Vue île de Mogador",place:"Remparts face à l'île",tip:"Vue spectaculaire sur l'île",tags:["nature"]},
-          {time:"15:30",emoji:"🛍️",activity:"Shopping médina",place:"Souks d'Essaouira",tip:"Bijoux argentés — meilleurs achats",tags:["shopping"]},
-          {time:"17:00",emoji:"☕",activity:"Thé à la menthe",place:"Café de la médina",tip:"Prenez le temps d'observer les habitants",tags:["relax"]},
-          {time:"19:30",emoji:"🌙",activity:"Dîner langouste grillée",place:"Restaurant bord de mer",tip:"La langouste est la spécialité d'Essaouira",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏄",activity:"Cours de surf ou kitesurf",activity_en:"Surf or kitesurf lesson",place:"Plage d'Essaouira",place_en:"Essaouira beach",tip:"Spot de kitesurf de renommée mondiale",tip_en:"World-renowned kitesurf spot",tags:["nature"]},
+          {time:"12:00",emoji:"🥗",activity:"Déjeuner café de plage",activity_en:"Beach café lunch",place:"Café de la plage",place_en:"Beach café",tip:"Cuisine simple et fraîche en bord de plage",tip_en:"Simple fresh food right on the beach",tags:["food"]},
+          {time:"14:00",emoji:"🏝️",activity:"Vue île de Mogador",activity_en:"Mogador island view",place:"Remparts face à l'île",place_en:"Ramparts facing the island",tip:"Vue spectaculaire sur l'île",tip_en:"Spectacular view of the island",tags:["nature"]},
+          {time:"15:30",emoji:"🛍️",activity:"Shopping médina",activity_en:"Medina shopping",place:"Souks d'Essaouira",place_en:"Essaouira souks",tip:"Bijoux argentés — meilleurs achats",tip_en:"Silver jewellery — best buys in the souks",tags:["shopping"]},
+          {time:"17:00",emoji:"☕",activity:"Thé à la menthe",activity_en:"Mint tea break",place:"Café de la médina",place_en:"Medina café",tip:"Prenez le temps d'observer les habitants",tip_en:"Take time to watch local life pass by",tags:["relax"]},
+          {time:"19:30",emoji:"🌙",activity:"Dîner langouste grillée",activity_en:"Grilled lobster dinner",place:"Restaurant bord de mer",place_en:"Seafront restaurant",tip:"La langouste est la spécialité d'Essaouira",tip_en:"Lobster is the signature dish of Essaouira",tags:["food","nuit"]}
         ]
       }
     },
@@ -106,20 +106,20 @@ var DATA = {
       desc_ar:"المنتجع الشاطئي الرائد في المغرب. مع 300 يوم مشمس في السنة.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏖️",activity:"Plage d'Agadir",place:"Plage d'Agadir",tip:"10 km de plage — installez-vous loin du centre",tags:["nature"]},
-          {time:"12:00",emoji:"🐟",activity:"Déjeuner marina",place:"Marina d'Agadir",tip:"Restaurants avec vue sur les bateaux",tags:["food"]},
-          {time:"14:00",emoji:"🛍️",activity:"Souk El Had",place:"Souk El Had",tip:"Plus grand souk couvert du Maroc",tags:["shopping"]},
-          {time:"16:30",emoji:"🏺",activity:"Musée amazigh",place:"Musée du Patrimoine Amazigh",tip:"Collection fascinante de bijoux berbères",tags:["culture"]},
-          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil marina",place:"Marina d'Agadir",tip:"Parfait pour l'apéritif",tags:["relax"]},
-          {time:"20:30",emoji:"🌙",activity:"Dîner en bord de mer",place:"Restaurants marina",tip:"Poissons et grillades face à l'océan",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏖️",activity:"Plage d'Agadir",activity_en:"Agadir beach",place:"Plage d'Agadir",place_en:"Agadir beach",tip:"10 km de plage — installez-vous loin du centre",tip_en:"10 km of beach — set up away from the centre for more space",tags:["nature"]},
+          {time:"12:00",emoji:"🐟",activity:"Déjeuner marina",activity_en:"Marina lunch",place:"Marina d'Agadir",place_en:"Agadir Marina",tip:"Restaurants avec vue sur les bateaux",tip_en:"Restaurants overlooking the boats",tags:["food"]},
+          {time:"14:00",emoji:"🛍️",activity:"Souk El Had",activity_en:"Souk El Had market",place:"Souk El Had",place_en:"Souk El Had",tip:"Plus grand souk couvert du Maroc",tip_en:"Largest covered souk in Morocco",tags:["shopping"]},
+          {time:"16:30",emoji:"🏺",activity:"Musée amazigh",activity_en:"Amazigh Heritage Museum",place:"Musée du Patrimoine Amazigh",place_en:"Amazigh Heritage Museum",tip:"Collection fascinante de bijoux berbères",tip_en:"Fascinating collection of Berber jewellery",tags:["culture"]},
+          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil marina",activity_en:"Marina sunset",place:"Marina d'Agadir",place_en:"Agadir Marina",tip:"Parfait pour l'apéritif",tip_en:"Perfect spot for pre-dinner drinks",tags:["relax"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner en bord de mer",activity_en:"Seaside dinner",place:"Restaurants marina",place_en:"Marina restaurants",tip:"Poissons et grillades face à l'océan",tip_en:"Fish and grills facing the ocean",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"08:00",emoji:"🏄",activity:"Surf à Taghazout",place:"Taghazout",tip:"20 min d'Agadir — village de surf le plus cool",tags:["nature"]},
-          {time:"12:00",emoji:"🍽️",activity:"Déjeuner Taghazout",place:"Café de Taghazout",tip:"Cuisine fraîche face à la mer",tags:["food"]},
-          {time:"14:00",emoji:"🦜",activity:"Réserve Oued Souss",place:"Oued Souss",tip:"Flamants roses — apportez vos jumelles",tags:["nature"]},
-          {time:"16:00",emoji:"🏰",activity:"Kasbah Oufella",place:"Kasbah d'Agadir Oufella",tip:"Vue panoramique sur toute la baie",tags:["culture"]},
-          {time:"18:00",emoji:"🛁",activity:"Spa et hammam",place:"Spa marina",tip:"Plusieurs spas de luxe à la marina",tags:["relax"]},
-          {time:"21:00",emoji:"🌙",activity:"Soirée animée",place:"Marina et front de mer",tip:"La marina est très animée le soir",tags:["nuit"]}
+          {time:"08:00",emoji:"🏄",activity:"Surf à Taghazout",activity_en:"Surfing at Taghazout",place:"Taghazout",place_en:"Taghazout",tip:"20 min d'Agadir — village de surf le plus cool",tip_en:"20 min from Agadir — the coolest surf village",tags:["nature"]},
+          {time:"12:00",emoji:"🍽️",activity:"Déjeuner Taghazout",activity_en:"Lunch in Taghazout",place:"Café de Taghazout",place_en:"Taghazout café",tip:"Cuisine fraîche face à la mer",tip_en:"Fresh food facing the sea",tags:["food"]},
+          {time:"14:00",emoji:"🦜",activity:"Réserve Oued Souss",activity_en:"Oued Souss nature reserve",place:"Oued Souss",place_en:"Oued Souss",tip:"Flamants roses — apportez vos jumelles",tip_en:"Pink flamingos — bring your binoculars",tags:["nature"]},
+          {time:"16:00",emoji:"🏰",activity:"Kasbah Oufella",activity_en:"Kasbah Oufella",place:"Kasbah d'Agadir Oufella",place_en:"Kasbah Oufella",tip:"Vue panoramique sur toute la baie",tip_en:"Panoramic view over the entire bay",tags:["culture"]},
+          {time:"18:00",emoji:"🛁",activity:"Spa et hammam",activity_en:"Spa and hammam",place:"Spa marina",place_en:"Marina spa",tip:"Plusieurs spas de luxe à la marina",tip_en:"Several luxury spas at the marina",tags:["relax"]},
+          {time:"21:00",emoji:"🌙",activity:"Soirée animée",activity_en:"Lively evening",place:"Marina et front de mer",place_en:"Marina and seafront",tip:"La marina est très animée le soir",tip_en:"The marina is very lively in the evening",tags:["nuit"]}
         ]
       }
     },
@@ -129,20 +129,20 @@ var DATA = {
       desc_ar:"بوابة أفريقيا، مدينة أسطورية عند تقاطع أوروبا والمغرب.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏰",activity:"Kasbah de Tanger",place:"Kasbah de Tanger",tip:"Vue sur le détroit et l'Espagne par temps clair",tags:["culture"]},
-          {time:"11:00",emoji:"🗺️",activity:"Musée de la Kasbah",place:"Musée de la Kasbah",tip:"Magnifique jardin andalou à l'intérieur",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner médina",place:"Médina de Tanger",tip:"Restaurants authentiques et pas chers",tags:["food"]},
-          {time:"15:00",emoji:"🌊",activity:"Grotte d'Hercule",place:"Grotte d'Hercule",tip:"À 14 km — ouverture en forme d'Afrique unique",tags:["nature"]},
-          {time:"17:00",emoji:"🌅",activity:"Cap Spartel",place:"Cap Spartel",tip:"Rencontre Atlantique et Méditerranée — spectaculaire",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner Tanger moderne",place:"Boulevard Pasteur",tip:"Cœur de la vie nocturne",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏰",activity:"Kasbah de Tanger",activity_en:"Tangier Kasbah",place:"Kasbah de Tanger",place_en:"Tangier Kasbah",tip:"Vue sur le détroit et l'Espagne par temps clair",tip_en:"View of the strait and Spain on a clear day",tags:["culture"]},
+          {time:"11:00",emoji:"🗺️",activity:"Musée de la Kasbah",activity_en:"Kasbah Museum",place:"Musée de la Kasbah",place_en:"Kasbah Museum",tip:"Magnifique jardin andalou à l'intérieur",tip_en:"Beautiful Andalusian garden inside",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner médina",activity_en:"Medina lunch",place:"Médina de Tanger",place_en:"Tangier Medina",tip:"Restaurants authentiques et pas chers",tip_en:"Authentic and affordable restaurants",tags:["food"]},
+          {time:"15:00",emoji:"🌊",activity:"Grotte d'Hercule",activity_en:"Hercules Cave",place:"Grotte d'Hercule",place_en:"Hercules Cave",tip:"À 14 km — ouverture en forme d'Afrique unique",tip_en:"14 km away — the opening is shaped like Africa",tags:["nature"]},
+          {time:"17:00",emoji:"🌅",activity:"Cap Spartel",activity_en:"Cap Spartel",place:"Cap Spartel",place_en:"Cap Spartel",tip:"Rencontre Atlantique et Méditerranée — spectaculaire",tip_en:"Where the Atlantic meets the Mediterranean — spectacular",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner Tanger moderne",activity_en:"Dinner in modern Tangier",place:"Boulevard Pasteur",place_en:"Boulevard Pasteur",tip:"Cœur de la vie nocturne",tip_en:"Heart of Tangier's nightlife",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"☕",activity:"Café au Grand Socco",place:"Place du Grand Socco",tip:"La place s'anime le matin avec les marchands",tags:["culture"]},
-          {time:"10:30",emoji:"🛍️",activity:"Marché Petit Socco",place:"Petit Socco",tip:"Ambiance unique hors du temps",tags:["shopping"]},
-          {time:"13:00",emoji:"🥗",activity:"Déjeuner vue détroit",place:"Restaurant face au détroit",tip:"Certains offrent vue sur l'Espagne",tags:["food"]},
-          {time:"15:00",emoji:"🏖️",activity:"Plage Malabata",place:"Plage Malabata",tip:"Belle plage avec vue sur le détroit",tags:["nature"]},
-          {time:"17:30",emoji:"🎨",activity:"Galeries artistiques",place:"Médina de Tanger",tip:"Tanger a une scène artistique très active",tags:["culture"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner coucher de soleil",place:"Terrasse vue Atlantique",tip:"Coucher de soleil sur l'Atlantique inoubliable",tags:["food","nuit"]}
+          {time:"09:00",emoji:"☕",activity:"Café au Grand Socco",activity_en:"Coffee at Grand Socco",place:"Place du Grand Socco",place_en:"Grand Socco Square",tip:"La place s'anime le matin avec les marchands",tip_en:"The square comes alive in the morning with traders",tags:["culture"]},
+          {time:"10:30",emoji:"🛍️",activity:"Marché Petit Socco",activity_en:"Petit Socco market",place:"Petit Socco",place_en:"Petit Socco",tip:"Ambiance unique hors du temps",tip_en:"A unique timeless atmosphere",tags:["shopping"]},
+          {time:"13:00",emoji:"🥗",activity:"Déjeuner vue détroit",activity_en:"Lunch with strait view",place:"Restaurant face au détroit",place_en:"Restaurant facing the strait",tip:"Certains offrent vue sur l'Espagne",tip_en:"Some offer a view of Spain across the water",tags:["food"]},
+          {time:"15:00",emoji:"🏖️",activity:"Plage Malabata",activity_en:"Malabata beach",place:"Plage Malabata",place_en:"Malabata beach",tip:"Belle plage avec vue sur le détroit",tip_en:"Beautiful beach with views of the strait",tags:["nature"]},
+          {time:"17:30",emoji:"🎨",activity:"Galeries artistiques",activity_en:"Art galleries",place:"Médina de Tanger",place_en:"Tangier Medina",tip:"Tanger a une scène artistique très active",tip_en:"Tangier has a very vibrant art scene",tags:["culture"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner coucher de soleil",activity_en:"Sunset dinner",place:"Terrasse vue Atlantique",place_en:"Atlantic-view terrace",tip:"Coucher de soleil sur l'Atlantique inoubliable",tip_en:"Unforgettable Atlantic sunset dinner",tags:["food","nuit"]}
         ]
       }
     },
@@ -152,20 +152,20 @@ var DATA = {
       desc_ar:"تُعدّ فاس العاصمة الروحية للمغرب. مدينتها القديمة مدرجة في قائمة اليونسكو.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🚶",activity:"Médina de Fès el-Bali",place:"Bab Bou Jeloud",tip:"Engagez un guide officiel — vrai labyrinthe",tags:["culture"]},
-          {time:"11:30",emoji:"🎨",activity:"Madrasa Bou Inania",place:"Madrasa Bou Inania",tip:"Zelliges parmi les plus beaux du Maroc",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner dans un riad",place:"Restaurant riad médina",tip:"Cherchez des restaurants dans d'anciens riads",tags:["food"]},
-          {time:"15:00",emoji:"🎨",activity:"Tanneries Chouara",place:"Tanneries de Fès",tip:"Montez sur une terrasse — apportez de la menthe",tags:["culture"]},
-          {time:"17:00",emoji:"🏺",activity:"Musée Dar Batha",place:"Musée Dar Batha",tip:"Belle collection de céramiques fassis",tags:["culture"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner palais fassi",place:"Restaurant Fès",tip:"La cuisine fassi est la plus raffinée du Maroc",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🚶",activity:"Médina de Fès el-Bali",activity_en:"Fes el-Bali Medina",place:"Bab Bou Jeloud",place_en:"Bab Bou Jeloud",tip:"Engagez un guide officiel — vrai labyrinthe",tip_en:"Hire an official guide — it's a real labyrinth",tags:["culture"]},
+          {time:"11:30",emoji:"🎨",activity:"Madrasa Bou Inania",activity_en:"Bou Inania Madrasa",place:"Madrasa Bou Inania",place_en:"Bou Inania Madrasa",tip:"Zelliges parmi les plus beaux du Maroc",tip_en:"Some of the most beautiful tiles in Morocco",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner dans un riad",activity_en:"Lunch in a riad",place:"Restaurant riad médina",place_en:"Medina riad restaurant",tip:"Cherchez des restaurants dans d'anciens riads",tip_en:"Look for restaurants set inside old riads",tags:["food"]},
+          {time:"15:00",emoji:"🎨",activity:"Tanneries Chouara",activity_en:"Chouara tanneries",place:"Tanneries de Fès",place_en:"Fes tanneries",tip:"Montez sur une terrasse — apportez de la menthe",tip_en:"Go up to a terrace — bring mint to counter the smell",tags:["culture"]},
+          {time:"17:00",emoji:"🏺",activity:"Musée Dar Batha",activity_en:"Dar Batha Museum",place:"Musée Dar Batha",place_en:"Dar Batha Museum",tip:"Belle collection de céramiques fassis",tip_en:"Fine collection of Fassi ceramics",tags:["culture"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner palais fassi",activity_en:"Fassi palace dinner",place:"Restaurant Fès",place_en:"Fes restaurant",tip:"La cuisine fassi est la plus raffinée du Maroc",tip_en:"Fassi cuisine is the most refined in Morocco",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🏰",activity:"Borj Nord panorama",place:"Borj Nord",tip:"Vue panoramique sur toute la médina",tags:["culture","nature"]},
-          {time:"10:30",emoji:"🌿",activity:"Jardin Jnan Sbil",place:"Jardin Jnan Sbil",tip:"Oasis de fraîcheur à l'entrée de la médina",tags:["nature"]},
-          {time:"12:00",emoji:"🥗",activity:"Déjeuner Fès el-Jdid",place:"Fès el-Jdid",tip:"Restaurants moins touristiques",tags:["food"]},
-          {time:"14:00",emoji:"👑",activity:"Palais Royal",place:"Palais Royal de Fès",tip:"Les portes en bronze doré sont magnifiques",tags:["culture"]},
-          {time:"16:00",emoji:"🚗",activity:"Excursion Volubilis",place:"Volubilis",tip:"Site romain exceptionnel à 60 km",tags:["culture"]},
-          {time:"21:00",emoji:"🌙",activity:"Retour et dîner",place:"Médina de Fès",tip:"La médina la nuit a une atmosphère mystérieuse",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏰",activity:"Borj Nord panorama",activity_en:"Borj Nord panoramic view",place:"Borj Nord",place_en:"Borj Nord",tip:"Vue panoramique sur toute la médina",tip_en:"Panoramic view over the entire medina",tags:["culture","nature"]},
+          {time:"10:30",emoji:"🌿",activity:"Jardin Jnan Sbil",activity_en:"Jnan Sbil garden",place:"Jardin Jnan Sbil",place_en:"Jnan Sbil garden",tip:"Oasis de fraîcheur à l'entrée de la médina",tip_en:"Cool green oasis at the medina entrance",tags:["nature"]},
+          {time:"12:00",emoji:"🥗",activity:"Déjeuner Fès el-Jdid",activity_en:"Lunch in Fes el-Jdid",place:"Fès el-Jdid",place_en:"Fes el-Jdid",tip:"Restaurants moins touristiques",tip_en:"Less touristy restaurants here",tags:["food"]},
+          {time:"14:00",emoji:"👑",activity:"Palais Royal",activity_en:"Royal Palace",place:"Palais Royal de Fès",place_en:"Royal Palace of Fes",tip:"Les portes en bronze doré sont magnifiques",tip_en:"The gilded bronze gates are magnificent",tags:["culture"]},
+          {time:"16:00",emoji:"🚗",activity:"Excursion Volubilis",activity_en:"Volubilis day trip",place:"Volubilis",place_en:"Volubilis",tip:"Site romain exceptionnel à 60 km",tip_en:"Exceptional Roman ruins 60 km away",tags:["culture"]},
+          {time:"21:00",emoji:"🌙",activity:"Retour et dîner",activity_en:"Return and dinner",place:"Médina de Fès",place_en:"Fes Medina",tip:"La médina la nuit a une atmosphère mystérieuse",tip_en:"The medina at night has a mysterious atmosphere",tags:["food","nuit"]}
         ]
       }
     },
@@ -175,19 +175,19 @@ var DATA = {
       desc_ar:"شفشاون مشهورة بأزقتها ومنازلها المطلية باللون الأزرق في جبال الريف.",
       plan: {
         jour1: [
-          {time:"08:00",emoji:"🔵",activity:"Promenade médina bleue",place:"Quartier Bleu",tip:"Avant 9h les ruelles sont quasi-désertes",tags:["culture","nature"]},
-          {time:"10:00",emoji:"🏰",activity:"Kasbah et musée",place:"Kasbah de Chefchaouen",tip:"Jardin andalou à l'intérieur",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner Place Uta",place:"Place Uta el-Hammam",tip:"Parfaite pour observer la vie locale",tags:["food"]},
-          {time:"15:00",emoji:"🥾",activity:"Randonnée Jbel El Kelaa",place:"Jbel El Kelaa",tip:"2h de marche — vue imprenable sur la ville bleue",tags:["nature"]},
-          {time:"19:00",emoji:"🌅",activity:"Coucher de soleil panoramique",place:"Colline espagnole",tip:"Meilleur panorama de la ville",tags:["nature"]},
-          {time:"20:30",emoji:"🌙",activity:"Dîner spécialités rifaines",place:"Restaurant médina",tip:"Goûtez le maakouda — spécialité locale",tags:["food","nuit"]}
+          {time:"08:00",emoji:"🔵",activity:"Promenade médina bleue",activity_en:"Blue medina stroll",place:"Quartier Bleu",place_en:"Blue Quarter",tip:"Avant 9h les ruelles sont quasi-désertes",tip_en:"Before 9am the alleyways are almost empty",tags:["culture","nature"]},
+          {time:"10:00",emoji:"🏰",activity:"Kasbah et musée",activity_en:"Kasbah and museum",place:"Kasbah de Chefchaouen",place_en:"Chefchaouen Kasbah",tip:"Jardin andalou à l'intérieur",tip_en:"Andalusian garden inside",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner Place Uta",activity_en:"Lunch at Place Uta",place:"Place Uta el-Hammam",place_en:"Place Uta el-Hammam",tip:"Parfaite pour observer la vie locale",tip_en:"Perfect spot to watch local life",tags:["food"]},
+          {time:"15:00",emoji:"🥾",activity:"Randonnée Jbel El Kelaa",activity_en:"Jbel El Kelaa hike",place:"Jbel El Kelaa",place_en:"Jbel El Kelaa",tip:"2h de marche — vue imprenable sur la ville bleue",tip_en:"2h walk — stunning view over the blue city",tags:["nature"]},
+          {time:"19:00",emoji:"🌅",activity:"Coucher de soleil panoramique",activity_en:"Panoramic sunset",place:"Colline espagnole",place_en:"Spanish hill",tip:"Meilleur panorama de la ville",tip_en:"Best panorama of the city",tags:["nature"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner spécialités rifaines",activity_en:"Rif specialities dinner",place:"Restaurant médina",place_en:"Medina restaurant",tip:"Goûtez le maakouda — spécialité locale",tip_en:"Try maakouda — a local speciality",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"💦",activity:"Cascades d'Akchour",place:"Cascades d'Akchour",tip:"25 km — taxi puis 2h de randonnée",tags:["nature"]},
-          {time:"13:00",emoji:"🥗",activity:"Pique-nique aux cascades",place:"Cascades d'Akchour",tip:"Emportez de la nourriture depuis Chefchaouen",tags:["food","nature"]},
-          {time:"17:00",emoji:"🛍️",activity:"Shopping artisanat local",place:"Souks de Chefchaouen",tip:"Couvertures berbères — meilleurs achats",tags:["shopping"]},
-          {time:"18:30",emoji:"☕",activity:"Thé et vue panoramique",place:"Café vue médina",tip:"Terrasses avec vue sur la ville bleue",tags:["relax"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner d'adieu",place:"Restaurant médina",tip:"Profitez de votre dernière soirée",tags:["food","nuit"]}
+          {time:"09:00",emoji:"💦",activity:"Cascades d'Akchour",activity_en:"Akchour waterfalls",place:"Cascades d'Akchour",place_en:"Akchour waterfalls",tip:"25 km — taxi puis 2h de randonnée",tip_en:"25 km away — taxi then 2h hike",tags:["nature"]},
+          {time:"13:00",emoji:"🥗",activity:"Pique-nique aux cascades",activity_en:"Picnic at the waterfalls",place:"Cascades d'Akchour",place_en:"Akchour waterfalls",tip:"Emportez de la nourriture depuis Chefchaouen",tip_en:"Bring food from Chefchaouen",tags:["food","nature"]},
+          {time:"17:00",emoji:"🛍️",activity:"Shopping artisanat local",activity_en:"Local craft shopping",place:"Souks de Chefchaouen",place_en:"Chefchaouen souks",tip:"Couvertures berbères — meilleurs achats",tip_en:"Berber blankets — the best buy here",tags:["shopping"]},
+          {time:"18:30",emoji:"☕",activity:"Thé et vue panoramique",activity_en:"Tea with panoramic view",place:"Café vue médina",place_en:"Medina view café",tip:"Terrasses avec vue sur la ville bleue",tip_en:"Terraces overlooking the blue city",tags:["relax"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner d'adieu",activity_en:"Farewell dinner",place:"Restaurant médina",place_en:"Medina restaurant",tip:"Profitez de votre dernière soirée",tip_en:"Savour your last evening here",tags:["food","nuit"]}
         ]
       }
     },
@@ -197,19 +197,19 @@ var DATA = {
       desc_ar:"تُعرف ورزازات بوابة الصحراء ومركزاً سينمائياً مهماً.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🎬",activity:"Studios Atlas Corporation",place:"Studios de cinéma",tip:"Gladiator et GOT y ont été tournés",tags:["culture"]},
-          {time:"11:00",emoji:"🏰",activity:"Kasbah Taourirt",place:"Kasbah Taourirt",tip:"Plus grande kasbah de la région",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner local",place:"Restaurant Ouarzazate",tip:"Tajine d'agneau aux figues — spécialité locale",tags:["food"]},
-          {time:"15:00",emoji:"🏛️",activity:"Musée du Cinéma",place:"Musée du Cinéma",tip:"Costumes de grands films — passionnant",tags:["culture"]},
-          {time:"17:00",emoji:"🌅",activity:"Coucher de soleil Drâa",place:"Vallée du Drâa",tip:"Vue à couper le souffle",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner sous les étoiles",place:"Restaurant Ouarzazate",tip:"Ciel étoilé exceptionnel",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🎬",activity:"Studios Atlas Corporation",activity_en:"Atlas Corporation Studios",place:"Studios de cinéma",place_en:"Film studios",tip:"Gladiator et GOT y ont été tournés",tip_en:"Gladiator and Game of Thrones were filmed here",tags:["culture"]},
+          {time:"11:00",emoji:"🏰",activity:"Kasbah Taourirt",activity_en:"Taourirt Kasbah",place:"Kasbah Taourirt",place_en:"Taourirt Kasbah",tip:"Plus grande kasbah de la région",tip_en:"Largest kasbah in the region",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner local",activity_en:"Local lunch",place:"Restaurant Ouarzazate",place_en:"Ouarzazate restaurant",tip:"Tajine d'agneau aux figues — spécialité locale",tip_en:"Lamb tajine with figs — a local speciality",tags:["food"]},
+          {time:"15:00",emoji:"🏛️",activity:"Musée du Cinéma",activity_en:"Cinema Museum",place:"Musée du Cinéma",place_en:"Cinema Museum",tip:"Costumes de grands films — passionnant",tip_en:"Costumes from major films — fascinating",tags:["culture"]},
+          {time:"17:00",emoji:"🌅",activity:"Coucher de soleil Drâa",activity_en:"Draa valley sunset",place:"Vallée du Drâa",place_en:"Draa Valley",tip:"Vue à couper le souffle",tip_en:"Breathtaking view",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner sous les étoiles",activity_en:"Dinner under the stars",place:"Restaurant Ouarzazate",place_en:"Ouarzazate restaurant",tip:"Ciel étoilé exceptionnel",tip_en:"Exceptional starry sky",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"08:00",emoji:"🏰",activity:"Aït Ben Haddou",place:"Aït Ben Haddou",tip:"Site UNESCO à 30 km — arrivez tôt",tags:["culture"]},
-          {time:"11:00",emoji:"🌴",activity:"Vallée du Drâa",place:"Vallée du Drâa",tip:"Palmeraies et ksour berbères saisissants",tags:["nature"]},
-          {time:"13:30",emoji:"🍽️",activity:"Déjeuner berbère",place:"Restaurant vallée",tip:"Spécialités locales authentiques",tags:["food"]},
-          {time:"15:30",emoji:"🐪",activity:"Balade en dromadaire",place:"Environs Ouarzazate",tip:"Balades d'1h aux environs",tags:["nature"]},
-          {time:"20:30",emoji:"🌙",activity:"Nuit en kasbah",place:"Kasbah-hôtel",tip:"Dormez dans une vraie kasbah",tags:["nuit"]}
+          {time:"08:00",emoji:"🏰",activity:"Aït Ben Haddou",activity_en:"Aït Ben Haddou",place:"Aït Ben Haddou",place_en:"Aït Ben Haddou",tip:"Site UNESCO à 30 km — arrivez tôt",tip_en:"UNESCO site 30 km away — arrive early",tags:["culture"]},
+          {time:"11:00",emoji:"🌴",activity:"Vallée du Drâa",activity_en:"Draa Valley",place:"Vallée du Drâa",place_en:"Draa Valley",tip:"Palmeraies et ksour berbères saisissants",tip_en:"Stunning palm groves and Berber ksour",tags:["nature"]},
+          {time:"13:30",emoji:"🍽️",activity:"Déjeuner berbère",activity_en:"Berber lunch",place:"Restaurant vallée",place_en:"Valley restaurant",tip:"Spécialités locales authentiques",tip_en:"Authentic local specialities",tags:["food"]},
+          {time:"15:30",emoji:"🐪",activity:"Balade en dromadaire",activity_en:"Camel ride",place:"Environs Ouarzazate",place_en:"Ouarzazate surroundings",tip:"Balades d'1h aux environs",tip_en:"1-hour rides in the surrounding area",tags:["nature"]},
+          {time:"20:30",emoji:"🌙",activity:"Nuit en kasbah",activity_en:"Night in a kasbah",place:"Kasbah-hôtel",place_en:"Kasbah hotel",tip:"Dormez dans une vraie kasbah",tip_en:"Sleep in a real kasbah",tags:["nuit"]}
         ]
       }
     },
@@ -219,18 +219,18 @@ var DATA = {
       desc_ar:"مرزوكة مشهورة بكثبان إرق الشبي الرائعة.",
       plan: {
         jour1: [
-          {time:"16:00",emoji:"🐪",activity:"Balade chameau coucher de soleil",place:"Erg Chebbi",tip:"Partez à 16h pour le coucher de soleil",tags:["nature"]},
-          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil sur les dunes",place:"Dunes de l'Erg Chebbi",tip:"Un des plus spectaculaires au monde",tags:["nature"]},
-          {time:"20:00",emoji:"🔥",activity:"Soirée musicale au bivouac",place:"Bivouac dans le désert",tip:"Musique gnaoua autour du feu",tags:["culture","nuit"]},
-          {time:"22:00",emoji:"⭐",activity:"Observation des étoiles",place:"Désert du Sahara",tip:"Ciel étoilé exceptionnel sans pollution",tags:["nature","nuit"]}
+          {time:"16:00",emoji:"🐪",activity:"Balade chameau coucher de soleil",activity_en:"Camel ride at sunset",place:"Erg Chebbi",place_en:"Erg Chebbi",tip:"Partez à 16h pour le coucher de soleil",tip_en:"Leave at 4pm to catch the sunset",tags:["nature"]},
+          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil sur les dunes",activity_en:"Sunset over the dunes",place:"Dunes de l'Erg Chebbi",place_en:"Erg Chebbi dunes",tip:"Un des plus spectaculaires au monde",tip_en:"One of the most spectacular sunsets in the world",tags:["nature"]},
+          {time:"20:00",emoji:"🔥",activity:"Soirée musicale au bivouac",activity_en:"Music evening at the bivouac",place:"Bivouac dans le désert",place_en:"Desert bivouac",tip:"Musique gnaoua autour du feu",tip_en:"Gnaoua music around the campfire",tags:["culture","nuit"]},
+          {time:"22:00",emoji:"⭐",activity:"Observation des étoiles",activity_en:"Stargazing",place:"Désert du Sahara",place_en:"Sahara Desert",tip:"Ciel étoilé exceptionnel sans pollution",tip_en:"Exceptional starry sky with zero light pollution",tags:["nature","nuit"]}
         ],
         jour2: [
-          {time:"06:00",emoji:"🌅",activity:"Lever de soleil sur les dunes",place:"Dunes de l'Erg Chebbi",tip:"Réveillez-vous avant le soleil",tags:["nature"]},
-          {time:"08:00",emoji:"🍳",activity:"Petit-déjeuner berbère",place:"Bivouac",tip:"Simple et délicieux",tags:["food"]},
-          {time:"10:00",emoji:"🏜️",activity:"Balade dans les dunes",place:"Erg Chebbi",tip:"Montez au sommet pour la vue panoramique",tags:["nature"]},
-          {time:"12:30",emoji:"🍽️",activity:"Déjeuner au village",place:"Village de Merzouga",tip:"Spécialités sahariennes authentiques",tags:["food"]},
-          {time:"14:30",emoji:"🦜",activity:"Lac Dayet Srji",place:"Lac Dayet Srji",tip:"Flamants roses — apportez des jumelles",tags:["nature"]},
-          {time:"19:00",emoji:"🌙",activity:"Retour et dîner",place:"Merzouga",tip:"La nuit dans le désert est froide",tags:["food","nuit"]}
+          {time:"06:00",emoji:"🌅",activity:"Lever de soleil sur les dunes",activity_en:"Sunrise over the dunes",place:"Dunes de l'Erg Chebbi",place_en:"Erg Chebbi dunes",tip:"Réveillez-vous avant le soleil",tip_en:"Wake up before the sun rises",tags:["nature"]},
+          {time:"08:00",emoji:"🍳",activity:"Petit-déjeuner berbère",activity_en:"Berber breakfast",place:"Bivouac",place_en:"Bivouac",tip:"Simple et délicieux",tip_en:"Simple and delicious",tags:["food"]},
+          {time:"10:00",emoji:"🏜️",activity:"Balade dans les dunes",activity_en:"Walk through the dunes",place:"Erg Chebbi",place_en:"Erg Chebbi",tip:"Montez au sommet pour la vue panoramique",tip_en:"Climb to the top for the panoramic view",tags:["nature"]},
+          {time:"12:30",emoji:"🍽️",activity:"Déjeuner au village",activity_en:"Lunch in the village",place:"Village de Merzouga",place_en:"Merzouga village",tip:"Spécialités sahariennes authentiques",tip_en:"Authentic Saharan specialities",tags:["food"]},
+          {time:"14:30",emoji:"🦜",activity:"Lac Dayet Srji",activity_en:"Dayet Srji lake",place:"Lac Dayet Srji",place_en:"Dayet Srji lake",tip:"Flamants roses — apportez des jumelles",tip_en:"Pink flamingos — bring binoculars",tags:["nature"]},
+          {time:"19:00",emoji:"🌙",activity:"Retour et dîner",activity_en:"Return and dinner",place:"Merzouga",place_en:"Merzouga",tip:"La nuit dans le désert est froide",tip_en:"Desert nights can be cold — bring a layer",tags:["food","nuit"]}
         ]
       }
     },
@@ -240,19 +240,19 @@ var DATA = {
       desc_ar:"تُلقَّب إفران بسويسرا المغرب الصغيرة بفضل طرازها المعماري الأوروبي.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🌲",activity:"Forêt de cèdres",place:"Forêt de cèdres d'Ifrane",tip:"Singes magots en liberté — ne pas les nourrir",tags:["nature"]},
-          {time:"11:00",emoji:"🦁",activity:"Lion d'Ifrane",place:"Centre-ville Ifrane",tip:"Symbole de la ville",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner atypique",place:"Restaurant Ifrane",tip:"Cuisine européenne — unique au Maroc",tags:["food"]},
-          {time:"15:00",emoji:"🏔️",activity:"Lac Dayet Aoua",place:"Lac Dayet Aoua",tip:"Magnifique lac de montagne",tags:["nature"]},
-          {time:"17:30",emoji:"🌿",activity:"Parc national",place:"Parc National d'Ifrane",tip:"Cerfs de Barbarie rarissimes",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Soirée montagnarde",place:"Ifrane",tip:"En hiver ambiance magique sous la neige",tags:["nuit"]}
+          {time:"09:00",emoji:"🌲",activity:"Forêt de cèdres",activity_en:"Cedar forest",place:"Forêt de cèdres d'Ifrane",place_en:"Ifrane cedar forest",tip:"Singes magots en liberté — ne pas les nourrir",tip_en:"Barbary macaques roam freely — do not feed them",tags:["nature"]},
+          {time:"11:00",emoji:"🦁",activity:"Lion d'Ifrane",activity_en:"Lion of Ifrane",place:"Centre-ville Ifrane",place_en:"Ifrane town centre",tip:"Symbole de la ville",tip_en:"Symbol of the city",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner atypique",activity_en:"Unusual lunch",place:"Restaurant Ifrane",place_en:"Ifrane restaurant",tip:"Cuisine européenne — unique au Maroc",tip_en:"European-style cuisine — unique in Morocco",tags:["food"]},
+          {time:"15:00",emoji:"🏔️",activity:"Lac Dayet Aoua",activity_en:"Dayet Aoua lake",place:"Lac Dayet Aoua",place_en:"Dayet Aoua lake",tip:"Magnifique lac de montagne",tip_en:"Beautiful mountain lake",tags:["nature"]},
+          {time:"17:30",emoji:"🌿",activity:"Parc national",activity_en:"National park",place:"Parc National d'Ifrane",place_en:"Ifrane National Park",tip:"Cerfs de Barbarie rarissimes",tip_en:"Very rare Barbary deer live here",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée montagnarde",activity_en:"Mountain evening",place:"Ifrane",place_en:"Ifrane",tip:"En hiver ambiance magique sous la neige",tip_en:"In winter the atmosphere is magical under snow",tags:["nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"⛷️",activity:"Ski Michlifen (hiver) / Randonnée (été)",place:"Michlifen ou sentiers",tip:"Unique station de ski fonctionnelle du Maroc",tags:["nature"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner à Azrou",place:"Azrou",tip:"Marché berbère animé dans la ville voisine",tags:["food","culture"]},
-          {time:"15:00",emoji:"🌳",activity:"Cèdre Gouraud",place:"Forêt d'Azrou",tip:"Plus vieux cèdre du Maroc — 800 ans",tags:["nature"]},
-          {time:"17:00",emoji:"🌄",activity:"Panorama montagneux",place:"Route des lacs",tip:"Paysages splendides entre Ifrane et Azrou",tags:["nature"]},
-          {time:"19:30",emoji:"🌙",activity:"Dîner et repos",place:"Ifrane",tip:"L'air frais de montagne favorise un bon sommeil",tags:["food","nuit"]}
+          {time:"09:00",emoji:"⛷️",activity:"Ski Michlifen (hiver) / Randonnée (été)",activity_en:"Skiing (winter) / Hiking (summer)",place:"Michlifen ou sentiers",place_en:"Michlifen or hiking trails",tip:"Unique station de ski fonctionnelle du Maroc",tip_en:"Morocco's only functioning ski resort",tags:["nature"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner à Azrou",activity_en:"Lunch in Azrou",place:"Azrou",place_en:"Azrou",tip:"Marché berbère animé dans la ville voisine",tip_en:"Lively Berber market in the neighbouring town",tags:["food","culture"]},
+          {time:"15:00",emoji:"🌳",activity:"Cèdre Gouraud",activity_en:"Gouraud cedar tree",place:"Forêt d'Azrou",place_en:"Azrou forest",tip:"Plus vieux cèdre du Maroc — 800 ans",tip_en:"Morocco's oldest cedar tree — 800 years old",tags:["nature"]},
+          {time:"17:00",emoji:"🌄",activity:"Panorama montagneux",activity_en:"Mountain panorama",place:"Route des lacs",place_en:"Lakes road",tip:"Paysages splendides entre Ifrane et Azrou",tip_en:"Splendid landscapes between Ifrane and Azrou",tags:["nature"]},
+          {time:"19:30",emoji:"🌙",activity:"Dîner et repos",activity_en:"Dinner and rest",place:"Ifrane",place_en:"Ifrane",tip:"L'air frais de montagne favorise un bon sommeil",tip_en:"The fresh mountain air guarantees a good sleep",tags:["food","nuit"]}
         ]
       }
     },
@@ -262,20 +262,20 @@ var DATA = {
       desc_ar:"تغاوت قرية ساحلية مشهورة بمواقع ركوب الأمواج وأجوائها المريحة.",
       plan: {
         jour1: [
-          {time:"07:00",emoji:"🏄",activity:"Session surf matinale",place:"Anchor Point",tip:"Les meilleures vagues sont tôt le matin",tags:["nature"]},
-          {time:"10:00",emoji:"☕",activity:"Petit-déjeuner café surf",place:"Café de Taghazout",tip:"Petits-déjeuners sains et énergisants",tags:["food"]},
-          {time:"13:30",emoji:"🥗",activity:"Déjeuner healthy",place:"Restaurant Taghazout",tip:"Nombreux restaurants healthy pour surfeurs",tags:["food"]},
-          {time:"15:00",emoji:"🏄",activity:"Session surf après-midi",place:"Spot Panoramas",tip:"Excellent pour les intermédiaires",tags:["nature"]},
-          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil atlantique",place:"Falaises de Taghazout",tip:"Spectaculaire depuis les falaises",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Soirée détendue",place:"Village de Taghazout",tip:"Ambiance très relax et bohème",tags:["relax","nuit"]}
+          {time:"07:00",emoji:"🏄",activity:"Session surf matinale",activity_en:"Morning surf session",place:"Anchor Point",place_en:"Anchor Point",tip:"Les meilleures vagues sont tôt le matin",tip_en:"The best waves are early in the morning",tags:["nature"]},
+          {time:"10:00",emoji:"☕",activity:"Petit-déjeuner café surf",activity_en:"Surf café breakfast",place:"Café de Taghazout",place_en:"Taghazout café",tip:"Petits-déjeuners sains et énergisants",tip_en:"Healthy and energising breakfasts",tags:["food"]},
+          {time:"13:30",emoji:"🥗",activity:"Déjeuner healthy",activity_en:"Healthy lunch",place:"Restaurant Taghazout",place_en:"Taghazout restaurant",tip:"Nombreux restaurants healthy pour surfeurs",tip_en:"Many healthy restaurants catering to surfers",tags:["food"]},
+          {time:"15:00",emoji:"🏄",activity:"Session surf après-midi",activity_en:"Afternoon surf session",place:"Spot Panoramas",place_en:"Panoramas surf spot",tip:"Excellent pour les intermédiaires",tip_en:"Excellent for intermediate surfers",tags:["nature"]},
+          {time:"18:00",emoji:"🌅",activity:"Coucher de soleil atlantique",activity_en:"Atlantic sunset",place:"Falaises de Taghazout",place_en:"Taghazout cliffs",tip:"Spectaculaire depuis les falaises",tip_en:"Spectacular from the cliffs",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée détendue",activity_en:"Relaxed evening",place:"Village de Taghazout",place_en:"Taghazout village",tip:"Ambiance très relax et bohème",tip_en:"Very relaxed and bohemian atmosphere",tags:["relax","nuit"]}
         ],
         jour2: [
-          {time:"08:00",emoji:"🧘",activity:"Yoga au lever du soleil",place:"Plage de Taghazout",tip:"Sessions matinales face à la mer",tags:["relax"]},
-          {time:"10:00",emoji:"🚶",activity:"Village d'Aourir",place:"Village d'Aourir",tip:"Marché aux bananes unique et authentique",tags:["culture"]},
-          {time:"12:00",emoji:"🐟",activity:"Déjeuner poisson frais",place:"Restaurant Aourir",tip:"Poisson pêché le matin même",tags:["food"]},
-          {time:"14:00",emoji:"🏄",activity:"Cours de surf",place:"École de surf Taghazout",tip:"Tous niveaux — à partir de 30€",tags:["nature"]},
-          {time:"17:00",emoji:"🧖",activity:"Massage et spa",place:"Centre bien-être",tip:"Excellents centres de bien-être après le surf",tags:["relax"]},
-          {time:"19:30",emoji:"🌙",activity:"Feu de camp sur la plage",place:"Plage de Taghazout",tip:"Certains cafés organisent des soirées",tags:["nuit"]}
+          {time:"08:00",emoji:"🧘",activity:"Yoga au lever du soleil",activity_en:"Sunrise yoga",place:"Plage de Taghazout",place_en:"Taghazout beach",tip:"Sessions matinales face à la mer",tip_en:"Morning sessions facing the sea",tags:["relax"]},
+          {time:"10:00",emoji:"🚶",activity:"Village d'Aourir",activity_en:"Aourir village",place:"Village d'Aourir",place_en:"Aourir village",tip:"Marché aux bananes unique et authentique",tip_en:"Unique and authentic banana market",tags:["culture"]},
+          {time:"12:00",emoji:"🐟",activity:"Déjeuner poisson frais",activity_en:"Fresh fish lunch",place:"Restaurant Aourir",place_en:"Aourir restaurant",tip:"Poisson pêché le matin même",tip_en:"Fish caught that same morning",tags:["food"]},
+          {time:"14:00",emoji:"🏄",activity:"Cours de surf",activity_en:"Surf lesson",place:"École de surf Taghazout",place_en:"Taghazout surf school",tip:"Tous niveaux — à partir de 30€",tip_en:"All levels — from €30",tags:["nature"]},
+          {time:"17:00",emoji:"🧖",activity:"Massage et spa",activity_en:"Massage and spa",place:"Centre bien-être",place_en:"Wellness centre",tip:"Excellents centres de bien-être après le surf",tip_en:"Excellent wellness centres perfect after surfing",tags:["relax"]},
+          {time:"19:30",emoji:"🌙",activity:"Feu de camp sur la plage",activity_en:"Beach campfire",place:"Plage de Taghazout",place_en:"Taghazout beach",tip:"Certains cafés organisent des soirées",tip_en:"Some cafés organise beach evenings",tags:["nuit"]}
         ]
       }
     },
@@ -285,20 +285,20 @@ var DATA = {
       desc_ar:"الداخلة شبه جزيرة رائعة في الصحراء الأطلسية، مشهورة عالمياً كجنة لرياضة الكايت سيرف والشراع. بحيراتها الفيروزية وكثبانها الرملية وأجواؤها الفريدة.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏄",activity:"Session kitesurf ou windsurf",place:"Lagon de Dakhla",tip:"Le lagon est parfait pour tous niveaux — eau plate et vent régulier",tags:["nature"]},
-          {time:"12:00",emoji:"🐟",activity:"Déjeuner fruits de mer",place:"Restaurant bord de lagon",tip:"Les fruits de mer de Dakhla sont exceptionnels et très frais",tags:["food"]},
-          {time:"14:00",emoji:"🏜️",activity:"Excursion dunes de sable",place:"Dunes du Sahara atlantique",tip:"Contraste unique entre les dunes et l'océan",tags:["nature"]},
-          {time:"16:30",emoji:"🦜",activity:"Observation des oiseaux",place:"Réserve naturelle",tip:"Dakhla est un paradis pour le birdwatching — flamants et pélicans",tags:["nature"]},
-          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil sur le lagon",place:"Lagon de Dakhla",tip:"Les couleurs du coucher de soleil sur le lagon sont magiques",tags:["nature"]},
-          {time:"20:30",emoji:"🌙",activity:"Dîner poissons grillés",place:"Restaurant Dakhla",tip:"La dorade et le loup de mer sont les spécialités locales",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏄",activity:"Session kitesurf ou windsurf",activity_en:"Kitesurfing or windsurfing session",place:"Lagon de Dakhla",place_en:"Dakhla lagoon",tip:"Le lagon est parfait pour tous niveaux — eau plate et vent régulier",tip_en:"The lagoon is perfect for all levels — flat water and steady wind",tags:["nature"]},
+          {time:"12:00",emoji:"🐟",activity:"Déjeuner fruits de mer",activity_en:"Seafood lunch",place:"Restaurant bord de lagon",place_en:"Lagoonside restaurant",tip:"Les fruits de mer de Dakhla sont exceptionnels et très frais",tip_en:"Dakhla's seafood is exceptional and very fresh",tags:["food"]},
+          {time:"14:00",emoji:"🏜️",activity:"Excursion dunes de sable",activity_en:"Sand dunes excursion",place:"Dunes du Sahara atlantique",place_en:"Atlantic Sahara dunes",tip:"Contraste unique entre les dunes et l'océan",tip_en:"Unique contrast between dunes and ocean",tags:["nature"]},
+          {time:"16:30",emoji:"🦜",activity:"Observation des oiseaux",activity_en:"Birdwatching",place:"Réserve naturelle",place_en:"Nature reserve",tip:"Dakhla est un paradis pour le birdwatching — flamants et pélicans",tip_en:"Dakhla is a birdwatching paradise — flamingos and pelicans",tags:["nature"]},
+          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil sur le lagon",activity_en:"Sunset over the lagoon",place:"Lagon de Dakhla",place_en:"Dakhla lagoon",tip:"Les couleurs du coucher de soleil sur le lagon sont magiques",tip_en:"The colours of the lagoon sunset are magical",tags:["nature"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner poissons grillés",activity_en:"Grilled fish dinner",place:"Restaurant Dakhla",place_en:"Dakhla restaurant",tip:"La dorade et le loup de mer sont les spécialités locales",tip_en:"Sea bream and sea bass are the local specialities",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"08:00",emoji:"🚤",activity:"Excursion en bateau",place:"Lagon de Dakhla",tip:"Tour en bateau pour découvrir les îlots et la faune marine",tags:["nature"]},
-          {time:"11:00",emoji:"🏄",activity:"Surf ou paddle",place:"Plage océanique",tip:"La côte atlantique offre de belles vagues pour le surf",tags:["nature"]},
-          {time:"13:00",emoji:"🥗",activity:"Déjeuner camp nomade",place:"Camp du désert",tip:"Certains camps proposent des déjeuners typiques sahraouis",tags:["food","culture"]},
-          {time:"15:00",emoji:"🐪",activity:"Balade à dos de chameau",place:"Dunes atlantiques",tip:"Expérience unique entre désert et océan",tags:["nature"]},
-          {time:"17:30",emoji:"🎣",activity:"Pêche traditionnelle",place:"Port de Dakhla",tip:"Accompagnez les pêcheurs locaux pour une expérience authentique",tags:["culture"]},
-          {time:"20:00",emoji:"🌙",activity:"Soirée sahraouie",place:"Camp traditionnel",tip:"Musique hassanie et thé à la menthe autour du feu",tags:["culture","nuit"]}
+          {time:"08:00",emoji:"🚤",activity:"Excursion en bateau",activity_en:"Boat excursion",place:"Lagon de Dakhla",place_en:"Dakhla lagoon",tip:"Tour en bateau pour découvrir les îlots et la faune marine",tip_en:"Boat trip to discover the islets and marine wildlife",tags:["nature"]},
+          {time:"11:00",emoji:"🏄",activity:"Surf ou paddle",activity_en:"Surf or paddleboard",place:"Plage océanique",place_en:"Ocean beach",tip:"La côte atlantique offre de belles vagues pour le surf",tip_en:"The Atlantic coast offers great surf waves",tags:["nature"]},
+          {time:"13:00",emoji:"🥗",activity:"Déjeuner camp nomade",activity_en:"Nomad camp lunch",place:"Camp du désert",place_en:"Desert camp",tip:"Certains camps proposent des déjeuners typiques sahraouis",tip_en:"Some camps offer traditional Sahrawi lunches",tags:["food","culture"]},
+          {time:"15:00",emoji:"🐪",activity:"Balade à dos de chameau",activity_en:"Camel ride",place:"Dunes atlantiques",place_en:"Atlantic dunes",tip:"Expérience unique entre désert et océan",tip_en:"Unique experience between desert and ocean",tags:["nature"]},
+          {time:"17:30",emoji:"🎣",activity:"Pêche traditionnelle",activity_en:"Traditional fishing",place:"Port de Dakhla",place_en:"Dakhla port",tip:"Accompagnez les pêcheurs locaux pour une expérience authentique",tip_en:"Join local fishermen for an authentic experience",tags:["culture"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée sahraouie",activity_en:"Sahrawi evening",place:"Camp traditionnel",place_en:"Traditional camp",tip:"Musique hassanie et thé à la menthe autour du feu",tip_en:"Hassani music and mint tea around the fire",tags:["culture","nuit"]}
         ]
       }
     },
@@ -308,20 +308,20 @@ var DATA = {
       desc_ar:"تُلقَّب السعيدية باللؤلؤة الزرقاء للبحر الأبيض المتوسط. بشاطئها الرملي الممتد 14 كم ومياهها الصافية ومارينا حديثة.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏖️",activity:"Plage de Saïdia",place:"Plage de Saïdia",tip:"14 km de plage — installez-vous loin de la marina pour plus de calme",tags:["nature"]},
-          {time:"12:00",emoji:"🐟",activity:"Déjeuner restaurant marina",place:"Marina de Saïdia",tip:"Les restaurants de la marina servent d'excellents poissons",tags:["food"]},
-          {time:"14:00",emoji:"🛍️",activity:"Shopping marina et souks",place:"Marina de Saïdia",tip:"La marina propose boutiques et artisanat local",tags:["shopping"]},
-          {time:"16:00",emoji:"🌊",activity:"Baignade en Méditerranée",place:"Plage de Saïdia",tip:"Eau calme et chaude — idéale pour les familles",tags:["nature"]},
-          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil Méditerranée",place:"Front de mer",tip:"Vue magnifique sur la Méditerranée et les côtes espagnoles",tags:["nature"]},
-          {time:"20:30",emoji:"🌙",activity:"Soirée animée marina",place:"Marina de Saïdia",tip:"La marina est très animée en été",tags:["nuit"]}
+          {time:"09:00",emoji:"🏖️",activity:"Plage de Saïdia",activity_en:"Saidia beach",place:"Plage de Saïdia",place_en:"Saidia beach",tip:"14 km de plage — installez-vous loin de la marina pour plus de calme",tip_en:"14 km of beach — set up away from the marina for more peace",tags:["nature"]},
+          {time:"12:00",emoji:"🐟",activity:"Déjeuner restaurant marina",activity_en:"Marina restaurant lunch",place:"Marina de Saïdia",place_en:"Saidia Marina",tip:"Les restaurants de la marina servent d'excellents poissons",tip_en:"Marina restaurants serve excellent fish",tags:["food"]},
+          {time:"14:00",emoji:"🛍️",activity:"Shopping marina et souks",activity_en:"Marina and souk shopping",place:"Marina de Saïdia",place_en:"Saidia Marina",tip:"La marina propose boutiques et artisanat local",tip_en:"The marina offers shops and local crafts",tags:["shopping"]},
+          {time:"16:00",emoji:"🌊",activity:"Baignade en Méditerranée",activity_en:"Swimming in the Mediterranean",place:"Plage de Saïdia",place_en:"Saidia beach",tip:"Eau calme et chaude — idéale pour les familles",tip_en:"Calm warm water — ideal for families",tags:["nature"]},
+          {time:"18:30",emoji:"🌅",activity:"Coucher de soleil Méditerranée",activity_en:"Mediterranean sunset",place:"Front de mer",place_en:"Seafront",tip:"Vue magnifique sur la Méditerranée et les côtes espagnoles",tip_en:"Magnificent view over the Mediterranean and Spanish coast",tags:["nature"]},
+          {time:"20:30",emoji:"🌙",activity:"Soirée animée marina",activity_en:"Lively marina evening",place:"Marina de Saïdia",place_en:"Saidia Marina",tip:"La marina est très animée en été",tip_en:"The marina is very lively in summer",tags:["nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🚴",activity:"Vélo le long de la plage",place:"Piste cyclable Saïdia",tip:"Plusieurs loueurs de vélos disponibles sur le front de mer",tags:["nature"]},
-          {time:"11:00",emoji:"🏊",activity:"Sports nautiques",place:"Centre nautique",tip:"Jet ski, banane, paddle — nombreuses activités disponibles",tags:["nature"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner typique oriental",place:"Restaurant Saïdia",tip:"La cuisine orientale est différente du reste du Maroc",tags:["food"]},
-          {time:"15:00",emoji:"🌿",activity:"Forêt de la Moulouya",place:"Embouchure de la Moulouya",tip:"Réserve naturelle avec des oiseaux rares à 10 km",tags:["nature"]},
-          {time:"17:30",emoji:"☕",activity:"Café vue mer",place:"Terrasse front de mer",tip:"Profitez d'un café en regardant la Méditerranée",tags:["relax"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner de fruits de mer",place:"Restaurant bord de mer",tip:"Les crevettes et langoustes de Saïdia sont excellentes",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🚴",activity:"Vélo le long de la plage",activity_en:"Cycling along the beach",place:"Piste cyclable Saïdia",place_en:"Saidia cycle path",tip:"Plusieurs loueurs de vélos disponibles sur le front de mer",tip_en:"Several bike rental shops on the seafront",tags:["nature"]},
+          {time:"11:00",emoji:"🏊",activity:"Sports nautiques",activity_en:"Water sports",place:"Centre nautique",place_en:"Nautical centre",tip:"Jet ski, banane, paddle — nombreuses activités disponibles",tip_en:"Jet ski, banana boat, paddle — many activities available",tags:["nature"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner typique oriental",activity_en:"Eastern-style lunch",place:"Restaurant Saïdia",place_en:"Saidia restaurant",tip:"La cuisine orientale est différente du reste du Maroc",tip_en:"Eastern-style cuisine is quite different from the rest of Morocco",tags:["food"]},
+          {time:"15:00",emoji:"🌿",activity:"Forêt de la Moulouya",activity_en:"Moulouya forest",place:"Embouchure de la Moulouya",place_en:"Moulouya estuary",tip:"Réserve naturelle avec des oiseaux rares à 10 km",tip_en:"Nature reserve with rare birds 10 km away",tags:["nature"]},
+          {time:"17:30",emoji:"☕",activity:"Café vue mer",activity_en:"Sea view coffee",place:"Terrasse front de mer",place_en:"Seafront terrace",tip:"Profitez d'un café en regardant la Méditerranée",tip_en:"Enjoy a coffee while watching the Mediterranean",tags:["relax"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner de fruits de mer",activity_en:"Seafood dinner",place:"Restaurant bord de mer",place_en:"Seafront restaurant",tip:"Les crevettes et langoustes de Saïdia sont excellentes",tip_en:"Saidia's prawns and lobsters are excellent",tags:["food","nuit"]}
         ]
       }
     },
@@ -331,20 +331,20 @@ var DATA = {
       desc_ar:"الحسيمة جوهرة مخفية في الريف المتوسطي. شواطئها ذات المياه الفيروزية من أجمل شواطئ المغرب.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏖️",activity:"Plage Quemado",place:"Plage Quemado",tip:"La plage principale d'Al Hoceïma avec eau cristalline",tags:["nature"]},
-          {time:"11:00",emoji:"🚤",activity:"Excursion en bateau",place:"Port d'Al Hoceïma",tip:"Tour des criques et grottes marines inaccessibles à pied",tags:["nature"]},
-          {time:"13:00",emoji:"🐟",activity:"Déjeuner poissons frais",place:"Restaurant port",tip:"Le poisson pêché le matin est servi directement au restaurant",tags:["food"]},
-          {time:"15:00",emoji:"🌊",activity:"Plage Asfiha",place:"Plage Asfiha",tip:"Moins fréquentée — eau turquoise exceptionnelle",tags:["nature"]},
-          {time:"17:30",emoji:"🌅",activity:"Coucher de soleil sur la Méditerranée",place:"Corniche Al Hoceïma",tip:"Vue magnifique sur l'îlot d'Al Hoceïma",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner méditerranéen",place:"Restaurant Al Hoceïma",tip:"Cuisine rifaine avec influence méditerranéenne unique",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏖️",activity:"Plage Quemado",activity_en:"Quemado beach",place:"Plage Quemado",place_en:"Quemado beach",tip:"La plage principale d'Al Hoceïma avec eau cristalline",tip_en:"Al Hoceima's main beach with crystal-clear water",tags:["nature"]},
+          {time:"11:00",emoji:"🚤",activity:"Excursion en bateau",activity_en:"Boat excursion",place:"Port d'Al Hoceïma",place_en:"Al Hoceima port",tip:"Tour des criques et grottes marines inaccessibles à pied",tip_en:"Tour of coves and sea caves unreachable on foot",tags:["nature"]},
+          {time:"13:00",emoji:"🐟",activity:"Déjeuner poissons frais",activity_en:"Fresh fish lunch",place:"Restaurant port",place_en:"Harbour restaurant",tip:"Le poisson pêché le matin est servi directement au restaurant",tip_en:"Morning-caught fish served straight at the restaurant",tags:["food"]},
+          {time:"15:00",emoji:"🌊",activity:"Plage Asfiha",activity_en:"Asfiha beach",place:"Plage Asfiha",place_en:"Asfiha beach",tip:"Moins fréquentée — eau turquoise exceptionnelle",tip_en:"Less crowded — exceptional turquoise water",tags:["nature"]},
+          {time:"17:30",emoji:"🌅",activity:"Coucher de soleil sur la Méditerranée",activity_en:"Mediterranean sunset",place:"Corniche Al Hoceïma",place_en:"Al Hoceima corniche",tip:"Vue magnifique sur l'îlot d'Al Hoceïma",tip_en:"Magnificent view over the Al Hoceima islet",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner méditerranéen",activity_en:"Mediterranean dinner",place:"Restaurant Al Hoceïma",place_en:"Al Hoceima restaurant",tip:"Cuisine rifaine avec influence méditerranéenne unique",tip_en:"Rif cuisine with a unique Mediterranean influence",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🌿",activity:"Parc National d'Al Hoceïma",place:"Parc National",tip:"Randonnée dans le parc avec vue sur la Méditerranée",tags:["nature"]},
-          {time:"12:00",emoji:"🥗",activity:"Pique-nique dans le parc",place:"Parc National",tip:"Emportez des provisions depuis la ville",tags:["food","nature"]},
-          {time:"14:00",emoji:"🏖️",activity:"Plage Torres",place:"Plage Torres",tip:"Plage sauvage accessible en bateau — paradisiaque",tags:["nature"]},
-          {time:"16:30",emoji:"🛍️",activity:"Médina d'Al Hoceïma",place:"Médina",tip:"Petite médina authentique avec artisanat du Rif",tags:["shopping","culture"]},
-          {time:"18:30",emoji:"☕",activity:"Café terrasse vue mer",place:"Place du Rif",tip:"La place principale avec vue sur la baie",tags:["relax"]},
-          {time:"20:30",emoji:"🌙",activity:"Soirée en bord de mer",place:"Front de mer",tip:"Al Hoceïma est animée en été — ambiance détendue",tags:["nuit"]}
+          {time:"09:00",emoji:"🌿",activity:"Parc National d'Al Hoceïma",activity_en:"Al Hoceima National Park",place:"Parc National",place_en:"National Park",tip:"Randonnée dans le parc avec vue sur la Méditerranée",tip_en:"Hike in the park with Mediterranean views",tags:["nature"]},
+          {time:"12:00",emoji:"🥗",activity:"Pique-nique dans le parc",activity_en:"Picnic in the park",place:"Parc National",place_en:"National Park",tip:"Emportez des provisions depuis la ville",tip_en:"Bring supplies from town",tags:["food","nature"]},
+          {time:"14:00",emoji:"🏖️",activity:"Plage Torres",activity_en:"Torres beach",place:"Plage Torres",place_en:"Torres beach",tip:"Plage sauvage accessible en bateau — paradisiaque",tip_en:"Wild beach only accessible by boat — paradise",tags:["nature"]},
+          {time:"16:30",emoji:"🛍️",activity:"Médina d'Al Hoceïma",activity_en:"Al Hoceima Medina",place:"Médina",place_en:"Medina",tip:"Petite médina authentique avec artisanat du Rif",tip_en:"Small authentic medina with Rif crafts",tags:["shopping","culture"]},
+          {time:"18:30",emoji:"☕",activity:"Café terrasse vue mer",activity_en:"Sea view terrace café",place:"Place du Rif",place_en:"Place du Rif",tip:"La place principale avec vue sur la baie",tip_en:"The main square with bay views",tags:["relax"]},
+          {time:"20:30",emoji:"🌙",activity:"Soirée en bord de mer",activity_en:"Evening by the sea",place:"Front de mer",place_en:"Seafront",tip:"Al Hoceïma est animée en été — ambiance détendue",tip_en:"Al Hoceima is lively in summer — relaxed atmosphere",tags:["nuit"]}
         ]
       }
     },
@@ -354,20 +354,20 @@ var DATA = {
       desc_ar:"أصيلة مدينة ساحلية ساحرة بأسوارها البيضاء والزرقاء على بعد 46 كم من طنجة. مشهورة بمهرجانها الثقافي الدولي ولوحاتها الجدارية.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🎨",activity:"Murales et art de rue",place:"Médina d'Asilah",tip:"Les fresques murales changent chaque année pendant le festival",tags:["culture"]},
-          {time:"11:00",emoji:"🏰",activity:"Remparts portugais",place:"Remparts d'Asilah",tip:"Vue magnifique sur l'Atlantique depuis les remparts",tags:["culture","nature"]},
-          {time:"13:00",emoji:"🐟",activity:"Déjeuner fruits de mer",place:"Restaurant médina",tip:"Asilah est réputée pour ses excellents restaurants de poissons",tags:["food"]},
-          {time:"15:00",emoji:"🏖️",activity:"Plage d'Asilah",place:"Plage d'Asilah",tip:"Belle plage atlantique face aux remparts — très photogénique",tags:["nature"]},
-          {time:"17:30",emoji:"🌅",activity:"Coucher de soleil remparts",place:"Remparts face à l'Atlantique",tip:"Un des plus beaux couchers de soleil du Maroc",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner sur terrasse",place:"Restaurant vue mer",tip:"Plusieurs restaurants offrent vue sur l'Atlantique",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🎨",activity:"Murales et art de rue",activity_en:"Murals and street art",place:"Médina d'Asilah",place_en:"Asilah Medina",tip:"Les fresques murales changent chaque année pendant le festival",tip_en:"The murals change every year during the festival",tags:["culture"]},
+          {time:"11:00",emoji:"🏰",activity:"Remparts portugais",activity_en:"Portuguese ramparts",place:"Remparts d'Asilah",place_en:"Asilah ramparts",tip:"Vue magnifique sur l'Atlantique depuis les remparts",tip_en:"Magnificent Atlantic view from the ramparts",tags:["culture","nature"]},
+          {time:"13:00",emoji:"🐟",activity:"Déjeuner fruits de mer",activity_en:"Seafood lunch",place:"Restaurant médina",place_en:"Medina restaurant",tip:"Asilah est réputée pour ses excellents restaurants de poissons",tip_en:"Asilah is known for its excellent fish restaurants",tags:["food"]},
+          {time:"15:00",emoji:"🏖️",activity:"Plage d'Asilah",activity_en:"Asilah beach",place:"Plage d'Asilah",place_en:"Asilah beach",tip:"Belle plage atlantique face aux remparts — très photogénique",tip_en:"Beautiful Atlantic beach facing the ramparts — very photogenic",tags:["nature"]},
+          {time:"17:30",emoji:"🌅",activity:"Coucher de soleil remparts",activity_en:"Ramparts sunset",place:"Remparts face à l'Atlantique",place_en:"Ramparts facing the Atlantic",tip:"Un des plus beaux couchers de soleil du Maroc",tip_en:"One of the most beautiful sunsets in Morocco",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner sur terrasse",activity_en:"Terrace dinner",place:"Restaurant vue mer",place_en:"Sea view restaurant",tip:"Plusieurs restaurants offrent vue sur l'Atlantique",tip_en:"Several restaurants offer Atlantic views",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🛍️",activity:"Galeries d'art",place:"Médina d'Asilah",tip:"Asilah a de nombreuses galeries d'artistes locaux et internationaux",tags:["culture"]},
-          {time:"11:00",emoji:"🏺",activity:"Palais de la Culture",place:"Palais Raissouni",tip:"Magnifique palais du 19e siècle avec vue sur l'Atlantique",tags:["culture"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner traditionnel",place:"Restaurant médina",tip:"Tajine de poisson — spécialité d'Asilah",tags:["food"]},
-          {time:"15:00",emoji:"🚴",activity:"Vélo autour des remparts",place:"Tour des remparts",tip:"Le tour des remparts en vélo est une expérience unique",tags:["nature"]},
-          {time:"17:00",emoji:"🌊",activity:"Plage du nord",place:"Plage nord d'Asilah",tip:"Moins fréquentée que la plage principale",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Soirée culturelle",place:"Centre Hassan II",tip:"En juillet le festival international attire artistes du monde entier",tags:["culture","nuit"]}
+          {time:"09:00",emoji:"🛍️",activity:"Galeries d'art",activity_en:"Art galleries",place:"Médina d'Asilah",place_en:"Asilah Medina",tip:"Asilah a de nombreuses galeries d'artistes locaux et internationaux",tip_en:"Asilah has many galleries of local and international artists",tags:["culture"]},
+          {time:"11:00",emoji:"🏺",activity:"Palais de la Culture",activity_en:"Palace of Culture",place:"Palais Raissouni",place_en:"Raissouni Palace",tip:"Magnifique palais du 19e siècle avec vue sur l'Atlantique",tip_en:"Magnificent 19th century palace with Atlantic views",tags:["culture"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner traditionnel",activity_en:"Traditional lunch",place:"Restaurant médina",place_en:"Medina restaurant",tip:"Tajine de poisson — spécialité d'Asilah",tip_en:"Fish tajine — Asilah's speciality",tags:["food"]},
+          {time:"15:00",emoji:"🚴",activity:"Vélo autour des remparts",activity_en:"Cycling around the ramparts",place:"Tour des remparts",place_en:"Ramparts circuit",tip:"Le tour des remparts en vélo est une expérience unique",tip_en:"Cycling around the ramparts is a unique experience",tags:["nature"]},
+          {time:"17:00",emoji:"🌊",activity:"Plage du nord",activity_en:"Northern beach",place:"Plage nord d'Asilah",place_en:"North Asilah beach",tip:"Moins fréquentée que la plage principale",tip_en:"Less crowded than the main beach",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée culturelle",activity_en:"Cultural evening",place:"Centre Hassan II",place_en:"Hassan II Centre",tip:"En juillet le festival international attire artistes du monde entier",tip_en:"In July the international festival draws artists from around the world",tags:["culture","nuit"]}
         ]
       }
     },
@@ -377,20 +377,20 @@ var DATA = {
       desc_ar:"ميرلفت قرية ساحلية صغيرة برية بين أكادير وسيدي إفني. خلجانها المحفوظة وجرفها الرائع وأجواؤها الأصيلة.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏖️",activity:"Exploration des criques",place:"Criques de Mirleft",tip:"Chaque crique est différente — explorez à pied le long des falaises",tags:["nature"]},
-          {time:"12:00",emoji:"🥗",activity:"Déjeuner café du village",place:"Village de Mirleft",tip:"Ambiance très détendue — petits cafés locaux authentiques",tags:["food"]},
-          {time:"14:00",emoji:"🏄",activity:"Surf ou bodyboard",place:"Plage principale Mirleft",tip:"Vagues excellentes pour le surf — spots peu fréquentés",tags:["nature"]},
-          {time:"16:30",emoji:"🌅",activity:"Falaises au coucher du soleil",place:"Falaises de Mirleft",tip:"Vue spectaculaire sur l'Atlantique depuis les falaises",tags:["nature"]},
-          {time:"19:00",emoji:"⭐",activity:"Observation des étoiles",place:"Collines de Mirleft",tip:"Pas de pollution lumineuse — ciel étoilé exceptionnel",tags:["nature","nuit"]},
-          {time:"20:30",emoji:"🌙",activity:"Dîner auberge locale",place:"Auberge de Mirleft",tip:"Les auberges servent une cuisine marocaine simple et délicieuse",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏖️",activity:"Exploration des criques",activity_en:"Exploring the coves",place:"Criques de Mirleft",place_en:"Mirleft coves",tip:"Chaque crique est différente — explorez à pied le long des falaises",tip_en:"Each cove is different — explore on foot along the cliffs",tags:["nature"]},
+          {time:"12:00",emoji:"🥗",activity:"Déjeuner café du village",activity_en:"Village café lunch",place:"Village de Mirleft",place_en:"Mirleft village",tip:"Ambiance très détendue — petits cafés locaux authentiques",tip_en:"Very relaxed atmosphere — authentic local cafés",tags:["food"]},
+          {time:"14:00",emoji:"🏄",activity:"Surf ou bodyboard",activity_en:"Surf or bodyboard",place:"Plage principale Mirleft",place_en:"Mirleft main beach",tip:"Vagues excellentes pour le surf — spots peu fréquentés",tip_en:"Excellent surf waves — uncrowded spots",tags:["nature"]},
+          {time:"16:30",emoji:"🌅",activity:"Falaises au coucher du soleil",activity_en:"Cliffs at sunset",place:"Falaises de Mirleft",place_en:"Mirleft cliffs",tip:"Vue spectaculaire sur l'Atlantique depuis les falaises",tip_en:"Spectacular Atlantic view from the cliffs",tags:["nature"]},
+          {time:"19:00",emoji:"⭐",activity:"Observation des étoiles",activity_en:"Stargazing",place:"Collines de Mirleft",place_en:"Mirleft hills",tip:"Pas de pollution lumineuse — ciel étoilé exceptionnel",tip_en:"No light pollution — exceptional starry sky",tags:["nature","nuit"]},
+          {time:"20:30",emoji:"🌙",activity:"Dîner auberge locale",activity_en:"Local guesthouse dinner",place:"Auberge de Mirleft",place_en:"Mirleft guesthouse",tip:"Les auberges servent une cuisine marocaine simple et délicieuse",tip_en:"Guesthouses serve simple and delicious Moroccan food",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"08:00",emoji:"🥾",activity:"Randonnée côtière",place:"Sentier côtier Mirleft",tip:"Randonnée de 2h le long des falaises avec vues époustouflantes",tags:["nature"]},
-          {time:"11:00",emoji:"🌊",activity:"Baignade crique secrète",place:"Crique cachée",tip:"Demandez aux locaux l'accès aux criques secrètes",tags:["nature"]},
-          {time:"13:00",emoji:"🐟",activity:"Déjeuner poissons grillés",place:"Restaurant local",tip:"Poissons pêchés localement — ultra frais",tags:["food"]},
-          {time:"15:00",emoji:"🧘",activity:"Yoga face à l'Atlantique",place:"Falaises de Mirleft",tip:"Plusieurs retraites de yoga dans la région",tags:["relax"]},
-          {time:"17:30",emoji:"🌅",activity:"Sunset depuis les rochers",place:"Rochers de Mirleft",tip:"Un des plus beaux couchers de soleil du Maroc",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Soirée étoilée",place:"Mirleft",tip:"Ambiance très calme et ressourçante",tags:["relax","nuit"]}
+          {time:"08:00",emoji:"🥾",activity:"Randonnée côtière",activity_en:"Coastal hike",place:"Sentier côtier Mirleft",place_en:"Mirleft coastal trail",tip:"Randonnée de 2h le long des falaises avec vues époustouflantes",tip_en:"2-hour hike along the cliffs with breathtaking views",tags:["nature"]},
+          {time:"11:00",emoji:"🌊",activity:"Baignade crique secrète",activity_en:"Secret cove swim",place:"Crique cachée",place_en:"Hidden cove",tip:"Demandez aux locaux l'accès aux criques secrètes",tip_en:"Ask locals for directions to the secret coves",tags:["nature"]},
+          {time:"13:00",emoji:"🐟",activity:"Déjeuner poissons grillés",activity_en:"Grilled fish lunch",place:"Restaurant local",place_en:"Local restaurant",tip:"Poissons pêchés localement — ultra frais",tip_en:"Locally caught fish — ultra fresh",tags:["food"]},
+          {time:"15:00",emoji:"🧘",activity:"Yoga face à l'Atlantique",activity_en:"Yoga facing the Atlantic",place:"Falaises de Mirleft",place_en:"Mirleft cliffs",tip:"Plusieurs retraites de yoga dans la région",tip_en:"Several yoga retreats in the area",tags:["relax"]},
+          {time:"17:30",emoji:"🌅",activity:"Sunset depuis les rochers",activity_en:"Sunset from the rocks",place:"Rochers de Mirleft",place_en:"Mirleft rocks",tip:"Un des plus beaux couchers de soleil du Maroc",tip_en:"One of the most beautiful sunsets in Morocco",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée étoilée",activity_en:"Starry evening",place:"Mirleft",place_en:"Mirleft",tip:"Ambiance très calme et ressourçante",tip_en:"Very calm and restorative atmosphere",tags:["relax","nuit"]}
         ]
       }
     },
@@ -400,20 +400,20 @@ var DATA = {
       desc_ar:"سيدي إفني مدينة ساحلية فريدة بطرازها المعماري الإسباني الاستثنائي. كانت مستعمرة إسبانية حتى 1969.",
       plan: {
         jour1: [
-          {time:"09:00",emoji:"🏛️",activity:"Architecture Art Déco espagnole",place:"Centre-ville Sidi Ifni",tip:"Les bâtiments Art Déco des années 1930 sont uniques en Afrique",tags:["culture"]},
-          {time:"11:00",emoji:"🏖️",activity:"Plage de Sidi Ifni",place:"Plage de Sidi Ifni",tip:"Longue plage sauvage face à l'Atlantique",tags:["nature"]},
-          {time:"13:00",emoji:"🍽️",activity:"Déjeuner spécialités locales",place:"Restaurant Sidi Ifni",tip:"Cuisine berbère avec influence espagnole — unique au Maroc",tags:["food"]},
-          {time:"15:00",emoji:"🎨",activity:"Ancienne église espagnole",place:"Église convertie",tip:"L'ancienne église espagnole est maintenant un tribunal — architecture remarquable",tags:["culture"]},
-          {time:"17:00",emoji:"🌅",activity:"Coucher de soleil Atlantique",place:"Front de mer",tip:"Le coucher de soleil sur l'Atlantique depuis Sidi Ifni est spectaculaire",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Dîner poissons grillés",place:"Restaurant bord de mer",tip:"Poissons frais pêchés localement",tags:["food","nuit"]}
+          {time:"09:00",emoji:"🏛️",activity:"Architecture Art Déco espagnole",activity_en:"Spanish Art Deco architecture",place:"Centre-ville Sidi Ifni",place_en:"Sidi Ifni town centre",tip:"Les bâtiments Art Déco des années 1930 sont uniques en Afrique",tip_en:"1930s Art Deco buildings unique in Africa",tags:["culture"]},
+          {time:"11:00",emoji:"🏖️",activity:"Plage de Sidi Ifni",activity_en:"Sidi Ifni beach",place:"Plage de Sidi Ifni",place_en:"Sidi Ifni beach",tip:"Longue plage sauvage face à l'Atlantique",tip_en:"Long wild beach facing the Atlantic",tags:["nature"]},
+          {time:"13:00",emoji:"🍽️",activity:"Déjeuner spécialités locales",activity_en:"Local specialities lunch",place:"Restaurant Sidi Ifni",place_en:"Sidi Ifni restaurant",tip:"Cuisine berbère avec influence espagnole — unique au Maroc",tip_en:"Berber cuisine with Spanish influence — unique in Morocco",tags:["food"]},
+          {time:"15:00",emoji:"🎨",activity:"Ancienne église espagnole",activity_en:"Former Spanish church",place:"Église convertie",place_en:"Converted church",tip:"L'ancienne église espagnole est maintenant un tribunal — architecture remarquable",tip_en:"The old Spanish church is now a courthouse — remarkable architecture",tags:["culture"]},
+          {time:"17:00",emoji:"🌅",activity:"Coucher de soleil Atlantique",activity_en:"Atlantic sunset",place:"Front de mer",place_en:"Seafront",tip:"Le coucher de soleil sur l'Atlantique depuis Sidi Ifni est spectaculaire",tip_en:"The Atlantic sunset from Sidi Ifni is spectacular",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Dîner poissons grillés",activity_en:"Grilled fish dinner",place:"Restaurant bord de mer",place_en:"Seafront restaurant",tip:"Poissons frais pêchés localement",tip_en:"Fresh locally caught fish",tags:["food","nuit"]}
         ],
         jour2: [
-          {time:"09:00",emoji:"🛍️",activity:"Marché hebdomadaire",place:"Souk de Sidi Ifni",tip:"Le marché du dimanche rassemble les tribus berbères locales",tags:["culture","shopping"]},
-          {time:"11:00",emoji:"🏄",activity:"Surf atlantique",place:"Plage de Sidi Ifni",tip:"Spots de surf excellents peu fréquentés",tags:["nature"]},
-          {time:"13:00",emoji:"🥗",activity:"Déjeuner café local",place:"Café du centre",tip:"Ambiance très authentique loin du tourisme de masse",tags:["food"]},
-          {time:"15:00",emoji:"🚗",activity:"Route des criques vers Mirleft",place:"Côte entre Sidi Ifni et Mirleft",tip:"Route côtière avec des paysages époustouflants",tags:["nature"]},
-          {time:"17:30",emoji:"🌅",activity:"Falaises du sud",place:"Côte sud de Sidi Ifni",tip:"Falaises dramatiques face à l'Atlantique",tags:["nature"]},
-          {time:"20:00",emoji:"🌙",activity:"Soirée tranquille",place:"Sidi Ifni",tip:"Ville très calme et authentique — parfaite pour se ressourcer",tags:["relax","nuit"]}
+          {time:"09:00",emoji:"🛍️",activity:"Marché hebdomadaire",activity_en:"Weekly market",place:"Souk de Sidi Ifni",place_en:"Sidi Ifni souk",tip:"Le marché du dimanche rassemble les tribus berbères locales",tip_en:"The Sunday market brings together local Berber tribes",tags:["culture","shopping"]},
+          {time:"11:00",emoji:"🏄",activity:"Surf atlantique",activity_en:"Atlantic surfing",place:"Plage de Sidi Ifni",place_en:"Sidi Ifni beach",tip:"Spots de surf excellents peu fréquentés",tip_en:"Excellent surf spots with few crowds",tags:["nature"]},
+          {time:"13:00",emoji:"🥗",activity:"Déjeuner café local",activity_en:"Local café lunch",place:"Café du centre",place_en:"Central café",tip:"Ambiance très authentique loin du tourisme de masse",tip_en:"Very authentic atmosphere far from mass tourism",tags:["food"]},
+          {time:"15:00",emoji:"🚗",activity:"Route des criques vers Mirleft",activity_en:"Coastal drive to Mirleft",place:"Côte entre Sidi Ifni et Mirleft",place_en:"Coast between Sidi Ifni and Mirleft",tip:"Route côtière avec des paysages époustouflants",tip_en:"Coastal road with breathtaking landscapes",tags:["nature"]},
+          {time:"17:30",emoji:"🌅",activity:"Falaises du sud",activity_en:"Southern cliffs",place:"Côte sud de Sidi Ifni",place_en:"South Sidi Ifni coast",tip:"Falaises dramatiques face à l'Atlantique",tip_en:"Dramatic cliffs facing the Atlantic",tags:["nature"]},
+          {time:"20:00",emoji:"🌙",activity:"Soirée tranquille",activity_en:"Quiet evening",place:"Sidi Ifni",place_en:"Sidi Ifni",tip:"Ville très calme et authentique — parfaite pour se ressourcer",tip_en:"Very calm and authentic town — perfect for recharging",tags:["relax","nuit"]}
         ]
       }
     }

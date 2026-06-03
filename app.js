@@ -164,6 +164,11 @@ function renderAll() {
   initFlashcards();
   updateNavLabels();
   updateSearchPlaceholder();
+  // Always sync header title with current lang and current tab
+  var headerTitleEl = document.getElementById('header-title');
+  if(headerTitleEl && currentTab) {
+    headerTitleEl.textContent = (tabTitles[lang]||tabTitles.fr)[currentTab] || '';
+  }
 }
 
 function updateSearchPlaceholder() {
@@ -208,13 +213,14 @@ function setLang(l) {
   currentVilleFilter = 'Tous';
   fcCatFilter = 'Tous'; // Reset darija filter on lang change
 
-  renderAll();
+  // Update header title
+  var titles = {
+    fr: {villes:'Villes', lieux:'Lieux', gastro:'Gastronomie', events:'Événements', urgences:'Urgences', transport:'Transport', lexique:'Darija'},
+    en: {villes:'Cities', lieux:'Places', gastro:'Gastronomy', events:'Events', urgences:'Emergencies', transport:'Transport', lexique:'Darija'},
+    ar: {villes:'المدن', lieux:'الأماكن', gastro:'المطبخ', events:'الفعاليات', urgences:'الطوارئ', transport:'النقل', lexique:'الدارجة'}
+  };
 
-  // Update header title based on current active tab
-  var headerTitleEl = document.getElementById('header-title');
-  if(headerTitleEl && currentTab) {
-    headerTitleEl.textContent = (tabTitles[lang]||tabTitles.fr)[currentTab] || '';
-  }
+  renderAll();
 }
 function toggleLangDropdown(e) {
   e.stopPropagation();
@@ -448,8 +454,7 @@ function renderFcFilter() {
   if(!el) return;
   var cats = ['Tous'].concat(Array.from(new Set(DATA.lexique.map(function(l){ return l.categorie; }))));
   el.innerHTML = cats.map(function(c) {
-    var label = c==='Tous' ? t('tous') : translateCat(c);
-    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+label+'</button>';
+    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+c+'</button>';
   }).join('');
 }
 function filterFc(cat) {
@@ -602,10 +607,18 @@ function renderTimeline(v, day) {
     el.innerHTML = '<p style="color:var(--text3);font-size:13px;padding:10px 0;">Plan à venir...</p>';
     return;
   }
-  var tagLabels = {food:'🍽️ Repas', culture:'🏛️ Culture', nature:'🌿 Nature', shopping:'🛍️ Shopping', relax:'😌 Détente', nuit:'🌙 Soirée'};
+  var tagLabels = {
+    fr:{food:'🍽️ Repas', culture:'🏛️ Culture', nature:'🌿 Nature', shopping:'🛍️ Shopping', relax:'😌 Détente', nuit:'🌙 Soirée'},
+    en:{food:'🍽️ Food', culture:'🏛️ Culture', nature:'🌿 Nature', shopping:'🛍️ Shopping', relax:'😌 Relax', nuit:'🌙 Night'},
+    ar:{food:'🍽️ طعام', culture:'🏛️ ثقافة', nature:'🌿 طبيعة', shopping:'🛍️ تسوق', relax:'😌 راحة', nuit:'🌙 مساء'}
+  };
+  var tagL = tagLabels[lang] || tagLabels.fr;
   el.innerHTML = items.map(function(item) {
+    var activ = lang==='en'?(item.activity_en||item.activity):lang==='ar'?(item.activity_ar||item.activity):item.activity;
+    var place = lang==='en'?(item.place_en||item.place):lang==='ar'?(item.place_ar||item.place):item.place;
+    var tip   = lang==='en'?(item.tip_en||item.tip):lang==='ar'?(item.tip_ar||item.tip):item.tip;
     var tags = (item.tags||[]).map(function(t){
-      return '<span class="timeline-tag tag-'+t+'">'+(tagLabels[t]||t)+'</span>';
+      return '<span class="timeline-tag tag-'+t+'">'+(tagL[t]||t)+'</span>';
     }).join('');
     return '<div class="timeline-item">'
       +'<div class="timeline-left">'
@@ -614,9 +627,9 @@ function renderTimeline(v, day) {
       +'</div>'
       +'<div class="timeline-content" style="text-align:left">'
       +'<span class="timeline-emoji">'+item.emoji+'</span>'
-      +'<div class="timeline-activity">'+item.activity+'</div>'
-      +'<div class="timeline-place">📍 '+item.place+'</div>'
-      +'<div class="timeline-tip">💡 '+item.tip+'</div>'
+      +'<div class="timeline-activity">'+activ+'</div>'
+      +'<div class="timeline-place">📍 '+place+'</div>'
+      +'<div class="timeline-tip">💡 '+tip+'</div>'
       +'<div class="timeline-tags">'+tags+'</div>'
       +'</div>'
       +'</div>';
@@ -646,15 +659,19 @@ function showLieu(id) {
   document.getElementById('dl-img').src = l.img;
   document.getElementById('dl-img').onerror = function(){ this.src='https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600'; };
   document.getElementById('dl-name').textContent = getName(l);
+  document.getElementById('dl-cat').textContent = l.cat;
+  document.getElementById('dl-cat2').textContent = l.cat;
+  document.getElementById('dl-ville').textContent = '📍 '+l.ville;
   document.getElementById('dl-ville2').textContent = l.ville;
-  document.getElementById('dl-cat2').textContent = translateLieuCat(l.cat);
   document.getElementById('dl-desc').textContent = getDesc(l);
   document.getElementById('dl-maps').href = l.maps_url||'#';
   document.getElementById('dl-maps').textContent = t('open_maps');
-  var labelVille = document.getElementById('dl-label-ville');
-  var labelCat = document.getElementById('dl-label-cat');
-  if(labelVille) labelVille.textContent = t('ville_label');
-  if(labelCat) labelCat.textContent = t('cat_label');
+  var villeLabelEl = document.querySelector('#detail-lieu .detail-info-label:first-child');
+  var catLabelEl = document.querySelector('#detail-lieu .detail-info-label:last-child');
+  // Update lieu detail labels
+  var lieuLabels = document.querySelectorAll('#detail-lieu .detail-info-label');
+  if(lieuLabels[0]) lieuLabels[0].textContent = t('ville_label');
+  if(lieuLabels[1]) lieuLabels[1].textContent = t('cat_label');
   document.getElementById('detail-lieu').classList.add('open');
 }
 function closeLieu() { document.getElementById('detail-lieu').classList.remove('open'); }

@@ -208,14 +208,13 @@ function setLang(l) {
   currentVilleFilter = 'Tous';
   fcCatFilter = 'Tous'; // Reset darija filter on lang change
 
-  // Update header title
-  var titles = {
-    fr: {villes:'Villes', lieux:'Lieux', gastro:'Gastronomie', events:'Événements', urgences:'Urgences', transport:'Transport', lexique:'Darija'},
-    en: {villes:'Cities', lieux:'Places', gastro:'Gastronomy', events:'Events', urgences:'Emergencies', transport:'Transport', lexique:'Darija'},
-    ar: {villes:'المدن', lieux:'الأماكن', gastro:'المطبخ', events:'الفعاليات', urgences:'الطوارئ', transport:'النقل', lexique:'الدارجة'}
-  };
-
   renderAll();
+
+  // Update header title based on current active tab
+  var headerTitleEl = document.getElementById('header-title');
+  if(headerTitleEl && currentTab) {
+    headerTitleEl.textContent = (tabTitles[lang]||tabTitles.fr)[currentTab] || '';
+  }
 }
 function toggleLangDropdown(e) {
   e.stopPropagation();
@@ -449,7 +448,8 @@ function renderFcFilter() {
   if(!el) return;
   var cats = ['Tous'].concat(Array.from(new Set(DATA.lexique.map(function(l){ return l.categorie; }))));
   el.innerHTML = cats.map(function(c) {
-    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+c+'</button>';
+    var label = c==='Tous' ? t('tous') : translateCat(c);
+    return '<button class="flashcard-filter-btn '+(c===fcCatFilter?'active':'')+'" onclick="filterFc(\''+c+'\')">'+label+'</button>';
   }).join('');
 }
 function filterFc(cat) {
@@ -646,19 +646,15 @@ function showLieu(id) {
   document.getElementById('dl-img').src = l.img;
   document.getElementById('dl-img').onerror = function(){ this.src='https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600'; };
   document.getElementById('dl-name').textContent = getName(l);
-  document.getElementById('dl-cat').textContent = l.cat;
-  document.getElementById('dl-cat2').textContent = l.cat;
-  document.getElementById('dl-ville').textContent = '📍 '+l.ville;
   document.getElementById('dl-ville2').textContent = l.ville;
+  document.getElementById('dl-cat2').textContent = translateLieuCat(l.cat);
   document.getElementById('dl-desc').textContent = getDesc(l);
   document.getElementById('dl-maps').href = l.maps_url||'#';
   document.getElementById('dl-maps').textContent = t('open_maps');
-  var villeLabelEl = document.querySelector('#detail-lieu .detail-info-label:first-child');
-  var catLabelEl = document.querySelector('#detail-lieu .detail-info-label:last-child');
-  // Update lieu detail labels
-  var lieuLabels = document.querySelectorAll('#detail-lieu .detail-info-label');
-  if(lieuLabels[0]) lieuLabels[0].textContent = t('ville_label');
-  if(lieuLabels[1]) lieuLabels[1].textContent = t('cat_label');
+  var labelVille = document.getElementById('dl-label-ville');
+  var labelCat = document.getElementById('dl-label-cat');
+  if(labelVille) labelVille.textContent = t('ville_label');
+  if(labelCat) labelCat.textContent = t('cat_label');
   document.getElementById('detail-lieu').classList.add('open');
 }
 function closeLieu() { document.getElementById('detail-lieu').classList.remove('open'); }

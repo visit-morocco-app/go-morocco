@@ -677,7 +677,7 @@ body.ar .bottom-nav{direction:ltr}
   <div class="search-wrap">
     <div class="search-bar">
       <span style="color:rgba(255,255,255,0.7)">🔍</span>
-      <input type="text" placeholder="Search a city..." id="search-input" id="search-input" oninput="handleSearch()">
+      <input type="text" placeholder="Search a city..." id="search-input" oninput="handleSearch()">
     </div>
   </div>
 
@@ -836,14 +836,12 @@ body.ar .bottom-nav{direction:ltr}
     <div class="dl-fav" onclick="toggleFav(this)">🤍</div>
   </div>
   <div class="dl-content">
-    <div class="dl-badge" id="dl-cat"></div>
     <div class="dl-title" id="dl-name"></div>
-    <div class="dl-ville" id="dl-ville"></div>
     <div class="dl-desc" id="dl-desc"></div>
     <a class="detail-maps-btn" id="dl-maps" href="#" target="_blank">🗺️ Ouvrir dans Google Maps</a>
     <div class="detail-info-grid">
-      <div class="detail-info-item"><div class="detail-info-label">Ville</div><div class="detail-info-value" id="dl-ville2"></div></div>
-      <div class="detail-info-item"><div class="detail-info-label">Catégorie</div><div class="detail-info-value" id="dl-cat2"></div></div>
+      <div class="detail-info-item"><div class="detail-info-label" id="dl-label-ville">Ville</div><div class="detail-info-value" id="dl-ville2"></div></div>
+      <div class="detail-info-item"><div class="detail-info-label" id="dl-label-cat">Catégorie</div><div class="detail-info-value" id="dl-cat2"></div></div>
     </div>
   </div>
 </div>

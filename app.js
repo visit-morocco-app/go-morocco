@@ -178,9 +178,9 @@ function updateNavLabels() {
     ar:{villes:'المدن',lieux:'الأماكن',gastro:'المطبخ',events:'فعاليات',urgences:'طوارئ',transport:'نقل',lexique:'دارجة'}
   };
   var labels = navLabels[lang] || navLabels.fr;
-  Object.keys(labels).forEach(function(key) {
+  ['villes','lieux','gastro','events','urgences','transport','lexique'].forEach(function(key) {
     var navEl = document.querySelector('#nav-'+key+' .nav-label');
-    if(navEl) navEl.textContent = labels[key];
+    if(navEl && labels[key]) navEl.textContent = labels[key];
   });
 }
 
@@ -228,19 +228,19 @@ function closeLangDropdown() {
 }
 
 // ======== NAVIGATION ========
+var tabTitles = {
+  fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastronomie',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
+  en:{villes:'Cities',lieux:'Places',gastro:'Gastronomy',events:'Events',urgences:'Emergencies',transport:'Transport',lexique:'Darija'},
+  ar:{villes:'المدن',lieux:'الأماكن',gastro:'المطبخ',events:'الفعاليات',urgences:'الطوارئ',transport:'النقل',lexique:'الدارجة'}
+};
+var currentTab = 'villes';
 function switchTab(tab, title) {
-  document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+  currentTab = tab;
+  document.querySelectorAll('.tab-content').forEach(function(tc){ tc.classList.remove('active'); });
   document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
   document.getElementById('tab-'+tab).classList.add('active');
   document.getElementById('nav-'+tab).classList.add('active');
-  // Translate title
-  var titles = {
-    fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastronomie',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
-    en:{villes:'Cities',lieux:'Places',gastro:'Gastronomy',events:'Events',urgences:'Emergencies',transport:'Transport',lexique:'Darija'},
-    ar:{villes:'المدن',lieux:'الأماكن',gastro:'المطبخ',events:'الفعاليات',urgences:'الطوارئ',transport:'النقل',lexique:'الدارجة'}
-  };
-  var translatedTitle = (titles[lang]||titles.fr)[tab] || title;
-  document.getElementById('header-title').textContent = translatedTitle;
+  document.getElementById('header-title').textContent = (tabTitles[lang]||tabTitles.fr)[tab] || title;
   window.scrollTo(0,0);
 }
 
@@ -453,8 +453,8 @@ function renderFcFilter() {
   }).join('');
 }
 function filterFc(cat) {
-  fcCatFilter = cat; // Keep original category key
-  fcFiltered = cat==='Tous' ? DATA.lexique.slice() : DATA.lexique.filter(function(l){ return l.categorie===cat; });
+  fcCatFilter = cat; // Keep original French category key for filtering
+  fcFiltered = (cat==='Tous'||cat==='All'||cat==='الكل') ? DATA.lexique.slice() : DATA.lexique.filter(function(l){ return l.categorie===cat; });
   fcIndex = 0;
   fcFlipped = false;
   renderFcFilter();

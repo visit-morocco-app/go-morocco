@@ -70,6 +70,15 @@ var T = {
 };
 function t(key) { return (T[lang]||T.fr)[key] || (T.fr)[key] || key; }
 
+
+// Lieu categories translation
+var lieuCats = {
+  fr:{Place:'Place',Jardin:'Jardin',Marché:'Marché',Patrimoine:'Patrimoine',Monument:'Monument',Culture:'Culture',Médina:'Médina',Promenade:'Promenade',Plage:'Plage',Port:'Port',Nature:'Nature',Artisanat:'Artisanat',Architecture:'Architecture',Loisirs:'Loisirs',Surf:'Surf','Bien-être':'Bien-être',Kasbah:'Kasbah',Aventure:'Aventure','Ville historique':'Ville historique',Sport:'Sport'},
+  en:{Place:'Square',Jardin:'Garden',Marché:'Market',Patrimoine:'Heritage',Monument:'Monument',Culture:'Culture',Médina:'Medina',Promenade:'Promenade',Plage:'Beach',Port:'Port',Nature:'Nature',Artisanat:'Crafts',Architecture:'Architecture',Loisirs:'Leisure',Surf:'Surf','Bien-être':'Wellness',Kasbah:'Kasbah',Aventure:'Adventure','Ville historique':'Historic city',Sport:'Sport'},
+  ar:{Place:'ساحة',Jardin:'حديقة',Marché:'سوق',Patrimoine:'تراث',Monument:'معلم',Culture:'ثقافة',Médina:'مدينة قديمة',Promenade:'كورنيش',Plage:'شاطئ',Port:'ميناء',Nature:'طبيعة',Artisanat:'حرف يدوية',Architecture:'معمار',Loisirs:'ترفيه',Surf:'ركوب أمواج','Bien-être':'عافية',Kasbah:'قصبة',Aventure:'مغامرة','Ville historique':'مدينة تاريخية',Sport:'رياضة'}
+};
+function translateLieuCat(cat) { return (lieuCats[lang]||lieuCats.fr)[cat] || cat; }
+
 // Gastro types translation
 var gastroTypes = {
   fr: {'Plat principal':'Plat principal','Entrée':'Entrée','Soupe':'Soupe','Dessert':'Dessert','Boisson':'Boisson','Petit-déjeuner':'Petit-déjeuner','Grillades':'Grillades','Salade':'Salade','Accompagnement':'Accompagnement','Street food':'Street food','Sauce':'Sauce','Pâtisserie':'Pâtisserie'},
@@ -99,7 +108,7 @@ function translateCat(cat) { return (darijaCategories[lang]||darijaCategories.fr
 // Toute la logique JavaScript
 // =============================================
 
-var lang = 'en';
+var lang = 'en'; // Default language
 var currentVilleFilter = 'Tous';
 var initialLangSet = false;
 var fcIndex = 0;
@@ -197,6 +206,7 @@ function setLang(l) {
     document.documentElement.setAttribute('dir','ltr');
   }
   currentVilleFilter = 'Tous';
+  fcCatFilter = 'Tous'; // Reset darija filter on lang change
 
   // Update header title
   var titles = {
@@ -268,7 +278,7 @@ function filterLieux(ville) {
     return '<div class="lieu-card" onclick="showLieu('+l.id+')">'
       +'<img src="'+l.img+'" alt="'+l.nom+'" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400\'">'
       +'<div class="lieu-card-info">'
-      +'<div class="lieu-card-badge">'+l.cat+'</div>'
+      +'<div class="lieu-card-badge">'+translateLieuCat(l.cat)+'</div>'
       +'<div class="lieu-card-name">'+getName(l)+'</div>'
       +'<div class="lieu-card-ville">📍 '+l.ville+'</div>'
       +'</div></div>';
@@ -443,7 +453,7 @@ function renderFcFilter() {
   }).join('');
 }
 function filterFc(cat) {
-  fcCatFilter = cat;
+  fcCatFilter = cat; // Keep original category key
   fcFiltered = cat==='Tous' ? DATA.lexique.slice() : DATA.lexique.filter(function(l){ return l.categorie===cat; });
   fcIndex = 0;
   fcFlipped = false;
@@ -500,7 +510,22 @@ function showVille(id) {
   document.getElementById('dv-name').textContent = getName(v);
   document.getElementById('dv-region').textContent = '📍 '+(lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region);
   document.getElementById('dv-region2').textContent = lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region;
-  document.getElementById('dv-saison').textContent = v.saison || 'Avr — Juin';
+  // Translate saison content
+  var saisonVal = v.saison || 'Avr — Juin';
+  if(lang === 'en') {
+    saisonVal = saisonVal
+      .replace('Avr','Apr').replace('Juin','June').replace('Oct','Oct')
+      .replace('Mars','Mar').replace('Mai','May').replace('Nov','Nov')
+      .replace('Janv','Jan').replace('Fév','Feb').replace('Août','Aug')
+      .replace('Sept','Sep').replace('Déc','Dec').replace('Juil','Jul')
+      .replace("Toute l'année","All year").replace('Variable','Variable');
+  } else if(lang === 'ar') {
+    saisonVal = saisonVal
+      .replace('Avr','أبر').replace('Juin','يون').replace('Oct','أكت')
+      .replace('Mars','مار').replace('Mai','ماي').replace('Nov','نوف')
+      .replace("Toute l'année","طوال السنة").replace('Variable','متغير');
+  }
+  document.getElementById('dv-saison').textContent = saisonVal;
   document.getElementById('dv-desc').textContent = getDesc(v);
   document.getElementById('dv-maps').href = v.maps_url||'#';
   if(document.getElementById('dv-budget')) document.getElementById('dv-budget').textContent = v.budget || '50 — 80€';
@@ -560,6 +585,8 @@ function showVille(id) {
   switchPlanDay(1);
 
   document.getElementById('detail-ville').classList.add('open');
+  // Update header when detail opens
+  document.getElementById('header-title').textContent = getName(v);
 }
 
 // ======== TIMELINE ========

@@ -322,6 +322,8 @@ body.ar .bottom-nav{direction:ltr}
 .about-feature-text{font-size:12px;font-weight:500;color:var(--violet)}
 .about-logout{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1.5px solid #FFEBEE;border-radius:12px;color:#C62828;font-size:14px;font-weight:500;cursor:pointer;margin-top:10px}
 .about-logout:active{background:#FFEBEE}
+.header-btn-info[title]:hover::after{content:attr(title);position:absolute;top:48px;right:0;background:rgba(0,0,0,0.8);color:white;padding:4px 10px;border-radius:8px;font-size:11px;white-space:nowrap;pointer-events:none;z-index:999}
+.header-btn-info{position:relative}
 .about-section-title{font-size:12px;font-weight:600;color:var(--violet);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 .about-section-text{font-size:14px;color:var(--text2);line-height:1.7}
 /* =============================================
@@ -666,7 +668,7 @@ body.ar .bottom-nav{direction:ltr}
         <div class="lang-option active" id="opt-en" onclick="setLang('en')">🇬🇧 English</div>
         <div class="lang-option" id="opt-ar" onclick="setLang('ar')">🇲🇦 العربية</div>
       </div>
-      <div class="header-btn-info" onclick="showAbout()">
+      <div class="header-btn-info" onclick="showAbout()" title="Information">
         <span>ℹ</span>
       </div>
     </div>

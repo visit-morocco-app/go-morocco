@@ -15,8 +15,8 @@
 :root{--violet:#4A148C;--violet-dark:#3d1174;--violet-bg:#EDE7F6;--bg:#F8F8F8;--text:#1A1A1A;--text2:#555;--text3:#999;--border:#E8E8E8;--radius:14px;--radius-sm:10px;--rouge:#C62828;--vert:#2E7D32;--or:#F57F17}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-width:430px;margin:0 auto;min-height:100vh;overflow-x:hidden}
 ::-webkit-scrollbar{width:0;height:0}
-body.ar{font-family:'Amiri','Inter',sans-serif;direction:rtl}
-body.ar .bottom-nav{direction:ltr}
+
+
 
 /* SPLASH */
 #splash{position:fixed;inset:0;z-index:9999;background:var(--violet);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity 0.8s ease}
@@ -666,7 +666,6 @@ body.ar .bottom-nav{direction:ltr}
       <div class="lang-dropdown" id="lang-dropdown">
         <div class="lang-option" id="opt-fr" onclick="setLang('fr')">🇫🇷 Français</div>
         <div class="lang-option active" id="opt-en" onclick="setLang('en')">🇬🇧 English</div>
-        <div class="lang-option" id="opt-ar" onclick="setLang('ar')">🇲🇦 العربية</div>
       </div>
       <div class="header-btn-info" onclick="showAbout()" title="About">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:white"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01M12 12v4"/></svg>
@@ -729,6 +728,21 @@ body.ar .bottom-nav{direction:ltr}
     </div>
 
     <!-- DARIJA -->
+    <div class="tab-content" id="tab-favs">
+      <div id="favs-villes-section">
+        <div style="font-size:13px;font-weight:700;color:var(--text1);padding:0 20px 8px;text-transform:uppercase;letter-spacing:0.5px" id="favs-villes-title">❤️ Villes favorites</div>
+        <div id="favs-villes-grid" class="villes-grid" style="padding:0 16px 16px"></div>
+      </div>
+      <div id="favs-lieux-section">
+        <div style="font-size:13px;font-weight:700;color:var(--text1);padding:0 20px 8px;text-transform:uppercase;letter-spacing:0.5px" id="favs-lieux-title">📍 Lieux favoris</div>
+        <div id="favs-lieux-grid" style="padding:0 16px 100px;display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+      <div id="favs-empty" style="display:none;text-align:center;padding:60px 20px">
+        <div style="font-size:48px;margin-bottom:16px">🤍</div>
+        <div style="font-size:16px;font-weight:600;color:var(--text1);margin-bottom:8px" id="favs-empty-title">Pas encore de favoris</div>
+        <div style="font-size:13px;color:var(--text3)" id="favs-empty-sub">Appuyez sur ❤️ sur une ville ou un lieu pour le sauvegarder ici</div>
+      </div>
+    </div>
     <div class="tab-content" id="tab-lexique">
       <div class="flashcard-wrap">
         <div class="flashcard-header">
@@ -770,6 +784,7 @@ body.ar .bottom-nav{direction:ltr}
     <div class="nav-item" onclick="switchTab('urgences','Urgences')" id="nav-urgences"><div class="nav-icon">🚨</div><div class="nav-label">Urgences</div><div class="nav-dot"></div></div>
     <div class="nav-item" onclick="switchTab('transport','Transport')" id="nav-transport"><div class="nav-icon">🚌</div><div class="nav-label">Transport</div><div class="nav-dot"></div></div>
     <div class="nav-item" onclick="switchTab('lexique','Darija')" id="nav-lexique"><div class="nav-icon">🗣️</div><div class="nav-label">Darija</div><div class="nav-dot"></div></div>
+    <div class="nav-item" onclick="switchTab('favs','Favoris');renderFavs()" id="nav-favs"><div class="nav-icon">❤️</div><div class="nav-label">Favoris</div><div class="nav-dot"></div></div>
   </div>
 </div>
 
@@ -876,11 +891,11 @@ body.ar .bottom-nav{direction:ltr}
     </div>
     <div class="about-features">
       <div class="about-feature"><div class="about-feature-icon">🗓️</div><div class="about-feature-text">Plan 2 jours pour chaque ville</div></div>
-      <div class="about-feature"><div class="about-feature-icon">🌍</div><div class="about-feature-text">3 langues — FR / EN / AR</div></div>
+      <div class="about-feature"><div class="about-feature-icon">🌍</div><div class="about-feature-text">2 langues — Français / English</div></div>
       <div class="about-feature"><div class="about-feature-icon">📍</div><div class="about-feature-text">94 lieux avec Google Maps</div></div>
       <div class="about-feature"><div class="about-feature-icon">🗣️</div><div class="about-feature-text">35 mots de Darija</div></div>
       <div class="about-feature"><div class="about-feature-icon">🚨</div><div class="about-feature-text">Urgences pour 18 villes</div></div>
-      <div class="about-feature"><div class="about-feature-icon">❤️</div><div class="about-feature-text">Favoris sauvegardés</div></div>
+      <div class="about-feature" onclick="hideAbout();switchTab('favs','Favoris');renderFavs()" style="cursor:pointer"><div class="about-feature-icon">❤️</div><div class="about-feature-text">Mes Favoris</div></div>
     </div>
     <div class="about-section">
       <div class="about-section-title">Contact</div>

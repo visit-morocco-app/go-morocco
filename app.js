@@ -45,28 +45,7 @@ var T = {
     shopping:'🛍️ Shopping', relax:'😌 Relax', nuit:'🌙 Night',
     prev: '← Previous', next: 'Next →',
   },
-  ar: {
-    search_ville: 'ابحث عن مدينة...',
-    search_lieux: 'تصفية حسب المدينة',
-    open_maps: '🗺️ فتح في خرائط جوجل',
-    region: 'المنطقة', saison: 'أفضل موسم',
-    ville_label: 'المدينة', cat_label: 'الفئة',
-    urgence_title: '🚨 أرقام الطوارئ — المغرب كله',
-    samu: 'الإسعاف', police: 'الشرطة', pompiers: 'الإطفاء',
-    tout_maroc: 'المغرب كله',
-    apprendre: '🗣️ تعلم الدارجة',
-    tous: 'الكل', carte: 'بطاقة', sur: 'من',
-    tap_hint: 'اضغط لرؤية الدارجة',
-    plan_budget_label: 'الميزانية التقديرية / شخص',
-    plan_budget_note: 'الإقامة غير مشمولة',
-    jour1: '☀️ اليوم 1', jour2: '🌙 اليوم 2',
-    info_tab: '📖 معلومات', lieux_tab: '📍 الأماكن', plan_tab: '🗓️ خطة يومين',
-    lieux_incontournables: '📍 الأماكن الرئيسية',
-    tip_label: "💡 ", place_label: "📍 ",
-    food:'🍽️ طعام', culture:'🏛️ ثقافة', nature:'🌿 طبيعة',
-    shopping:'🛍️ تسوق', relax:'😌 راحة', nuit:'🌙 مساء',
-    prev: 'السابق →', next: '← التالي',
-  }
+
 };
 function t(key) { return (T[lang]||T.fr)[key] || (T.fr)[key] || key; }
 
@@ -75,7 +54,7 @@ function t(key) { return (T[lang]||T.fr)[key] || (T.fr)[key] || key; }
 var lieuCats = {
   fr:{Place:'Place',Jardin:'Jardin',Marché:'Marché',Patrimoine:'Patrimoine',Monument:'Monument',Culture:'Culture',Médina:'Médina',Promenade:'Promenade',Plage:'Plage',Port:'Port',Nature:'Nature',Artisanat:'Artisanat',Architecture:'Architecture',Loisirs:'Loisirs',Surf:'Surf','Bien-être':'Bien-être',Kasbah:'Kasbah',Aventure:'Aventure','Ville historique':'Ville historique',Sport:'Sport'},
   en:{Place:'Square',Jardin:'Garden',Marché:'Market',Patrimoine:'Heritage',Monument:'Monument',Culture:'Culture',Médina:'Medina',Promenade:'Promenade',Plage:'Beach',Port:'Port',Nature:'Nature',Artisanat:'Crafts',Architecture:'Architecture',Loisirs:'Leisure',Surf:'Surf','Bien-être':'Wellness',Kasbah:'Kasbah',Aventure:'Adventure','Ville historique':'Historic city',Sport:'Sport'},
-  ar:{Place:'ساحة',Jardin:'حديقة',Marché:'سوق',Patrimoine:'تراث',Monument:'معلم',Culture:'ثقافة',Médina:'مدينة قديمة',Promenade:'كورنيش',Plage:'شاطئ',Port:'ميناء',Nature:'طبيعة',Artisanat:'حرف يدوية',Architecture:'معمار',Loisirs:'ترفيه',Surf:'ركوب أمواج','Bien-être':'عافية',Kasbah:'قصبة',Aventure:'مغامرة','Ville historique':'مدينة تاريخية',Sport:'رياضة'}
+
 };
 function translateLieuCat(cat) { return (lieuCats[lang]||lieuCats.fr)[cat] || cat; }
 
@@ -83,7 +62,7 @@ function translateLieuCat(cat) { return (lieuCats[lang]||lieuCats.fr)[cat] || ca
 var gastroTypes = {
   fr: {'Plat principal':'Plat principal','Entrée':'Entrée','Soupe':'Soupe','Dessert':'Dessert','Boisson':'Boisson','Petit-déjeuner':'Petit-déjeuner','Grillades':'Grillades','Salade':'Salade','Accompagnement':'Accompagnement','Street food':'Street food','Sauce':'Sauce','Pâtisserie':'Pâtisserie'},
   en: {'Plat principal':'Main course','Entrée':'Starter','Soupe':'Soup','Dessert':'Dessert','Boisson':'Drink','Petit-déjeuner':'Breakfast','Grillades':'Grilled','Salade':'Salad','Accompagnement':'Side dish','Street food':'Street food','Sauce':'Sauce','Pâtisserie':'Pastry'},
-  ar: {'Plat principal':'طبق رئيسي','Entrée':'مقبلات','Soupe':'شوربة','Dessert':'حلوى','Boisson':'مشروب','Petit-déjeuner':'فطور','Grillades':'مشوي','Salade':'سلطة','Accompagnement':'طبق مرافق','Street food':'طعام شارع','Sauce':'صلصة','Pâtisserie':'معجنات'}
+
 };
 function translateType(type) { return (gastroTypes[lang]||gastroTypes.fr)[type] || type; }
 
@@ -91,7 +70,7 @@ function translateType(type) { return (gastroTypes[lang]||gastroTypes.fr)[type] 
 var monthsT = {
   fr:{Juin:'Juin',Juillet:'Juil',Août:'Août',Avril:'Avr',Mai:'Mai',Décembre:'Déc',Janvier:'Jan',Variable:'Var'},
   en:{Juin:'June',Juillet:'July',Août:'Aug',Avril:'Apr',Mai:'May',Décembre:'Dec',Janvier:'Jan',Variable:'Var'},
-  ar:{Juin:'يونيو',Juillet:'يوليو',Août:'أغسطس',Avril:'أبريل',Mai:'مايو',Décembre:'ديسمبر',Janvier:'يناير',Variable:'متغير'}
+
 };
 function translateMonth(m) { return (monthsT[lang]||monthsT.fr)[m] || (m||'').substring(0,3); }
 
@@ -99,7 +78,7 @@ function translateMonth(m) { return (monthsT[lang]||monthsT.fr)[m] || (m||'').su
 var darijaCategories = {
   fr:{Salutations:'Salutations',Politesse:'Politesse',Basique:'Basique',Shopping:'Shopping',Navigation:'Navigation',Restaurant:'Restaurant',Transport:'Transport',Urgence:'Urgence'},
   en:{Salutations:'Greetings',Politesse:'Politeness',Basique:'Basic',Shopping:'Shopping',Navigation:'Navigation',Restaurant:'Restaurant',Transport:'Transport',Urgence:'Emergency'},
-  ar:{Salutations:'تحيات',Politesse:'أدب',Basique:'أساسي',Shopping:'تسوق',Navigation:'تنقل',Restaurant:'مطعم',Transport:'نقل',Urgence:'طوارئ'}
+
 };
 function translateCat(cat) { return (darijaCategories[lang]||darijaCategories.fr)[cat] || cat; }
 
@@ -137,17 +116,14 @@ function login() {
 
 // ======== HELPERS ========
 function getName(i) {
-  if(lang==='ar') return i.nom_ar || i.nom;
   if(lang==='en') return i.nom_en || i.nom;
   return i.nom;
 }
 function getDesc(i) {
-  if(lang==='ar') return i.desc_ar || i.desc_fr;
   if(lang==='en') return i.desc_en || i.desc_fr;
   return i.desc_fr;
 }
 function getTitre(i) {
-  if(lang==='ar') return i.titre_ar || i.titre;
   if(lang==='en') return i.titre_en || i.titre;
   return i.titre;
 }
@@ -178,12 +154,11 @@ function updateSearchPlaceholder() {
 
 function updateNavLabels() {
   var navLabels = {
-    fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastro',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
-    en:{villes:'Cities',lieux:'Places',gastro:'Gastro',events:'Events',urgences:'Emergency',transport:'Transport',lexique:'Darija'},
-    ar:{villes:'المدن',lieux:'الأماكن',gastro:'المطبخ',events:'فعاليات',urgences:'طوارئ',transport:'نقل',lexique:'دارجة'}
+    fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastro',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija',favs:'Favoris'},
+    en:{villes:'Cities',lieux:'Places',gastro:'Gastro',events:'Events',urgences:'Emergency',transport:'Transport',lexique:'Darija',favs:'Favourites'},
   };
   var labels = navLabels[lang] || navLabels.fr;
-  ['villes','lieux','gastro','events','urgences','transport','lexique'].forEach(function(key) {
+  ['villes','lieux','gastro','events','urgences','transport','lexique','favs'].forEach(function(key) {
     var navEl = document.querySelector('#nav-'+key+' .nav-label');
     if(navEl && labels[key]) navEl.textContent = labels[key];
   });
@@ -197,19 +172,13 @@ function setLang(l) {
   closeLangDropdown();
 
   // Update flag display
-  var flags = {fr:'🇫🇷', en:'🇬🇧', ar:'🇲🇦'};
+  var flags = {fr:'🇫🇷', en:'🇬🇧'};
   var flagEl = document.getElementById('current-flag');
   if(flagEl) flagEl.textContent = flags[l] || '🌐';
 
-  if(l==='ar') {
-    document.body.classList.add('ar');
-    document.documentElement.setAttribute('lang','ar');
-    document.documentElement.setAttribute('dir','rtl');
-  } else {
-    document.body.classList.remove('ar');
-    document.documentElement.setAttribute('lang',l);
-    document.documentElement.setAttribute('dir','ltr');
-  }
+  document.body.classList.remove('ar');
+  document.documentElement.setAttribute('lang',l);
+  document.documentElement.setAttribute('dir','ltr');
   currentVilleFilter = 'Tous';
   fcCatFilter = 'Tous'; // Reset darija filter on lang change
 
@@ -217,7 +186,6 @@ function setLang(l) {
   var titles = {
     fr: {villes:'Villes', lieux:'Lieux', gastro:'Gastronomie', events:'Événements', urgences:'Urgences', transport:'Transport', lexique:'Darija'},
     en: {villes:'Cities', lieux:'Places', gastro:'Gastronomy', events:'Events', urgences:'Emergencies', transport:'Transport', lexique:'Darija'},
-    ar: {villes:'المدن', lieux:'الأماكن', gastro:'المطبخ', events:'الفعاليات', urgences:'الطوارئ', transport:'النقل', lexique:'الدارجة'}
   };
 
   renderAll();
@@ -234,9 +202,8 @@ function closeLangDropdown() {
 
 // ======== NAVIGATION ========
 var tabTitles = {
-  fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastronomie',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
-  en:{villes:'Cities',lieux:'Places',gastro:'Gastronomy',events:'Events',urgences:'Emergencies',transport:'Transport',lexique:'Darija'},
-  ar:{villes:'المدن',lieux:'الأماكن',gastro:'المطبخ',events:'الفعاليات',urgences:'الطوارئ',transport:'النقل',lexique:'الدارجة'}
+  fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastronomie',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija',favs:'Favoris'},
+  en:{villes:'Cities',lieux:'Places',gastro:'Gastronomy',events:'Events',urgences:'Emergencies',transport:'Transport',lexique:'Darija',favs:'Favourites'},
 };
 var currentTab = 'villes';
 function switchTab(tab, title) {
@@ -258,7 +225,7 @@ function renderVilles() {
       +'<img src="'+v.img+'" alt="'+v.nom+'" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=400\'">'
       +'<div class="ville-card-info">'
       +'<div class="ville-card-name">'+getName(v)+'</div>'
-      +'<div class="ville-card-region">'+(lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region)+'</div>'
+      +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
       +'</div></div>';
   }).join('');
 }
@@ -269,7 +236,7 @@ function renderVilleFilter() {
   if(!el) return;
   var villes = ['Tous'].concat(DATA.villes.map(function(v){ return v.nom; }));
   el.innerHTML = villes.map(function(v) {
-    var label = v==='Tous'?(lang==='ar'?'الكل':lang==='en'?'All':'Tous'):v;
+    var label = v==='Tous'?(lang==='en'?'All':'Tous'):v;
     return '<button class="filter-btn '+(v===currentVilleFilter?'active':'')+'" onclick="filterLieux(\''+v+'\')">'+label+'</button>';
   }).join('');
 }
@@ -355,7 +322,7 @@ function renderConseils() {
   var importanceLabel = {
     fr:{Essentiel:'Essentiel', Important:'Important', Utile:'Utile'},
     en:{Essentiel:'Essential', Important:'Important', Utile:'Useful'},
-    ar:{Essentiel:'ضروري', Important:'مهم', Utile:'مفيد'}
+
   };
   el.innerHTML = DATA.conseils.map(function(c) {
     var imp = (importanceLabel[lang]||importanceLabel.fr)[c.importance] || c.importance;
@@ -378,7 +345,7 @@ function renderUrgences() {
   var labels = {
     fr:{hopital:'Hôpital', tel:'Téléphone', appeler:'📱 Appeler'},
     en:{hopital:'Hospital', tel:'Phone', appeler:'📱 Call'},
-    ar:{hopital:'المستشفى', tel:'الهاتف', appeler:'📱 اتصل'}
+
   };
   var l = labels[lang] || labels.fr;
   // Update urgence global section
@@ -410,12 +377,12 @@ function renderUrgences() {
 function renderTransport() {
   var el = document.getElementById('transport-list');
   if(!el) return;
-  var routeLabel = lang==='ar'?'المسار':lang==='en'?'Route':'Route';
-  var dureeLabel = lang==='ar'?'المدة':lang==='en'?'Duration':'Durée';
-  var infoLabel = lang==='ar'?'معلومات':lang==='en'?'Info':'Infos';
-  var siteLabel = lang==='ar'?'الموقع':lang==='en'?'Website':'Site';
+  var routeLabel = lang==='en'?'Route':'Route';
+  var dureeLabel = lang==='en'?'Duration':'Durée';
+  var infoLabel = lang==='en'?'Info':'Infos';
+  var siteLabel = lang==='en'?'Website':'Site';
   el.innerHTML = DATA.transport.map(function(t) {
-    var nom = lang==='ar'?(t.nom_ar||t.nom):lang==='en'?(t.nom_en||t.nom):t.nom;
+    var nom = lang==='en'?(t.nom_en||t.nom):t.nom;
     return '<div class="transport-accord" id="ta-'+t.id+'">'
       +'<div class="transport-accord-header" onclick="toggleTransport('+t.id+')">'
       +'<div class="transport-accord-icon">'+t.icon+'</div>'
@@ -460,7 +427,7 @@ function renderFcFilter() {
 }
 function filterFc(cat) {
   fcCatFilter = cat; // Keep original French category key for filtering
-  fcFiltered = (cat==='Tous'||cat==='All'||cat==='الكل') ? DATA.lexique.slice() : DATA.lexique.filter(function(l){ return l.categorie===cat; });
+  fcFiltered = (cat==='Tous'||cat==='All') ? DATA.lexique.slice() : DATA.lexique.filter(function(l){ return l.categorie===cat; });
   fcIndex = 0;
   fcFlipped = false;
   renderFcFilter();
@@ -473,7 +440,7 @@ function renderFcCard() {
   fcFlipped = false;
 
   // Front word in current language
-  var frontWord = lang==='ar'?(l.mot_ar||l.mot_fr):lang==='en'?l.mot_en:l.mot_fr;
+  var frontWord = lang==='en'?l.mot_en:l.mot_fr;
   document.getElementById('fc-fr').textContent = frontWord || l.mot_fr;
   document.getElementById('fc-cat').textContent = translateCat(l.categorie);
   document.getElementById('fc-darija').textContent = l.mot_darija;
@@ -514,8 +481,8 @@ function showVille(id) {
   document.getElementById('dv-img').src = v.img;
   document.getElementById('dv-img').onerror = function(){ this.src='https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=600'; };
   document.getElementById('dv-name').textContent = getName(v);
-  document.getElementById('dv-region').textContent = '📍 '+(lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region);
-  document.getElementById('dv-region2').textContent = lang==='ar'?v.region_ar:lang==='en'?v.region_en:v.region;
+  document.getElementById('dv-region').textContent = '📍 '+(lang==='en'?v.region_en:v.region);
+  document.getElementById('dv-region2').textContent = lang==='en'?v.region_en:v.region;
   // Translate saison content
   var saisonVal = v.saison || 'Avr — Juin';
   if(lang === 'en') {
@@ -527,9 +494,7 @@ function showVille(id) {
       .replace("Toute l'année","All year").replace('Variable','Variable');
   } else if(lang === 'ar') {
     saisonVal = saisonVal
-      .replace('Avr','أبر').replace('Juin','يون').replace('Oct','أكت')
-      .replace('Mars','مار').replace('Mai','ماي').replace('Nov','نوف')
-      .replace("Toute l'année","طوال السنة").replace('Variable','متغير');
+
   }
   document.getElementById('dv-saison').textContent = saisonVal;
   document.getElementById('dv-desc').textContent = getDesc(v);
@@ -567,9 +532,9 @@ function showVille(id) {
   // Update tab labels based on language
   var tabLabels = document.querySelectorAll('.detail-tab');
   var tabs = [
-    {fr:'📖 Info', en:'📖 Info', ar:'📖 معلومات'},
-    {fr:'📍 Lieux', en:'📍 Places', ar:'📍 الأماكن'},
-    {fr:'🗓️ Plan 2j', en:'🗓️ 2-Day Plan', ar:'🗓️ خطة يومين'}
+    {fr:'📖 Info', en:'📖 Info'},
+    {fr:'📍 Lieux', en:'📍 Places'},
+    {fr:'🗓️ Plan 2j', en:'🗓️ 2-Day Plan'}
   ];
   tabLabels.forEach(function(tab, i){
     if(tabs[i]) tab.textContent = (tabs[i][lang] || tabs[i].fr);
@@ -578,13 +543,13 @@ function showVille(id) {
   // Update budget label
   var budgetLabel = document.querySelector('.plan-budget-label');
   var budgetNote = document.querySelector('.plan-budget-note');
-  if(budgetLabel) budgetLabel.textContent = lang==='ar'?'الميزانية التقديرية / شخص':lang==='en'?'Estimated budget / person':'Budget estimé / personne';
-  if(budgetNote) budgetNote.textContent = lang==='ar'?'الإقامة غير مشمولة':lang==='en'?'Accommodation not included':'Hébergement non inclus';
+  if(budgetLabel) budgetLabel.textContent = lang==='en'?'Estimated budget / person':'Budget estimé / personne';
+  if(budgetNote) budgetNote.textContent = lang==='en'?'Accommodation not included':'Hébergement non inclus';
 
   // Update plan day buttons
   var dayBtns = document.querySelectorAll('.plan-day-btn');
-  if(dayBtns[0]) dayBtns[0].textContent = lang==='ar'?'☀️ اليوم 1':lang==='en'?'☀️ Day 1':'☀️ Jour 1';
-  if(dayBtns[1]) dayBtns[1].textContent = lang==='ar'?'🌙 اليوم 2':lang==='en'?'🌙 Day 2':'🌙 Jour 2';
+  if(dayBtns[0]) dayBtns[0].textContent = lang==='en'?'☀️ Day 1':'☀️ Jour 1';
+  if(dayBtns[1]) dayBtns[1].textContent = lang==='en'?'🌙 Day 2':'🌙 Jour 2';
 
   // Reset tabs
   switchDetailTab('info');
@@ -614,13 +579,12 @@ function renderTimeline(v, day) {
   var tagLabels = {
     fr:{food:'🍽️ Repas', culture:'🏛️ Culture', nature:'🌿 Nature', shopping:'🛍️ Shopping', relax:'😌 Détente', nuit:'🌙 Soirée'},
     en:{food:'🍽️ Food', culture:'🏛️ Culture', nature:'🌿 Nature', shopping:'🛍️ Shopping', relax:'😌 Relax', nuit:'🌙 Night'},
-    ar:{food:'🍽️ طعام', culture:'🏛️ ثقافة', nature:'🌿 طبيعة', shopping:'🛍️ تسوق', relax:'😌 راحة', nuit:'🌙 مساء'}
   };
   var tagL = tagLabels[lang] || tagLabels.fr;
   el.innerHTML = items.map(function(item) {
-    var activ = lang==='en'?(item.activity_en||item.activity):lang==='ar'?(item.activity_ar||item.activity):item.activity;
-    var place = lang==='en'?(item.place_en||item.place):lang==='ar'?(item.place_ar||item.place):item.place;
-    var tip   = lang==='en'?(item.tip_en||item.tip):lang==='ar'?(item.tip_ar||item.tip):item.tip;
+    var activ = lang==='en'?(item.activity_en||item.activity):item.activity;
+    var place = lang==='en'?(item.place_en||item.place):item.place;
+    var tip   = lang==='en'?(item.tip_en||item.tip):item.tip;
     var tags = (item.tags||[]).map(function(t){
       return '<span class="timeline-tag tag-'+t+'">'+(tagL[t]||t)+'</span>';
     }).join('');
@@ -682,6 +646,68 @@ function showLieu(id) {
   if(dlFav) { dlFav.textContent = isFavLieu(l.id) ? '❤️' : '🤍'; dlFav.onclick = function(){ toggleFavLieu(l.id); }; }
 }
 function closeLieu() { document.getElementById('detail-lieu').classList.remove('open'); }
+
+// ======== FAVORIS PAGE ========
+function renderFavs() {
+  var favs = getFavs();
+  var villesSection = document.getElementById('favs-villes-section');
+  var lieuxSection  = document.getElementById('favs-lieux-section');
+  var emptyEl       = document.getElementById('favs-empty');
+  var villesGrid    = document.getElementById('favs-villes-grid');
+  var lieuxGrid     = document.getElementById('favs-lieux-grid');
+  var isEmpty = favs.villes.length === 0 && favs.lieux.length === 0;
+
+  if(isEmpty) {
+    if(villesSection) villesSection.style.display = 'none';
+    if(lieuxSection)  lieuxSection.style.display  = 'none';
+    if(emptyEl)       emptyEl.style.display = 'block';
+    var emptyTitle = document.getElementById('favs-empty-title');
+    var emptySub   = document.getElementById('favs-empty-sub');
+    if(emptyTitle) emptyTitle.textContent = lang==='en' ? 'No favourites yet' : 'Pas encore de favoris';
+    if(emptySub)   emptySub.textContent   = lang==='en' ? 'Tap ❤️ on a city or place to save it here' : 'Appuyez sur ❤️ sur une ville ou un lieu pour le sauvegarder ici';
+    return;
+  }
+  if(emptyEl) emptyEl.style.display = 'none';
+
+  // Render fav villes
+  var favVilles = DATA.villes.filter(function(v){ return favs.villes.indexOf(v.id) !== -1; });
+  if(favVilles.length) {
+    if(villesSection) villesSection.style.display = 'block';
+    var t1 = document.getElementById('favs-villes-title');
+    if(t1) t1.textContent = (lang==='en'?'❤️ Favourite cities':'❤️ Villes favorites');
+    villesGrid.innerHTML = favVilles.map(function(v){
+      return '<div class="ville-card" onclick="showVille('+v.id+')">'
+        +'<img src="'+v.img+'" alt="'+getName(v)+'" loading="lazy">'
+        +'<div class="ville-card-info">'
+        +'<div class="ville-card-name">'+getName(v)+'</div>'
+        +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
+        +'</div></div>';
+    }).join('');
+  } else {
+    if(villesSection) villesSection.style.display = 'none';
+  }
+
+  // Render fav lieux
+  var favLieux = DATA.lieux.filter(function(l){ return favs.lieux.indexOf(l.id) !== -1; });
+  if(favLieux.length) {
+    if(lieuxSection) lieuxSection.style.display = 'block';
+    var t2 = document.getElementById('favs-lieux-title');
+    if(t2) t2.textContent = (lang==='en'?'📍 Favourite places':'📍 Lieux favoris');
+    lieuxGrid.innerHTML = favLieux.map(function(l){
+      var cat = translateLieuCat(l.cat);
+      return '<div class="lieu-card" onclick="showLieu('+l.id+')" style="display:flex;align-items:center;gap:12px;background:white;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08);cursor:pointer">'
+        +'<img src="'+l.img+'" style="width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0" onerror="this.src='https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200'">'
+        +'<div style="flex:1;min-width:0">'
+        +'<div style="font-size:14px;font-weight:600;color:var(--text1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+getName(l)+'</div>'
+        +'<div style="font-size:12px;color:var(--text3)">📍 '+l.ville+' · '+cat+'</div>'
+        +'</div>'
+        +'<div style="font-size:18px;color:#e91e63">❤️</div>'
+        +'</div>';
+    }).join('');
+  } else {
+    if(lieuxSection) lieuxSection.style.display = 'none';
+  }
+}
 
 // ======== AUTRES ========
 function closeDetail(id) { document.getElementById(id).classList.remove('open'); }

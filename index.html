@@ -822,7 +822,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
       <div class="detail-hero-region" id="dv-region"></div>
     </div>
     <div class="detail-back" onclick="closeDetail('detail-ville')">←</div>
-    <div class="detail-fav" id="dv-fav" onclick="toggleFav(this)">🤍</div>
+    <div class="detail-fav" id="dv-fav">🤍</div>
   </div>
   <div class="detail-tabs">
     <div class="detail-tab active" onclick="switchDetailTab('info')">📖 Info</div>
@@ -872,7 +872,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     <img id="dl-img" src="" alt="">
     <div class="dl-hero-overlay"></div>
     <div class="dl-back" onclick="closeLieu()">←</div>
-    <div class="dl-fav" id="dl-fav-btn" onclick="toggleFav(this)">🤍</div>
+    <div class="dl-fav" id="dl-fav-btn">🤍</div>
   </div>
   <div class="dl-content">
     <div class="dl-badge" id="dl-cat"></div>
@@ -1049,38 +1049,26 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').classList.add('show');
   }
 
-  async function toggleFavVille(id) {
-    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
-    var isFav = userFavorites.villes.includes(id);
-    var ref = db.collection('users').doc(currentUser.uid);
-    if(isFav) {
-      userFavorites.villes = userFavorites.villes.filter(function(x){ return x!==id; });
-      await ref.update({'favorites.villes': firebase.firestore.FieldValue.arrayRemove(id)});
-    } else {
-      userFavorites.villes.push(id);
-      await ref.update({'favorites.villes': firebase.firestore.FieldValue.arrayUnion(id)});
-    }
-    var btn = document.getElementById('fav-ville-'+id);
-    if(btn) btn.textContent = isFav ? '🤍' : '❤️';
+  // Favoris gérés par localStorage dans app.js
+  // Ces fonctions sont des alias pour éviter les conflits
+  function toggleFavVille(id) {
+    var favs = getFavs();
+    var idx = favs.villes.indexOf(id);
+    if(idx === -1) { favs.villes.push(id); } else { favs.villes.splice(idx,1); }
+    saveFavs(favs);
+    var btn = document.getElementById('dv-fav');
+    if(btn) btn.textContent = isFavVille(id) ? '❤️' : '🤍';
   }
-
-  async function toggleFavLieu(id) {
-    if(!currentUser){ alert('Connectez-vous pour sauvegarder vos favoris !'); return; }
-    var isFav = userFavorites.lieux.includes(id);
-    var ref = db.collection('users').doc(currentUser.uid);
-    if(isFav) {
-      userFavorites.lieux = userFavorites.lieux.filter(function(x){ return x!==id; });
-      await ref.update({'favorites.lieux': firebase.firestore.FieldValue.arrayRemove(id)});
-    } else {
-      userFavorites.lieux.push(id);
-      await ref.update({'favorites.lieux': firebase.firestore.FieldValue.arrayUnion(id)});
-    }
-    var btn = document.getElementById('fav-lieu-'+id);
-    if(btn) btn.textContent = isFav ? '❤️' : '🤍';
+  function toggleFavLieu(id) {
+    var favs = getFavs();
+    var idx = favs.lieux.indexOf(id);
+    if(idx === -1) { favs.lieux.push(id); } else { favs.lieux.splice(idx,1); }
+    saveFavs(favs);
+    var btn = document.getElementById('dl-fav-btn');
+    if(btn) btn.textContent = isFavLieu(id) ? '❤️' : '🤍';
   }
-
-  function isFavVille(id) { return userFavorites.villes.includes(id); }
-  function isFavLieu(id) { return userFavorites.lieux.includes(id); }
+  function isFavVille(id) { return getFavs().villes.indexOf(id) !== -1; }
+  function isFavLieu(id) { return getFavs().lieux.indexOf(id) !== -1; }
 
   function showError(id, msg) {
     var el = document.getElementById(id);

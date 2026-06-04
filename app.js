@@ -658,66 +658,59 @@ function hideFavs() {
 function renderFavs() {
   var titleEl = document.getElementById('favs-page-title');
   if(titleEl) titleEl.textContent = lang==='en' ? 'My Favourites' : 'Mes Favoris';
+
   var favs = getFavs();
+  var isEmpty = favs.villes.length === 0 && favs.lieux.length === 0;
+
   var villesSection = document.getElementById('favs-villes-section');
   var lieuxSection  = document.getElementById('favs-lieux-section');
   var emptyEl       = document.getElementById('favs-empty');
   var villesGrid    = document.getElementById('favs-villes-grid');
   var lieuxGrid     = document.getElementById('favs-lieux-grid');
-  var isEmpty = favs.villes.length === 0 && favs.lieux.length === 0;
 
   if(isEmpty) {
     if(villesSection) villesSection.style.display = 'none';
     if(lieuxSection)  lieuxSection.style.display  = 'none';
     if(emptyEl)       emptyEl.style.display = 'block';
-    var emptyTitle = document.getElementById('favs-empty-title');
-    var emptySub   = document.getElementById('favs-empty-sub');
-    if(emptyTitle) emptyTitle.textContent = lang==='en' ? 'No favourites yet' : 'Pas encore de favoris';
-    if(emptySub)   emptySub.textContent   = lang==='en' ? 'Tap ❤️ on a city or place to save it here' : 'Appuyez sur ❤️ sur une ville ou un lieu pour le sauvegarder ici';
     return;
   }
   if(emptyEl) emptyEl.style.display = 'none';
 
-  // Render fav villes
+  // Villes
   var favVilles = DATA.villes.filter(function(v){ return favs.villes.indexOf(v.id) !== -1; });
-  if(favVilles.length) {
-    if(villesSection) villesSection.style.display = 'block';
-    var t1 = document.getElementById('favs-villes-title');
-    if(t1) t1.textContent = (lang==='en'?'❤️ Favourite cities':'❤️ Villes favorites');
-    villesGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 0 16px';
+  if(villesSection) villesSection.style.display = favVilles.length ? 'block' : 'none';
+  if(villesGrid && favVilles.length) {
+    villesGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:8px 0 20px';
     villesGrid.innerHTML = favVilles.map(function(v){
-      return '<div onclick="showVille('+v.id+')" style="border-radius:16px;overflow:hidden;cursor:pointer;background:#f5f5f5;box-shadow:0 2px 8px rgba(0,0,0,0.1)">'
-        +'<div style="width:100%;height:140px;background:#ddd;overflow:hidden">'
-        +'<img src="'+v.img+'" style="width:100%;height:140px;object-fit:cover;display:block" onerror="this.parentNode.style.background=\'#e8f4e8\'">'
-        +'</div>'
-        +'<div style="padding:10px">'
-        +'<div style="font-size:14px;font-weight:700;color:#1a1a1a">'+getName(v)+'</div>'
-        +'<div style="font-size:12px;color:#666;margin-top:2px">'+(lang==='en'?v.region_en:v.region)+'</div>'
-        +'</div></div>';
+      var name = getName(v);
+      var region = lang==='en' ? v.region_en : v.region;
+      return '<div onclick="showVille('+v.id+')" style="cursor:pointer;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.12);min-height:180px">'
+        + '<div style="height:120px;background:linear-gradient(135deg,#c2185b,#e91e63);display:flex;align-items:center;justify-content:center;font-size:32px">🏙️</div>'
+        + '<div style="padding:10px 12px">'
+        + '<div style="font-weight:700;font-size:14px;color:#1a1a1a">'+name+'</div>'
+        + '<div style="font-size:12px;color:#888;margin-top:2px">'+region+'</div>'
+        + '</div>'
+        + '</div>';
     }).join('');
-  } else {
-    if(villesSection) villesSection.style.display = 'none';
   }
 
-  // Render fav lieux
+  // Lieux
   var favLieux = DATA.lieux.filter(function(l){ return favs.lieux.indexOf(l.id) !== -1; });
-  if(favLieux.length) {
-    if(lieuxSection) lieuxSection.style.display = 'block';
-    var t2 = document.getElementById('favs-lieux-title');
-    if(t2) t2.textContent = (lang==='en'?'📍 Favourite places':'📍 Lieux favoris');
+  if(lieuxSection) lieuxSection.style.display = favLieux.length ? 'block' : 'none';
+  if(lieuxGrid && favLieux.length) {
+    lieuxGrid.style.cssText = 'display:flex;flex-direction:column;gap:10px;padding:8px 0 60px';
     lieuxGrid.innerHTML = favLieux.map(function(l){
+      var name = getName(l);
       var cat = translateLieuCat(l.cat);
-      return '<div class="lieu-card" onclick="showLieu('+l.id+')" style="display:flex;align-items:center;gap:12px;background:white;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08);cursor:pointer">'
-        +'<img src="'+l.img+'" style="width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0" onerror="this.src=&quot;https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&quot;">'
-        +'<div style="flex:1;min-width:0">'
-        +'<div style="font-size:14px;font-weight:600;color:var(--text1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+getName(l)+'</div>'
-        +'<div style="font-size:12px;color:var(--text3)">📍 '+l.ville+' · '+cat+'</div>'
-        +'</div>'
-        +'<div style="font-size:18px;color:#e91e63">❤️</div>'
-        +'</div>';
+      return '<div onclick="showLieu('+l.id+')" style="cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08)">'
+        + '<div style="width:50px;height:50px;border-radius:10px;background:linear-gradient(135deg,#c2185b,#e91e63);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📍</div>'
+        + '<div style="flex:1;min-width:0">'
+        + '<div style="font-weight:600;font-size:14px;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+name+'</div>'
+        + '<div style="font-size:12px;color:#888;margin-top:2px">'+l.ville+' · '+cat+'</div>'
+        + '</div>'
+        + '<div style="color:#e91e63;font-size:18px">❤️</div>'
+        + '</div>';
     }).join('');
-  } else {
-    if(lieuxSection) lieuxSection.style.display = 'none';
   }
 }
 

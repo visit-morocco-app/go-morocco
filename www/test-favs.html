@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Test Favoris</title></head>
+<body style="font-family:sans-serif;padding:20px">
+  <h2>Test localStorage Favoris</h2>
+
+  <button onclick="addFav()">Ajouter Marrakech aux favoris</button>
+  <button onclick="showFavs()">Voir les favoris</button>
+  <button onclick="clearFavs()">Effacer tout</button>
+
+  <pre id="result" style="background:#f0f0f0;padding:10px;margin-top:20px;border-radius:8px"></pre>
+
+  <script>
+    function log(msg) {
+      document.getElementById('result').textContent += msg + '\n';
+    }
+
+    function addFav() {
+      try {
+        var favs = JSON.parse(localStorage.getItem('gm_favs') || '{"villes":[],"lieux":[]}');
+        if(favs.villes.indexOf('marrakech') === -1) {
+          favs.villes.push('marrakech');
+        }
+        localStorage.setItem('gm_favs', JSON.stringify(favs));
+        log('✅ Marrakech ajouté. Contenu: ' + localStorage.getItem('gm_favs'));
+      } catch(e) {
+        log('❌ Erreur: ' + e.message);
+      }
+    }
+
+    function showFavs() {
+      try {
+        var val = localStorage.getItem('gm_favs');
+        log('📦 localStorage gm_favs = ' + (val || 'VIDE'));
+      } catch(e) {
+        log('❌ Erreur lecture: ' + e.message);
+      }
+    }
+
+    function clearFavs() {
+      localStorage.removeItem('gm_favs');
+      log('🗑️ Effacé');
+    }
+
+    // Auto-check on load
+    log('🔍 Test au chargement: ' + (localStorage.getItem('gm_favs') || 'rien en mémoire'));
+  </script>
+</body>
+</html>

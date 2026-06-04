@@ -492,9 +492,6 @@ function showVille(id) {
       .replace('Janv','Jan').replace('Fév','Feb').replace('Août','Aug')
       .replace('Sept','Sep').replace('Déc','Dec').replace('Juil','Jul')
       .replace("Toute l'année","All year").replace('Variable','Variable');
-  } else if(lang === 'ar') {
-    saisonVal = saisonVal
-
   }
   document.getElementById('dv-saison').textContent = saisonVal;
   document.getElementById('dv-desc').textContent = getDesc(v);

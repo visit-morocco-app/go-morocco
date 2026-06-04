@@ -658,9 +658,6 @@ function hideFavs() {
 function renderFavs() {
   var titleEl = document.getElementById('favs-page-title');
   if(titleEl) titleEl.textContent = lang==='en' ? 'My Favourites' : 'Mes Favoris';
-  // Build base path for images (handles GitHub Pages subdirectory)
-  var base = window.location.pathname.replace(/\/[^\/]*$/, '/').replace(/\/$/, '');
-  if(base === '') base = '.';
   var favs = getFavs();
   var villesSection = document.getElementById('favs-villes-section');
   var lieuxSection  = document.getElementById('favs-lieux-section');
@@ -689,7 +686,7 @@ function renderFavs() {
     if(t1) t1.textContent = (lang==='en'?'❤️ Favourite cities':'❤️ Villes favorites');
     villesGrid.innerHTML = favVilles.map(function(v){
       return '<div class="ville-card" onclick="showVille('+v.id+')">'
-        +'<img src="'+base+'/'+v.img+'" alt="'+getName(v)+'" loading="lazy">'
+        +'<img src="'+v.img+'" alt="'+getName(v)+'" loading="lazy" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400\'">'
         +'<div class="ville-card-info">'
         +'<div class="ville-card-name">'+getName(v)+'</div>'
         +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
@@ -708,7 +705,7 @@ function renderFavs() {
     lieuxGrid.innerHTML = favLieux.map(function(l){
       var cat = translateLieuCat(l.cat);
       return '<div class="lieu-card" onclick="showLieu('+l.id+')" style="display:flex;align-items:center;gap:12px;background:white;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08);cursor:pointer">'
-        +'<img src="'+base+'/'+l.img+'" style="width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0" onerror="this.src=&quot;https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&quot;">'
+        +'<img src="'+l.img+'" style="width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0" onerror="this.src=&quot;https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&quot;">'
         +'<div style="flex:1;min-width:0">'
         +'<div style="font-size:14px;font-weight:600;color:var(--text1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+getName(l)+'</div>'
         +'<div style="font-size:12px;color:var(--text3)">📍 '+l.ville+' · '+cat+'</div>'

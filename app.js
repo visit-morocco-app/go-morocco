@@ -723,33 +723,39 @@ function closeDetail(id) { document.getElementById(id).classList.remove('open');
 function showAbout() { document.getElementById('about-page').classList.add('open'); }
 function hideAbout() { document.getElementById('about-page').classList.remove('open'); }
 // ======== FAVORIS (localStorage) ========
-function getFavs() {
+window.getFavs = function() {
   try { return JSON.parse(localStorage.getItem('gm_favs') || '{"villes":[],"lieux":[]}'); }
   catch(e) { return {villes:[], lieux:[]}; }
-}
-function saveFavs(favs) {
+};
+window.saveFavs = function(favs) {
   try { localStorage.setItem('gm_favs', JSON.stringify(favs)); } catch(e) {}
-}
-function isFavVille(id) { return getFavs().villes.indexOf(id) !== -1; }
-function isFavLieu(id)  { return getFavs().lieux.indexOf(id)  !== -1; }
+};
+window.isFavVille = function(id) { return window.getFavs().villes.indexOf(id) !== -1; };
+window.isFavLieu  = function(id) { return window.getFavs().lieux.indexOf(id)  !== -1; };
 
-function toggleFavVille(id) {
-  var favs = getFavs();
+window.toggleFavVille = function(id) {
+  var favs = window.getFavs();
   var idx = favs.villes.indexOf(id);
   if(idx === -1) { favs.villes.push(id); } else { favs.villes.splice(idx,1); }
-  saveFavs(favs);
+  window.saveFavs(favs);
   var btn = document.getElementById('dv-fav');
-  if(btn) btn.textContent = isFavVille(id) ? '❤️' : '🤍';
-}
-function toggleFavLieu(id) {
-  var favs = getFavs();
+  if(btn) btn.textContent = window.isFavVille(id) ? '❤️' : '🤍';
+};
+window.toggleFavLieu = function(id) {
+  var favs = window.getFavs();
   var idx = favs.lieux.indexOf(id);
   if(idx === -1) { favs.lieux.push(id); } else { favs.lieux.splice(idx,1); }
-  saveFavs(favs);
+  window.saveFavs(favs);
   var btn = document.getElementById('dl-fav-btn');
-  if(btn) btn.textContent = isFavLieu(id) ? '❤️' : '🤍';
-}
-function toggleFav(el) { el.textContent = el.textContent==='🤍'?'❤️':'🤍'; }
+  if(btn) btn.textContent = window.isFavLieu(id) ? '❤️' : '🤍';
+};
+window.toggleFav = function(el) { el.textContent = el.textContent==='🤍'?'❤️':'🤍'; };
+
+// Aliases locaux pour usage interne
+function getFavs() { return window.getFavs(); }
+function saveFavs(f) { window.saveFavs(f); }
+function isFavVille(id) { return window.isFavVille(id); }
+function isFavLieu(id)  { return window.isFavLieu(id); }
 
 function updateSearchPlaceholder() {
   var el = document.getElementById('search-input');

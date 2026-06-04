@@ -1049,32 +1049,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').classList.add('show');
   }
 
-  // ======== FAVORIS localStorage ========
-  function getFavs() {
-    try { return JSON.parse(localStorage.getItem('gm_favs') || '{"villes":[],"lieux":[]}'); }
-    catch(e) { return {villes:[], lieux:[]}; }
-  }
-  function saveFavs(favs) {
-    try { localStorage.setItem('gm_favs', JSON.stringify(favs)); } catch(e) {}
-  }
-  function isFavVille(id) { return getFavs().villes.indexOf(id) !== -1; }
-  function isFavLieu(id)  { return getFavs().lieux.indexOf(id)  !== -1; }
-  function toggleFavVille(id) {
-    var favs = getFavs();
-    var idx = favs.villes.indexOf(id);
-    if(idx === -1) { favs.villes.push(id); } else { favs.villes.splice(idx,1); }
-    saveFavs(favs);
-    var btn = document.getElementById('dv-fav');
-    if(btn) btn.textContent = isFavVille(id) ? '❤️' : '🤍';
-  }
-  function toggleFavLieu(id) {
-    var favs = getFavs();
-    var idx = favs.lieux.indexOf(id);
-    if(idx === -1) { favs.lieux.push(id); } else { favs.lieux.splice(idx,1); }
-    saveFavs(favs);
-    var btn = document.getElementById('dl-fav-btn');
-    if(btn) btn.textContent = isFavLieu(id) ? '❤️' : '🤍';
-  }
+  // Favoris gérés par app.js
 
   function showError(id, msg) {
     var el = document.getElementById(id);

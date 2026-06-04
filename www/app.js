@@ -684,12 +684,15 @@ function renderFavs() {
     if(villesSection) villesSection.style.display = 'block';
     var t1 = document.getElementById('favs-villes-title');
     if(t1) t1.textContent = (lang==='en'?'❤️ Favourite cities':'❤️ Villes favorites');
+    villesGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 0 16px';
     villesGrid.innerHTML = favVilles.map(function(v){
-      return '<div class="ville-card" onclick="showVille('+v.id+')">'
-        +'<img src="'+v.img+'" alt="'+getName(v)+'" loading="lazy" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400\'">'
-        +'<div class="ville-card-info">'
-        +'<div class="ville-card-name">'+getName(v)+'</div>'
-        +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
+      return '<div onclick="showVille('+v.id+')" style="border-radius:16px;overflow:hidden;cursor:pointer;background:#f5f5f5;box-shadow:0 2px 8px rgba(0,0,0,0.1)">'
+        +'<div style="width:100%;height:140px;background:#ddd;overflow:hidden">'
+        +'<img src="'+v.img+'" style="width:100%;height:140px;object-fit:cover;display:block" onerror="this.parentNode.style.background=\'#e8f4e8\'">'
+        +'</div>'
+        +'<div style="padding:10px">'
+        +'<div style="font-size:14px;font-weight:700;color:#1a1a1a">'+getName(v)+'</div>'
+        +'<div style="font-size:12px;color:#666;margin-top:2px">'+(lang==='en'?v.region_en:v.region)+'</div>'
         +'</div></div>';
     }).join('');
   } else {

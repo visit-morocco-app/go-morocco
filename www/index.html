@@ -1049,8 +1049,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').classList.add('show');
   }
 
-  // Favoris gérés par localStorage dans app.js
-  // Ces fonctions sont des alias pour éviter les conflits
+  // ======== FAVORIS localStorage ========
+  function getFavs() {
+    try { return JSON.parse(localStorage.getItem('gm_favs') || '{"villes":[],"lieux":[]}'); }
+    catch(e) { return {villes:[], lieux:[]}; }
+  }
+  function saveFavs(favs) {
+    try { localStorage.setItem('gm_favs', JSON.stringify(favs)); } catch(e) {}
+  }
+  function isFavVille(id) { return getFavs().villes.indexOf(id) !== -1; }
+  function isFavLieu(id)  { return getFavs().lieux.indexOf(id)  !== -1; }
   function toggleFavVille(id) {
     var favs = getFavs();
     var idx = favs.villes.indexOf(id);
@@ -1067,8 +1075,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     var btn = document.getElementById('dl-fav-btn');
     if(btn) btn.textContent = isFavLieu(id) ? '❤️' : '🤍';
   }
-  function isFavVille(id) { return getFavs().villes.indexOf(id) !== -1; }
-  function isFavLieu(id) { return getFavs().lieux.indexOf(id) !== -1; }
 
   function showError(id, msg) {
     var el = document.getElementById(id);

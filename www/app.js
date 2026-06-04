@@ -696,7 +696,7 @@ function renderFavs() {
     lieuxGrid.innerHTML = favLieux.map(function(l){
       var cat = translateLieuCat(l.cat);
       return '<div class="lieu-card" onclick="showLieu('+l.id+')" style="display:flex;align-items:center;gap:12px;background:white;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08);cursor:pointer">'
-        +'<img src="'+l.img+'" style="width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0" onerror="this.src='https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200'">'
+        +'<img src="'+l.img+'" style="width:60px;height:60px;border-radius:10px;object-fit:cover;flex-shrink:0" onerror="this.src=&quot;https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=200&quot;">'
         +'<div style="flex:1;min-width:0">'
         +'<div style="font-size:14px;font-weight:600;color:var(--text1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+getName(l)+'</div>'
         +'<div style="font-size:12px;color:var(--text3)">📍 '+l.ville+' · '+cat+'</div>'

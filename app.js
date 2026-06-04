@@ -154,11 +154,11 @@ function updateSearchPlaceholder() {
 
 function updateNavLabels() {
   var navLabels = {
-    fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastro',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija',favs:'Favoris'},
-    en:{villes:'Cities',lieux:'Places',gastro:'Gastro',events:'Events',urgences:'Emergency',transport:'Transport',lexique:'Darija',favs:'Favourites'},
+    fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastro',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
+    en:{villes:'Cities',lieux:'Places',gastro:'Gastro',events:'Events',urgences:'Emergency',transport:'Transport',lexique:'Darija'},
   };
   var labels = navLabels[lang] || navLabels.fr;
-  ['villes','lieux','gastro','events','urgences','transport','lexique','favs'].forEach(function(key) {
+  ['villes','lieux','gastro','events','urgences','transport','lexique'].forEach(function(key) {
     var navEl = document.querySelector('#nav-'+key+' .nav-label');
     if(navEl && labels[key]) navEl.textContent = labels[key];
   });
@@ -202,8 +202,8 @@ function closeLangDropdown() {
 
 // ======== NAVIGATION ========
 var tabTitles = {
-  fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastronomie',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija',favs:'Favoris'},
-  en:{villes:'Cities',lieux:'Places',gastro:'Gastronomy',events:'Events',urgences:'Emergencies',transport:'Transport',lexique:'Darija',favs:'Favourites'},
+  fr:{villes:'Villes',lieux:'Lieux',gastro:'Gastronomie',events:'Événements',urgences:'Urgences',transport:'Transport',lexique:'Darija'},
+  en:{villes:'Cities',lieux:'Places',gastro:'Gastronomy',events:'Events',urgences:'Emergencies',transport:'Transport',lexique:'Darija'},
 };
 var currentTab = 'villes';
 function switchTab(tab, title) {
@@ -648,7 +648,16 @@ function showLieu(id) {
 function closeLieu() { document.getElementById('detail-lieu').classList.remove('open'); }
 
 // ======== FAVORIS PAGE ========
+function showFavs() {
+  renderFavs();
+  document.getElementById('favs-page').classList.add('open');
+}
+function hideFavs() {
+  document.getElementById('favs-page').classList.remove('open');
+}
 function renderFavs() {
+  var titleEl = document.getElementById('favs-page-title');
+  if(titleEl) titleEl.textContent = lang==='en' ? 'My Favourites' : 'Mes Favoris';
   var favs = getFavs();
   var villesSection = document.getElementById('favs-villes-section');
   var lieuxSection  = document.getElementById('favs-lieux-section');

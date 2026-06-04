@@ -667,6 +667,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
         <div class="lang-option" id="opt-fr" onclick="setLang('fr')">🇫🇷 Français</div>
         <div class="lang-option active" id="opt-en" onclick="setLang('en')">🇬🇧 English</div>
       </div>
+      <div class="header-btn-info" onclick="showFavs()" title="Favourites" style="margin-right:6px">❤️</div>
       <div class="header-btn-info" onclick="showAbout()" title="About">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color:white"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01M12 12v4"/></svg>
       </div>
@@ -784,7 +785,30 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     <div class="nav-item" onclick="switchTab('urgences','Urgences')" id="nav-urgences"><div class="nav-icon">🚨</div><div class="nav-label">Urgences</div><div class="nav-dot"></div></div>
     <div class="nav-item" onclick="switchTab('transport','Transport')" id="nav-transport"><div class="nav-icon">🚌</div><div class="nav-label">Transport</div><div class="nav-dot"></div></div>
     <div class="nav-item" onclick="switchTab('lexique','Darija')" id="nav-lexique"><div class="nav-icon">🗣️</div><div class="nav-label">Darija</div><div class="nav-dot"></div></div>
-    <div class="nav-item" onclick="switchTab('favs','Favoris');renderFavs()" id="nav-favs"><div class="nav-icon">❤️</div><div class="nav-label">Favoris</div><div class="nav-dot"></div></div>
+  </div>
+</div>
+
+<!-- FAVS PAGE -->
+<div class="about-page" id="favs-page">
+  <div class="about-header" style="background:linear-gradient(135deg,#e91e63,#c2185b)">
+    <div class="about-back" onclick="hideFavs()">←</div>
+    <div class="about-title" id="favs-page-title">Mes Favoris</div>
+    <div class="about-tag">❤️</div>
+  </div>
+  <div class="about-body">
+    <div id="favs-villes-section">
+      <div style="font-size:13px;font-weight:700;color:var(--text1);padding:0 4px 10px;text-transform:uppercase;letter-spacing:0.5px" id="favs-villes-title">🏙️ Villes favorites</div>
+      <div id="favs-villes-grid" class="villes-grid" style="margin-bottom:20px"></div>
+    </div>
+    <div id="favs-lieux-section">
+      <div style="font-size:13px;font-weight:700;color:var(--text1);padding:0 4px 10px;text-transform:uppercase;letter-spacing:0.5px" id="favs-lieux-title">📍 Lieux favoris</div>
+      <div id="favs-lieux-grid" style="display:flex;flex-direction:column;gap:10px;padding-bottom:40px"></div>
+    </div>
+    <div id="favs-empty" style="display:none;text-align:center;padding:60px 0">
+      <div style="font-size:56px;margin-bottom:16px">🤍</div>
+      <div style="font-size:16px;font-weight:600;color:var(--text1);margin-bottom:8px" id="favs-empty-title">Pas encore de favoris</div>
+      <div style="font-size:13px;color:var(--text3)" id="favs-empty-sub">Appuie sur ❤️ sur une ville ou un lieu pour le sauvegarder ici</div>
+    </div>
   </div>
 </div>
 

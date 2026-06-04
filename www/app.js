@@ -661,7 +661,6 @@ function renderFavs() {
 
   var favs = getFavs();
   var isEmpty = favs.villes.length === 0 && favs.lieux.length === 0;
-
   var villesSection = document.getElementById('favs-villes-section');
   var lieuxSection  = document.getElementById('favs-lieux-section');
   var emptyEl       = document.getElementById('favs-empty');
@@ -676,7 +675,6 @@ function renderFavs() {
   }
   if(emptyEl) emptyEl.style.display = 'none';
 
-  // Villes
   var favVilles = DATA.villes.filter(function(v){ return favs.villes.indexOf(v.id) !== -1; });
   if(villesSection) villesSection.style.display = favVilles.length ? 'block' : 'none';
   if(villesGrid && favVilles.length) {
@@ -684,17 +682,15 @@ function renderFavs() {
     villesGrid.innerHTML = favVilles.map(function(v){
       var name = getName(v);
       var region = lang==='en' ? v.region_en : v.region;
-      return '<div onclick="showVille('+v.id+')" style="cursor:pointer;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.12);min-height:180px">'
-        + '<div style="height:120px;background:linear-gradient(135deg,#c2185b,#e91e63);display:flex;align-items:center;justify-content:center;font-size:32px">🏙️</div>'
+      return '<div onclick="showVille('+v.id+')" style="cursor:pointer;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.12)">'
+        + '<img src="'+v.img+'" style="width:100%;height:120px;object-fit:cover;display:block">'
         + '<div style="padding:10px 12px">'
         + '<div style="font-weight:700;font-size:14px;color:#1a1a1a">'+name+'</div>'
         + '<div style="font-size:12px;color:#888;margin-top:2px">'+region+'</div>'
-        + '</div>'
-        + '</div>';
+        + '</div></div>';
     }).join('');
   }
 
-  // Lieux
   var favLieux = DATA.lieux.filter(function(l){ return favs.lieux.indexOf(l.id) !== -1; });
   if(lieuxSection) lieuxSection.style.display = favLieux.length ? 'block' : 'none';
   if(lieuxGrid && favLieux.length) {
@@ -703,7 +699,7 @@ function renderFavs() {
       var name = getName(l);
       var cat = translateLieuCat(l.cat);
       return '<div onclick="showLieu('+l.id+')" style="cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08)">'
-        + '<div style="width:50px;height:50px;border-radius:10px;background:linear-gradient(135deg,#c2185b,#e91e63);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📍</div>'
+        + '<img src="'+l.img+'" style="width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0">'
         + '<div style="flex:1;min-width:0">'
         + '<div style="font-weight:600;font-size:14px;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+name+'</div>'
         + '<div style="font-size:12px;color:#888;margin-top:2px">'+l.ville+' · '+cat+'</div>'

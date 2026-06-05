@@ -471,10 +471,13 @@ function renderFcCard() {
 function flipFlashcard() {
   var scene = document.getElementById('fc-scene');
   if(!scene) return;
-  scene.style.pointerEvents = 'none';
-  fcFlipped = !fcFlipped;
-  scene.classList.toggle('flipped', fcFlipped);
-  setTimeout(function(){ scene.style.pointerEvents = ''; }, 400);
+  scene.style.opacity = '0';
+  scene.style.transition = 'opacity 0.15s';
+  setTimeout(function() {
+    fcFlipped = !fcFlipped;
+    scene.classList.toggle('flipped', fcFlipped);
+    scene.style.opacity = '1';
+  }, 150);
 }
 function fcNext() { fcIndex = fcIndex < fcFiltered.length-1 ? fcIndex+1 : 0; fcFlipped=false; renderFcCard(); }
 function fcPrev() { fcIndex = fcIndex > 0 ? fcIndex-1 : fcFiltered.length-1; fcFlipped=false; renderFcCard(); }
@@ -744,10 +747,40 @@ function unfavLieu(id) {
 // ======== AUTRES ========
 function closeDetail(id) { document.getElementById(id).classList.remove('open'); }
 function showAbout() {
-  // Update stats dynamically
   var stats = document.querySelectorAll('.about-stat-num');
   if(stats[0]) stats[0].textContent = DATA.villes.length;
   if(stats[1]) stats[1].textContent = DATA.lieux.length;
+  var labels = document.querySelectorAll('.about-stat-label');
+  if(lang==='en') {
+    if(labels[0]) labels[0].textContent = 'Cities';
+    if(labels[1]) labels[1].textContent = 'Places';
+  } else {
+    if(labels[0]) labels[0].textContent = 'Villes';
+    if(labels[1]) labels[1].textContent = 'Lieux';
+  }
+  // POINT 7&8 — Translate About static content
+  var features = document.querySelectorAll('.about-feature-text');
+  if(lang==='en') {
+    var featTexts = [
+      '2-day plan for each city',
+      '2 languages — Français / English',
+      '94 places with Google Maps',
+      '35 Darija words',
+      'Emergencies for 18 cities',
+      'My Favourites'
+    ];
+    features.forEach(function(el, i) { if(featTexts[i]) el.textContent = featTexts[i]; });
+  } else {
+    var featTextsFr = [
+      'Plan 2 jours pour chaque ville',
+      '2 langues — Français / English',
+      '94 lieux avec Google Maps',
+      '35 mots de Darija',
+      'Urgences pour 18 villes',
+      'Mes Favoris'
+    ];
+    features.forEach(function(el, i) { if(featTextsFr[i]) el.textContent = featTextsFr[i]; });
+  }
   document.getElementById('about-page').classList.add('open');
 }
 function hideAbout() { document.getElementById('about-page').classList.remove('open'); }

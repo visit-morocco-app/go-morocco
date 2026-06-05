@@ -291,7 +291,9 @@ function renderEvents() {
     'Art':'#F57F17'
   };
   el.innerHTML = DATA.evenements.map(function(e) {
-    var cat = e.categorie || 'Culture';
+    var cat = e.type === 'religieux'
+      ? (lang==='en' ? 'Religious' : 'Religieux')
+      : (e.categorie || 'Culture');
     var bgc = catColors[cat] || '#F5F5F5';
     var tc = catText[cat] || '#333';
     var desc = getDesc(e);

@@ -299,11 +299,13 @@ function renderEvents() {
     var desc = getDesc(e);
     var shortDesc = desc.length > 140 ? desc.substring(0,140)+'...' : desc;
     var moisText = translateMonth(e.mois||e.periode||'');
+    var periodeDisplay = lang==='en' ? (e.periode||'').replace('Fév','Feb').replace('Mars','Mar').replace('Avr','Apr').replace('Mai','May').replace('Juin','Jun').replace('Juil','Jul').replace('Août','Aug').replace('Sept','Sep').replace('Oct','Oct').replace('Nov','Nov').replace('Déc','Dec') : (e.periode||'');
     var villeText = (e.ville==='Tout le Maroc'||e.ville==='All Morocco') ? t('tout_maroc') : e.ville;
     var isReligieux = e.type === 'religieux';
     return '<div class="event-card"' + (isReligieux ? ' style="border-left:3px solid #8B4513"' : '') + '>'
       +'<div class="event-date">'
       +'<div class="event-month">'+moisText+'</div>'
+      +'<div class="event-periode" style="font-size:9px;color:#999;margin-top:2px">'+periodeDisplay+'</div>'
       +'<div class="event-day">'+e.jour+'</div>'
       +'<div class="event-emoji">'+e.emoji+'</div>'
       +'</div>'
@@ -759,28 +761,11 @@ function showAbout() {
     if(labels[1]) labels[1].textContent = 'Lieux';
   }
   // POINT 7&8 — Translate About static content
-  var features = document.querySelectorAll('.about-feature-text');
-  if(lang==='en') {
-    var featTexts = [
-      '2-day plan for each city',
-      '2 languages — Français / English',
-      '94 places with Google Maps',
-      '35 Darija words',
-      'Emergencies for 18 cities',
-      'My Favourites'
-    ];
-    features.forEach(function(el, i) { if(featTexts[i]) el.textContent = featTexts[i]; });
-  } else {
-    var featTextsFr = [
-      'Plan 2 jours pour chaque ville',
-      '2 langues — Français / English',
-      '94 lieux avec Google Maps',
-      '35 mots de Darija',
-      'Urgences pour 18 villes',
-      'Mes Favoris'
-    ];
-    features.forEach(function(el, i) { if(featTextsFr[i]) el.textContent = featTextsFr[i]; });
-  }
+  var featEN = ['2-day plan for each city','2 languages — Français / English','94 places with Google Maps','35 Darija words','Emergencies for 18 cities','My Favourites'];
+  var featFR = ['Plan 2 jours pour chaque ville','2 langues — Français / English','94 lieux avec Google Maps','35 mots de Darija','Urgences pour 18 villes','Mes Favoris'];
+  var feat = lang==='en' ? featEN : featFR;
+  var featureEls = document.querySelectorAll('.about-feature .about-feature-text');
+  featureEls.forEach(function(el,i){ if(feat[i]) el.textContent = feat[i]; });
   document.getElementById('about-page').classList.add('open');
 }
 function hideAbout() { document.getElementById('about-page').classList.remove('open'); }
@@ -826,16 +811,32 @@ function updateSearchPlaceholder() {
 
 function handleSearch() {
   var q = document.getElementById('search-input').value.toLowerCase();
+  if(currentTab === 'lieux') {
+    if(!q) { renderLieux(); return; }
+    var res = DATA.lieux.filter(function(l){
+      return getName(l).toLowerCase().includes(q) || l.ville.toLowerCase().includes(q) || (l.cat&&l.cat.toLowerCase().includes(q));
+    });
+    var lieuxEl = document.getElementById('lieux-grid');
+    if(lieuxEl) lieuxEl.innerHTML = res.length ? res.map(function(l){
+      return '<div class="lieu-card" onclick="showLieu('+l.id+')">'
+        +'<img src="'+l.img+'" alt="'+getName(l)+'" loading="lazy">'
+        +'<div class="lieu-card-info">'
+        +'<div class="lieu-card-name">'+getName(l)+'</div>'
+        +'<div class="lieu-card-cat">'+l.cat+'</div>'
+        +'</div></div>';
+    }).join('') : '<p style="padding:20px;color:#999;font-size:14px;">Aucun résultat</p>';
+    return;
+  }
   if(!q) { renderVilles(); return; }
   var res = DATA.villes.filter(function(v){
-    return v.nom.toLowerCase().includes(q) || v.region.toLowerCase().includes(q) || (v.nom_ar&&v.nom_ar.includes(q));
+    return v.nom.toLowerCase().includes(q) || v.region.toLowerCase().includes(q);
   });
   document.getElementById('villes-grid').innerHTML = res.length ? res.map(function(v){
     return '<div class="ville-card" onclick="showVille('+v.id+')">'
       +'<img src="'+v.img+'" alt="'+v.nom+'" loading="lazy">'
       +'<div class="ville-card-info">'
-      +'<div class="ville-card-name">'+v.nom+'</div>'
-      +'<div class="ville-card-region">'+v.region+'</div>'
+      +'<div class="ville-card-name">'+getName(v)+'</div>'
+      +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
       +'</div></div>';
   }).join('') : '<p style="padding:20px;color:#999;font-size:14px;grid-column:span 2;">Aucun résultat</p>';
 }

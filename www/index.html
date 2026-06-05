@@ -529,7 +529,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
 }
 
 /* GUEST */
-.auth-guest-btn {
+.auth-guest-btn { order: 3;
   text-align: center;
   font-size: 14px;
   color: #999;
@@ -729,7 +729,21 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     </div>
 
     <!-- DARIJA -->
-
+    <div class="tab-content" id="tab-favs">
+      <div id="favs-villes-section">
+        <div style="font-size:13px;font-weight:700;color:var(--text1);padding:0 20px 8px;text-transform:uppercase;letter-spacing:0.5px" id="favs-villes-title">❤️ Villes favorites</div>
+        <div id="favs-villes-grid" class="villes-grid" style="padding:0 16px 16px"></div>
+      </div>
+      <div id="favs-lieux-section">
+        <div style="font-size:13px;font-weight:700;color:var(--text1);padding:0 20px 8px;text-transform:uppercase;letter-spacing:0.5px" id="favs-lieux-title">📍 Lieux favoris</div>
+        <div id="favs-lieux-grid" style="padding:0 16px 100px;display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+      <div id="favs-empty" style="display:none;text-align:center;padding:60px 20px">
+        <div style="font-size:48px;margin-bottom:16px">🤍</div>
+        <div style="font-size:16px;font-weight:600;color:var(--text1);margin-bottom:8px" id="favs-empty-title">Pas encore de favoris</div>
+        <div style="font-size:13px;color:var(--text3)" id="favs-empty-sub">Appuyez sur ❤️ sur une ville ou un lieu pour le sauvegarder ici</div>
+      </div>
+    </div>
     <div class="tab-content" id="tab-lexique">
       <div class="flashcard-wrap">
         <div class="flashcard-header">
@@ -915,8 +929,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
       <div class="about-section-title">Version</div>
       <div class="about-section-text">Go Morocco v2.0 — 2025 🇲🇦<br><span style="font-size:12px;color:var(--text3)">Développé avec ❤️ pour les voyageurs du monde</span></div>
     </div>
-    <div class="about-logout" onclick="logout ? logout() : null">
-      <span>🚪</span> Se déconnecter
+    <div class="about-logout" id="about-logout-btn" onclick="logout ? logout() : null">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Se déconnecter
     </div>
   </div>
 </div>
@@ -944,6 +958,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   // Auth state listener
   auth.onAuthStateChanged(async function(user) {
     document.getElementById('splash').classList.add('hide');
+    // If user chose guest mode, don't redirect back to auth
+    if(sessionStorage.getItem('gm_guest') === '1' && !user) return;
     setTimeout(function(){ document.getElementById('splash').style.display='none'; }, 600);
     if(user) {
       currentUser = user;

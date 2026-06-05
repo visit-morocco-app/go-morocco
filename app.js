@@ -675,6 +675,7 @@ function renderFavs() {
   }
   if(emptyEl) emptyEl.style.display = 'none';
 
+  // VILLES
   var favVilles = DATA.villes.filter(function(v){ return favs.villes.indexOf(v.id) !== -1; });
   if(villesSection) villesSection.style.display = favVilles.length ? 'block' : 'none';
   if(villesGrid && favVilles.length) {
@@ -682,15 +683,21 @@ function renderFavs() {
     villesGrid.innerHTML = favVilles.map(function(v){
       var name = getName(v);
       var region = lang==='en' ? v.region_en : v.region;
-      return '<div onclick="showVille('+v.id+')" style="cursor:pointer;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.12)">'
-        + '<img src="'+v.img+'" style="width:100%;height:120px;object-fit:cover;display:block">'
+      // Fix image path — try exact name, fallback to lowercase
+      var imgSrc = v.img;
+      return '<div style="cursor:pointer;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.12);position:relative">'
+        + '<div onclick="showVille('+v.id+')">'
+        + '<img src="'+imgSrc+'" style="width:100%;height:120px;object-fit:cover;display:block">'
         + '<div style="padding:10px 12px">'
         + '<div style="font-weight:700;font-size:14px;color:#1a1a1a">'+name+'</div>'
         + '<div style="font-size:12px;color:#888;margin-top:2px">'+region+'</div>'
-        + '</div></div>';
+        + '</div></div>'
+        + '<div onclick="unfavVille('+v.id+')" style="position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;box-shadow:0 2px 6px rgba(0,0,0,0.2)">❤️</div>'
+        + '</div>';
     }).join('');
   }
 
+  // LIEUX
   var favLieux = DATA.lieux.filter(function(l){ return favs.lieux.indexOf(l.id) !== -1; });
   if(lieuxSection) lieuxSection.style.display = favLieux.length ? 'block' : 'none';
   if(lieuxGrid && favLieux.length) {
@@ -698,16 +705,31 @@ function renderFavs() {
     lieuxGrid.innerHTML = favLieux.map(function(l){
       var name = getName(l);
       var cat = translateLieuCat(l.cat);
-      return '<div onclick="showLieu('+l.id+')" style="cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08)">'
+      return '<div style="display:flex;align-items:center;gap:12px;background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,0.08)">'
+        + '<div onclick="showLieu('+l.id+')" style="display:flex;align-items:center;gap:12px;flex:1;cursor:pointer;min-width:0">'
         + '<img src="'+l.img+'" style="width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0">'
         + '<div style="flex:1;min-width:0">'
         + '<div style="font-weight:600;font-size:14px;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+name+'</div>'
         + '<div style="font-size:12px;color:#888;margin-top:2px">'+l.ville+' · '+cat+'</div>'
-        + '</div>'
-        + '<div style="color:#e91e63;font-size:18px">❤️</div>'
+        + '</div></div>'
+        + '<div onclick="unfavLieu('+l.id+')" style="color:#e91e63;font-size:22px;cursor:pointer;padding:0 4px;flex-shrink:0">❤️</div>'
         + '</div>';
     }).join('');
   }
+}
+
+function unfavVille(id) {
+  var favs = getFavs();
+  favs.villes = favs.villes.filter(function(x){ return x !== id; });
+  saveFavs(favs);
+  renderFavs();
+}
+
+function unfavLieu(id) {
+  var favs = getFavs();
+  favs.lieux = favs.lieux.filter(function(x){ return x !== id; });
+  saveFavs(favs);
+  renderFavs();
 }
 
 // ======== AUTRES ========

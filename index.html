@@ -958,6 +958,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   // Auth state listener
   auth.onAuthStateChanged(async function(user) {
     document.getElementById('splash').classList.add('hide');
+    if(sessionStorage.getItem('gm_guest')==='1' && !user) return;
     if(sessionStorage.getItem('gm_guest')=='1' && !user) return;
     setTimeout(function(){ document.getElementById('splash').style.display='none'; }, 600);
     if(user) {
@@ -1037,6 +1038,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   }
 
   function loginAsGuest() {
+    sessionStorage.setItem('gm_guest','1');
     sessionStorage.setItem('gm_guest','1');
     document.getElementById('auth-screen').classList.remove('show');
     document.getElementById('app').classList.add('show');

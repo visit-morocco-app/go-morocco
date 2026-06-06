@@ -1004,7 +1004,16 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
 
   function loginWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithRedirect(provider);
+    auth.signInWithPopup(provider)
+      .then(function(result) {
+        currentUser = result.user;
+        showAppFromAuth();
+      })
+      .catch(function(error) {
+        console.error('Google login error:', error);
+        var msg = error.message || 'Erreur de connexion Google';
+        document.getElementById('login-error').textContent = msg;
+      });
   }
 
   async function loginWithEmail() {

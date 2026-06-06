@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "328164981722",
+    "project_id": "go-morocco-71608",
+    "storage_bucket": "go-morocco-71608.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328164981722:android:2fd703423f999d2944dee3",
+        "android_client_info": {
+          "package_name": "com.gomorocco.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "328164981722-oa9rgfi6fueanlr5vk8eu9glraruhtae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gomorocco.app",
+            "certificate_hash": "81e859f63b6c9eb60efea2bf4e9b370fcea8ad10"
+          }
+        },
+        {
+          "client_id": "328164981722-hc7eo7ffqh52itfbua33gtcd6sr8penk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuhtDDzq-jS9Uu2yHac0fA9HPpcvX7sSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328164981722-hc7eo7ffqh52itfbua33gtcd6sr8penk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

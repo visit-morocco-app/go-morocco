@@ -485,13 +485,8 @@ function renderFcCard() {
 function flipFlashcard() {
   var scene = document.getElementById('fc-scene');
   if(!scene) return;
-  scene.style.opacity = '0';
-  scene.style.transition = 'opacity 0.15s';
-  setTimeout(function() {
-    fcFlipped = !fcFlipped;
-    scene.classList.toggle('flipped', fcFlipped);
-    scene.style.opacity = '1';
-  }, 150);
+  fcFlipped = !fcFlipped;
+  scene.classList.toggle('flipped', fcFlipped);
 }
 function fcNext() { fcIndex = fcIndex < fcFiltered.length-1 ? fcIndex+1 : 0; fcFlipped=false; renderFcCard(); }
 function fcPrev() { fcIndex = fcIndex > 0 ? fcIndex-1 : fcFiltered.length-1; fcFlipped=false; renderFcCard(); }

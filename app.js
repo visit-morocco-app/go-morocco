@@ -377,7 +377,7 @@ function renderUrgences() {
       +'<div class="urgence-card-top"><div class="urgence-card-ville">'+u.ville+'</div></div>'
       +'<div class="urgence-card-body">'
       +'<div class="urgence-row">'
-      +'<div class="urgence-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg></div>'
+      +'<div class="urgence-row-icon" style="color:#2e7d32;font-size:20px">🏥</div>'
       +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.hopital+'</div>'
       +'<div class="urgence-row-val">'+u.hopital+'</div></div>'
       +'<a href="'+u.hopital_maps+'" target="_blank" class="urgence-maps-btn">📍</a></div>'

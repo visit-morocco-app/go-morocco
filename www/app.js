@@ -677,6 +677,10 @@ function hideFavs() {
 function renderFavs() {
   var titleEl = document.getElementById('favs-page-title');
   if(titleEl) titleEl.textContent = lang==='en' ? 'My Favourites' : 'Mes Favoris';
+  var t1 = document.getElementById('favs-villes-title');
+  if(t1) t1.textContent = lang==='en' ? '🏙️ Favourite Cities' : '🏙️ Villes Favorites';
+  var t2 = document.getElementById('favs-lieux-title');
+  if(t2) t2.textContent = lang==='en' ? '📍 Favourite Places' : '📍 Lieux Favoris';
 
   var favs = getFavs();
   var isEmpty = favs.villes.length === 0 && favs.lieux.length === 0;

@@ -877,7 +877,7 @@ function handleSearch() {
 
   if(currentTab === 'gastro') {
     if(!q) { renderGastro(); return; }
-    var res = DATA.gastro.filter(function(g){
+    var res = DATA.gastronomie.filter(function(g){
       return getName(g).toLowerCase().startsWith(q);
     });
     var el = document.getElementById('gastro-grid');

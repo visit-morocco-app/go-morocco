@@ -211,8 +211,19 @@ function switchTab(tab, title) {
   document.querySelectorAll('.tab-content').forEach(function(tc){ tc.classList.remove('active'); });
   document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
   document.getElementById('tab-'+tab).classList.add('active');
-  document.getElementById('nav-'+tab).classList.add('active');
+  if(document.getElementById('nav-'+tab)) document.getElementById('nav-'+tab).classList.add('active');
   document.getElementById('header-title').textContent = (tabTitles[lang]||tabTitles.fr)[tab] || title;
+  // Show search bar only for villes, lieux, gastro
+  var searchBar = document.querySelector('.search-bar');
+  if(searchBar) {
+    var showSearch = ['villes','lieux','gastro'].indexOf(tab) !== -1;
+    searchBar.style.display = showSearch ? 'flex' : 'none';
+    if(showSearch) {
+      var input = document.getElementById('search-input');
+      if(input) input.value = '';
+      updateSearchPlaceholder();
+    }
+  }
   window.scrollTo(0,0);
 }
 

@@ -574,7 +574,13 @@ var DATA = {
   urgences: [
     { id:122, ville:"Marrakech", hopital:"Hôpital Ibn Tofail", hopital_tel:"+212 524 448 811", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Tofail+Marrakech" },
     { id:123, ville:"Casablanca", hopital:"CHU Ibn Rochd", hopital_tel:"+212 522 225 325", hopital_maps:"https://maps.google.com/?q=CHU+Ibn+Rochd+Casablanca" },
-    { id:124, ville:"Rabat", hopital:"Hôpital Ibn Sina", hopital_tel:"+212 537 672 871", hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Sina+Rabat" },
+    { id:124, ville:"Rabat",
+      hopital:"SAMU Rabat / Clinique des Nations Unies",
+      hopital_tel:"05 37 73 73 73",
+      hopital_maps:"https://maps.google.com/?q=Hopital+Ibn+Sina+Rabat",
+      desc_fr:"🏥 SAMU Rabat : 05 37 73 73 73\n🏥 Clinique des Nations Unies : 05 37 67 05 05\n🏥 Clinique de l\'Agdal : 05 37 77 77 77\n🚑 SOS Médecin : 05 37 20 20 20\n🚑 Urgences Tabib : 06 12 00 12 06\n🚑 Anti-poison : 08 01 00 01 80\n🚒 Pompiers : 15 (fixe) / 150 (mobile)\n👮 Police : 19 (fixe) / 112 (mobile)\n👮 Gendarmerie : 177",
+      desc_en:"🏥 SAMU Rabat: 05 37 73 73 73\n🏥 Clinique des Nations Unies: 05 37 67 05 05\n🏥 Clinique de l\'Agdal: 05 37 77 77 77\n🚑 SOS Médecin: 05 37 20 20 20\n🚑 Urgences Tabib: 06 12 00 12 06\n🚑 Anti-poison: 08 01 00 01 80\n🔥 Fire brigade: 15 (landline) / 150 (mobile)\n👮 Police: 19 (landline) / 112 (mobile)\n👮 Gendarmerie: 177"
+    },
     { id:125, ville:"Agadir", hopital:"Hôpital Hassan II", hopital_tel:"+212 528 211 477", hopital_maps:"https://maps.google.com/?q=Hopital+Hassan+II+Agadir" },
     { id:126, ville:"Tanger", hopital:"Hôpital Mohammed V", hopital_tel:"+212 539 932 444", hopital_maps:"https://maps.google.com/?q=Hopital+Mohammed+V+Tanger" },
     { id:127, ville:"Essaouira", hopital:"Hôpital Sidi Mohammed Ben Abdallah", hopital_tel:"+212 524 475 716", hopital_maps:"https://maps.google.com/?q=Hopital+Essaouira" },

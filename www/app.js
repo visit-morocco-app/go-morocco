@@ -240,6 +240,7 @@ function renderVilles() {
       +'<div class="ville-card-info">'
       +'<div class="ville-card-name">'+getName(v)+'</div>'
       +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
+      +(getDesc(u) ? '<div style="margin-top:10px;font-size:12px;color:var(--text2);line-height:1.8;white-space:pre-line;border-top:1px solid var(--border);padding-top:10px">'+getDesc(u)+'</div>' : '')
       +'</div></div>';
   }).join('');
 }

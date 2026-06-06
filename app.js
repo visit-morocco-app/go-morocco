@@ -299,13 +299,11 @@ function renderEvents() {
     var desc = getDesc(e);
     var shortDesc = desc.length > 140 ? desc.substring(0,140)+'...' : desc;
     var moisText = translateMonth(e.mois||e.periode||'');
-    var periodeDisplay = lang==='en' ? (e.periode||'').replace('Fév','Feb').replace('Mars','Mar').replace('Avr','Apr').replace('Mai','May').replace('Juin','Jun').replace('Juil','Jul').replace('Août','Aug').replace('Sept','Sep').replace('Oct','Oct').replace('Nov','Nov').replace('Déc','Dec') : (e.periode||'');
+
     var villeText = (e.ville==='Tout le Maroc'||e.ville==='All Morocco') ? t('tout_maroc') : e.ville;
-    var isReligieux = e.type === 'religieux';
-    return '<div class="event-card"' + (isReligieux ? ' style="border-left:3px solid #8B4513"' : '') + '>'
+    return '<div class="event-card"'+'>'
       +'<div class="event-date">'
       +'<div class="event-month">'+moisText+'</div>'
-      +'<div class="event-periode" style="font-size:9px;color:#999;margin-top:2px">'+periodeDisplay+'</div>'
       +'<div class="event-day">'+e.jour+'</div>'
       +'<div class="event-emoji">'+e.emoji+'</div>'
       +'</div>'
@@ -365,12 +363,12 @@ function renderUrgences() {
       +'<div class="urgence-card-top"><div class="urgence-card-ville">🏙️ '+u.ville+'</div></div>'
       +'<div class="urgence-card-body">'
       +'<div class="urgence-row">'
-      +'<div class="urgence-row-icon">🏥</div>'
+      +'<div class="urgence-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e91e63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>'
       +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.hopital+'</div>'
       +'<div class="urgence-row-val">'+u.hopital+'</div></div>'
-      +'<a href="'+u.hopital_maps+'" target="_blank" class="urgence-maps-btn">🗺️</a></div>'
+      +'<a href="'+u.hopital_maps+'" target="_blank" class="urgence-maps-btn">📍</a></div>'
       +'<div class="urgence-row">'
-      +'<div class="urgence-row-icon">📞</div>'
+      +'<div class="urgence-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e91e63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg></div>'
       +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.tel+'</div>'
       +'<div class="urgence-row-val">'+u.hopital_tel+'</div></div>'
       +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">'+l.appeler+'</a></div>'
@@ -830,33 +828,87 @@ function updateSearchPlaceholder() {
 }
 
 function handleSearch() {
-  var q = document.getElementById('search-input').value.toLowerCase();
+  var q = document.getElementById('search-input').value.toLowerCase().trim();
+
+  if(currentTab === 'villes') {
+    if(!q) { renderVilles(); return; }
+    var res = DATA.villes.filter(function(v){
+      var name = getName(v).toLowerCase();
+      return name.startsWith(q) || name.includes(q) || v.region.toLowerCase().includes(q);
+    });
+    res.sort(function(a,b){ return getName(a).toLowerCase().startsWith(q)?-1:getName(b).toLowerCase().startsWith(q)?1:0; });
+    var el = document.getElementById('villes-grid');
+    if(el) el.innerHTML = res.length ? res.map(function(v){
+      return '<div class="ville-card" onclick="showVille('+v.id+')">'
+        +'<img src="'+v.img+'" alt="'+getName(v)+'" loading="lazy">'
+        +'<div class="ville-card-info">'
+        +'<div class="ville-card-name">'+getName(v)+'</div>'
+        +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
+        +'</div></div>';
+    }).join('') : '<p style="padding:20px;color:#999;font-size:14px;grid-column:span 2;">'+(lang==='en'?'No results':'Aucun résultat')+'</p>';
+    return;
+  }
+
   if(currentTab === 'lieux') {
     if(!q) { renderLieux(); return; }
     var res = DATA.lieux.filter(function(l){
-      return getName(l).toLowerCase().includes(q) || l.ville.toLowerCase().includes(q) || (l.cat&&l.cat.toLowerCase().includes(q));
+      var name = getName(l).toLowerCase();
+      return name.startsWith(q) || name.includes(q) || l.ville.toLowerCase().includes(q) || (l.cat&&l.cat.toLowerCase().includes(q));
     });
-    var lieuxEl = document.getElementById('lieux-grid');
-    if(lieuxEl) lieuxEl.innerHTML = res.length ? res.map(function(l){
+    res.sort(function(a,b){ return getName(a).toLowerCase().startsWith(q)?-1:getName(b).toLowerCase().startsWith(q)?1:0; });
+    var el = document.getElementById('lieux-grid');
+    if(el) el.innerHTML = res.length ? res.map(function(l){
       return '<div class="lieu-card" onclick="showLieu('+l.id+')">'
         +'<img src="'+l.img+'" alt="'+getName(l)+'" loading="lazy">'
         +'<div class="lieu-card-info">'
         +'<div class="lieu-card-name">'+getName(l)+'</div>'
         +'<div class="lieu-card-cat">'+l.cat+'</div>'
         +'</div></div>';
-    }).join('') : '<p style="padding:20px;color:#999;font-size:14px;">Aucun résultat</p>';
+    }).join('') : '<p style="padding:20px;color:#999;font-size:14px;">'+(lang==='en'?'No results':'Aucun résultat')+'</p>';
     return;
   }
-  if(!q) { renderVilles(); return; }
-  var res = DATA.villes.filter(function(v){
-    return v.nom.toLowerCase().includes(q) || v.region.toLowerCase().includes(q);
-  });
-  document.getElementById('villes-grid').innerHTML = res.length ? res.map(function(v){
-    return '<div class="ville-card" onclick="showVille('+v.id+')">'
-      +'<img src="'+v.img+'" alt="'+v.nom+'" loading="lazy">'
-      +'<div class="ville-card-info">'
-      +'<div class="ville-card-name">'+getName(v)+'</div>'
-      +'<div class="ville-card-region">'+(lang==='en'?v.region_en:v.region)+'</div>'
-      +'</div></div>';
-  }).join('') : '<p style="padding:20px;color:#999;font-size:14px;grid-column:span 2;">Aucun résultat</p>';
+
+  if(currentTab === 'gastro') {
+    if(!q) { renderGastro(); return; }
+    var res = DATA.gastro.filter(function(g){
+      var name = getName(g).toLowerCase();
+      return name.startsWith(q) || name.includes(q) || (g.ville&&g.ville.toLowerCase().includes(q));
+    });
+    var el = document.getElementById('gastro-grid');
+    if(el) el.innerHTML = res.length ? res.map(function(g){
+      return '<div class="gastro-card" onclick="showGastro&&showGastro('+g.id+')">'
+        +'<img src="'+g.img+'" alt="'+getName(g)+'" loading="lazy">'
+        +'<div class="gastro-card-info">'
+        +'<div class="gastro-card-name">'+getName(g)+'</div>'
+        +'</div></div>';
+    }).join('') : '<p style="padding:20px;color:#999;font-size:14px;">'+(lang==='en'?'No results':'Aucun résultat')+'</p>';
+    return;
+  }
+
+  if(currentTab === 'urgences') {
+    if(!q) { renderUrgences(); return; }
+    var res = DATA.urgences.filter(function(u){
+      return u.ville.toLowerCase().includes(q) || u.hopital.toLowerCase().includes(q);
+    });
+    var el = document.getElementById('urgence-list');
+    if(el && res.length) {
+      var labels = {fr:{hopital:'Hôpital',tel:'Téléphone',appeler:'📱 Appeler'},en:{hopital:'Hospital',tel:'Phone',appeler:'📱 Call'}};
+      var l = labels[lang]||labels.fr;
+      el.innerHTML = res.map(function(u){
+        return '<div class="urgence-card">'
+          +'<div class="urgence-card-top"><div class="urgence-card-ville">🏙️ '+u.ville+'</div></div>'
+          +'<div class="urgence-card-body">'
+          +'<div class="urgence-row"><div class="urgence-row-icon">🏥</div>'
+          +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.hopital+'</div>'
+          +'<div class="urgence-row-val">'+u.hopital+'</div></div>'
+          +'<a href="'+u.hopital_maps+'" target="_blank" class="urgence-maps-btn">📍</a></div>'
+          +'<div class="urgence-row"><div class="urgence-row-icon">📞</div>'
+          +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.tel+'</div>'
+          +'<div class="urgence-row-val">'+u.hopital_tel+'</div></div>'
+          +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">'+l.appeler+'</a></div>'
+          +'</div></div>';
+      }).join('');
+    }
+    return;
+  }
 }

@@ -346,8 +346,8 @@ function renderUrgences() {
   var el = document.getElementById('urgence-list');
   if(!el) return;
   var labels = {
-    fr:{hopital:'Hôpital', tel:'Téléphone', appeler:'📱 Appeler'},
-    en:{hopital:'Hospital', tel:'Phone', appeler:'📱 Call'},
+    fr:{hopital:'Hôpital', tel:'Téléphone', appeler:'Appeler'},
+    en:{hopital:'Hospital', tel:'Phone', appeler:'Call'},
 
   };
   var l = labels[lang] || labels.fr;
@@ -360,7 +360,7 @@ function renderUrgences() {
 
   el.innerHTML = DATA.urgences.map(function(u) {
     return '<div class="urgence-card">'
-      +'<div class="urgence-card-top"><div class="urgence-card-ville">🏙️ '+u.ville+'</div></div>'
+      +'<div class="urgence-card-top"><div class="urgence-card-ville">'+u.ville+'</div></div>'
       +'<div class="urgence-card-body">'
       +'<div class="urgence-row">'
       +'<div class="urgence-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e91e63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>'
@@ -371,7 +371,7 @@ function renderUrgences() {
       +'<div class="urgence-row-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e91e63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg></div>'
       +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.tel+'</div>'
       +'<div class="urgence-row-val">'+u.hopital_tel+'</div></div>'
-      +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">'+l.appeler+'</a></div>'
+      +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg> '+l.appeler+'</a></div>'
       +'</div></div>';
   }).join('');
 }
@@ -896,7 +896,7 @@ function handleSearch() {
       var l = labels[lang]||labels.fr;
       el.innerHTML = res.map(function(u){
         return '<div class="urgence-card">'
-          +'<div class="urgence-card-top"><div class="urgence-card-ville">🏙️ '+u.ville+'</div></div>'
+          +'<div class="urgence-card-top"><div class="urgence-card-ville">'+u.ville+'</div></div>'
           +'<div class="urgence-card-body">'
           +'<div class="urgence-row"><div class="urgence-row-icon">🏥</div>'
           +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.hopital+'</div>'
@@ -905,7 +905,7 @@ function handleSearch() {
           +'<div class="urgence-row"><div class="urgence-row-icon">📞</div>'
           +'<div class="urgence-row-info"><div class="urgence-row-label">'+l.tel+'</div>'
           +'<div class="urgence-row-val">'+u.hopital_tel+'</div></div>'
-          +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn">'+l.appeler+'</a></div>'
+          +'<a href="tel:'+u.hopital_tel+'" class="urgence-call-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg> '+l.appeler+'</a></div>'
           +'</div></div>';
       }).join('');
     }

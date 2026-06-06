@@ -694,6 +694,10 @@ function renderFavs() {
     if(villesSection) villesSection.style.display = 'none';
     if(lieuxSection)  lieuxSection.style.display  = 'none';
     if(emptyEl)       emptyEl.style.display = 'block';
+    var emptyTitle = document.getElementById('favs-empty-title');
+    var emptySub   = document.getElementById('favs-empty-sub');
+    if(emptyTitle) emptyTitle.textContent = lang==='en' ? 'No favourites yet' : 'Pas encore de favoris';
+    if(emptySub)   emptySub.textContent   = lang==='en' ? 'Tap ❤️ on a city or place to save it here' : 'Appuie sur ❤️ sur une ville ou un lieu pour le sauvegarder ici';
     return;
   }
   if(emptyEl) emptyEl.style.display = 'none';

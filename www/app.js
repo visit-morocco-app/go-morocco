@@ -833,10 +833,8 @@ function handleSearch() {
   if(currentTab === 'villes') {
     if(!q) { renderVilles(); return; }
     var res = DATA.villes.filter(function(v){
-      var name = getName(v).toLowerCase();
-      return name.startsWith(q) || name.includes(q) || v.region.toLowerCase().includes(q);
+      return getName(v).toLowerCase().startsWith(q);
     });
-    res.sort(function(a,b){ return getName(a).toLowerCase().startsWith(q)?-1:getName(b).toLowerCase().startsWith(q)?1:0; });
     var el = document.getElementById('villes-grid');
     if(el) el.innerHTML = res.length ? res.map(function(v){
       return '<div class="ville-card" onclick="showVille('+v.id+')">'
@@ -852,10 +850,8 @@ function handleSearch() {
   if(currentTab === 'lieux') {
     if(!q) { renderLieux(); return; }
     var res = DATA.lieux.filter(function(l){
-      var name = getName(l).toLowerCase();
-      return name.startsWith(q) || name.includes(q) || l.ville.toLowerCase().includes(q) || (l.cat&&l.cat.toLowerCase().includes(q));
+      return getName(l).toLowerCase().startsWith(q);
     });
-    res.sort(function(a,b){ return getName(a).toLowerCase().startsWith(q)?-1:getName(b).toLowerCase().startsWith(q)?1:0; });
     var el = document.getElementById('lieux-grid');
     if(el) el.innerHTML = res.length ? res.map(function(l){
       return '<div class="lieu-card" onclick="showLieu('+l.id+')">'
@@ -871,15 +867,16 @@ function handleSearch() {
   if(currentTab === 'gastro') {
     if(!q) { renderGastro(); return; }
     var res = DATA.gastro.filter(function(g){
-      var name = getName(g).toLowerCase();
-      return name.startsWith(q) || name.includes(q) || (g.ville&&g.ville.toLowerCase().includes(q));
+      return getName(g).toLowerCase().startsWith(q);
     });
     var el = document.getElementById('gastro-grid');
     if(el) el.innerHTML = res.length ? res.map(function(g){
-      return '<div class="gastro-card" onclick="showGastro&&showGastro('+g.id+')">'
+      return '<div class="gastro-card">'
         +'<img src="'+g.img+'" alt="'+getName(g)+'" loading="lazy">'
         +'<div class="gastro-card-info">'
         +'<div class="gastro-card-name">'+getName(g)+'</div>'
+        +'<div class="gastro-card-type">'+translateType(g.type)+'</div>'
+        +'<div class="gastro-card-prix">💰 '+g.prix+'</div>'
         +'</div></div>';
     }).join('') : '<p style="padding:20px;color:#999;font-size:14px;">'+(lang==='en'?'No results':'Aucun résultat')+'</p>';
     return;

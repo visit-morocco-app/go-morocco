@@ -2,7 +2,7 @@
 // ======== TRANSLATIONS ========
 var T = {
   fr: {
-    search_ville: 'Rechercher une ville...',
+    search_ville: 'Rechercher une ville...', search_gastro: 'Rechercher un plat...',
     search_lieux: 'Filtrer par ville',
     open_maps: '📍 Ouvrir dans Google Maps',
     region: 'Région', saison: 'Meilleure saison',
@@ -24,7 +24,7 @@ var T = {
     prev: '← Précédent', next: 'Suivant →',
   },
   en: {
-    search_ville: 'Search a city...',
+    search_ville: 'Search a city...', search_gastro: 'Search a dish...',
     search_lieux: 'Filter by city',
     open_maps: '📍 Open in Google Maps',
     region: 'Region', saison: 'Best season',
@@ -149,7 +149,10 @@ function renderAll() {
 
 function updateSearchPlaceholder() {
   var el = document.getElementById('search-input');
-  if(el) el.placeholder = t('search_ville');
+  if(!el) return;
+  if(currentTab === 'gastro') el.placeholder = t('search_gastro');
+  else if(currentTab === 'lieux') el.placeholder = t('search_lieux');
+  else el.placeholder = t('search_ville');
 }
 
 function updateNavLabels() {
@@ -833,10 +836,7 @@ function saveFavs(f) { window.saveFavs(f); }
 function isFavVille(id) { return window.isFavVille(id); }
 function isFavLieu(id)  { return window.isFavLieu(id); }
 
-function updateSearchPlaceholder() {
-  var el = document.getElementById('search-input');
-  if(el) el.placeholder = t('search_ville');
-}
+
 
 function handleSearch() {
   var q = document.getElementById('search-input').value.toLowerCase().trim();

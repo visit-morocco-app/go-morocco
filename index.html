@@ -909,6 +909,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
+  // Detect device language for auth page
+  var authLang = navigator.language && navigator.language.startsWith('fr') ? 'fr' : 'en';
+
   var firebaseConfig = {
     apiKey: "AIzaSyARbKS_Tsph4EAaJKedfUh3VItDsPPh_MQ",
     authDomain: "go-morocco-71608.firebaseapp.com",
@@ -924,6 +927,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   var userFavorites = { villes:[], lieux:[] };
 
   // Auth state listener
+  // Apply auth language on load
+  document.addEventListener('DOMContentLoaded', function(){ updateAuthLang(); });
+
   auth.onAuthStateChanged(async function(user) {
     document.getElementById('splash').classList.add('hide');
     setTimeout(function(){ document.getElementById('splash').style.display='none'; }, 600);
@@ -937,6 +943,29 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
       document.getElementById('auth-screen').classList.add('show');
     }
   });
+
+  function updateAuthLang() {
+    if(authLang === 'en') {
+      var appTag = document.querySelector('.auth-app-tag');
+      if(appTag) appTag.textContent = 'Where every journey leaves a mark';
+      var googleBtn = document.querySelector('.btn-google');
+      if(googleBtn) googleBtn.innerHTML = googleBtn.innerHTML.replace('Continuer avec Google', 'Continue with Google');
+      var divider = document.querySelector('.auth-divider span');
+      if(divider) divider.textContent = 'or';
+      var emailInput = document.getElementById('login-email');
+      if(emailInput) emailInput.placeholder = 'Email';
+      var pwdInput = document.getElementById('login-password');
+      if(pwdInput) pwdInput.placeholder = 'Password';
+      var forgot = document.querySelector('.auth-forgot');
+      if(forgot) forgot.textContent = 'Forgot password?';
+      var createLink = document.querySelector('.auth-toggle-link');
+      if(createLink) createLink.textContent = 'Create an account';
+      var loginBtn = document.querySelector('#form-login .btn-primary');
+      if(loginBtn) loginBtn.textContent = 'Sign in';
+      var guestBtn = document.querySelector('.auth-guest-btn');
+      if(guestBtn) guestBtn.textContent = 'Continue without account →';
+    }
+  }
 
   function showAppFromAuth() {
     document.getElementById('auth-screen').classList.remove('show');

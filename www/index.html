@@ -1002,18 +1002,31 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     } catch(e) { console.log('Profile:', e); }
   }
 
-  function loginWithGoogle() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-      .then(function(result) {
+  async function loginWithGoogle() {
+    try {
+      // Use Capacitor plugin on Android, Firebase popup on web
+      if(window.Capacitor && window.Capacitor.isNativePlatform()) {
+        const { GoogleAuth } = await import('https://cdn.jsdelivr.net/npm/@codetrix-studio/capacitor-google-auth@3.4.0-rc.4/dist/index.esm.js');
+        await GoogleAuth.initialize({
+          clientId: '328164981722-hc7eo7ffqh52itfbua33gtcd6sr8penk.apps.googleusercontent.com',
+          scopes: ['profile', 'email'],
+          grantOfflineAccess: true
+        });
+        var googleUser = await GoogleAuth.signIn();
+        var credential = firebase.auth.GoogleAuthProvider.credential(googleUser.authentication.idToken);
+        var result = await auth.signInWithCredential(credential);
         currentUser = result.user;
         showAppFromAuth();
-      })
-      .catch(function(error) {
-        console.error('Google login error:', error);
-        var msg = error.message || 'Erreur de connexion Google';
-        document.getElementById('login-error').textContent = msg;
-      });
+      } else {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        var result = await auth.signInWithPopup(provider);
+        currentUser = result.user;
+        showAppFromAuth();
+      }
+    } catch(error) {
+      console.error('Google login error:', error);
+      document.getElementById('login-error').textContent = error.message || 'Erreur de connexion Google';
+    }
   }
 
   async function loginWithEmail() {

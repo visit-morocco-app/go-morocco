@@ -1057,7 +1057,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   window.forgotPassword = function() {
     var email = document.getElementById('login-email').value.trim();
     if(!email) {
-      document.getElementById('login-error').textContent = authLang==='en' ? 'Enter your email first' : 'Entrez votre email d'abord';
+      document.getElementById('login-error').textContent = authLang==='en' ? 'Enter your email first' : "Entrez votre email d'abord";
       return;
     }
     auth.sendPasswordResetEmail(email)

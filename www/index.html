@@ -1013,7 +1013,12 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
           grantOfflineAccess: true
         });
         var googleUser = await GoogleAuth.signIn();
-        var credential = firebase.auth.GoogleAuthProvider.credential(googleUser.authentication.idToken);
+        console.log('Google user:', JSON.stringify(googleUser));
+        var idToken = googleUser.authentication && googleUser.authentication.idToken;
+        if(!idToken) {
+          throw new Error('No idToken received from Google: ' + JSON.stringify(googleUser));
+        }
+        var credential = firebase.auth.GoogleAuthProvider.credential(idToken);
         var result = await auth.signInWithCredential(credential);
         currentUser = result.user;
         showAppFromAuth();
@@ -1025,7 +1030,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
       }
     } catch(error) {
       console.error('Google login error:', error);
-      document.getElementById('login-error').textContent = error.message || 'Erreur de connexion Google';
+      var msg = error.message || error.code || JSON.stringify(error) || 'Erreur de connexion Google';
+      document.getElementById('login-error').textContent = msg;
     }
   }
 

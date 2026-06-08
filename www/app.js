@@ -788,13 +788,13 @@ function showAbout() {
     if(missionText) missionText.textContent = 'Go Morocco is your authentic travel guide to discover the Kingdom of Morocco. From labyrinthine medinas to Atlantic beaches, from the Atlas peaks to the Sahara dunes — explore Morocco like never before.';
     if(contactTitle) contactTitle.textContent = 'Contact';
     if(versionTitle) versionTitle.textContent = 'Version';
-    if(versionText) versionText.innerHTML = 'Go Morocco v2.0 — 2025 🇲🇦<br><span style="font-size:12px;color:var(--text3)">Made with ❤️ for travellers worldwide</span>';
+    if(versionText) versionText.innerHTML = 'Go Morocco v1.0 — 2026 🇲🇦<br><span style="font-size:12px;color:var(--text3)">Made with ❤️ for travellers worldwide</span>';
   } else {
     if(missionTitle) missionTitle.textContent = 'Notre mission';
     if(missionText) missionText.textContent = "Go Morocco est votre guide de voyage authentique pour découvrir le Royaume du Maroc. Des médinas labyrinthiques aux plages atlantiques, des sommets de l'Atlas aux dunes du Sahara — explorez le Maroc comme jamais auparavant.";
     if(contactTitle) contactTitle.textContent = 'Contact';
     if(versionTitle) versionTitle.textContent = 'Version';
-    if(versionText) versionText.innerHTML = 'Go Morocco v2.0 — 2025 🇲🇦<br><span style="font-size:12px;color:var(--text3)">Développé avec ❤️ pour les voyageurs du monde</span>';
+    if(versionText) versionText.innerHTML = 'Go Morocco v1.0 — 2026 🇲🇦<br><span style="font-size:12px;color:var(--text3)">Développé avec ❤️ pour les voyageurs du monde</span>';
   }
   document.getElementById('about-page').classList.add('open');
 }

@@ -1004,9 +1004,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
 
   async function loginWithGoogle() {
     try {
-      // Use Capacitor plugin on Android, Firebase popup on web
       if(window.Capacitor && window.Capacitor.isNativePlatform()) {
-        const { GoogleAuth } = await import('https://cdn.jsdelivr.net/npm/@codetrix-studio/capacitor-google-auth@3.4.0-rc.4/dist/index.esm.js');
+        // Use native Capacitor plugin
+        var GoogleAuth = window.Capacitor.Plugins.GoogleAuth;
         await GoogleAuth.initialize({
           clientId: '328164981722-hc7eo7ffqh52itfbua33gtcd6sr8penk.apps.googleusercontent.com',
           scopes: ['profile', 'email'],

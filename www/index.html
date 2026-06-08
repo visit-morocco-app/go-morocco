@@ -334,7 +334,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   position: fixed;
   inset: 0;
   z-index: 998;
-  background: white;
+  background: var(--violet);
   display: none;
   flex-direction: column;
   overflow-y: auto;
@@ -398,6 +398,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   flex-direction: column;
   gap: 0;
   flex: 1;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  margin-top: -20px;
 }
 
 /* TABS */
@@ -971,7 +974,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').classList.remove('show');
     document.getElementById('app').classList.add('show');
     if(typeof renderAll === 'function') renderAll();
-    if(typeof switchTab === 'function') switchTab('villes', 'Villes');
   }
 
   async function loadUserFavorites(uid) {
@@ -1037,6 +1039,8 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').style.display = 'none';
     document.getElementById('app').classList.add('show');
     if(typeof renderAll === 'function') renderAll();
+    setTimeout(function(){ if(typeof switchTab === "function") switchTab("villes","Villes"); }, 150);
+    if(typeof switchTab === 'function') switchTab('villes', 'Villes');
   };
 
   window.loginWithEmail = function() {
@@ -1089,9 +1093,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     var registerErr = document.getElementById('register-error');
     if(loginErr) loginErr.textContent='';
     if(registerErr) registerErr.textContent='';
-    // Reset GDPR checkbox when switching tabs
-    var consent = document.getElementById('gdpr-consent');
-    if(consent) consent.checked = false;
   }
 
   window.forgotPassword = function() {
@@ -1125,7 +1126,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     return msgs[code] || 'Une erreur est survenue';
   }
 </script>
-<script src="data.js?v=2"></script>
-<script src="app.js?v=2"></script>
+<script src="data.js?v=4"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

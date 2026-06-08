@@ -1006,6 +1006,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     currentUser = null;
     userFavorites = { villes:[], lieux:[] };
     sessionStorage.removeItem('gm_guest');
+    // Close all open panels
+    ['about-page','favs-page','detail-ville','detail-lieu'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.classList.remove('open');
+    });
     // Reset to login form
     document.querySelectorAll('.auth-form').forEach(function(f){ f.classList.remove('active'); });
     var loginForm = document.getElementById('form-login');

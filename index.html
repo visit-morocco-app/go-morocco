@@ -1000,20 +1000,20 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
 
   // Favoris gérés par app.js
 
-  function showError(id, msg) {
+  window.showError = function(id, msg) {
     var el = document.getElementById(id);
     if(el) el.textContent = msg;
   }
 
-  function loginAsGuest() {
+  window.loginAsGuest = function() {
     sessionStorage.setItem('gm_guest','1');
     document.getElementById('auth-screen').classList.remove('show');
     document.getElementById('auth-screen').style.display = 'none';
     document.getElementById('app').classList.add('show');
     if(typeof renderAll === 'function') renderAll();
-  }
+  };
 
-  function loginWithEmail() {
+  window.loginWithEmail = function() {
     var email = document.getElementById('login-email').value.trim();
     var password = document.getElementById('login-password').value;
     var errEl = document.getElementById('login-error');
@@ -1028,7 +1028,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
       });
   }
 
-  function registerWithEmail() {
+  window.registerWithEmail = function() {
     var name = document.getElementById('register-name').value.trim();
     var email = document.getElementById('register-email').value.trim();
     var password = document.getElementById('register-password').value;
@@ -1045,7 +1045,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
       });
   }
 
-  function showAuthTab(tab) {
+  window.showAuthTab = function(tab) {
     document.querySelectorAll('.auth-form').forEach(function(f){ f.classList.remove('active'); });
     document.getElementById('form-'+tab).classList.add('active');
     var loginErr = document.getElementById('login-error');
@@ -1054,7 +1054,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     if(registerErr) registerErr.textContent='';
   }
 
-  function forgotPassword() {
+  window.forgotPassword = function() {
     var email = document.getElementById('login-email').value.trim();
     if(!email) {
       document.getElementById('login-error').textContent = authLang==='en' ? 'Enter your email first' : 'Entrez votre email d'abord';

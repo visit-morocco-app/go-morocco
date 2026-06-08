@@ -928,7 +928,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
 
   auth.onAuthStateChanged(async function(user) {
     document.getElementById('splash').classList.add('hide');
-    setTimeout(function(){ document.getElementById('splash').style.display='none'; }, 300);
+    setTimeout(function(){ document.getElementById('splash').style.display='none'; }, 900);
     // Guest mode — never show auth screen
     if(sessionStorage.getItem('gm_guest')==='1') {
       document.getElementById('auth-screen').classList.remove('show');
@@ -1014,6 +1014,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     ['login-error','register-error'].forEach(function(id){
       var el = document.getElementById(id); if(el) el.textContent = '';
     });
+    var btnLogin = document.getElementById('btn-login');
+    var btnRegister = document.getElementById('btn-register');
+    if(btnLogin) btnLogin.classList.remove('loading');
+    if(btnRegister) btnRegister.classList.remove('loading');
     document.getElementById('app').classList.remove('show');
     document.getElementById('auth-screen').style.display = '';
     document.getElementById('auth-screen').classList.add('show');

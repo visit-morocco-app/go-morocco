@@ -973,7 +973,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
   function showAppFromAuth() {
     ['about-page','favs-page','detail-ville','detail-lieu'].forEach(function(id){
       var el = document.getElementById(id);
-      if(el) { el.classList.remove('open'); el.style.transform='translateX(100%)'; }
+      if(el) el.classList.remove('open');
     });
     document.getElementById('auth-screen').classList.remove('show');
     document.getElementById('app').classList.add('show');
@@ -1136,7 +1136,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     return msgs[code] || 'Une erreur est survenue';
   }
 </script>
-<script src="data.js?v=4"></script>
-<script src="app.js?v=4"></script>
+<script src="data.js?v=5"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>

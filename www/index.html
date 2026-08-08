@@ -322,6 +322,20 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
 .about-feature-text{font-size:12px;font-weight:500;color:var(--violet)}
 .about-logout{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1.5px solid #FFEBEE;border-radius:12px;color:#C62828;font-size:14px;font-weight:500;cursor:pointer;margin-top:10px}
 .about-logout:active{background:#FFEBEE}
+.about-delete{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#C62828;border-radius:12px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;margin-top:10px}
+.about-delete:active{background:#B71C1C}
+.del-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:flex-end;justify-content:center}
+.del-modal-overlay.show{display:flex}
+.del-modal{background:#fff;width:100%;max-width:430px;border-radius:20px 20px 0 0;padding:28px 24px calc(24px + env(safe-area-inset-bottom));animation:delModalUp 0.25s ease-out}
+@keyframes delModalUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.del-modal-icon{width:56px;height:56px;border-radius:50%;background:#FFEBEE;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.del-modal-icon.success{background:#E8F5E9}
+.del-modal-title{font-size:18px;font-weight:700;color:var(--text);text-align:center;margin-bottom:10px}
+.del-modal-text{font-size:14px;color:var(--text2);text-align:center;line-height:1.6;margin-bottom:24px}
+.del-modal-btn-confirm{width:100%;padding:15px;background:var(--rouge);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;margin-bottom:10px}
+.del-modal-btn-confirm:active{background:#B71C1C}
+.del-modal-btn-cancel{width:100%;padding:15px;background:var(--bg);color:var(--text2);border:none;border-radius:12px;font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer}
+.del-modal-btn-cancel:active{background:var(--border)}
 .header-btn-info[title]:hover::after{content:attr(title);position:absolute;top:48px;right:0;background:rgba(0,0,0,0.8);color:white;padding:4px 10px;border-radius:8px;font-size:11px;white-space:nowrap;pointer-events:none;z-index:999}
 .header-btn-info{position:relative}
 .about-section-title{font-size:12px;font-weight:600;color:var(--violet);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
@@ -897,8 +911,24 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
       <div class="about-section-text" id="about-version-text">Go Morocco v1.0 — 2026 🇲🇦<br><span style="font-size:12px;color:var(--text3)">Développé avec ❤️ pour les voyageurs du monde</span></div>
     </div>
     <div class="about-logout" onclick="logout ? logout() : null">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Se déconnecter
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> <span id="about-logout-text">Se déconnecter</span>
     </div>
+    <div class="about-delete" onclick="confirmDeleteAccount()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg> <span id="about-delete-text">Supprimer mon compte</span>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmation suppression de compte -->
+<div class="del-modal-overlay" id="del-modal-overlay">
+  <div class="del-modal">
+    <div class="del-modal-icon" id="del-modal-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C62828" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+    </div>
+    <div class="del-modal-title" id="del-modal-title">Supprimer votre compte ?</div>
+    <div class="del-modal-text" id="del-modal-text">Cette action supprimera définitivement votre compte et toutes vos données (favoris, préférences). Cette action est irréversible.</div>
+    <button class="del-modal-btn-confirm" id="del-modal-confirm-btn" onclick="performAccountDeletion()">Supprimer définitivement</button>
+    <button class="del-modal-btn-cancel" id="del-modal-cancel-btn" onclick="closeDeleteModal()">Annuler</button>
   </div>
 </div>
 
@@ -936,6 +966,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     if(sessionStorage.getItem('gm_guest')==='1') {
       document.getElementById('auth-screen').classList.remove('show');
       document.getElementById('auth-screen').style.display = 'none';
+      if(typeof updateAboutButtonsLang === 'function') updateAboutButtonsLang();
       return;
     }
     if(user) {
@@ -978,6 +1009,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').classList.remove('show');
     document.getElementById('app').classList.add('show');
     if(typeof renderAll === 'function') renderAll();
+    if(typeof updateAboutButtonsLang === 'function') updateAboutButtonsLang();
     setTimeout(function(){ if(typeof switchTab === 'function') switchTab('villes','Villes'); }, 100);
   }
 
@@ -1036,6 +1068,94 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').classList.add('show');
   }
 
+  function updateAboutButtonsLang() {
+    var logoutEl = document.getElementById('about-logout-text');
+    var deleteEl = document.getElementById('about-delete-text');
+    if(logoutEl) logoutEl.textContent = (typeof lang !== 'undefined' && lang === 'en') ? 'Log out' : 'Se déconnecter';
+    if(deleteEl) deleteEl.textContent = (typeof lang !== 'undefined' && lang === 'en') ? 'Delete my account' : 'Supprimer mon compte';
+  }
+  window.updateAboutButtonsLang = updateAboutButtonsLang;
+
+  window.confirmDeleteAccount = function() {
+    var titleEl = document.getElementById('del-modal-title');
+    var textEl = document.getElementById('del-modal-text');
+    var btnEl = document.getElementById('del-modal-confirm-btn');
+    var cancelEl = document.getElementById('del-modal-cancel-btn');
+    var iconEl = document.getElementById('del-modal-icon');
+    if(iconEl) {
+      iconEl.classList.remove('success');
+      iconEl.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C62828" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>';
+    }
+    if(cancelEl) cancelEl.style.display = '';
+    if(btnEl) { btnEl.disabled = false; btnEl.onclick = performAccountDeletion; }
+    if(lang === 'en') {
+      if(titleEl) titleEl.textContent = 'Delete your account?';
+      if(textEl) textEl.textContent = 'This will permanently delete your account and all your data (favourites, preferences). This action cannot be undone.';
+      if(btnEl) btnEl.textContent = 'Delete permanently';
+    } else {
+      if(titleEl) titleEl.textContent = 'Supprimer votre compte ?';
+      if(textEl) textEl.textContent = 'Cette action supprimera définitivement votre compte et toutes vos données (favoris, préférences). Cette action est irréversible.';
+      if(btnEl) btnEl.textContent = 'Supprimer définitivement';
+    }
+    var overlay = document.getElementById('del-modal-overlay');
+    if(overlay) overlay.classList.add('show');
+  }
+
+  window.closeDeleteModal = function() {
+    var overlay = document.getElementById('del-modal-overlay');
+    if(overlay) overlay.classList.remove('show');
+  }
+
+  function showDeleteSuccess() {
+    var iconEl = document.getElementById('del-modal-icon');
+    var titleEl = document.getElementById('del-modal-title');
+    var textEl = document.getElementById('del-modal-text');
+    var btnEl = document.getElementById('del-modal-confirm-btn');
+    var cancelEl = document.getElementById('del-modal-cancel-btn');
+    if(iconEl) {
+      iconEl.classList.add('success');
+      iconEl.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E7D32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    }
+    if(titleEl) titleEl.textContent = lang === 'en' ? 'Account deleted' : 'Compte supprimé';
+    if(textEl) textEl.textContent = lang === 'en' ? 'Your account and all your data have been permanently deleted.' : 'Votre compte et toutes vos données ont été supprimés définitivement.';
+    if(cancelEl) cancelEl.style.display = 'none';
+    if(btnEl) {
+      btnEl.disabled = false;
+      btnEl.textContent = lang === 'en' ? 'Close' : 'Fermer';
+      btnEl.onclick = function(){ location.reload(); };
+    }
+  }
+
+  async function performAccountDeletion() {
+    var btnEl = document.getElementById('del-modal-confirm-btn');
+    if(btnEl) { btnEl.textContent = lang === 'en' ? 'Deleting…' : 'Suppression…'; btnEl.disabled = true; }
+    var user = auth.currentUser;
+    if(!user) { closeDeleteModal(); return; }
+    try {
+      await db.collection('users').doc(user.uid).delete();
+      await user.delete();
+      showDeleteSuccess();
+    } catch(e) {
+      if(e.code === 'auth/requires-recent-login') {
+        var password = prompt(lang === 'en' ? "For security, please re-enter your password to confirm account deletion:" : "Pour des raisons de sécurité, veuillez ressaisir votre mot de passe pour confirmer la suppression :");
+        if(!password) { if(btnEl) { btnEl.textContent = lang === 'en' ? 'Delete permanently' : 'Supprimer définitivement'; btnEl.disabled = false; } return; }
+        var credential = firebase.auth.EmailAuthProvider.credential(user.email, password);
+        try {
+          await user.reauthenticateWithCredential(credential);
+          await db.collection('users').doc(user.uid).delete();
+          await user.delete();
+          showDeleteSuccess();
+        } catch(e2) {
+          if(btnEl) { btnEl.textContent = lang === 'en' ? 'Delete permanently' : 'Supprimer définitivement'; btnEl.disabled = false; }
+          alert(getErrorMsg(e2.code));
+        }
+      } else {
+        if(btnEl) { btnEl.textContent = lang === 'en' ? 'Delete permanently' : 'Supprimer définitivement'; btnEl.disabled = false; }
+        alert(getErrorMsg(e.code));
+      }
+    }
+  }
+
   // Favoris gérés par app.js
 
   window.showError = function(id, msg) {
@@ -1049,6 +1169,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);max-w
     document.getElementById('auth-screen').style.display = 'none';
     document.getElementById('app').classList.add('show');
     if(typeof renderAll === 'function') renderAll();
+    if(typeof updateAboutButtonsLang === 'function') updateAboutButtonsLang();
     setTimeout(function(){ if(typeof switchTab === "function") switchTab("villes","Villes"); }, 150);
     if(typeof switchTab === 'function') switchTab('villes', 'Villes');
   };

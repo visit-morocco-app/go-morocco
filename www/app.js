@@ -192,6 +192,7 @@ function setLang(l) {
   };
 
   renderAll();
+  if(typeof updateAboutButtonsLang === 'function') updateAboutButtonsLang();
 }
 function toggleLangDropdown(e) {
   e.stopPropagation();
